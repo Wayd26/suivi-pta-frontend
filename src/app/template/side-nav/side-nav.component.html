@@ -20,56 +20,75 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item dropdown" >
-                <a class="dropdown-toggle" href="javascript:void(0);" >
-                    <span class="icon-holder">
-                        <i class="ti-layout-media-overlay"></i>
-                    </span>
-                    <span class="title">Dropdown</span>
-                    <span class="arrow">
-                        <i class="ti-angle-right"></i>
-                    </span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="">item 1</a>
+            <li class="nav-item dropdown">
+              <a class="dropdown-toggle" href="javascript:void(0);">
+                  <span class="icon-holder">
+                      <i class="ti-view-list-alt"></i>
+                  </span>
+                  <span class="title">Ficher</span>
+                  <span class="arrow">
+                      <i class="ti-angle-right"></i>
+                  </span>
+              </a>
+              <ul class="dropdown-menu">
+                  <li class="nav-item dropdown">
+                      <a href="javascript:void(0);">
+                          <span>Fichier de Base</span>
+                          <span class="arrow">
+                              <i class="ti-angle-right"></i>
+                          </span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a [routerLink]="['fichier/base/programme']">Programme</a>
+                      </li>
+                      <li>
+                          <a [routerLink]="['fichier/base/structures']">Structure</a>
+                      </li>
+                      <li>
+                        <a [routerLink]="['fichier/base/action']">Action</a>
                     </li>
                     <li>
-                        <a href="">item 2</a>
-                    </li>                  
-                </ul>
-            </li> 
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <span class="icon-holder">
-                        <i class="ti-view-list-alt"></i>
-                    </span>
-                    <span class="title">Multi Level</span>
-                    <span class="arrow">
-                        <i class="ti-angle-right"></i>
-                    </span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="nav-item dropdown">
-                        <a href="javascript:void(0);">
-                            <span>Level 1.2</span>
-                        </a>
-                    </li>	
-                    <li class="nav-item dropdown">
-                        <a href="javascript:void(0);">
-                            <span>Level 1.1</span>
-                            <span class="arrow">
-                                <i class="ti-angle-right"></i>
-                            </span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="javascript:void(0);">Level 2</a>
-                            </li>         
-                        </ul>
-                    </li>         
-                </ul>
-            </li>
+                      <a [routerLink]="['fichier/base/activite']">Activite</a>
+                  </li>
+                  <li>
+                      <a [routerLink]="['fichier/base/tache']">Taches</a>
+                  </li>
+                      </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a href="javascript:void(0);">
+                        <span>Localisation</span>
+                        <span class="arrow">
+                            <i class="ti-angle-right"></i>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a [routerLink]="['fichier/localisation/departement']">Departement</a>
+                        </li>
+                      <li>
+                        <a [routerLink]="['fichier/localisation/ville']">Ville</a>
+                    </li>
+
+                    </ul>
+                </li>
+                  <li class="nav-item dropdown">
+                    <a href="javascript:void(0);">
+                        <span>Financement</span>
+                        <span class="arrow">
+                            <i class="ti-angle-right"></i>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a [routerLink]="['fichier/financement/type/source']">Type Source Financement</a>
+                    </li>
+
+                    </ul>
+                </li>
+              </ul>
+          </li>
         </ul>
     </div>
 </div>
