@@ -1,0 +1,55 @@
+<div class="container-fluid">
+	<div class="page-title">
+		<h4>Liste des Programmes</h4>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-block">
+                    <div class="table-overflow">
+                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
+                            <thead>
+                                <tr>
+                                    <th>Code Programme</th>
+                                    <th>Libelle Programme</th>
+                                    <th>Poids</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let programme of programmes">
+                                    <td>
+                                      <div class="mrg-top-15">
+                                        <span>{{programme.code}}</span>
+                                    </div>
+                                    </td>
+                                    <td>
+                                      <div class="mrg-top-15">
+                                        <span>{{programme.libelle}}</span>
+                                    </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <span>{{programme.poids}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                      <div class="mrg-top-10 text-center">
+                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                            <i class="ti-more-alt"></i>
+                                        </button>
+                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                          <i class="ti-delete"></i>
+                                      </button>
+                                    </div>
+                                    </td>
+                                </tr>
+                           </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
