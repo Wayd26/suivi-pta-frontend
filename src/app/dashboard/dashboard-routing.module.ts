@@ -12,6 +12,7 @@ import { DepartementListComponent } from './fichier/localisation/departement/dep
 import { VilleListComponent } from './fichier/localisation/ville/ville-list/ville-list.component';
 import { TachesListComponent } from './fichier/fichier-de-base/taches/taches-list/taches-list.component';
 import {StructureAddComponent} from './fichier/fichier-de-base/structure/structure-add/structure-add.component';
+import {ProgrammeAddComponent} from './fichier/fichier-de-base/programme/programme-add/programme-add.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -24,6 +25,13 @@ export const DashboardRoutes: Routes = [
     {
       path: 'fichier/base/programme',
       component: ProgrammeListComponent,
+      data: {
+         title: 'Dashboard'
+      }
+  },
+    {
+      path: 'fichier/base/programme/add',
+      component: ProgrammeAddComponent,
       data: {
          title: 'Dashboard'
       }

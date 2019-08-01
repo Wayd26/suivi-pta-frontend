@@ -20,6 +20,7 @@ import { DepartementListComponent } from './fichier/localisation/departement/dep
 import { TachesListComponent } from './fichier/fichier-de-base/taches/taches-list/taches-list.component';
 import { StructureAddComponent } from './fichier/fichier-de-base/structure/structure-add/structure-add.component';
 import {FormsModule} from '@angular/forms';
+import { ProgrammeAddComponent } from './fichier/fichier-de-base/programme/programme-add/programme-add.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import {FormsModule} from '@angular/forms';
         VilleListComponent,
         DepartementListComponent,
         TachesListComponent,
-        StructureAddComponent
+        StructureAddComponent,
+        ProgrammeAddComponent
     ],
     providers: [
         ThemeConstants
