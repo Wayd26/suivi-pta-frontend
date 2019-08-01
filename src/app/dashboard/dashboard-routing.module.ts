@@ -11,6 +11,7 @@ import { ActiviteListComponent } from './fichier/fichier-de-base/activite/activi
 import { DepartementListComponent } from './fichier/localisation/departement/departement-list/departement-list.component';
 import { VilleListComponent } from './fichier/localisation/ville/ville-list/ville-list.component';
 import { TachesListComponent } from './fichier/fichier-de-base/taches/taches-list/taches-list.component';
+import {SourceFinancementListComponent} from './fichier/financement/source-financement-list/source-financement-list.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -75,6 +76,14 @@ export const DashboardRoutes: Routes = [
   data: {
      title: 'Dashboard'
   }
-}
+},
+
+  {
+    path: 'fichier/financement/source',
+    component: SourceFinancementListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  }
 ];
 

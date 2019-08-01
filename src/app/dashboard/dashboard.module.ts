@@ -17,6 +17,7 @@ import { ActiviteListComponent } from './fichier/fichier-de-base/activite/activi
 import { VilleListComponent } from './fichier/localisation/ville/ville-list/ville-list.component';
 import { DepartementListComponent } from './fichier/localisation/departement/departement-list/departement-list.component';
 import { TachesListComponent } from './fichier/fichier-de-base/taches/taches-list/taches-list.component';
+import {SourceFinancementListComponent} from './fichier/financement/source-financement-list/source-financement-list.component';
 
 @NgModule({
     imports: [
@@ -34,7 +35,8 @@ import { TachesListComponent } from './fichier/fichier-de-base/taches/taches-lis
         ActiviteListComponent,
         VilleListComponent,
         DepartementListComponent,
-        TachesListComponent
+        TachesListComponent,
+        SourceFinancementListComponent
     ],
     providers: [
         ThemeConstants
