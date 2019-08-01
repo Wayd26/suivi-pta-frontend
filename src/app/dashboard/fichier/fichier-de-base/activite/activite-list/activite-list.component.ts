@@ -18,11 +18,7 @@ export class ActiviteListComponent implements OnInit {
   ngOnInit(): void {
       this.dtOptions = {
           scrollY: '500',
-          pagingType: 'full_numbers',
-          columnDefs: [
-            { 'width': '20%', 'targets': 1 },
-
-          ]
+          pagingType: 'full_numbers'
       };
 
       this.activiteService.getActiviteList().subscribe((res: ListActiviteResponse) => {

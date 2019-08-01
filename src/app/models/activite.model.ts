@@ -9,6 +9,7 @@
       code: string;
       date_debut: string;
       date_fin: string;
+      libelle: string;
       activite_pip: boolean;
       mode: string;
       montant: number;

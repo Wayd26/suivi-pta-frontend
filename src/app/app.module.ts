@@ -25,6 +25,7 @@ import { ActiviteService } from './shared/services/activite.service';
 import { VilleService } from './shared/services/ville.service';
 import { DepartementService } from './shared/services/departement.service';
 import { TacheService } from './shared/services/tache.service';
+import {NgSelectizeModule} from 'ng-selectize';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { TacheService } from './shared/services/tache.service';
         SharedModule,
         TemplateModule,
         HttpClientModule,
-        CommonModule
+        CommonModule,
+        NgSelectizeModule
     ],
     declarations: [
         AppComponent,

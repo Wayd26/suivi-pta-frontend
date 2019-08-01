@@ -11,6 +11,7 @@ import { ActiviteListComponent } from './fichier/fichier-de-base/activite/activi
 import { DepartementListComponent } from './fichier/localisation/departement/departement-list/departement-list.component';
 import { VilleListComponent } from './fichier/localisation/ville/ville-list/ville-list.component';
 import { TachesListComponent } from './fichier/fichier-de-base/taches/taches-list/taches-list.component';
+import {StructureAddComponent} from './fichier/fichier-de-base/structure/structure-add/structure-add.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -30,6 +31,13 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/base/structures',
     component: StructureListComponent,
+    data: {
+       title: 'Dashboard'
+    }
+},
+  {
+    path: 'fichier/base/structures/add',
+    component: StructureAddComponent,
     data: {
        title: 'Dashboard'
     }

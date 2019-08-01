@@ -5,6 +5,7 @@ import { DataTablesModule } from 'angular-datatables';
 
 import { DashboardRoutes } from './dashboard-routing.module';
 import { CommonModule} from '@angular/common';
+import {NgSelectizeModule} from 'ng-selectize';
 
 
 //Dashboard Component
@@ -17,14 +18,18 @@ import { ActiviteListComponent } from './fichier/fichier-de-base/activite/activi
 import { VilleListComponent } from './fichier/localisation/ville/ville-list/ville-list.component';
 import { DepartementListComponent } from './fichier/localisation/departement/departement-list/departement-list.component';
 import { TachesListComponent } from './fichier/fichier-de-base/taches/taches-list/taches-list.component';
+import { StructureAddComponent } from './fichier/fichier-de-base/structure/structure-add/structure-add.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
-    imports: [
-        RouterModule.forChild(DashboardRoutes),
-        DataTablesModule,
-        CommonModule,
+  imports: [
+    RouterModule.forChild(DashboardRoutes),
+    DataTablesModule,
+    CommonModule,
+    NgSelectizeModule,
+    FormsModule
 
-         ],
+  ],
     declarations: [
         DashboardComponent,
         ProgrammeListComponent,
@@ -34,7 +39,8 @@ import { TachesListComponent } from './fichier/fichier-de-base/taches/taches-lis
         ActiviteListComponent,
         VilleListComponent,
         DepartementListComponent,
-        TachesListComponent
+        TachesListComponent,
+        StructureAddComponent
     ],
     providers: [
         ThemeConstants
