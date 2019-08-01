@@ -13,6 +13,7 @@ import { VilleListComponent } from './fichier/localisation/ville/ville-list/vill
 import { TachesListComponent } from './fichier/fichier-de-base/taches/taches-list/taches-list.component';
 import {StructureAddComponent} from './fichier/fichier-de-base/structure/structure-add/structure-add.component';
 import {ProgrammeAddComponent} from './fichier/fichier-de-base/programme/programme-add/programme-add.component';
+import {SourceFinancementListComponent} from './fichier/financement/source-financement-list/source-financement-list.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -91,6 +92,14 @@ export const DashboardRoutes: Routes = [
   data: {
      title: 'Dashboard'
   }
-}
+},
+
+  {
+    path: 'fichier/financement/source',
+    component: SourceFinancementListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  }
 ];
 

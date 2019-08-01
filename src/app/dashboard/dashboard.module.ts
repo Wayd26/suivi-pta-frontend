@@ -21,6 +21,7 @@ import { TachesListComponent } from './fichier/fichier-de-base/taches/taches-lis
 import { StructureAddComponent } from './fichier/fichier-de-base/structure/structure-add/structure-add.component';
 import {FormsModule} from '@angular/forms';
 import { ProgrammeAddComponent } from './fichier/fichier-de-base/programme/programme-add/programme-add.component';
+import {SourceFinancementListComponent} from './fichier/financement/source-financement-list/source-financement-list.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,8 @@ import { ProgrammeAddComponent } from './fichier/fichier-de-base/programme/progr
         ActiviteListComponent,
         VilleListComponent,
         DepartementListComponent,
+        TachesListComponent,
+        SourceFinancementListComponent
         TachesListComponent,
         StructureAddComponent,
         ProgrammeAddComponent
