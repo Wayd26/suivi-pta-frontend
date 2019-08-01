@@ -42,7 +42,7 @@ import {SourceFinancementListComponent} from './fichier/financement/source-finan
         VilleListComponent,
         DepartementListComponent,
         TachesListComponent,
-        SourceFinancementListComponent
+        SourceFinancementListComponent,
         TachesListComponent,
         StructureAddComponent,
         ProgrammeAddComponent
