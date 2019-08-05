@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="page-title">
-    <h4>Liste Source Financement</h4>
+    <h4>Liste des Ministères</h4>
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -14,49 +14,29 @@
             <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
               <thead>
               <tr>
-                <th>Code Source Financement</th>
-                <th>Libelle Source Financement</th>
-                <th>Chapitre d'imputation</th>
-                <th>Poids projet PIP</th>
-                <th>Type source financement</th>
-                <th>Projet</th>
+                <th>Code</th>
+                <th>Dénomination</th>
                 <th>Action</th>
 
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let source of Sources">
+              <tr *ngFor="let ministere of Ministeres">
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{source.code}}</span>
+                    <span>{{ministere.code}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{source.libelle}}</span>
+                    <span>{{ministere.denomination}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{source.chapitre_imputation}}</span>
+                    <span></span>
                   </div>
                 </td>
-                <td>
-                  <div class="mrg-top-15">
-                    <span>{{source.poids_projet}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="mrg-top-15">
-                    <span>{{source._type}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="mrg-top-15">
-                    <span>{{source.est_projet}}</span>
-                  </div>
-                </td>
-
                 <td>
                   <div class="mrg-top-10 text-center">
                     <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle">

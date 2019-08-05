@@ -14,6 +14,12 @@ import { TachesListComponent } from './fichier/fichier-de-base/taches/taches-lis
 import {StructureAddComponent} from './fichier/fichier-de-base/structure/structure-add/structure-add.component';
 import {ProgrammeAddComponent} from './fichier/fichier-de-base/programme/programme-add/programme-add.component';
 import {SourceFinancementListComponent} from './fichier/financement/source-financement-list/source-financement-list.component';
+import {VilleAddComponent} from './fichier/localisation/ville/ville-add/ville-add.component';
+import {DepartementAddComponent} from './fichier/localisation/departement/departement-add/departement-add.component';
+import {TypeSourceFinancementAddComponent} from './fichier/financement/type_source_financement/type-source-financement-add/type-source-financement-add.component';
+import {SourceFinancementAddComponent} from './fichier/financement/source-financement-add/source-financement-add.component';
+import {MinistereAddComponent} from './fichier/fichier-de-base/ministere/ministere-add/ministere-add.component';
+import {MinistereListComponent} from './fichier/fichier-de-base/ministere/ministere-list/ministere-list.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -97,6 +103,49 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/financement/source',
     component: SourceFinancementListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/localisation/ville/add',
+    component: VilleAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/localisation/departement/add',
+    component: DepartementAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/financement/type/source/add',
+    component: TypeSourceFinancementAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+
+  {
+    path: 'fichier/financement/source/add',
+    component: SourceFinancementAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/ministere',
+    component: MinistereListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/ministere/add',
+    component: MinistereAddComponent,
     data: {
       title: 'Dashboard'
     }

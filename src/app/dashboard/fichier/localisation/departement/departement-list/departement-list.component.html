@@ -1,11 +1,15 @@
 <div class="container-fluid">
     <div class="page-title">
-      <h4>Liste des Departements</h4>
+      <h4>Liste des Départements</h4>
     </div>
     <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="card-block">
+            <a [routerLink]="['add']" class="btn btn-info">
+              <i class="ti-plus pdd-right-5"></i>
+              <span>Ajouter</span>
+            </a>
                       <div class="table-overflow">
                           <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
                               <thead>

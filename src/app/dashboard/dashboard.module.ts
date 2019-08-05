@@ -22,6 +22,12 @@ import { StructureAddComponent } from './fichier/fichier-de-base/structure/struc
 import {FormsModule} from '@angular/forms';
 import { ProgrammeAddComponent } from './fichier/fichier-de-base/programme/programme-add/programme-add.component';
 import {SourceFinancementListComponent} from './fichier/financement/source-financement-list/source-financement-list.component';
+import { VilleAddComponent } from './fichier/localisation/ville/ville-add/ville-add.component';
+import { DepartementAddComponent } from './fichier/localisation/departement/departement-add/departement-add.component';
+import { TypeSourceFinancementAddComponent } from './fichier/financement/type_source_financement/type-source-financement-add/type-source-financement-add.component';
+import { SourceFinancementAddComponent } from './fichier/financement/source-financement-add/source-financement-add.component';
+import { MinistereListComponent } from './fichier/fichier-de-base/ministere/ministere-list/ministere-list.component';
+import { MinistereAddComponent } from './fichier/fichier-de-base/ministere/ministere-add/ministere-add.component';
 
 @NgModule({
   imports: [
@@ -45,7 +51,13 @@ import {SourceFinancementListComponent} from './fichier/financement/source-finan
         SourceFinancementListComponent,
         TachesListComponent,
         StructureAddComponent,
-        ProgrammeAddComponent
+        ProgrammeAddComponent,
+        VilleAddComponent,
+        DepartementAddComponent,
+        TypeSourceFinancementAddComponent,
+        SourceFinancementAddComponent,
+        MinistereListComponent,
+        MinistereAddComponent
     ],
     providers: [
         ThemeConstants

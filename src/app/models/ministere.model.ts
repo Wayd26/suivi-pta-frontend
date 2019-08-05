@@ -1,21 +1,23 @@
 
-export interface Link {
+  export interface Link {
     rel: string;
     href: string;
   }
 
-  export interface SourceFinancement {
+  export interface Ministere {
     identifiant: number;
     code: string;
-    est_projet: boolean;
-    libelle: string;
-    poids_projet: number;
-    chapitre_imputation: string;
-    _type: string;
+    denomination: string;
+    _departement: string;
+    _ville: string;
     _user: string;
     created_at: string;
     updated_at: string;
     links: Link[];
+  }
+
+  export interface Links {
+    next: string;
   }
 
   export interface Pagination {
@@ -24,15 +26,17 @@ export interface Link {
     per_page: number;
     current_page: number;
     total_pages: number;
-    links: any[];
+    links: Links;
   }
 
   export interface Meta {
     pagination: Pagination;
   }
 
-  export interface ListSourceFinancementResponse {
-    data: SourceFinancement[];
+  export interface ListMinistereResponse {
+    data: Ministere[];
     meta: Meta;
   }
+
+
 
