@@ -28,6 +28,7 @@ import { TypeSourceFinancementAddComponent } from './fichier/financement/type_so
 import { SourceFinancementAddComponent } from './fichier/financement/source-financement-add/source-financement-add.component';
 import { MinistereListComponent } from './fichier/fichier-de-base/ministere/ministere-list/ministere-list.component';
 import { MinistereAddComponent } from './fichier/fichier-de-base/ministere/ministere-add/ministere-add.component';
+import { ProgrammeEditComponent } from './fichier/fichier-de-base/programme/programme-edit/programme-edit.component';
 
 @NgModule({
   imports: [
@@ -57,7 +58,8 @@ import { MinistereAddComponent } from './fichier/fichier-de-base/ministere/minis
         TypeSourceFinancementAddComponent,
         SourceFinancementAddComponent,
         MinistereListComponent,
-        MinistereAddComponent
+        MinistereAddComponent,
+        ProgrammeEditComponent
     ],
     providers: [
         ThemeConstants

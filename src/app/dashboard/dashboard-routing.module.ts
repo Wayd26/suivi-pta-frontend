@@ -20,6 +20,7 @@ import {TypeSourceFinancementAddComponent} from './fichier/financement/type_sour
 import {SourceFinancementAddComponent} from './fichier/financement/source-financement-add/source-financement-add.component';
 import {MinistereAddComponent} from './fichier/fichier-de-base/ministere/ministere-add/ministere-add.component';
 import {MinistereListComponent} from './fichier/fichier-de-base/ministere/ministere-list/ministere-list.component';
+import { ProgrammeEditComponent } from './fichier/fichier-de-base/programme/programme-edit/programme-edit.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -43,6 +44,13 @@ export const DashboardRoutes: Routes = [
          title: 'Dashboard'
       }
   },
+  {
+    path: 'fichier/base/programme/edit',
+    component: ProgrammeEditComponent,
+    data: {
+       title: 'Dashboard'
+    }
+},
   {
     path: 'fichier/base/structures',
     component: StructureListComponent,
