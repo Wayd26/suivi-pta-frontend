@@ -29,6 +29,12 @@ import { SourceFinancementAddComponent } from './fichier/financement/source-fina
 import { MinistereListComponent } from './fichier/fichier-de-base/ministere/ministere-list/ministere-list.component';
 import { MinistereAddComponent } from './fichier/fichier-de-base/ministere/ministere-add/ministere-add.component';
 import { ProgrammeEditComponent } from './fichier/fichier-de-base/programme/programme-edit/programme-edit.component';
+import { MinistereEditComponent } from './fichier/fichier-de-base/ministere/ministere-edit/ministere-edit.component';
+import { StructureEditComponent } from './fichier/fichier-de-base/structure/structure-edit/structure-edit.component';
+import { SourceFinancementEditComponent } from './fichier/financement/source-financement-edit/source-financement-edit.component';
+import { TypeSourceFinancementEditComponent } from './fichier/financement/type_source_financement/type-source-financement-edit/type-source-financement-edit.component';
+import { DepartementEditComponent } from './fichier/localisation/departement/departement-edit/departement-edit.component';
+import { VilleEditComponent } from './fichier/localisation/ville/ville-edit/ville-edit.component';
 
 @NgModule({
   imports: [
@@ -59,7 +65,13 @@ import { ProgrammeEditComponent } from './fichier/fichier-de-base/programme/prog
         SourceFinancementAddComponent,
         MinistereListComponent,
         MinistereAddComponent,
-        ProgrammeEditComponent
+        ProgrammeEditComponent,
+        MinistereEditComponent,
+        StructureEditComponent,
+        SourceFinancementEditComponent,
+        TypeSourceFinancementEditComponent,
+        DepartementEditComponent,
+        VilleEditComponent
     ],
     providers: [
         ThemeConstants
