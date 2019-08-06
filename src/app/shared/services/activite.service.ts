@@ -13,4 +13,13 @@ export class ActiviteService {
   getActiviteList() {
   return this.httpClient.get(BASE_URL + 'activites', this.options  );
   }
+  deleteActivite(id) {
+    return this.httpClient.delete(BASE_URL + 'administrateurs/2/activites/' + id, this.options);
+  }
+  createActivite(denomination: string) {
+    const data = {
+      denomination: denomination
+    };
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/activites', data, this.options);
+  }
 }

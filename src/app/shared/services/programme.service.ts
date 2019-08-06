@@ -21,4 +21,24 @@ export class ProgrammeService {
 
     return this.httpClient.get(BASE_URL + 'programmes', this.options  );
   }
+  deleteProgramme(id) {
+    return this.httpClient.delete(BASE_URL + 'administrateurs/2/programmes/' + id, this.options);
+  }
+  createProgramme(libelle: string, poids: number, exercice_id: number) {
+    const data = {
+      libelle: libelle,
+      poids: poids,
+      exercice_id: exercice_id
+    };
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/programmes', data, this.options);
+  }
+
+  update(libelle: string, poids: number, exercice_id: number) {
+    const data = {
+      libelle: libelle,
+      poids: poids,
+      exercice_id: exercice_id
+    };
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/programmes', data, this.options);
+  }
 }

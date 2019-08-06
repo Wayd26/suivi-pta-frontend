@@ -14,4 +14,21 @@ export class ActionService {
 
     return this.httpClient.get(BASE_URL + 'actions', this.options  );
   }
+
+  deleteAction(id) {
+    return this.httpClient.delete(BASE_URL + 'administrateurs/2/actions/' + id, this.options);
+  }
+
+  createAction(denomination: string) {
+    const data = {
+      denomination: denomination
+    };
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/actions', data, this.options);
+  }
+  update(denomination: string) {
+    const data = {
+      denomination: denomination
+    };
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/actions', data, this.options);
+  }
 }

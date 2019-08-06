@@ -19,4 +19,13 @@ export class DepartementService {
     };
     return this.httpClient.post(BASE_URL + 'administrateurs/2/departements', data, this.options);
   }
+  update(denomination: string) {
+    const data = {
+      denomination: denomination
+    };
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/departements', data, this.options);
+  }
+  deleteDepartement(id) {
+    return this.httpClient.delete(BASE_URL + 'administrateurs/2/departements/' + id, this.options);
+  }
 }

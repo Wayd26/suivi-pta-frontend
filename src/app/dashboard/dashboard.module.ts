@@ -29,6 +29,18 @@ import { SourceFinancementAddComponent } from './fichier/financement/source-fina
 import { MinistereListComponent } from './fichier/fichier-de-base/ministere/ministere-list/ministere-list.component';
 import { MinistereAddComponent } from './fichier/fichier-de-base/ministere/ministere-add/ministere-add.component';
 import { ProgrammeEditComponent } from './fichier/fichier-de-base/programme/programme-edit/programme-edit.component';
+import { DepartementEditComponent } from './fichier/localisation/departement/departement-edit/departement-edit.component';
+import { StructureEditComponent } from './fichier/fichier-de-base/structure/structure-edit/structure-edit.component';
+import { MinistereEditComponent } from './fichier/fichier-de-base/ministere/ministere-edit/ministere-edit.component';
+import { VilleEditComponent } from './fichier/localisation/ville/ville-edit/ville-edit.component';
+import { TypeSourceFinancementEditComponent } from './fichier/financement/type_source_financement/type-source-financement-edit/type-source-financement-edit.component';
+import { SourceFinancementEditComponent } from './fichier/financement/source-financement-edit/source-financement-edit.component';
+import { ObjectifListComponent } from './fichier/fichier-de-base/objectif/objectif-list/objectif-list.component';
+import { ObjectifAddComponent } from './fichier/fichier-de-base/objectif/objectif-add/objectif-add.component';
+import { ObjectifEditComponent } from './fichier/fichier-de-base/objectif/objectif-edit/objectif-edit.component';
+import { ExerciceListComponent } from './fichier/fichier-de-base/exercice/exercice-list/exercice-list.component';
+import { ExerciceEditComponent } from './fichier/fichier-de-base/exercice/exercice-edit/exercice-edit.component';
+import { ExerciceAddComponent } from './fichier/fichier-de-base/exercice/exercice-add/exercice-add.component';
 
 @NgModule({
   imports: [
@@ -59,7 +71,19 @@ import { ProgrammeEditComponent } from './fichier/fichier-de-base/programme/prog
         SourceFinancementAddComponent,
         MinistereListComponent,
         MinistereAddComponent,
-        ProgrammeEditComponent
+        ProgrammeEditComponent,
+        DepartementEditComponent,
+        StructureEditComponent,
+        MinistereEditComponent,
+        VilleEditComponent,
+        TypeSourceFinancementEditComponent,
+        SourceFinancementEditComponent,
+        ObjectifListComponent,
+        ObjectifAddComponent,
+        ObjectifEditComponent,
+        ExerciceListComponent,
+        ExerciceEditComponent,
+        ExerciceAddComponent
     ],
     providers: [
         ThemeConstants

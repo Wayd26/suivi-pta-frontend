@@ -23,7 +23,22 @@ export class StructureService {
       telephon : telephon,
       ville : ville
 
-    }
+    };
+    console.log(data);
     return this.httpClient.post(BASE_URL + 'administrateurs/2/structures', data, this.options);
+  }
+  update(denomination, email, telephon, ville) {
+    const data = {
+      denomination : denomination,
+      email : email,
+      telephon : telephon,
+      ville : ville
+    };
+    console.log(data);
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/structures', data, this.options);
+  }
+
+  deleteStructure(id) {
+      return this.httpClient.delete(BASE_URL + 'administrateurs/2/structures/' + id, this.options);
   }
 }
