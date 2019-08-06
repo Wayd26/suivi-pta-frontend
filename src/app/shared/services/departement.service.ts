@@ -13,4 +13,10 @@ export class DepartementService {
   getDepartementList() {
   return this.httpClient.get(BASE_URL + 'departements', this.options  );
   }
+  createDepartement(denomination: string) {
+    const data = {
+      denomination: denomination
+    };
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/departements', data, this.options);
+  }
 }
