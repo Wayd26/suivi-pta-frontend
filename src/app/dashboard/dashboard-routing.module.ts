@@ -21,6 +21,12 @@ import {SourceFinancementAddComponent} from './fichier/financement/source-financ
 import {MinistereAddComponent} from './fichier/fichier-de-base/ministere/ministere-add/ministere-add.component';
 import {MinistereListComponent} from './fichier/fichier-de-base/ministere/ministere-list/ministere-list.component';
 import { ProgrammeEditComponent } from './fichier/fichier-de-base/programme/programme-edit/programme-edit.component';
+import {MinistereEditComponent} from './fichier/fichier-de-base/ministere/ministere-edit/ministere-edit.component';
+import {StructureEditComponent} from './fichier/fichier-de-base/structure/structure-edit/structure-edit.component';
+import {SourceFinancementEditComponent} from './fichier/financement/source-financement-edit/source-financement-edit.component';
+import {TypeSourceFinancementEditComponent} from './fichier/financement/type_source_financement/type-source-financement-edit/type-source-financement-edit.component';
+import {VilleEditComponent} from './fichier/localisation/ville/ville-edit/ville-edit.component';
+import {DepartementEditComponent} from './fichier/localisation/departement/departement-edit/departement-edit.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -154,6 +160,49 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/base/ministere/add',
     component: MinistereAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/ministere/edit',
+    component: MinistereEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/structures/edit',
+    component: StructureEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+    },
+
+  {
+    path: 'fichier/financement/source/edit',
+    component: SourceFinancementEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/financement/type/source/edit',
+    component: TypeSourceFinancementEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/localisation/ville/edit',
+    component: VilleEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/localisation/departement/edit',
+    component: DepartementEditComponent,
     data: {
       title: 'Dashboard'
     }
