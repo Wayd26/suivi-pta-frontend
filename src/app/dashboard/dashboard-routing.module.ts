@@ -27,6 +27,8 @@ import {SourceFinancementEditComponent} from './fichier/financement/source-finan
 import {TypeSourceFinancementEditComponent} from './fichier/financement/type_source_financement/type-source-financement-edit/type-source-financement-edit.component';
 import {VilleEditComponent} from './fichier/localisation/ville/ville-edit/ville-edit.component';
 import {DepartementEditComponent} from './fichier/localisation/departement/departement-edit/departement-edit.component';
+import {ActionAddComponent} from './fichier/fichier-de-base/action/action-add/action-add.component';
+import {TachesAddComponent} from './fichier/fichier-de-base/taches/taches-add/taches-add.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -203,6 +205,21 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/localisation/departement/edit',
     component: DepartementEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/action/add',
+    component: ActionAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  }
+  ,
+  {
+    path: 'fichier/base/tache/add',
+    component: TachesAddComponent,
     data: {
       title: 'Dashboard'
     }
