@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {TypeSourceFinancementService} from '../../../../../shared/services/type-source-financement.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-type-source-financement-add',
@@ -8,38 +10,19 @@ import {NgForm} from '@angular/forms';
 })
 export class TypeSourceFinancementAddComponent implements OnInit {
 
-  singleSelectOptions: any = [
-    {
-      label: 'Angular',
-      value: 'angular',
-      code: 'NG'
-    }, {
-      label: 'ReactJS',
-      value: 'reactjs',
-      code: 'RJS'
-    }, {
-      label: 'Ember JS',
-      value: 'emberjs',
-      code: 'emjs'
-    }, {
-      label: 'Ruby on Rails',
-      value: 'ruby_on_rails',
-      code: 'ROR'
-    }
-  ];
-
-  singleSelectConfig: any = {
-    labelField: 'label',
-    valueField: 'value',
-    searchField: ['label']
-  };
-
-  singleSelectValue: string[] = ['reactjs'];
-  constructor() { }
+  message: string;
+  constructor(private typeService: TypeSourceFinancementService, private router: Router) { }
 
   ngOnInit() {
+    this.message = '';
   }
   onSubmit(form: NgForm) {
-
+      this.typeService.createTypeSource(form.value['libelle_type__source_financement'])
+        .subscribe((resp) => {
+          this.router.navigate(['/dashboard/fichier/financement/type/source']);
+        } , (error) => {
+          this.message = 'Echec de l\'operation';
+          this.router.navigate(['/dashboard/fichier/financement/type/source/add']);
+        });
   }
 }

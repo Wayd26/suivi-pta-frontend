@@ -26,6 +26,9 @@ import { VilleService } from './shared/services/ville.service';
 import { DepartementService } from './shared/services/departement.service';
 import { TacheService } from './shared/services/tache.service';
 import {NgSelectizeModule} from 'ng-selectize';
+import {MinistereService} from './shared/services/ministere.service';
+import {ExercieService} from './shared/services/exercie.service';
+import {ObjectifService} from './shared/services/objectif.service';
 
 
 @NgModule({
@@ -45,7 +48,7 @@ import {NgSelectizeModule} from 'ng-selectize';
     ],
     providers: [TemplateService, ProgrammeService, UtilsService, StructureService,
        ActionService, TypeSourceFinancementService, ActiviteService, VilleService, DepartementService,
-      TacheService],
+      TacheService, MinistereService, ExercieService, ObjectifService],
     bootstrap: [AppComponent]
 })
 

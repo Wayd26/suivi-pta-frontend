@@ -49,7 +49,7 @@ singleSelectValue2: string;
   onSubmit(form: NgForm) {
     console.log(form.value);
     this.structureService.createStructure(form.value['denomination'], form.value['email'],
-      form.value['telResp'],+this.utilService.getElementId(this.singleSelectOptions2, this.singleSelectValue2)  ).subscribe((res) => {
+      form.value['telResp'], +this.utilService.getElementId(this.singleSelectOptions2, this.singleSelectValue2)  ).subscribe((res) => {
       this.router.navigate(['/dashboard/fichier/base/structures']);
     });
   }

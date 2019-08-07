@@ -32,5 +32,14 @@ export class ActionListComponent implements OnInit {
         this.actions = [];
       });
   }
+  onDelete(id) {
+    this.actionService.deleteAction(id).subscribe((res) => {
+        this.actions = this.actions.filter((action) => {
+          return action.identifiant !== id;
+        });
+        this.router.navigate(['/dashboard/fichier/base/action']);
+      }
+    );
+  }
 
 }

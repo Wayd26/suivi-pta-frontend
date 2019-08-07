@@ -14,12 +14,17 @@ export class MinistereService {
 
     return this.httpClient.get(BASE_URL + 'ministeres', this.options  );
   }
-
-  // createMinistere(code, denomination){
-  //   const data = {
-  //     code : code,
-  //     denomination : denomination
-  //   }
-  //   return this.httpClient.post(BASE_URL + )
-  // }
+  deleteMinistere(id) {
+    return this.httpClient.delete(BASE_URL + 'administrateurs/2/ministeres/' + id, this.options);
+  }
+  createMinistere(denomination: string, sigle: string , ville_id: number, email: string, telephone: string) {
+    const data = {
+      denomination: denomination,
+      sigle: sigle,
+      ville_id: ville_id,
+      email: email,
+      telephone: telephone
+    };
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/ministeres', data, this.options);
+  }
 }

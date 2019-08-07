@@ -12,4 +12,19 @@ export class ResultatService {constructor(private httpClient: HttpClient, privat
   getResultatList() {
     return this.httpClient.get(BASE_URL + 'resultats', this.options  );
     }
+  deleteResultat(id) {
+    return this.httpClient.delete(BASE_URL + 'administrateurs/2/resultats/' + id, this.options);
+  }
+  createResultats(denomination: string) {
+    const data = {
+      denomination: denomination
+    };
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/resultats', data, this.options);
+  }
+  update(denomination: string) {
+    const data = {
+      denomination: denomination
+    };
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/resultats', data, this.options);
+  }
   }
