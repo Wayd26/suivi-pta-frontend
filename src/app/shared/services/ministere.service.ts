@@ -14,4 +14,12 @@ export class MinistereService {
 
     return this.httpClient.get(BASE_URL + 'ministeres', this.options  );
   }
+
+  // createMinistere(code, denomination){
+  //   const data = {
+  //     code : code,
+  //     denomination : denomination
+  //   }
+  //   return this.httpClient.post(BASE_URL + )
+  // }
 }

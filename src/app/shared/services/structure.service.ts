@@ -16,11 +16,11 @@ export class StructureService {
 
     return this.httpClient.get(BASE_URL + 'structures', this.options  );
   }
-  createStructure(denomination, email, telephon, ville) {
+  createStructure(denomination, email, telephone, ville) {
     const data = {
       denomination : denomination,
       email : email,
-      telephon : telephon,
+      telephone : telephone,
       ville : ville
 
     }
