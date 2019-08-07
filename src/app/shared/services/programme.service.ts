@@ -24,6 +24,9 @@ export class ProgrammeService {
   deleteProgramme(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/programmes/' + id, this.options);
   }
+  getProgramme(id) {
+    return this.httpClient.get(BASE_URL + 'programmes/' + id, this.options);
+  }
   createProgramme(libelle: string, poids: number, exercice_id: number) {
     const data = {
       libelle: libelle,
@@ -33,12 +36,12 @@ export class ProgrammeService {
     return this.httpClient.post(BASE_URL + 'administrateurs/2/programmes', data, this.options);
   }
 
-  update(libelle: string, poids: number, exercice_id: number) {
+  update(libelle: string, poids: number, exercice_id: number, id: number) {
     const data = {
       libelle: libelle,
       poids: poids,
       exercice_id: exercice_id
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/programmes', data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrateurs/2/programmes/' + id, data, this.options);
   }
 }

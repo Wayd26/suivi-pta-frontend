@@ -16,9 +16,11 @@ export class DepartementAddComponent implements OnInit {
   }
   onSubmit(form: NgForm) {
       this.departeemntService.createDepartement(form.value['nom_département']).subscribe((res) => {
+        console.log(res);
+          this.router.navigate(['/dashboard/fichier/localisation/departement']);
       }, (error) => {},
         () => {
-        this.router.navigate(['/dashboard/fichier/localisation/departement']);
+
         }
       );
   }

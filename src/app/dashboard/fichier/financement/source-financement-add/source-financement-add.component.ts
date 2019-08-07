@@ -40,10 +40,12 @@ export class SourceFinancementAddComponent implements OnInit {
       });
   }
   onSubmit(form: NgForm) {
-      this.sourcrService.createSource(form.value['libellé_source_financement'], form.value['poids_projet_pip'],form.value['toggle1'], +this.utils.getElementId(this.singleSelectOptions, this.singleSelectValue))
+    console.log(form.value);
+      this.sourcrService.createSource(form.value['libellé_source_financement'], form.value['poids_projet_pip'], form.value['toggle1'], +this.singleSelectValue)
         .subscribe((resp) => {
           this.router.navigate(['/dashboard/fichier/financement/source']);
         } , (error) => {
+          console.log(error);
           this.message = 'Echec de l\'operation';
           this.router.navigate(['/dashboard/fichier/financement/source/add']);
         });

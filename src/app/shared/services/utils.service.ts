@@ -20,12 +20,20 @@ export class UtilsService {
   }
 
   getElementId(data, selectData) {
+    console.log(data);
+    console.log(selectData);
     let id = '';
     data.map((elements) => {
       if (elements['label'] === selectData) {
         id = elements['code'];
+        console.log(id);
       }
     });
     return id;
+  }
+
+  getIdData(data, keys ) {
+   const tab = data.find(function (e) { return e['rel'] === keys ; })['href'].split('/');
+    return tab[tab.length - 1];
   }
 }

@@ -25,8 +25,17 @@ export class ProgrammeListComponent implements OnInit {
 
       this.programmeService.getProgrammeList().subscribe((res: ListProgrammeResponse) => {
        this.programmes = res.data;
-        this.router.navigate(['/dashboard/fichier']);
       });
+  }
+
+  onDelete(id) {
+    this.programmeService.deleteProgramme(id).subscribe((res) => {
+        this.programmes = this.programmes.filter((action) => {
+          return action.identifiant !== id;
+        });
+        this.router.navigate(['/dashboard/fichier/base/programme']);
+      }
+    );
   }
 
 }

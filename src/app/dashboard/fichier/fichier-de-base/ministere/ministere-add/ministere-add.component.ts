@@ -32,18 +32,19 @@ export class MinistereAddComponent implements OnInit {
         res.data.map((ville) => {
           this.singleSelectOptions.push({
             label: ville.denomination,
-            value: ville.code,
-            code: ville.code
+            value: ville.identifiant,
+            code: ville.identifiant
           });
         });
       });
   }
   onSubmit(form: NgForm) {
-      this.ministereService.createMinistere(form.value['denomination'], form.value['sigle'],
-        +this.utilservice.getElementId(this.singleSelectOptions, this.singleSelectValue), form.value['telResp'], form.value['email'])
+      this.ministereService.createMinistere(form.value['denomination_ministere'], form.value['sigle'],
+        +this.singleSelectValue, form.value['email'], form.value['telResp'])
         .subscribe((resp) => {
           this.router.navigate(['/dashboard/fichier/base/ministere']);
         } , (error) => {
+          console.log(error);
           this.message = 'Echec de l\'operation';
           this.router.navigate(['/dashboard/fichier/base/ministere/add']);
         });

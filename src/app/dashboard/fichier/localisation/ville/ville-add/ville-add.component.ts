@@ -32,14 +32,14 @@ export class VilleAddComponent implements OnInit {
         res.data.map((departement) => {
           this.singleSelectOptions.push({
             label: departement.denomination,
-            value: departement.code,
-            code: departement.code
+            value: departement.identifiant,
+            code: departement.identifiant
           });
         });
       });
   }
   onSubmit(form: NgForm) {
-      this.villeService.createVille(form.value['nom_ville'], +this.utilservice.getElementId(this.singleSelectOptions, this.singleSelectValue))
+      this.villeService.createVille(form.value['nom_ville'], +this.singleSelectValue)
         .subscribe((resp) => {
           this.router.navigate(['/dashboard/fichier/localisation/ville']);
         } , (error) => {

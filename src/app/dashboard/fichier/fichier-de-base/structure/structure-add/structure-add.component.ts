@@ -8,6 +8,7 @@ import {CreateStructure} from '../../../../../models/structure.model';
 import {UtilsService} from '../../../../../shared/services/utils.service';
 import {StructureService} from '../../../../../shared/services/structure.service';
 import {Router} from '@angular/router';
+import {error} from 'util';
 
 @Component({
   selector: 'app-structure-add',
@@ -27,18 +28,19 @@ singleSelectConfig: any = {
 };
 
 singleSelectValue: string ;
-singleSelectValue2: string;
+singleSelectValue2: number;
   constructor( private villeService: VilleService, private utilService: UtilsService, private structureService: StructureService,
                private router: Router) { }
 
   ngOnInit() {
-
+    this.singleSelectValue2 = 0;
     this.villeService.getVilleList()
       .subscribe((res: ListVilleResponse) => {
+        console.log(res.data);
         res.data.map((ville) => {
           this.singleSelectOptions2.push({
             label: ville.denomination,
-            value: ville.code,
+            value: ville.identifiant,
             code: ville.code
           });
         });
@@ -47,9 +49,11 @@ singleSelectValue2: string;
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
+    console.log(this.singleSelectValue2);
     this.structureService.createStructure(form.value['denomination'], form.value['email'],
-      form.value['telResp'], +this.utilService.getElementId(this.singleSelectOptions2, this.singleSelectValue2)  ).subscribe((res) => {
+      form.value['telResp'], +this.singleSelectValue2, form.value['sigle'],
+      form.value['cpost']).subscribe((res) => {
+    }, (error) => {}, () => {
       this.router.navigate(['/dashboard/fichier/base/structures']);
     });
   }

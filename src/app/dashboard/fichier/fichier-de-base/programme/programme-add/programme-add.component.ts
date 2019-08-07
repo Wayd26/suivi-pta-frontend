@@ -15,18 +15,18 @@ import {ListExerciceResponse} from '../../../../../models/exercice.model';
 export class ProgrammeAddComponent implements OnInit {
   singleSelectOptions: any = [];
   message: string;
+  singleSelectValue: string;
 
   singleSelectConfig: any = {
     labelField: 'label',
     valueField: 'value',
     searchField: ['label']
   };
-
-  singleSelectValue: string[] = ['reactjs'];
   constructor(private  programmeService: ProgrammeService, private utilService: UtilsService, private exerciceService: ExercieService, private router: Router) { }
 
   ngOnInit() {
     this.message = '';
+    this.singleSelectValue = 'Exercice 2007';
     this.exerciceService.getExerciceList()
       .subscribe((res: ListExerciceResponse) => {
         res.data.map((exo) => {
@@ -39,10 +39,12 @@ export class ProgrammeAddComponent implements OnInit {
       });
   }
   onSubmit(form: NgForm) {
-    this.programmeService.createProgramme(form.value['libelle'], form.value['poids'], +this.utilService.getElementId(this.singleSelectOptions, this.singleSelectValue))
+    console.log(this.singleSelectValue);
+    this.programmeService.createProgramme(form.value['libelle'], form.value['poids'], +this.singleSelectValue)
       .subscribe((resp) => {
         this.router.navigate(['/dashboard/fichier/base/programmes']);
       } , (error) => {
+        console.log(error);
         this.message = 'Echec de l\'operation';
         this.router.navigate(['/dashboard/fichier/base/programmes/add']);
       });

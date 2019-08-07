@@ -16,23 +16,26 @@ export class StructureService {
 
     return this.httpClient.get(BASE_URL + 'structures', this.options  );
   }
-  createStructure(denomination, email, telephon, ville) {
+  createStructure(denomination, email, telephon, ville,  sigle, boite_postal) {
     const data = {
       denomination : denomination,
       email : email,
-      telephon : telephon,
-      ville : ville
-
+      telephone : telephon,
+      ville_id : ville,
+      sigle: sigle,
+      boite_postal: boite_postal
     };
     console.log(data);
     return this.httpClient.post(BASE_URL + 'administrateurs/2/structures', data, this.options);
   }
-  update(denomination, email, telephon, ville) {
+  update(denomination, email, telephon, ville, sigle, boite_postal) {
     const data = {
       denomination : denomination,
       email : email,
-      telephon : telephon,
-      ville : ville
+      telephone : telephon,
+      ville_id : ville,
+      sigle: sigle,
+      boite_postal: boite_postal
     };
     console.log(data);
     return this.httpClient.post(BASE_URL + 'administrateurs/2/structures', data, this.options);
