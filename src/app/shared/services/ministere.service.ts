@@ -25,6 +25,7 @@ export class MinistereService {
       email: email,
       telephone: telephone
     };
+    console.log(data);
     return this.httpClient.post(BASE_URL + 'administrateurs/2/ministeres', data, this.options);
   }
 }

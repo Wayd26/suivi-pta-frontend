@@ -32,4 +32,14 @@ export class StructureListComponent implements OnInit {
       } );
   }
 
+  onDelete(id) {
+    this.structureService.deleteStructure(id).subscribe((res) => {
+        this.structures = this.structures.filter((action) => {
+          return action.identifiant !== id;
+        });
+        this.router.navigate(['/dashboard/fichier/base/programme']);
+      }
+    );
+  }
+
 }

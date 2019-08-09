@@ -17,6 +17,7 @@ export class DepartementService {
     const data = {
       denomination: denomination
     };
+    console.log(data);
     return this.httpClient.post(BASE_URL + 'administrateurs/2/departements', data, this.options);
   }
   update(denomination: string) {

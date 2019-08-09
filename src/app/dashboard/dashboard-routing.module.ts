@@ -56,7 +56,7 @@ export const DashboardRoutes: Routes = [
       }
   },
   {
-    path: 'fichier/base/programme/edit',
+    path: 'fichier/base/programme/edit/:id',
     component: ProgrammeEditComponent,
     data: {
        title: 'Dashboard'
