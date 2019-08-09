@@ -29,6 +29,9 @@ import {VilleEditComponent} from './fichier/localisation/ville/ville-edit/ville-
 import {DepartementEditComponent} from './fichier/localisation/departement/departement-edit/departement-edit.component';
 import {ActionAddComponent} from './fichier/fichier-de-base/action/action-add/action-add.component';
 import {TachesAddComponent} from './fichier/fichier-de-base/taches/taches-add/taches-add.component';
+import {ObjectifListComponent} from './fichier/fichier-de-base/objectif/objectif-list/objectif-list.component';
+import {ObjectifAddComponent} from './fichier/fichier-de-base/objectif/objectif-add/objectif-add.component';
+import {ObjectifEditComponent} from './fichier/fichier-de-base/objectif/objectif-edit/objectif-edit.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -220,6 +223,27 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/base/tache/add',
     component: TachesAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  } ,
+  {
+    path: 'fichier/base/objectif',
+    component: ObjectifListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  } ,
+  {
+    path: 'fichier/base/objectif/add',
+    component: ObjectifAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  } ,
+  {
+    path: 'fichier/base/objectif/edit',
+    component: ObjectifEditComponent,
     data: {
       title: 'Dashboard'
     }

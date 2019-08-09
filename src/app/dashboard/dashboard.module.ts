@@ -42,6 +42,7 @@ import { ExerciceListComponent } from './fichier/fichier-de-base/exercice/exerci
 import { ExerciceEditComponent } from './fichier/fichier-de-base/exercice/exercice-edit/exercice-edit.component';
 import { ExerciceAddComponent } from './fichier/fichier-de-base/exercice/exercice-add/exercice-add.component';
 import { ActionAddComponent } from './fichier/fichier-de-base/action/action-add/action-add.component';
+import {TachesAddComponent} from './fichier/fichier-de-base/taches/taches-add/taches-add.component';
 
 @NgModule({
   imports: [
@@ -85,7 +86,8 @@ import { ActionAddComponent } from './fichier/fichier-de-base/action/action-add/
         ExerciceListComponent,
         ExerciceEditComponent,
         ExerciceAddComponent,
-        ActionAddComponent
+        ActionAddComponent,
+        TachesAddComponent
     ],
     providers: [
         ThemeConstants

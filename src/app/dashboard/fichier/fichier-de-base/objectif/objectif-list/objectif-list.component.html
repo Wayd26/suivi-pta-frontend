@@ -1,3 +1,60 @@
-<p>
-  objectif-list works!
-</p>
+<div class="container-fluid">
+  <div class="page-title">
+    <h4>Liste des Objectifs Spécifiques</h4>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-block">
+          <a [routerLink]="['add']" class="btn btn-info">
+            <i class="ti-plus pdd-right-5"></i>
+            <span>Ajouter</span>
+          </a>
+          <div class="table-overflow">
+            <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
+              <thead>
+              <tr>
+                <th>Programme</th>
+                <th>Code Objectif Spécifique</th>
+                <th>Libellé Objectif Spécifique</th>
+                <th>Action</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let objectif of Objectifs">
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{objectif._programme}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{objectif.code}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{objectif.libelle}}</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="mrg-top-10 text-center">
+                    <a [routerLink]="['edit']" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                      <i class="ti-pencil"></i>
+                    </a>
+                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                      <i class="ti-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
