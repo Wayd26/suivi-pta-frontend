@@ -87,7 +87,7 @@ import {TachesAddComponent} from './fichier/fichier-de-base/taches/taches-add/ta
         ExerciceEditComponent,
         ExerciceAddComponent,
         ActionAddComponent,
-      TachesAddComponent
+        TachesAddComponent
     ],
     providers: [
         ThemeConstants

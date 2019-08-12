@@ -3,7 +3,6 @@ import {NgForm} from '@angular/forms';
 import {SourceFinancementService} from '../../../../shared/services/source-financement.service';
 import {Router} from '@angular/router';
 import {UtilsService} from '../../../../shared/services/utils.service';
-import {ListVilleResponse} from '../../../../models/ville.model';
 import {TypeSourceFinancementService} from '../../../../shared/services/type-source-financement.service';
 import {ListTypeSourceFinancementResponse} from '../../../../models/typeSourceFi.model';
 
