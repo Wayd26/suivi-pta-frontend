@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {MinistereService} from '../../../../../shared/services/ministere.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {VilleService} from '../../../../../shared/services/ville.service';
+import {UtilsService} from '../../../../../shared/services/utils.service';
+import {ListVilleResponse} from '../../../../../models/ville.model';
+import {Ministere, MinistereResponse} from '../../../../../models/ministere.model';
 
 @Component({
   selector: 'app-ministere-edit',
@@ -8,38 +14,47 @@ import {NgForm} from '@angular/forms';
 })
 export class MinistereEditComponent implements OnInit {
 
-  singleSelectOptions: any = [
-    {
-      label: 'Angular',
-      value: 'angular',
-      code: 'NG'
-    }, {
-      label: 'ReactJS',
-      value: 'reactjs',
-      code: 'RJS'
-    }, {
-      label: 'Ember JS',
-      value: 'emberjs',
-      code: 'emjs'
-    }, {
-      label: 'Ruby on Rails',
-      value: 'ruby_on_rails',
-      code: 'ROR'
-    }
-  ];
+  singleSelectOptions: any = [];
+  message: string;
+  ministere: Ministere;
 
   singleSelectConfig: any = {
     labelField: 'label',
     valueField: 'value',
     searchField: ['label']
   };
+  id: number;
 
   singleSelectValue: string[] = ['reactjs'];
-  constructor() { }
+  constructor(private ministereService: MinistereService , private router: Router, private villeService: VilleService, private utilservice: UtilsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.message = '';
+    this.id = +this.route.snapshot.params['id'];
+    this.ministereService.getMinistere(this.id).subscribe((res: MinistereResponse) => {
+      this.ministere = res.data;
+      this.singleSelectValue = this.utilservice.getIdData(this.ministere.links, 'ville');
+    });
+    this.villeService.getVilleList()
+      .subscribe((res: ListVilleResponse) => {
+        res.data.map((ville) => {
+          this.singleSelectOptions.push({
+            label: ville.denomination,
+            value: ville.identifiant,
+            code: ville.identifiant
+          });
+        });
+      });
   }
   onSubmit(form: NgForm) {
-
+    this.ministereService.update(form.value['denomination_ministere'], form.value['sigle'],
+      +this.singleSelectValue, form.value['email'], form.value['telResp'], this.id)
+      .subscribe((resp) => {
+        this.router.navigate(['/dashboard/fichier/base/ministere']);
+      } , (error) => {
+        console.log(error);
+        this.message = 'Echec de l\'operation';
+        this.router.navigate(['/dashboard/fichier/base/ministere/edit/' + this.id]);
+      });
   }
 }

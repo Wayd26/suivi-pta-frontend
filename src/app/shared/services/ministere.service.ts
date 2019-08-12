@@ -14,6 +14,10 @@ export class MinistereService {
 
     return this.httpClient.get(BASE_URL + 'ministeres', this.options  );
   }
+  getMinistere(id) {
+
+    return this.httpClient.get(BASE_URL + 'ministeres/' + id, this.options  );
+  }
   deleteMinistere(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/ministeres/' + id, this.options);
   }
@@ -27,5 +31,16 @@ export class MinistereService {
     };
     console.log(data);
     return this.httpClient.post(BASE_URL + 'administrateurs/2/ministeres', data, this.options);
+  }
+  update(denomination: string, sigle: string , ville_id: number, email: string, telephone: string, id: number) {
+    const data = {
+      denomination: denomination,
+      sigle: sigle,
+      ville_id: ville_id,
+      email: email,
+      telephone: telephone
+    };
+    console.log(data);
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/ministeres/' + id, data, this.options);
   }
 }

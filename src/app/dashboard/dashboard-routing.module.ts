@@ -73,6 +73,13 @@ export const DashboardRoutes: Routes = [
        title: 'Dashboard'
     }
 },
+  {
+    path: 'fichier/base/structures/edit/:id',
+    component: StructureEditComponent,
+    data: {
+       title: 'Dashboard'
+    }
+},
 {
   path: 'fichier/base/action',
   component: ActionListComponent,
@@ -97,6 +104,20 @@ export const DashboardRoutes: Routes = [
 {
   path: 'fichier/localisation/departement',
   component: DepartementListComponent,
+  data: {
+     title: 'Dashboard'
+  }
+},
+  {
+  path: 'fichier/localisation/departement/add',
+  component: DepartementAddComponent,
+  data: {
+     title: 'Dashboard'
+  }
+},
+{
+  path: 'fichier/localisation/departement/edit/:id',
+  component: DepartementEditComponent,
   data: {
      title: 'Dashboard'
   }
@@ -167,7 +188,7 @@ export const DashboardRoutes: Routes = [
     }
   },
   {
-    path: 'fichier/base/ministere/edit',
+    path: 'fichier/base/ministere/edit/:id',
     component: MinistereEditComponent,
     data: {
       title: 'Dashboard'

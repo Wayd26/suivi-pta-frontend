@@ -8,6 +8,12 @@
     identifiant: number;
     code: string;
     denomination: string;
+    sigle: string;
+    bp: string;
+    email: string;
+    telephone: string;
+    site_web: string;
+    logo: string;
     _departement: string;
     _ville: string;
     _user: string;
@@ -36,6 +42,9 @@
   export interface ListMinistereResponse {
     data: Ministere[];
     meta: Meta;
+  }
+  export interface MinistereResponse {
+    data: Ministere;
   }
 
 

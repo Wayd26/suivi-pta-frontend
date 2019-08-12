@@ -44,6 +44,9 @@
       data: Structure[];
       meta: Meta;
   }
+  export interface StructureResponse {
+      data: Structure;
+  }
   export interface CreateStructure {
     boite_postal: string;
     sigle: string;

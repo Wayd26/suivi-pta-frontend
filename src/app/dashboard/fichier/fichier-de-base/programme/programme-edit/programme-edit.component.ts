@@ -34,7 +34,7 @@ export class ProgrammeEditComponent implements OnInit {
       this.programme = res.data;
 
       this.singleSelectValue = [this.programme._exercice];
-      console.log(this.utilService.getIdData(res.data.links, 'exercice'));
+      console.log(this.utilService.getIdData(res.data.links, 'exerci  ce'));
     });
 
 
