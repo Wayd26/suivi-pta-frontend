@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Departement, ListDepartementResponse } from 'src/app/models/departement.model';
 import { DepartementService } from 'src/app/shared/services/departement.service';
 import { Router } from '@angular/router';
+import {DataService} from '../../../../../shared/services/data.service';
 
 @Component({
   selector: 'app-departement-list',
@@ -12,7 +13,7 @@ export class DepartementListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   departements: Departement[];
 
-  constructor(private departementService: DepartementService, private router: Router) { }
+  constructor(private departementService: DepartementService, private router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -23,11 +24,12 @@ export class DepartementListComponent implements OnInit {
 
           ]
       };
-
+    this.departements = this.dataService.getDepartements();
       this.departementService.getDepartementList().subscribe((res: ListDepartementResponse) => {
-        this.departements = res.data;
+        this.dataService.setDepartements(res.data);
       } , (error) => {
         this.departements = [];
+      }, () => {
       });
   }
 

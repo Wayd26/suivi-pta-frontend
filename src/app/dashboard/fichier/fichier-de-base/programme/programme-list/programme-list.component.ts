@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProgrammeService } from 'src/app/shared/services/programme.service';
 import { Programme, ListProgrammeResponse } from 'src/app/models/programme.model';
 import { Router } from '@angular/router';
+import {DataService} from '../../../../../shared/services/data.service';
 
 @Component({
   selector: 'app-programme-list',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class ProgrammeListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   programmes: Programme[];
-  constructor(private programmeService: ProgrammeService, private router: Router) { }
+  constructor(private programmeService: ProgrammeService, private router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -22,10 +23,13 @@ export class ProgrammeListComponent implements OnInit {
 
           ]
       };
-
+    this.programmes = this.dataService.getProgrammes();
       this.programmeService.getProgrammeList().subscribe((res: ListProgrammeResponse) => {
-       this.programmes = res.data;
-      });
+       this.dataService.setProgrammes(res.data) ;
+      }, (error) => {}, () => {
+        //this.programmes = this.dataService.getProgrammes();
+    });
+      console.log(this.dataService.getProgrammes());
   }
 
   onDelete(id) {

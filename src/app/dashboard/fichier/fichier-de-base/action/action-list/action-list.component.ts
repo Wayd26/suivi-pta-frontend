@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Action, ListActionResponse } from 'src/app/models/action.model';
 import { ActionService } from 'src/app/shared/services/action.service';
 import { Router } from '@angular/router';
+import {DataService} from '../../../../../shared/services/data.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class ActionListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   actions: Action[];
 
-  constructor(private actionService: ActionService, private router: Router) { }
+  constructor(private actionService: ActionService, private router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -24,13 +25,15 @@ export class ActionListComponent implements OnInit {
 
           ]
       };
-
+    this.actions = this.dataService.getActions();
       this.actionService.getActionList().subscribe((res: ListActionResponse) => {
-        this.actions = res.data;
+        this.dataService.setActions(res.data);
         console.log(this.actions);
       }, (error) => {
         console.log(error);
         this.actions = [];
+      }, () => {
+
       });
   }
   onDelete(id) {

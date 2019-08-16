@@ -35,6 +35,15 @@ import {ObjectifEditComponent} from './fichier/fichier-de-base/objectif/objectif
 import {ActionEditComponent} from './fichier/fichier-de-base/action/action-edit/action-edit.component';
 import {ActiviteAddComponent} from './fichier/fichier-de-base/activite/activite-add/activite-add.component';
 import {ActiviteEditComponent} from './fichier/fichier-de-base/activite/activite-edit/activite-edit.component';
+import {LoaderComponent} from './fichier/fichier-de-base/programme/loader/loader.component';
+import {ActionLoaderComponent} from './fichier/fichier-de-base/action/action-loader/action-loader.component';
+import {ObjectifLoaderComponent} from './fichier/fichier-de-base/objectif/objectif-loader/objectif-loader.component';
+import {StructureLoaderComponent} from './fichier/fichier-de-base/structure/structure-loader/structure-loader.component';
+import {TacheLoaderComponent} from './fichier/fichier-de-base/taches/tache-loader/tache-loader.component';
+import {TypeSourceLoaderComponent} from './fichier/financement/type_source_financement/type-source-loader/type-source-loader.component';
+import {SourceLoaderComponent} from './fichier/financement/source-loader/source-loader.component';
+import {DepartementLoaderComponent} from './fichier/localisation/departement/departement-loader/departement-loader.component';
+import {VilleLoaderComponent} from './fichier/localisation/ville/ville-loader/ville-loader.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -47,6 +56,13 @@ export const DashboardRoutes: Routes = [
     {
       path: 'fichier/base/programme',
       component: ProgrammeListComponent,
+      data: {
+         title: 'Dashboard'
+      }
+  },
+    {
+      path: 'fichier/base/programme/load',
+      component: LoaderComponent,
       data: {
          title: 'Dashboard'
       }
@@ -93,6 +109,13 @@ export const DashboardRoutes: Routes = [
      title: 'Dashboard'
   }
 },
+{
+  path: 'fichier/base/action/load',
+  component: ActionLoaderComponent,
+  data: {
+     title: 'Dashboard'
+  }
+},
   {
     path: 'fichier/base/action/add',
     component: ActionAddComponent,
@@ -110,6 +133,13 @@ export const DashboardRoutes: Routes = [
 {
   path: 'fichier/base/activite',
   component: ActiviteListComponent,
+  data: {
+     title: 'Dashboard'
+  }
+},
+{
+  path: 'fichier/base/activite/load',
+  component: ActionLoaderComponent,
   data: {
      title: 'Dashboard'
   }
@@ -136,8 +166,22 @@ export const DashboardRoutes: Routes = [
   }
 },
 {
+  path: 'fichier/base/tache/load',
+  component: TacheLoaderComponent,
+  data: {
+     title: 'Dashboard'
+  }
+},
+{
   path: 'fichier/localisation/departement',
   component: DepartementListComponent,
+  data: {
+     title: 'Dashboard'
+  }
+},
+{
+  path: 'fichier/localisation/departement/load',
+  component: DepartementLoaderComponent,
   data: {
      title: 'Dashboard'
   }
@@ -164,8 +208,22 @@ export const DashboardRoutes: Routes = [
   }
 },
 {
+  path: 'fichier/localisation/ville/load',
+  component: VilleLoaderComponent,
+  data: {
+     title: 'Dashboard'
+  }
+},
+{
   path: 'fichier/financement/type/source',
   component: TypeSourceFinancementListComponent,
+  data: {
+     title: 'Dashboard'
+  }
+},
+{
+  path: 'fichier/financement/type/source/load',
+  component: TypeSourceLoaderComponent,
   data: {
      title: 'Dashboard'
   }
@@ -174,6 +232,14 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/financement/source',
     component: SourceFinancementListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+
+  {
+    path: 'fichier/financement/source/load',
+    component: SourceLoaderComponent,
     data: {
       title: 'Dashboard'
     }
@@ -235,6 +301,13 @@ export const DashboardRoutes: Routes = [
       title: 'Dashboard'
     }
     },
+  {
+    path: 'fichier/base/structures/load',
+    component: StructureLoaderComponent,
+    data: {
+      title: 'Dashboard'
+    }
+    },
 
   {
     path: 'fichier/financement/source/edit',
@@ -282,6 +355,13 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/base/objectif',
     component: ObjectifListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/objectif/load',
+    component: ObjectifLoaderComponent,
     data: {
       title: 'Dashboard'
     }

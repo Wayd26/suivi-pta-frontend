@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Tache, ListTacheResponse } from 'src/app/models/tache.model';
 import { TacheService } from 'src/app/shared/services/tache.service';
 import { Router } from '@angular/router';
+import {DataService} from '../../../../../shared/services/data.service';
 
 @Component({
   selector: 'app-taches-list',
@@ -12,7 +13,7 @@ export class TachesListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   taches: Tache[];
 
-  constructor(private tacheService: TacheService, private router: Router) { }
+  constructor(private tacheService: TacheService, private router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -23,11 +24,13 @@ export class TachesListComponent implements OnInit {
 
           ]
       };
-
+    this.taches = this.dataService.getTaches();
       this.tacheService.getTacheList().subscribe((res: ListTacheResponse) => {
-        this.taches = res.data;
+        this.dataService.setTaches(res.data);
       } , (error) => {
         this.taches = [];
+      }, () => {
+
       });
   }
 
