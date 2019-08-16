@@ -39,7 +39,7 @@
                                         <a [routerLink]="['edit/' + departement.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
                                           <i class="ti-pencil"></i>
                                         </a>
-                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(departement.identifiant)">
                                           <i class="ti-trash"></i>
                                         </button>
                                       </div>

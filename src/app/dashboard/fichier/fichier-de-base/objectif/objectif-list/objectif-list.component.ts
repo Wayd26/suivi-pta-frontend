@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {ListObjectifResponse, ObjectifModel} from '../../../../../models/objectif.model';
 import {ObjectifService} from '../../../../../shared/services/objectif.service';
 import {DataService} from '../../../../../shared/services/data.service';
+import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 
 @Component({
   selector: 'app-objectif-list',
@@ -27,6 +28,20 @@ export class ObjectifListComponent implements OnInit {
       this.Objectifs = [];
     }, () => {
     });
+  }
+
+  onDelete(id) {
+    const response = confirm(DELETE_CONFIRMATION);
+    if (response) {
+      this.Objectifs = this.Objectifs.filter((action) => {
+        return action.identifiant !== id;
+      });
+      // this.activites.deleteStructure(id).subscribe((res) => {
+      //
+      //     this.router.navigate(['/dashboard/fichier/base/programme']);
+      //   }
+      // );
+    }
   }
 
 }

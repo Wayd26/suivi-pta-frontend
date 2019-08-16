@@ -3,6 +3,7 @@ import { Ville, ListVilleResponse } from 'src/app/models/ville.model';
 import { VilleService } from 'src/app/shared/services/ville.service';
 import { Router } from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
+import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 
 @Component({
   selector: 'app-ville-list',
@@ -32,6 +33,20 @@ export class VilleListComponent implements OnInit {
         this.villes = [];
       }, () => {
       });
+  }
+
+  onDelete(id) {
+    const response = confirm(DELETE_CONFIRMATION);
+    if (response) {
+      this.villes = this.villes.filter((action) => {
+        return action.identifiant !== id;
+      });
+      // this.activites.deleteStructure(id).subscribe((res) => {
+      //
+      //     this.router.navigate(['/dashboard/fichier/base/programme']);
+      //   }
+      // );
+    }
   }
 
 }

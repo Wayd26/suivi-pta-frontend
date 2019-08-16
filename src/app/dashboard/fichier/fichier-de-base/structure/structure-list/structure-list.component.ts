@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { StructureService } from 'src/app/shared/services/structure.service';
 import { Structure, ListStructureResponse } from 'src/app/models/structure.model';
 import {DataService} from '../../../../../shared/services/data.service';
+import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 
 @Component({
   selector: 'app-structure-list',
@@ -35,13 +36,16 @@ export class StructureListComponent implements OnInit {
   }
 
   onDelete(id) {
-    this.structureService.deleteStructure(id).subscribe((res) => {
-        this.structures = this.structures.filter((action) => {
-          return action.identifiant !== id;
-        });
-        this.router.navigate(['/dashboard/fichier/base/programme']);
-      }
-    );
+    const response = confirm(DELETE_CONFIRMATION);
+    if (response) {
+      this.structureService.deleteStructure(id).subscribe((res) => {
+          this.structures = this.structures.filter((action) => {
+            return action.identifiant !== id;
+          });
+          this.router.navigate(['/dashboard/fichier/base/programme']);
+        }
+      );
+    }
   }
 
 }

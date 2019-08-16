@@ -4,6 +4,7 @@ import { Ministere, ListMinistereResponse } from 'src/app/models/ministere.model
 import { Router } from '@angular/router';
 import {ListSourceFinancementResponse} from '../../../../../models/sourceFi.model';
 import {DataService} from '../../../../../shared/services/data.service';
+import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 
 @Component({
   selector: 'app-ministere-list',
@@ -31,6 +32,20 @@ export class MinistereListComponent implements OnInit {
       this.Ministeres = [];
     }, () => {
     });
+  }
+
+  onDelete(id) {
+    const response = confirm(DELETE_CONFIRMATION);
+    if (response) {
+      this.Ministeres = this.Ministeres.filter((action) => {
+        return action.identifiant !== id;
+      });
+      // this.activites.deleteStructure(id).subscribe((res) => {
+      //
+      //     this.router.navigate(['/dashboard/fichier/base/programme']);
+      //   }
+      // );
+    }
   }
 
 }

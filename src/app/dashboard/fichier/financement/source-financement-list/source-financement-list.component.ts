@@ -3,6 +3,7 @@ import {SourceFinancementService} from '../../../../shared/services/source-finan
 import {Router} from '@angular/router';
 import {ListSourceFinancementResponse, SourceFinancement} from '../../../../models/sourceFi.model';
 import {DataService} from '../../../../shared/services/data.service';
+import {DELETE_CONFIRMATION} from '../../../../constants/urlConstants';
 
 
 @Component({
@@ -28,6 +29,20 @@ export class SourceFinancementListComponent implements OnInit {
       this.Sources = [];
     }, () => {
     });
+  }
+
+  onDelete(id) {
+    const response = confirm(DELETE_CONFIRMATION);
+    if (response) {
+      this.Sources = this.Sources.filter((action) => {
+        return action.identifiant !== id;
+      });
+      // this.activites.deleteStructure(id).subscribe((res) => {
+      //
+      //     this.router.navigate(['/dashboard/fichier/base/programme']);
+      //   }
+      // );
+    }
   }
 
 }

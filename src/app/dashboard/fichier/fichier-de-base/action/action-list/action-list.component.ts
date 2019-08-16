@@ -3,6 +3,7 @@ import { Action, ListActionResponse } from 'src/app/models/action.model';
 import { ActionService } from 'src/app/shared/services/action.service';
 import { Router } from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
+import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 
 
 @Component({
@@ -37,13 +38,17 @@ export class ActionListComponent implements OnInit {
       });
   }
   onDelete(id) {
-    this.actionService.deleteAction(id).subscribe((res) => {
-        this.actions = this.actions.filter((action) => {
-          return action.identifiant !== id;
-        });
-        this.router.navigate(['/dashboard/fichier/base/action']);
-      }
-    );
+    const response = confirm(DELETE_CONFIRMATION);
+    if (response) {
+      this.actionService.deleteAction(id).subscribe((res) => {
+          this.actions = this.actions.filter((action) => {
+            return action.identifiant !== id;
+          });
+          this.router.navigate(['/dashboard/fichier/base/action']);
+        }
+      );
+    }
   }
+
 
 }
