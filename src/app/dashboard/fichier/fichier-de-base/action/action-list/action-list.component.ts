@@ -29,6 +29,7 @@ export class ActionListComponent implements OnInit {
         this.actions = res.data;
         console.log(this.actions);
       }, (error) => {
+        console.log(error);
         this.actions = [];
       });
   }

@@ -22,4 +22,11 @@ export class ActiviteService {
     };
     return this.httpClient.post(BASE_URL + 'administrateurs/2/activites', data, this.options);
   }
+
+  updateActivite(denomination: string) {
+    const data = {
+      denomination: denomination
+    };
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/activites', data, this.options);
+  }
 }

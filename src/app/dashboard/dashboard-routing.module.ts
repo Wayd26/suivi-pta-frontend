@@ -32,6 +32,9 @@ import {TachesAddComponent} from './fichier/fichier-de-base/taches/taches-add/ta
 import {ObjectifListComponent} from './fichier/fichier-de-base/objectif/objectif-list/objectif-list.component';
 import {ObjectifAddComponent} from './fichier/fichier-de-base/objectif/objectif-add/objectif-add.component';
 import {ObjectifEditComponent} from './fichier/fichier-de-base/objectif/objectif-edit/objectif-edit.component';
+import {ActionEditComponent} from './fichier/fichier-de-base/action/action-edit/action-edit.component';
+import {ActiviteAddComponent} from './fichier/fichier-de-base/activite/activite-add/activite-add.component';
+import {ActiviteEditComponent} from './fichier/fichier-de-base/activite/activite-edit/activite-edit.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -90,6 +93,20 @@ export const DashboardRoutes: Routes = [
      title: 'Dashboard'
   }
 },
+  {
+    path: 'fichier/base/action/add',
+    component: ActionAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/action/edit',
+    component: ActionEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
 {
   path: 'fichier/base/activite',
   component: ActiviteListComponent,
@@ -97,6 +114,20 @@ export const DashboardRoutes: Routes = [
      title: 'Dashboard'
   }
 },
+  {
+    path: 'fichier/base/activite/add',
+    component: ActiviteAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/activite/edit',
+    component: ActiviteEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
 {
   path: 'fichier/base/tache',
   component: TachesListComponent,
