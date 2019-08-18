@@ -46,6 +46,17 @@ import {TachesAddComponent} from './fichier/fichier-de-base/taches/taches-add/ta
 import { ActionEditComponent } from './fichier/fichier-de-base/action/action-edit/action-edit.component';
 import { ActiviteAddComponent } from './fichier/fichier-de-base/activite/activite-add/activite-add.component';
 import {ActiviteEditComponent} from './fichier/fichier-de-base/activite/activite-edit/activite-edit.component';
+import { LoaderComponent } from './fichier/fichier-de-base/programme/loader/loader.component';
+import { ActionLoaderComponent } from './fichier/fichier-de-base/action/action-loader/action-loader.component';
+import { ActiviteLoaderComponent } from './fichier/fichier-de-base/activite/activite-loader/activite-loader.component';
+import { MinistereLoaderComponent } from './fichier/fichier-de-base/ministere/ministere-loader/ministere-loader.component';
+import { ObjectifLoaderComponent } from './fichier/fichier-de-base/objectif/objectif-loader/objectif-loader.component';
+import { StructureLoaderComponent } from './fichier/fichier-de-base/structure/structure-loader/structure-loader.component';
+import { TacheLoaderComponent } from './fichier/fichier-de-base/taches/tache-loader/tache-loader.component';
+import { TypeSourceLoaderComponent } from './fichier/financement/type_source_financement/type-source-loader/type-source-loader.component';
+import { SourceLoaderComponent } from './fichier/financement/source-loader/source-loader.component';
+import { DepartementLoaderComponent } from './fichier/localisation/departement/departement-loader/departement-loader.component';
+import { VilleLoaderComponent } from './fichier/localisation/ville/ville-loader/ville-loader.component';
 
 @NgModule({
   imports: [
@@ -93,7 +104,18 @@ import {ActiviteEditComponent} from './fichier/fichier-de-base/activite/activite
         TachesAddComponent,
         ActionEditComponent,
         ActiviteAddComponent,
-        ActiviteEditComponent
+        ActiviteEditComponent,
+        LoaderComponent,
+        ActionLoaderComponent,
+        ActiviteLoaderComponent,
+        MinistereLoaderComponent,
+        ObjectifLoaderComponent,
+        StructureLoaderComponent,
+        TacheLoaderComponent,
+        TypeSourceLoaderComponent,
+        SourceLoaderComponent,
+        DepartementLoaderComponent,
+        VilleLoaderComponent
     ],
     providers: [
         ThemeConstants
