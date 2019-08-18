@@ -18,7 +18,7 @@ export class StructureLoaderComponent implements OnInit {
       this.dataService.setStructures(res.data);
     }, (erro) => {
     }, () => {
-      this.router.navigate(['/dashboard/fichier/base/programme']);    } );
+      this.router.navigate(['/dashboard/fichier/base/structures']);    } );
   }
 
 }
