@@ -18,7 +18,7 @@ export class TypeSourceLoaderComponent implements OnInit {
       this.dataService.setTypeSourceFis(res.data);
     }, (error) => {
     }, () => {
-      this.router.navigate(['/dashboard/financement/type/source']);
+      this.router.navigate(['/dashboard/fichier/financement/type/source']);
     });
   }
 

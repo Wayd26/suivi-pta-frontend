@@ -44,6 +44,7 @@ import {TypeSourceLoaderComponent} from './fichier/financement/type_source_finan
 import {SourceLoaderComponent} from './fichier/financement/source-loader/source-loader.component';
 import {DepartementLoaderComponent} from './fichier/localisation/departement/departement-loader/departement-loader.component';
 import {VilleLoaderComponent} from './fichier/localisation/ville/ville-loader/ville-loader.component';
+import { MinistereLoaderComponent } from './fichier/fichier-de-base/ministere/ministere-loader/ministere-loader.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -276,6 +277,13 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/base/ministere',
     component: MinistereListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/ministere/load',
+    component: MinistereLoaderComponent,
     data: {
       title: 'Dashboard'
     }
