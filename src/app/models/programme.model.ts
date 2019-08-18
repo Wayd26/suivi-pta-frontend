@@ -37,3 +37,6 @@ export interface ListProgrammeResponse {
   data: Programme[];
   meta: Meta;
 }
+export interface ProgrammeResponse {
+  data: Programme;
+}

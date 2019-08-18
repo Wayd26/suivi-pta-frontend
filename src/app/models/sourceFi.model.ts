@@ -1,5 +1,3 @@
-import {TypeSourceFinancement} from './typeSourceFi.model';
-
 
 export interface Link {
     rel: string;

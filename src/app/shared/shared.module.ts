@@ -6,7 +6,6 @@ import { RouterModule } from "@angular/router";
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
 @NgModule({
     exports: [
         CommonModule,
@@ -22,7 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         NgbModule
     ],
     declarations: [
-
+        
     ],
     providers: [
     ]

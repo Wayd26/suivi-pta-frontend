@@ -40,22 +40,28 @@
                       </a>
                       <ul class="dropdown-menu">
                         <li>
-                          <a [routerLink]="['fichier/base/programme']">Programme</a>
+                          <a [routerLink]="['fichier/base/programme/load']">Programme</a>
                       </li>
                         <li>
-                          <a [routerLink]="['fichier/base/objectifs']">Objectifs Specifiques</a>
-                      </li>
+                          <a [routerLink]="['fichier/base/objectif/load']">Objectifs Spécifiques</a>
+                        </li>
                       <li>
-                          <a [routerLink]="['fichier/base/structures']">Structure</a>
+                          <a [routerLink]="['fichier/base/structures/load']">Structure</a>
                       </li>
+                        <li>
+                          <a [routerLink]="['fichier/base/resultat']">Résultat</a>
+
+                        <li>
+                          <a [routerLink]="['fichier/base/ministere/load']">Ministere</a>
+                        </li>
                       <li>
-                        <a [routerLink]="['fichier/base/action']">Action</a>
+                        <a [routerLink]="['fichier/base/action/load']">Action</a>
                     </li>
                     <li>
-                      <a [routerLink]="['fichier/base/activite']">Activite</a>
+                      <a [routerLink]="['fichier/base/activite/load']">Activite</a>
                   </li>
                   <li>
-                      <a [routerLink]="['fichier/base/tache']">Taches</a>
+                      <a [routerLink]="['fichier/base/tache/load']">Taches</a>
                   </li>
                       </ul>
                   </li>
@@ -68,10 +74,10 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a [routerLink]="['fichier/localisation/departement']">Departement</a>
+                            <a [routerLink]="['fichier/localisation/departement/load']">Departement</a>
                         </li>
                       <li>
-                        <a [routerLink]="['fichier/localisation/ville']">Ville</a>
+                        <a [routerLink]="['fichier/localisation/ville/load']">Ville</a>
                     </li>
 
                     </ul>
@@ -85,10 +91,10 @@
                     </a>
                     <ul class="dropdown-menu">
                       <li>
-                        <a [routerLink]="['fichier/financement/type/source']">Type Source Financement</a>
+                        <a [routerLink]="['fichier/financement/type/source/load']">Type Source Financement</a>
                     </li>
                       <li>
-                        <a [routerLink]="['fichier/financement/source']">Source Financement</a>
+                        <a [routerLink]="['fichier/financement/source/load']">Source Financement</a>
                       </li>
 
                     </ul>

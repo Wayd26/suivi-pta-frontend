@@ -31,4 +31,7 @@
       data: Departement[];
       meta: Meta;
   }
+  export interface DepartementResponse {
+      data: Departement;
+  }
 

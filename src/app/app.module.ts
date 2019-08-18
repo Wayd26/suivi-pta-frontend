@@ -26,7 +26,10 @@ import { VilleService } from './shared/services/ville.service';
 import { DepartementService } from './shared/services/departement.service';
 import { TacheService } from './shared/services/tache.service';
 import {NgSelectizeModule} from 'ng-selectize';
-import {ObjectifSpecifiqueService} from './shared/services/objectif-specifique.service';
+import {MinistereService} from './shared/services/ministere.service';
+import {ExercieService} from './shared/services/exercie.service';
+import {ObjectifService} from './shared/services/objectif.service';
+import {DataService} from './shared/services/data.service';
 
 
 @NgModule({
@@ -46,7 +49,7 @@ import {ObjectifSpecifiqueService} from './shared/services/objectif-specifique.s
     ],
     providers: [TemplateService, ProgrammeService, UtilsService, StructureService,
        ActionService, TypeSourceFinancementService, ActiviteService, VilleService, DepartementService,
-      TacheService, ObjectifSpecifiqueService],
+      TacheService, MinistereService, ExercieService, ObjectifService, DataService],
     bootstrap: [AppComponent]
 })
 

@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="page-title">
+    <h4>Liste des Ministères</h4>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-block">
+          <a [routerLink]="['add']" class="btn btn-info">
+            <i class="ti-plus pdd-right-5"></i>
+            <span>Ajouter</span>
+          </a>
+          <div class="table-overflow">
+            <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
+              <thead>
+              <tr>
+                <th>Code</th>
+                <th>Dénomination</th>
+                <th>Action</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let ministere of Ministeres">
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{ministere.code}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{ministere.denomination}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="mrg-top-10 text-center">
+                    <a [routerLink]="['edit/' + ministere.identifiant.toString()]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                      <i class="ti-pencil"></i>
+                    </a>
+                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(ministere.identifiant)">
+                      <i class="ti-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -45,27 +45,22 @@
                                           <span>{{action.poids}}</span>
                                       </div>
                                   </td>
-                                <td>
-                                  <div class="mrg-top-15">
-                                      <span></span>
-                                  </div>
-                              </td>
-                                    <td>
-                                      <div class="mrg-top-10 text-center">
-                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
-                                            <i class="ti-pencil"></i>
-                                        </button>
-                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
-                                          <i class="ti-trash"></i>
+                                  <td>
+                                    <div class="mrg-top-10 text-center">
+                                      <a [routerLink]="['edit/' + action.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                        <i class="ti-pencil"></i>
+                                      </a>
+                                      <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle " (click)="onDelete(action.identifiant)">
+                                        <i class="ti-trash"></i>
                                       </button>
                                     </div>
-                                    </td>
+                                  </td>
                                 </tr>
-                           </tbody>
+                            </tbody>
                         </table>
                     </div>
-                </div>
-            </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

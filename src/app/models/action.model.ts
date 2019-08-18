@@ -1,6 +1,7 @@
+import {Programme} from './programme.model';
 
 
-  export interface Link {
+export interface Link {
       rel: string;
       href: string;
   }
@@ -40,3 +41,6 @@
   }
 
 
+export interface ActionResponse {
+  data: Action;
+}

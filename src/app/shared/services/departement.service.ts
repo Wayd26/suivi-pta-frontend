@@ -13,4 +13,23 @@ export class DepartementService {
   getDepartementList() {
   return this.httpClient.get(BASE_URL + 'departements', this.options  );
   }
+  getDepartemen(id) {
+  return this.httpClient.get(BASE_URL + 'departements/' + id, this.options  );
+  }
+  createDepartement(denomination: string) {
+    const data = {
+      denomination: denomination
+    };
+    console.log(data);
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/departements', data, this.options);
+  }
+  update(denomination: string, id: number) {
+    const data = {
+      denomination: denomination
+    };
+    return this.httpClient.put(BASE_URL + 'administrateurs/2/departements/' + id, data, this.options);
+  }
+  deleteDepartement(id) {
+    return this.httpClient.delete(BASE_URL + 'administrateurs/2/departements/' + id, this.options);
+  }
 }

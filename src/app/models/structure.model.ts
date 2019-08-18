@@ -44,6 +44,18 @@
       data: Structure[];
       meta: Meta;
   }
+  export interface StructureResponse {
+      data: Structure;
+  }
+  export interface CreateStructure {
+    boite_postal: string;
+    sigle: string;
+    denomination: string;
+    email: string;
+    site_web: string;
+    telephone: string;
+    ville_id: number;
+  }
 
 
 
