@@ -14,6 +14,9 @@ import { TachesListComponent } from './fichier/fichier-de-base/taches/taches-lis
 import {StructureAddComponent} from './fichier/fichier-de-base/structure/structure-add/structure-add.component';
 import {ProgrammeAddComponent} from './fichier/fichier-de-base/programme/programme-add/programme-add.component';
 import {SourceFinancementListComponent} from './fichier/financement/source-financement-list/source-financement-list.component';
+import {ActionAddComponent} from './fichier/fichier-de-base/action/action-add/action-add.component';
+import {TachesAddComponent} from './fichier/fichier-de-base/taches/taches-add/taches-add.component';
+import {ObjectifSpecifiqueListComponent} from './fichier/fichier-de-base/objectif_specifiaue/objectif-specifique-list/objectif-specifique-list.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -26,6 +29,13 @@ export const DashboardRoutes: Routes = [
     {
       path: 'fichier/base/programme',
       component: ProgrammeListComponent,
+      data: {
+         title: 'Dashboard'
+      }
+  },
+    {
+      path: 'fichier/base/objectifs',
+      component: ObjectifSpecifiqueListComponent,
       data: {
          title: 'Dashboard'
       }
@@ -59,6 +69,13 @@ export const DashboardRoutes: Routes = [
   }
 },
 {
+  path: 'fichier/base/action/add',
+  component: ActionAddComponent,
+  data: {
+     title: 'Dashboard'
+  }
+},
+{
   path: 'fichier/base/activite',
   component: ActiviteListComponent,
   data: {
@@ -68,6 +85,13 @@ export const DashboardRoutes: Routes = [
 {
   path: 'fichier/base/tache',
   component: TachesListComponent,
+  data: {
+     title: 'Dashboard'
+  }
+},
+{
+  path: 'fichier/base/tache/add',
+  component: TachesAddComponent,
   data: {
      title: 'Dashboard'
   }

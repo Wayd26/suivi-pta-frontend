@@ -22,6 +22,9 @@ import { StructureAddComponent } from './fichier/fichier-de-base/structure/struc
 import {FormsModule} from '@angular/forms';
 import { ProgrammeAddComponent } from './fichier/fichier-de-base/programme/programme-add/programme-add.component';
 import {SourceFinancementListComponent} from './fichier/financement/source-financement-list/source-financement-list.component';
+import { ActionAddComponent } from './fichier/fichier-de-base/action/action-add/action-add.component';
+import { TachesAddComponent } from './fichier/fichier-de-base/taches/taches-add/taches-add.component';
+import { ObjectifSpecifiqueListComponent } from './fichier/fichier-de-base/objectif_specifiaue/objectif-specifique-list/objectif-specifique-list.component';
 
 @NgModule({
   imports: [
@@ -45,7 +48,10 @@ import {SourceFinancementListComponent} from './fichier/financement/source-finan
         SourceFinancementListComponent,
         TachesListComponent,
         StructureAddComponent,
-        ProgrammeAddComponent
+        ProgrammeAddComponent,
+        ActionAddComponent,
+        TachesAddComponent,
+        ObjectifSpecifiqueListComponent
     ],
     providers: [
         ThemeConstants
