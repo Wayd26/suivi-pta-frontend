@@ -45,6 +45,7 @@ import {SourceLoaderComponent} from './fichier/financement/source-loader/source-
 import {DepartementLoaderComponent} from './fichier/localisation/departement/departement-loader/departement-loader.component';
 import {VilleLoaderComponent} from './fichier/localisation/ville/ville-loader/ville-loader.component';
 import { MinistereLoaderComponent } from './fichier/fichier-de-base/ministere/ministere-loader/ministere-loader.component';
+import {TachesEditComponent} from './fichier/fichier-de-base/taches/taches-edit/taches-edit.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -166,7 +167,22 @@ export const DashboardRoutes: Routes = [
      title: 'Dashboard'
   }
 },
-{
+  {
+    path: 'fichier/base/tache/add',
+    component: TachesAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+    },
+  {
+    path: 'fichier/base/tache/edit',
+    component: TachesEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+
+  {
   path: 'fichier/base/tache/load',
   component: TacheLoaderComponent,
   data: {

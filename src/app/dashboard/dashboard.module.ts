@@ -57,6 +57,7 @@ import { TypeSourceLoaderComponent } from './fichier/financement/type_source_fin
 import { SourceLoaderComponent } from './fichier/financement/source-loader/source-loader.component';
 import { DepartementLoaderComponent } from './fichier/localisation/departement/departement-loader/departement-loader.component';
 import { VilleLoaderComponent } from './fichier/localisation/ville/ville-loader/ville-loader.component';
+import { TachesEditComponent } from './fichier/fichier-de-base/taches/taches-edit/taches-edit.component';
 
 @NgModule({
   imports: [
@@ -115,7 +116,8 @@ import { VilleLoaderComponent } from './fichier/localisation/ville/ville-loader/
         TypeSourceLoaderComponent,
         SourceLoaderComponent,
         DepartementLoaderComponent,
-        VilleLoaderComponent
+        VilleLoaderComponent,
+        TachesEditComponent
     ],
     providers: [
         ThemeConstants
