@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TachesEditComponent implements OnInit {
 
+  message: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.message="";
   }
 
 }

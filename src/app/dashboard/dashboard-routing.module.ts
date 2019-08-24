@@ -126,7 +126,7 @@ export const DashboardRoutes: Routes = [
     }
   },
   {
-    path: 'fichier/base/action/edit',
+    path: 'fichier/base/action/edit/:id',
     component: ActionEditComponent,
     data: {
       title: 'Dashboard'
@@ -154,7 +154,7 @@ export const DashboardRoutes: Routes = [
     }
   },
   {
-    path: 'fichier/base/activite/edit',
+    path: 'fichier/base/activite/edit/:id',
     component: ActiviteEditComponent,
     data: {
       title: 'Dashboard'
@@ -175,7 +175,7 @@ export const DashboardRoutes: Routes = [
     }
     },
   {
-    path: 'fichier/base/tache/edit',
+    path: 'fichier/base/tache/edit/:id',
     component: TachesEditComponent,
     data: {
       title: 'Dashboard'
@@ -319,7 +319,7 @@ export const DashboardRoutes: Routes = [
     }
   },
   {
-    path: 'fichier/base/structures/edit',
+    path: 'fichier/base/structures/edit/:id',
     component: StructureEditComponent,
     data: {
       title: 'Dashboard'
@@ -334,28 +334,28 @@ export const DashboardRoutes: Routes = [
     },
 
   {
-    path: 'fichier/financement/source/edit',
+    path: 'fichier/financement/source/edit/:id',
     component: SourceFinancementEditComponent,
     data: {
       title: 'Dashboard'
     }
   },
   {
-    path: 'fichier/financement/type/source/edit',
+    path: 'fichier/financement/type/source/edit/:id',
     component: TypeSourceFinancementEditComponent,
     data: {
       title: 'Dashboard'
     }
   },
   {
-    path: 'fichier/localisation/ville/edit',
+    path: 'fichier/localisation/ville/edit/:id',
     component: VilleEditComponent,
     data: {
       title: 'Dashboard'
     }
   },
   {
-    path: 'fichier/localisation/departement/edit',
+    path: 'fichier/localisation/departement/edit/:id',
     component: DepartementEditComponent,
     data: {
       title: 'Dashboard'
@@ -398,7 +398,7 @@ export const DashboardRoutes: Routes = [
     }
   } ,
   {
-    path: 'fichier/base/objectif/edit',
+    path: 'fichier/base/objectif/edit/:id',
     component: ObjectifEditComponent,
     data: {
       title: 'Dashboard'
