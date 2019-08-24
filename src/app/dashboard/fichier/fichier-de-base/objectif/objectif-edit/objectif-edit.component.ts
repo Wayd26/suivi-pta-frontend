@@ -12,7 +12,8 @@ import {ProgrammeService} from '../../../../../shared/services/programme.service
   templateUrl: './objectif-edit.component.html',
   styleUrls: ['./objectif-edit.component.css']
 })
-export class ObjectifEditComponent implements OnInit { singleSelectOptions: any = [];
+export class ObjectifEditComponent implements OnInit {
+  singleSelectOptions: any = [];
   message: string;
   objectif: ObjectifModel;
   id: number;
@@ -32,8 +33,8 @@ export class ObjectifEditComponent implements OnInit { singleSelectOptions: any 
     this.objService.getObjectif(+this.route.snapshot.params['id']).subscribe((res: ObjectifResponse) => {
       this.objectif = res.data;
 
-      this.singleSelectValue = [this.objectif.libelle];
-      console.log(this.utils.getIdData(res.data.links, 'libelle_Objectif'));
+      this.singleSelectValue = [this.objectif._programme];
+      console.log(this.utils.getIdData(res.data.links, 'programme_Objectif'));
     });
 
     this.progra.getProgrammeList()

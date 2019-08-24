@@ -19,7 +19,7 @@
                 <div class="form-group row">
                   <label for="form-1-3" class="col-md-2 control-label">Libellé Source Financement</label>
                   <div class="col-md-10">
-                    <input type="text" class="form-control" id="form-1-3" placeholder="Libellé Source Financement" ngModel="" name="libellé_source_financement">
+                    <input type="text" class="form-control" id="form-1-3" placeholder="Libellé Source Financement" ngModel="{{source.libelle}}" name="libellé_source_financement">
                   </div>
                 </div>
 
@@ -35,7 +35,7 @@
                   <div class="col-md-5">
                     <label for="form-1-6" class="col-md-6 control-label">Projet </label>
                     <div class="toggle-checkbox checkbox-inline toggle-sm mrg-top-10">
-                      <input type="checkbox" ngModel="" name="toggle1" id="form-1-6" checked>
+                      <input type="checkbox" ngModel="{{source.est_projet}}" name="toggle1" id="form-1-6" checked>
                       <label for="form-1-6"></label>
                     </div>
                   </div>
@@ -44,7 +44,7 @@
                 <div class="form-group row">
                   <label for="form-1-7"  class="col-md-2 control-label">Poids projet PIP </label>
                   <div class="col-md-10">
-                    <input type="number" class="form-control" id="form-1-7" ngModel="" placeholder="0" name="poids_projet_pip">
+                    <input type="number" class="form-control" id="form-1-7" ngModel="{{source.poids_projet}}" placeholder="0" name="poids_projet_pip">
                   </div>
                 </div>
 
