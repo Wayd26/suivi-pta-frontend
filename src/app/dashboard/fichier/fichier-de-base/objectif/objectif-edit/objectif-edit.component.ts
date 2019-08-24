@@ -31,6 +31,7 @@ export class ObjectifEditComponent implements OnInit { singleSelectOptions: any 
     this.id = +this.route.snapshot.params['id'];
     this.objService.getObjectif(+this.route.snapshot.params['id']).subscribe((res: ObjectifResponse) => {
       this.objectif = res.data;
+      console.log(this.objectif);
 
       this.singleSelectValue = [this.objectif.libelle];
       console.log(this.utils.getIdData(res.data.links, 'libelle_Objectif'));
