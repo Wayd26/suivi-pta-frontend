@@ -58,6 +58,8 @@ import { SourceLoaderComponent } from './fichier/financement/source-loader/sourc
 import { DepartementLoaderComponent } from './fichier/localisation/departement/departement-loader/departement-loader.component';
 import { VilleLoaderComponent } from './fichier/localisation/ville/ville-loader/ville-loader.component';
 import { TachesEditComponent } from './fichier/fichier-de-base/taches/taches-edit/taches-edit.component';
+import {ArchwizardModule} from 'angular-archwizard';
+import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -65,7 +67,9 @@ import { TachesEditComponent } from './fichier/fichier-de-base/taches/taches-edi
     DataTablesModule,
     CommonModule,
     NgSelectizeModule,
-    FormsModule
+    FormsModule,
+    ArchwizardModule,
+    NgbDatepickerModule
 
   ],
     declarations: [
