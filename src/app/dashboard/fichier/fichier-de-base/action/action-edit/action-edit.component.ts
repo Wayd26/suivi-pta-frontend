@@ -7,6 +7,7 @@ import {NgForm} from '@angular/forms';
 import {ActionService} from '../../../../../shared/services/action.service';
 import {Action, ActionResponse} from '../../../../../models/action.model';
 import {ResultatService} from '../../../../../shared/services/resultat.service';
+import {ListeResultatResponse} from '../../../../../models/resultat.model';
 
 @Component({
   selector: 'app-action-edit',
@@ -14,48 +15,35 @@ import {ResultatService} from '../../../../../shared/services/resultat.service';
   styleUrls: ['./action-edit.component.css']
 })
 export class ActionEditComponent implements OnInit {
-  constructor() { }
+  message: string;
+  singleSelectOptions: any = [];
+  action: Action;
+  id: number;
+
+  singleSelectValue: string[] = ['reactjs'];
+  constructor(private actionService: ActionService, private router: Router, private utils: UtilsService, private resultatService: ResultatService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-  }
+    this.message = '';
+    this.id = +this.route.snapshot.params['id'];
+    this.actionService.getAction(+this.route.snapshot.params['id']).subscribe((res: ActionResponse) => {
+      this.action = res.data;
 
-  // singleSelectOptions: any = [];
-  // message: string;
-  // singleSelectValue: string[] = [];
-  // action: Action;
-  // id: number;
-  //
-  // singleSelectConfig: any = {
-  //   labelField: 'label',
-  //   valueField: 'value',
-  //   searchField: ['value']
-  // };
-  // constructor(private  actionService: ActionService, private utilService: UtilsService, private resultatService: ResultatService, private router: Router, private route: ActivatedRoute) { }
-  //
-  // ngOnInit() {
-  //   this.message = '';
-  //   this.id = +this.route.snapshot.params['id'];
-  //   this.actionService.getAction(+this.route.snapshot.params['id']).subscribe((res: ActionResponse) => {
-  //     this.action = res.data;
-  //
-  //     this.singleSelectValue = [this.action._resultat];
-  //     console.log(this.utilService.getIdData(res.data.links, 'resultat'));
-  //   });
-  //
-  //   this.resultatService.getResultatList()
-  //     .subscribe((res: Lis))
-  //
-  //   this.exerciceService.getExerciceList()
-  //     .subscribe((res: ListExerciceResponse) => {
-  //       res.data.map((exo) => {
-  //         this.singleSelectOptions.push({
-  //           label: exo.denomination,
-  //           value: exo.identifiant,
-  //           code: exo.identifiant
-  //         });
-  //       });
-  //     });
-  // }
+      this.singleSelectValue = [this.action._resultat];
+      console.log(this.utils.getIdData(res.data.links, 'resultat'));
+    });
+    this.resultatService.getResultatList()
+      .subscribe((res: ListeResultatResponse) => {
+        res.data.map((resultat) => {
+          this.singleSelectOptions.push({
+            label: resultat.libelle,
+            value: resultat.identifiant,
+            code: resultat.code
+          });
+        });
+      });
+    }
+  }
   // onSubmit(form: NgForm) {
   //   console.log(this.singleSelectValue);
   //   this.programmeService.update(form.value['libelle'], form.value['poids'], +this.singleSelectValue, this.id )
@@ -68,4 +56,4 @@ export class ActionEditComponent implements OnInit {
   //     });
   // }
 
-}
+
