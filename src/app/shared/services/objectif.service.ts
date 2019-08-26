@@ -14,6 +14,10 @@ export class ObjectifService {
 
     return this.httpClient.get(BASE_URL + 'objectifs', this.options  );
   }
+
+  getObjectif(id) {
+    return this.httpClient.get(BASE_URL + 'objectifs/' + id, this.options);
+  }
   deleteObjectif(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/objectifs/' + id, this.options);
   }

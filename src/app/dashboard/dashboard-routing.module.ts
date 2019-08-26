@@ -45,6 +45,8 @@ import {SourceLoaderComponent} from './fichier/financement/source-loader/source-
 import {DepartementLoaderComponent} from './fichier/localisation/departement/departement-loader/departement-loader.component';
 import {VilleLoaderComponent} from './fichier/localisation/ville/ville-loader/ville-loader.component';
 import { MinistereLoaderComponent } from './fichier/fichier-de-base/ministere/ministere-loader/ministere-loader.component';
+import {TachesEditComponent} from './fichier/fichier-de-base/taches/taches-edit/taches-edit.component';
+import {ActiviteLoaderComponent} from './fichier/fichier-de-base/activite/activite-loader/activite-loader.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -125,7 +127,7 @@ export const DashboardRoutes: Routes = [
     }
   },
   {
-    path: 'fichier/base/action/edit',
+    path: 'fichier/base/action/edit/:id',
     component: ActionEditComponent,
     data: {
       title: 'Dashboard'
@@ -140,7 +142,7 @@ export const DashboardRoutes: Routes = [
 },
 {
   path: 'fichier/base/activite/load',
-  component: ActionLoaderComponent,
+  component: ActiviteLoaderComponent,
   data: {
      title: 'Dashboard'
   }
@@ -153,7 +155,7 @@ export const DashboardRoutes: Routes = [
     }
   },
   {
-    path: 'fichier/base/activite/edit',
+    path: 'fichier/base/activite/edit/:id',
     component: ActiviteEditComponent,
     data: {
       title: 'Dashboard'
@@ -166,7 +168,22 @@ export const DashboardRoutes: Routes = [
      title: 'Dashboard'
   }
 },
-{
+  {
+    path: 'fichier/base/tache/add',
+    component: TachesAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+    },
+  {
+    path: 'fichier/base/tache/edit/:id',
+    component: TachesEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+
+  {
   path: 'fichier/base/tache/load',
   component: TacheLoaderComponent,
   data: {
@@ -303,7 +320,7 @@ export const DashboardRoutes: Routes = [
     }
   },
   {
-    path: 'fichier/base/structures/edit',
+    path: 'fichier/base/structures/edit/:id',
     component: StructureEditComponent,
     data: {
       title: 'Dashboard'
@@ -318,28 +335,28 @@ export const DashboardRoutes: Routes = [
     },
 
   {
-    path: 'fichier/financement/source/edit',
+    path: 'fichier/financement/source/edit/:id',
     component: SourceFinancementEditComponent,
     data: {
       title: 'Dashboard'
     }
   },
   {
-    path: 'fichier/financement/type/source/edit',
+    path: 'fichier/financement/type/source/edit/:id',
     component: TypeSourceFinancementEditComponent,
     data: {
       title: 'Dashboard'
     }
   },
   {
-    path: 'fichier/localisation/ville/edit',
+    path: 'fichier/localisation/ville/edit/:id',
     component: VilleEditComponent,
     data: {
       title: 'Dashboard'
     }
   },
   {
-    path: 'fichier/localisation/departement/edit',
+    path: 'fichier/localisation/departement/edit/:id',
     component: DepartementEditComponent,
     data: {
       title: 'Dashboard'
@@ -382,7 +399,7 @@ export const DashboardRoutes: Routes = [
     }
   } ,
   {
-    path: 'fichier/base/objectif/edit',
+    path: 'fichier/base/objectif/edit/:id',
     component: ObjectifEditComponent,
     data: {
       title: 'Dashboard'

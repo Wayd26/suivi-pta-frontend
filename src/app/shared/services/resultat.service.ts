@@ -12,6 +12,11 @@ export class ResultatService {constructor(private httpClient: HttpClient, privat
   getResultatList() {
     return this.httpClient.get(BASE_URL + 'resultats', this.options  );
     }
+
+  getResultat(id) {
+
+    return this.httpClient.get(BASE_URL + 'resultats/' + id, this.options  );
+  }
   deleteResultat(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/resultats/' + id, this.options);
   }

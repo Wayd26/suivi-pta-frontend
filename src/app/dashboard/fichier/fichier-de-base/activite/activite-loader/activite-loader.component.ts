@@ -16,6 +16,7 @@ export class ActiviteLoaderComponent implements OnInit {
   ngOnInit() {
     this.activiteService.getActiviteList().subscribe((res: ListActiviteResponse) => {
       this.dataService.setActivites(res.data);
+      console.log(res.data);
     } , (error) => {
       this.dataService.setActivites([]);
     }, () => {

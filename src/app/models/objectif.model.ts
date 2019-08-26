@@ -1,3 +1,4 @@
+import {Programme} from './programme.model';
 
 export interface Link {
   rel: string;
@@ -35,4 +36,8 @@ export interface Meta {
 export interface ListObjectifResponse {
   data: ObjectifModel[];
   meta: Meta;
+}
+
+export interface ObjectifResponse {
+  data: ObjectifModel;
 }
