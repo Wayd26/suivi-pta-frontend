@@ -53,7 +53,7 @@ export class ProgrammeEditComponent implements OnInit {
     console.log(this.singleSelectValue);
     this.programmeService.update(form.value['libelle'], form.value['poids'], +this.singleSelectValue, this.id )
       .subscribe((resp) => {
-        this.router.navigate(['/dashboard/fichier/base/programmes']);
+        this.router.navigate(['/dashboard/fichier/base/programmes/load']);
       } , (error) => {
         console.log(error);
         this.message = 'Echec de l\'operation';
