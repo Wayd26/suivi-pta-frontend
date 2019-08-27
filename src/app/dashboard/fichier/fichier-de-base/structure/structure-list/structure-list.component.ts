@@ -26,6 +26,9 @@ export class StructureListComponent implements OnInit {
 
           ]
       };
+      if (!this.dataService.getStructures()) {
+        this.router.navigate(['/dashboard/fichier/base/structures/load']);
+    }
     this.structures = this.dataService.getStructures();
       this.structureService.getStructureList().subscribe((res: ListStructureResponse) => {
         this.dataService.setStructures(res.data);

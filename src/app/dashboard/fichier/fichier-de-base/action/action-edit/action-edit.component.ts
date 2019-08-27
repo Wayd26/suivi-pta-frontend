@@ -20,7 +20,7 @@ export class ActionEditComponent implements OnInit {
   action: Action;
   id: number;
 
-  singleSelectValue: string[] = ['reactjs'];
+  singleSelectValue: string[] = [];
   constructor(private actionService: ActionService, private router: Router, private utils: UtilsService, private resultatService: ResultatService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class ActionEditComponent implements OnInit {
     this.actionService.getAction(+this.route.snapshot.params['id']).subscribe((res: ActionResponse) => {
       this.action = res.data;
 
-      this.singleSelectValue = [this.action._resultat];
+      this.singleSelectValue = [this.utils.getIdData(res.data.links, 'resultat')];
       console.log(this.utils.getIdData(res.data.links, 'resultat'));
     });
     this.resultatService.getResultatList()
@@ -37,7 +37,7 @@ export class ActionEditComponent implements OnInit {
         res.data.map((resultat) => {
           this.singleSelectOptions.push({
             label: resultat.libelle,
-            value: resultat.identifiant,
+            value: resultat.identifiant.toString(),
             code: resultat.code
           });
         });

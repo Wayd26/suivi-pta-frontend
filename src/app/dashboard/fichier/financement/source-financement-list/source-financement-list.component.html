@@ -1,77 +1,77 @@
 <div class="container-fluid">
-  <div class="page-title">
-    <h4>Liste Source Financement</h4>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-block">
-          <a [routerLink]="['add']" class="btn btn-info">
-            <i class="ti-plus pdd-right-5"></i>
-            <span>Ajouter</span>
-          </a>
-          <div class="table-overflow">
-            <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
-              <thead>
-              <tr>
-                <th>Code Source Financement</th>
-                <th>Libelle Source Financement</th>
-                <th>Chapitre d'imputation</th>
-                <th>Poids projet PIP</th>
-                <th>Type source financement</th>
-                <th>Projet</th>
-                <th>Action</th>
-
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let source of Sources">
-                <td>
-                  <div class="mrg-top-15">
-                    <span>{{source.code}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="mrg-top-15">
-                    <span>{{source.libelle}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="mrg-top-15">
-                    <span>{{source.chapitre_imputation}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="mrg-top-15">
-                    <span>{{source.poids_projet}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="mrg-top-15">
-                    <span>{{source._type}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="mrg-top-15">
-                    <span>{{source.est_projet}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="mrg-top-10 text-center">
-                    <a [routerLink]="['edit']" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
-                      <i class="ti-pencil"></i>
+    <div class="page-title">
+        <h4>Liste Source Financement</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-block">
+                    <a [routerLink]="['add']" class="btn btn-info">
+                        <i class="ti-plus pdd-right-5"></i>
+                        <span>Ajouter</span>
                     </a>
-                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(source.identifiant)">
+                    <div class="table-overflow">
+                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
+                            <thead>
+                                <tr>
+                                    <th>Code Source Financement</th>
+                                    <th>Libelle Source Financement</th>
+                                    <th>Chapitre d'imputation</th>
+                                    <th>Poids projet PIP</th>
+                                    <th>Type source financement</th>
+                                    <th>Projet</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let source of Sources">
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <span>{{source.code}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <span>{{source.libelle}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <span>{{source.chapitre_imputation}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <span>{{source.poids_projet}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <span>{{source._type}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <input type="checkbox" ngModel="{{source.est_projet}}" name="toggle1" id="form-1-6" value="{{source.est_projet}}" readonly>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mrg-top-10 text-center">
+                                            <a [routerLink]="['edit']" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                                <i class="ti-pencil"></i>
+                                            </a>
+                                            <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(source.identifiant)">
                       <i class="ti-trash"></i>
                     </button>
-                  </div>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

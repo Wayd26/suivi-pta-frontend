@@ -33,7 +33,9 @@ export class UtilsService {
   }
 
   getIdData(data, keys ) {
+    console.log(data);
    const tab = data.find(function (e) { return e['rel'] === keys ; })['href'].split('/');
+   console.log(tab);
     return tab[tab.length - 1];
   }
 }

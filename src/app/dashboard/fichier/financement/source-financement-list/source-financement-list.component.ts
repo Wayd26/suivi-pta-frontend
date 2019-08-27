@@ -22,6 +22,9 @@ export class SourceFinancementListComponent implements OnInit {
       scrollY: '500',
       pagingType: 'full_numbers'
     };
+    if (!this.dataService.getSourceFis()) {
+      this.router.navigate(['/dashboard/fichier/financement/source/load']);
+  }
     this.Sources = this.dataService.getSourceFis();
     this.SourceFiService.getSourceFinancementList().subscribe((res: ListSourceFinancementResponse) => {
       this.dataService.setSourceFis(res.data);

@@ -22,6 +22,9 @@ export class ActiviteListComponent implements OnInit {
           scrollY: '500',
           pagingType: 'full_numbers'
       };
+      if (!this.dataService.getActivites()) {
+        this.router.navigate(['/dashboard/fichier/base/activite/load']);
+    }
       this.activites = this.dataService.getActivites();
 
       this.activiteService.getActiviteList().subscribe((res: ListActiviteResponse) => {

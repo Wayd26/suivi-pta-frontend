@@ -25,7 +25,7 @@ export class MinistereEditComponent implements OnInit {
   };
   id: number;
 
-  singleSelectValue: string[] = ['reactjs'];
+  singleSelectValue: string[];
   constructor(private ministereService: MinistereService , private router: Router, private villeService: VilleService, private utilservice: UtilsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -33,14 +33,15 @@ export class MinistereEditComponent implements OnInit {
     this.id = +this.route.snapshot.params['id'];
     this.ministereService.getMinistere(this.id).subscribe((res: MinistereResponse) => {
       this.ministere = res.data;
-      this.singleSelectValue = this.utilservice.getIdData(this.ministere.links, 'ville');
+      console.log(this.utilservice.getIdData(this.ministere.links, 'ville'));
+      this.singleSelectValue = [this.utilservice.getIdData(this.ministere.links, 'ville')];
     });
     this.villeService.getVilleList()
       .subscribe((res: ListVilleResponse) => {
         res.data.map((ville) => {
           this.singleSelectOptions.push({
             label: ville.denomination,
-            value: ville.identifiant,
+            value: ville.identifiant.toString(),
             code: ville.identifiant
           });
         });

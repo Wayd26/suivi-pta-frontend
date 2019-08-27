@@ -24,7 +24,7 @@ export class ObjectifEditComponent implements OnInit {
     searchField: ['label']
   };
 
-  singleSelectValue: string[] = ['reactjs'];
+  singleSelectValue: string[];
   constructor(private objService: ObjectifService, private router: Router, private utils: UtilsService, private progra: ProgrammeService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -34,8 +34,8 @@ export class ObjectifEditComponent implements OnInit {
       this.objectif = res.data;
       console.log(this.objectif);
 
-      this.singleSelectValue = [this.objectif._programme];
-      console.log(this.utils.getIdData(res.data.links, 'programme_Objectif'));
+      this.singleSelectValue = [this.utils.getIdData(res.data.links, 'programme')];
+      console.log(this.utils.getIdData(res.data.links, 'programme'));
     });
 
     this.progra.getProgrammeList()
@@ -43,7 +43,7 @@ export class ObjectifEditComponent implements OnInit {
         res.data.map((objectif) => {
           this.singleSelectOptions.push({
             label: objectif.libelle,
-            value: objectif.identifiant,
+            value: objectif.identifiant.toString(),
             code: objectif.code
           });
         });

@@ -33,8 +33,8 @@ export class ProgrammeEditComponent implements OnInit {
     this.programmeService.getProgramme(+this.route.snapshot.params['id']).subscribe((res: ProgrammeResponse) => {
       this.programme = res.data;
 
-      this.singleSelectValue = [this.programme._exercice];
-      console.log(this.utilService.getIdData(res.data.links, 'exerci  ce'));
+      this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'exercice')];
+      console.log(this.utilService.getIdData(res.data.links, 'exercice'));
     });
 
 
@@ -43,7 +43,7 @@ export class ProgrammeEditComponent implements OnInit {
         res.data.map((exo) => {
           this.singleSelectOptions.push({
             label: exo.denomination,
-            value: exo.identifiant,
+            value: exo.identifiant.toString(),
             code: exo.identifiant
           });
         });

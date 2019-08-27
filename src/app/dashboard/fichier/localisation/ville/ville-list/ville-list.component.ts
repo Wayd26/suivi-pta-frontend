@@ -26,6 +26,9 @@ export class VilleListComponent implements OnInit {
             { 'width': '20%', 'targets': 1 }
           ]
       };
+      if (!this.dataService.getVilles()) {
+        this.router.navigate(['/dashboard/fichier/localisation/ville/load']);
+    }
     this.villes = this.dataService.getVilles();
       this.villeService.getVilleList().subscribe((res: ListVilleResponse) => {
         this.dataService.setVilles(res.data);

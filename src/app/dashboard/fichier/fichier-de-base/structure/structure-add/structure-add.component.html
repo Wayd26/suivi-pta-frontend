@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="page-title">
-      <h4 class="card-title">Ajouter une structure</h4>
+        <h4 class="card-title">Ajouter une structure</h4>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -9,54 +9,54 @@
                     <div class="row">
                         <div class="col-md-7">
 
-                            <form  class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)"  #f ="ngForm">
+                            <form class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)" #f="ngForm">
 
                                 <div class="form-group row">
-                                    <label for="form-1-2" class="col-md-2 control-label">Denomination</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" id="form-1-2" ngModel placeholder="Denomination" name="denomination" >
+                                    <label for="form-1-2" class="col-md-3 control-label">Denomination</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="form-1-2" ngModel placeholder="Denomination" name="denomination">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="form-1-4" class="col-md-2 control-label">Telephone du responsable</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" id="form-1-4" ngModel placeholder="Telephone du responsable" name="telResp" >
+                                    <label for="form-1-4" class="col-md-3 control-label">Telephone du responsable</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="form-1-4" ngModel placeholder="Telephone du responsable" name="telResp">
                                     </div>
                                 </div>
-                              <div class="form-group row">
-                                <label for="form-1-5" class="col-md-2 control-label">Email</label>
-                                <div class="col-md-10">
-                                  <input type="email" class="form-control" id="form-1-5" ngModel placeholder="Email" name="email">
+                                <div class="form-group row">
+                                    <label for="form-1-5" class="col-md-3 control-label">Email</label>
+                                    <div class="col-md-9">
+                                        <input type="email" class="form-control" id="form-1-5" ngModel placeholder="Email" name="email">
+                                    </div>
                                 </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="form-1-5" class="col-md-2 control-label">Code Postale</label>
-                                <div class="col-md-10">
-                                  <input type="email" class="form-control" id="form-1-8" ngModel placeholder="Code Postale" name="cpost">
+                                <div class="form-group row">
+                                    <label for="form-1-5" class="col-md-3 control-label">Code Postale</label>
+                                    <div class="col-md-9">
+                                        <input type="email" class="form-control" id="form-1-8" ngModel placeholder="Code Postale" name="cpost">
+                                    </div>
                                 </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="form-1-5" class="col-md-2 control-label">Sigle</label>
-                                <div class="col-md-10">
-                                  <input type="email" class="form-control" id="form-1-9" ngModel placeholder="Sigle" name="sigle">
+                                <div class="form-group row">
+                                    <label for="form-1-5" class="col-md-3 control-label">Sigle</label>
+                                    <div class="col-md-9">
+                                        <input type="email" class="form-control" id="form-1-9" ngModel placeholder="Sigle" name="sigle">
+                                    </div>
                                 </div>
-                              </div>
-                              <!--  <div class="form-group row">
+                                <!--  <div class="form-group row">
                                     <label for="form-1-6" class="col-md-2 control-label">Departement</label>
                                     <div class="col-md-10">
                                         <ng-selectize id="form-1-6"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl></ng-selectize>
                                     </div>
                                 </div>-->
-                              <div class="form-group row">
-                                <label for="form-1-7" class="col-md-2 control-label">Ville</label>
-                                <div class="col-md-10">
-                                  <ng-selectize id="form-1-7"  [config]="singleSelectConfig" [options]="singleSelectOptions2" [(ngModel)]="singleSelectValue2" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                <div class="form-group row">
+                                    <label for="form-1-7" class="col-md-3 control-label">Ville</label>
+                                    <div class="col-md-9">
+                                        <ng-selectize id="form-1-7" [config]="singleSelectConfig" [options]="singleSelectOptions2" [(ngModel)]="singleSelectValue2" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                    </div>
                                 </div>
-                              </div>
-                              <a [routerLink]= "['/dashboard/fichier/base/structures']" class="btn btn-primary">
-                                <i class="ti-back-left pdd-right-5"></i>
-                                <span>Retour</span>
-                              </a> <button type="submit" class="btn btn-info" [disabled]="f.invalid">
+                                <a [routerLink]="['/dashboard/fichier/base/structures/load']" class="btn btn-primary">
+                                    <i class="ti-back-left pdd-right-5"></i>
+                                    <span>Retour</span>
+                                </a> <button type="submit" class="btn btn-info" [disabled]="f.invalid">
 
                                 <span>Valider</span>
                               </button>
