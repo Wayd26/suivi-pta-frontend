@@ -14,6 +14,9 @@ export class SourceFinancementService {
 
     return this.httpClient.get(BASE_URL + 'sources_financements', this.options  );
   }
+  getSourceFinancement(id){
+    return this.httpClient.get(BASE_URL + 'sources_financements' + id, this.options);
+  }
   deleteSourceFinamcement(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/financements/' + id, this.options);
   }

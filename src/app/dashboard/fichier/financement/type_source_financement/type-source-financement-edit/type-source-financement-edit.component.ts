@@ -1,4 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import {ProgrammeService} from '../../../../../shared/services/programme.service';
+import {UtilsService} from '../../../../../shared/services/utils.service';
+import {ExercieService} from '../../../../../shared/services/exercie.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ProgrammeResponse} from '../../../../../models/programme.model';
+import {ListExerciceResponse} from '../../../../../models/exercice.model';
+import {NgForm} from '@angular/forms';
+import {SourceFinancement, SourceFiResponse} from '../../../../../models/sourceFi.model';
+import {ListTypeSourceFinancementResponse, TypeSourceFinancement} from '../../../../../models/typeSourceFi.model';
+import {SourceFinancementService} from '../../../../../shared/services/source-financement.service';
+import {TypeSourceFinancementService} from '../../../../../shared/services/type-source-financement.service';
 
 @Component({
   selector: 'app-type-source-financement-edit',
@@ -6,12 +17,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./type-source-financement-edit.component.css']
 })
 export class TypeSourceFinancementEditComponent implements OnInit {
+  singleSelectOptions: any = [];
   message: string;
+  singleSelectValue: string[] = [];
+  typeSourceFi: TypeSourceFinancement;
+  id: number;
 
-  constructor() { }
+  constructor(private  typeSourceFiService: TypeSourceFinancementService, private utilService: UtilsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.message = "" ;
+    this.message = '';
+    this.id = +this.route.snapshot.params['id'];
+    this.typeSourceFiService.getTypeSourceFinancement(+this.route.snapshot.params['id']).subscribe((res: SourceFiResponse) => {
+      this.typeSourceFi = res.data;
+    });
+  }
+  onSubmit(form: NgForm) {
+    console.log(this.singleSelectValue);
+    this.typeSourceFiService.update(form.value['libelle'])
+      .subscribe((resp) => {
+        this.router.navigate(['/dashboard/fichier/financement/type_source_financement']);
+      } , (error) => {
+        console.log(error);
+        this.message = 'Echec de l\'operation';
+        this.router.navigate(['//dashboard/fichier/financement/type_source_financement/add']);
+      });
   }
 
 }

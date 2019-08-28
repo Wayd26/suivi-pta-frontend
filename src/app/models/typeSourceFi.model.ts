@@ -1,5 +1,6 @@
+import {SourceFinancement} from './sourceFi.model';
 
-  export interface Link {
+export interface Link {
       rel: string;
       href: string;
   }
@@ -34,6 +35,10 @@
       data: TypeSourceFinancement[];
       meta: Meta;
   }
+
+export interface TypeSourceFiResponse {
+  data: TypeSourceFinancement;
+}
 
 
 
