@@ -14,6 +14,9 @@ export class TypeSourceFinancementService {
 
     return this.httpClient.get(BASE_URL + 'types_sources_financements', this.options  );
   }
+  getTypeSourceFinancement(id) {
+      return this.httpClient.get(BASE_URL + 'types_sources_financements' + id, this.options);
+  }
   deleteTypeSource(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/types_sources_financements/' + id, this.options);
   }

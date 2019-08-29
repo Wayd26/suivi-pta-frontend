@@ -1,3 +1,5 @@
+import {SourceFinancement} from './sourceFi.model';
+
 export interface Link {
   rel: string;
   href: string;
@@ -30,3 +32,7 @@ export interface ListTacheResponse {
   data: Tache[];
   meta: Meta;
 }
+
+export interface TacheResponse {
+  data: Tache;
+  }

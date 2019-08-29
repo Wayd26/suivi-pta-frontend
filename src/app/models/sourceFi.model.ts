@@ -1,3 +1,4 @@
+import {Programme} from './programme.model';
 
 export interface Link {
     rel: string;
@@ -36,3 +37,6 @@ export interface Link {
     meta: Meta;
   }
 
+export interface SourceFiResponse {
+  data: SourceFinancement;
+ }
