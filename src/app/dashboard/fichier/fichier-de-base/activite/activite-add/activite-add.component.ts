@@ -11,27 +11,15 @@ export class ActiviteAddComponent implements OnInit {
   public onStep2Next: any;
   public onStep3Next: any;
   public onComplete: any;
+  dtOptions: DataTables.Settings = {};
   model2;
   structures: Structure[];
-  singleSelectOptions: any = [
-    {
-      label: 'Angular',
-      value: 'angular',
-      code: 'NG'
-    }, {
-      label: 'ReactJS',
-      value: 'reactjs',
-      code: 'RJS'
-    }, {
-      label: 'Ember JS',
-      value: 'emberjs',
-      code: 'emjs'
-    }, {
-      label: 'Ruby on Rails',
-      value: 'ruby_on_rails',
-      code: 'ROR'
-    }
-  ];
+  singleSelectOptionsExercice: any = [];
+  singleSelectOptionsStructure: any = [];
+  singleSelectOptionsTypeActivite: any = [];
+  singleSelectOptionsAction: any = [];
+  singleSelectOptionsDepartement: any = [];
+  singleSelectOptionsVille: any = [];
 
   singleSelectConfig: any = {
     labelField: 'label',
@@ -39,7 +27,12 @@ export class ActiviteAddComponent implements OnInit {
     searchField: ['label']
   };
 
-  singleSelectValue: string[] = ['reactjs'];
+  singleSelectValueExercice: string[] = ['reactjs'];
+  singleSelectValueStructure: string[] = ['reactjs'];
+  singleSelectValueTypeActivite: string[] = ['reactjs'];
+  singleSelectValueAction: string[] = ['reactjs'];
+  singleSelectValueDepartement: string[] = ['reactjs'];
+  singleSelectValueVille: string[] = ['reactjs'];
   constructor() { }
 
   ngOnInit() {
