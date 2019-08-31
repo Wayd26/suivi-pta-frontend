@@ -47,6 +47,9 @@ import {VilleLoaderComponent} from './fichier/localisation/ville/ville-loader/vi
 import { MinistereLoaderComponent } from './fichier/fichier-de-base/ministere/ministere-loader/ministere-loader.component';
 import {TachesEditComponent} from './fichier/fichier-de-base/taches/taches-edit/taches-edit.component';
 import {ActiviteLoaderComponent} from './fichier/fichier-de-base/activite/activite-loader/activite-loader.component';
+import {ProgrammeImportComponent} from './fichier/fichier-de-base/programme/programme-import/programme-import.component';
+import {ObjectifImportComponent} from './fichier/fichier-de-base/objectif/objectif-import/objectif-import.component';
+import {StructureImportComponent} from './fichier/fichier-de-base/structure/structure-import/structure-import.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -77,6 +80,13 @@ export const DashboardRoutes: Routes = [
          title: 'Dashboard'
       }
   },
+    {
+      path: 'fichier/base/programme/import',
+      component: ProgrammeImportComponent,
+      data: {
+         title: 'Dashboard'
+      }
+  },
   {
     path: 'fichier/base/programme/edit/:id',
     component: ProgrammeEditComponent,
@@ -94,6 +104,13 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/base/structures/add',
     component: StructureAddComponent,
+    data: {
+       title: 'Dashboard'
+    }
+},
+  {
+    path: 'fichier/base/structures/import',
+    component: StructureImportComponent,
     data: {
        title: 'Dashboard'
     }
@@ -387,6 +404,13 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/base/objectif/load',
     component: ObjectifLoaderComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/objectif/import',
+    component: ObjectifImportComponent,
     data: {
       title: 'Dashboard'
     }

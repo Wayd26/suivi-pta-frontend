@@ -60,6 +60,9 @@ import { VilleLoaderComponent } from './fichier/localisation/ville/ville-loader/
 import { TachesEditComponent } from './fichier/fichier-de-base/taches/taches-edit/taches-edit.component';
 import {ArchwizardModule} from 'angular-archwizard';
 import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
+import { ProgrammeImportComponent } from './fichier/fichier-de-base/programme/programme-import/programme-import.component';
+import { ObjectifImportComponent } from './fichier/fichier-de-base/objectif/objectif-import/objectif-import.component';
+import { StructureImportComponent } from './fichier/fichier-de-base/structure/structure-import/structure-import.component';
 
 @NgModule({
   imports: [
@@ -121,7 +124,10 @@ import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
         SourceLoaderComponent,
         DepartementLoaderComponent,
         VilleLoaderComponent,
-        TachesEditComponent
+        TachesEditComponent,
+        ProgrammeImportComponent,
+        ObjectifImportComponent,
+        StructureImportComponent
     ],
     providers: [
         ThemeConstants

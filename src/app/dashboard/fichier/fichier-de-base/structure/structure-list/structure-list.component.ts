@@ -4,6 +4,7 @@ import { StructureService } from 'src/app/shared/services/structure.service';
 import { Structure, ListStructureResponse } from 'src/app/models/structure.model';
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
+import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
 
 @Component({
   selector: 'app-structure-list',
@@ -15,7 +16,8 @@ export class StructureListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   structures: Structure[];
 
-  constructor(private structureService: StructureService, private router: Router, private dataService: DataService) { }
+
+  constructor(private structureService: StructureService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -33,6 +35,9 @@ export class StructureListComponent implements OnInit {
         this.structures = [];
       }, () => {}
        );
+  }
+  execelExport() {
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.structures)), 'structures');
   }
 
   onDelete(id) {
