@@ -47,6 +47,15 @@ import {VilleLoaderComponent} from './fichier/localisation/ville/ville-loader/vi
 import { MinistereLoaderComponent } from './fichier/fichier-de-base/ministere/ministere-loader/ministere-loader.component';
 import {TachesEditComponent} from './fichier/fichier-de-base/taches/taches-edit/taches-edit.component';
 import {ActiviteLoaderComponent} from './fichier/fichier-de-base/activite/activite-loader/activite-loader.component';
+import {ProgrammationDesTachesLoaderComponent} from './fichier/traitement/programmation_des_taches/programmation-des-taches-loader/programmation-des-taches-loader.component';
+import {ProgrammationDesTachesAddComponent} from './fichier/traitement/programmation_des_taches/programmation-des-taches-add/programmation-des-taches-add.component';
+import {ProgrammationDesTachesListComponent} from './fichier/traitement/programmation_des_taches/programmation-des-taches-list/programmation-des-taches-list.component';
+import {SuiviPtaLoaderComponent} from './fichier/traitement/suivi_pta/suivi-pta-loader/suivi-pta-loader.component';
+import {SuiviPtaEditComponent} from './fichier/traitement/suivi_pta/suivi-pta-edit/suivi-pta-edit.component';
+import {SuiviPtaListComponent} from './fichier/traitement/suivi_pta/suivi-pta-list/suivi-pta-list.component';
+import {IndicateursRealisesLoaderComponent} from './fichier/traitement/indicateurs_realises/indicateurs-realises-loader/indicateurs-realises-loader.component';
+import {IndicateursRealisesEditComponent} from './fichier/traitement/indicateurs_realises/indicateurs-realises-edit/indicateurs-realises-edit.component';
+import {IndicateursRealisesListComponent} from './fichier/traitement/indicateurs_realises/indicateurs-realises-list/indicateurs-realises-list.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -401,6 +410,69 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/base/objectif/edit/:id',
     component: ObjectifEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/traitement/programmation_des_taches/load',
+    component: ProgrammationDesTachesLoaderComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/traitement/programmation_des_taches/add',
+    component: ProgrammationDesTachesAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/traitement/programmation_des_taches/list',
+    component: ProgrammationDesTachesListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/traitement/suivi_pta/load',
+    component: SuiviPtaLoaderComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/traitement/suivi_pta/edit:id',
+    component: SuiviPtaEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/traitement/suivi_pta/list',
+    component: SuiviPtaListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/traitement/indicateurs_realises/load',
+    component: IndicateursRealisesLoaderComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/traitement/indicateurs_realises/edit:id',
+    component: IndicateursRealisesEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/traitement/indicateurs_realises/list',
+    component: IndicateursRealisesListComponent,
     data: {
       title: 'Dashboard'
     }

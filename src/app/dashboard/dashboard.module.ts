@@ -60,6 +60,15 @@ import { VilleLoaderComponent } from './fichier/localisation/ville/ville-loader/
 import { TachesEditComponent } from './fichier/fichier-de-base/taches/taches-edit/taches-edit.component';
 import {ArchwizardModule} from 'angular-archwizard';
 import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
+import { ProgrammationDesTachesLoaderComponent } from './fichier/traitement/programmation_des_taches/programmation-des-taches-loader/programmation-des-taches-loader.component';
+import { ProgrammationDesTachesListComponent } from './fichier/traitement/programmation_des_taches/programmation-des-taches-list/programmation-des-taches-list.component';
+import { ProgrammationDesTachesAddComponent } from './fichier/traitement/programmation_des_taches/programmation-des-taches-add/programmation-des-taches-add.component';
+import { SuiviPtaLoaderComponent } from './fichier/traitement/suivi_pta/suivi-pta-loader/suivi-pta-loader.component';
+import { SuiviPtaListComponent } from './fichier/traitement/suivi_pta/suivi-pta-list/suivi-pta-list.component';
+import { SuiviPtaEditComponent } from './fichier/traitement/suivi_pta/suivi-pta-edit/suivi-pta-edit.component';
+import { IndicateursRealisesLoaderComponent } from './fichier/traitement/indicateurs_realises/indicateurs-realises-loader/indicateurs-realises-loader.component';
+import { IndicateursRealisesListComponent } from './fichier/traitement/indicateurs_realises/indicateurs-realises-list/indicateurs-realises-list.component';
+import { IndicateursRealisesEditComponent } from './fichier/traitement/indicateurs_realises/indicateurs-realises-edit/indicateurs-realises-edit.component';
 
 @NgModule({
   imports: [
@@ -121,7 +130,16 @@ import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
         SourceLoaderComponent,
         DepartementLoaderComponent,
         VilleLoaderComponent,
-        TachesEditComponent
+        TachesEditComponent,
+        ProgrammationDesTachesLoaderComponent,
+        ProgrammationDesTachesListComponent,
+        ProgrammationDesTachesAddComponent,
+        SuiviPtaLoaderComponent,
+        SuiviPtaListComponent,
+        SuiviPtaEditComponent,
+        IndicateursRealisesLoaderComponent,
+        IndicateursRealisesListComponent,
+        IndicateursRealisesEditComponent
     ],
     providers: [
         ThemeConstants
