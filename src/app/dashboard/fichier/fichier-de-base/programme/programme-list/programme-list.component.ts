@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 import {el} from '@angular/platform-browser/testing/src/browser_util';
+import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
 
 @Component({
   selector: 'app-programme-list',
@@ -14,7 +15,7 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 export class ProgrammeListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   programmes: Programme[];
-  constructor(private programmeService: ProgrammeService, private router: Router, private dataService: DataService) { }
+  constructor(private programmeService: ProgrammeService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -26,12 +27,19 @@ export class ProgrammeListComponent implements OnInit {
           ]
       };
     this.programmes = this.dataService.getProgrammes();
+
       this.programmeService.getProgrammeList().subscribe((res: ListProgrammeResponse) => {
        this.dataService.setProgrammes(res.data) ;
+       this.programmes.map((p) => {
+         console.log(JSON.parse(JSON.stringify(p)));
+       });
       }, (error) => {}, () => {
         //this.programmes = this.dataService.getProgrammes();
     });
       console.log(this.dataService.getProgrammes());
+  }
+  execelExport() {
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.programmes)), 'test');
   }
 
   onDelete(id) {

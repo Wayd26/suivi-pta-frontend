@@ -4,6 +4,7 @@ import {ListObjectifResponse, ObjectifModel} from '../../../../../models/objecti
 import {ObjectifService} from '../../../../../shared/services/objectif.service';
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
+import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
 
 @Component({
   selector: 'app-objectif-list',
@@ -14,7 +15,7 @@ export class ObjectifListComponent implements OnInit {
   Objectifs: ObjectifModel[];
   dtOptions: DataTables.Settings = {};
 
-  constructor(private objectifService: ObjectifService, private router: Router, private dataService: DataService) { }
+  constructor(private objectifService: ObjectifService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -28,6 +29,9 @@ export class ObjectifListComponent implements OnInit {
       this.Objectifs = [];
     }, () => {
     });
+  }
+  execelExport() {
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.Objectifs)), 'test');
   }
 
   onDelete(id) {

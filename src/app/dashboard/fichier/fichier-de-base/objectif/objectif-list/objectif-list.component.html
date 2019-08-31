@@ -10,6 +10,14 @@
             <i class="ti-plus pdd-right-5"></i>
             <span>Ajouter</span>
           </a>
+          <a [routerLink]="['import']" class="btn btn-info">
+            <i class="ti-import pdd-right-5"></i>
+            <span>Importer</span>
+          </a>
+          <a (click)="execelExport()" class="btn btn-info">
+            <i class="ti-export pdd-right-5"></i>
+            <span>EXCEL</span>
+          </a>
           <div class="table-overflow">
             <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
               <thead>

@@ -69,6 +69,9 @@ import { SuiviPtaEditComponent } from './fichier/traitement/suivi_pta/suivi-pta-
 import { IndicateursRealisesLoaderComponent } from './fichier/traitement/indicateurs_realises/indicateurs-realises-loader/indicateurs-realises-loader.component';
 import { IndicateursRealisesListComponent } from './fichier/traitement/indicateurs_realises/indicateurs-realises-list/indicateurs-realises-list.component';
 import { IndicateursRealisesEditComponent } from './fichier/traitement/indicateurs_realises/indicateurs-realises-edit/indicateurs-realises-edit.component';
+import { ProgrammeImportComponent } from './fichier/fichier-de-base/programme/programme-import/programme-import.component';
+import { ObjectifImportComponent } from './fichier/fichier-de-base/objectif/objectif-import/objectif-import.component';
+import { StructureImportComponent } from './fichier/fichier-de-base/structure/structure-import/structure-import.component';
 
 @NgModule({
   imports: [
@@ -130,6 +133,10 @@ import { IndicateursRealisesEditComponent } from './fichier/traitement/indicateu
         SourceLoaderComponent,
         DepartementLoaderComponent,
         VilleLoaderComponent,
+        TachesEditComponent,
+        ProgrammeImportComponent,
+        ObjectifImportComponent,
+        StructureImportComponent,
         TachesEditComponent,
         ProgrammationDesTachesLoaderComponent,
         ProgrammationDesTachesListComponent,
