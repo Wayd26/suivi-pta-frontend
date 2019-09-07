@@ -12,16 +12,16 @@ import {Departement, DepartementResponse} from '../../../../../models/departemen
 export class DepartementEditComponent implements OnInit {
   departement: Departement;
   id: number;
-  constructor(private departeemntService: DepartementService , private router: Router, private route: ActivatedRoute) { }
+  constructor(private departementService: DepartementService , private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.id = +this.route.snapshot.params['id'];
-    this.departeemntService.getDepartemen(this.id).subscribe((res: DepartementResponse) => {
+    this.departementService.getDepartemen(this.id).subscribe((res: DepartementResponse) => {
       this.departement = res.data;
     });
   }
   onSubmit(form: NgForm) {
-    this.departeemntService.update(form.value['nom_département'], this.id).subscribe((res) => {
+    this.departementService.update(form.value['nom_département'], this.id).subscribe((res) => {
         console.log(res);
         this.router.navigate(['/dashboard/fichier/localisation/departement']);
       }, (error) => {

@@ -1,3 +1,4 @@
+
 export interface Link {
   rel: string;
   href: string;
@@ -31,4 +32,8 @@ export interface Meta {
 export interface ListExerciceResponse {
   data: Exercice[];
   meta: Meta;
+}
+
+export interface ExerciceResponse {
+  data: Exercice;
 }

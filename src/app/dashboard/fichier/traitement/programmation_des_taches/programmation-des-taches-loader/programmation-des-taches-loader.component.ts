@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {VilleService} from '../../../../../shared/services/ville.service';
+import {ProgrammeService} from '../../../../../shared/services/programme.service';
 import {Router} from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
-import {ListVilleResponse} from '../../../../../models/ville.model';
+import {SuiviTacheService} from '../../../../../shared/services/suivi-tache.service';
+import {ListeSuiviTachePesponse} from '../../../../../models/suivi_tache.model';
 
 @Component({
   selector: 'app-programmation-des-taches-loader',
@@ -10,14 +11,15 @@ import {ListVilleResponse} from '../../../../../models/ville.model';
   styleUrls: ['./programmation-des-taches-loader.component.css']
 })
 export class ProgrammationDesTachesLoaderComponent implements OnInit {
-  constructor(private villeService: VilleService, private router: Router, private dataService: DataService) { }
+
+  constructor(private suiviTacheService: SuiviTacheService, private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
-    this.villeService.getVilleList().subscribe((res: ListVilleResponse) => {
-      this.dataService.setVilles(res.data);
-    } , (error) => {
-    }, () => {
-      this.router.navigate(['/dashboard/fichier/localisation/ville']);
+
+    this.suiviTacheService.getSuiviTacheList().subscribe((res: ListeSuiviTachePesponse) => {
+      this.dataService.setSuiviTaches(res.data) ;
+    }, (error) => {}, () => {
+      this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches']);
     });
   }
 

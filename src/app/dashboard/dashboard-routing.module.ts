@@ -59,6 +59,11 @@ import {IndicateursRealisesListComponent} from './fichier/traitement/indicateurs
 import {ProgrammeImportComponent} from './fichier/fichier-de-base/programme/programme-import/programme-import.component';
 import {ObjectifImportComponent} from './fichier/fichier-de-base/objectif/objectif-import/objectif-import.component';
 import {StructureImportComponent} from './fichier/fichier-de-base/structure/structure-import/structure-import.component';
+import {ProgrammationDesTachesEditComponent} from './fichier/traitement/programmation_des_taches/programmation-des-taches-edit/programmation-des-taches-edit.component';
+import {ExerciceAddComponent} from './Paramètres/exercice/exercice-add/exercice-add.component';
+import {ExerciceListComponent} from './Paramètres/exercice/exercice-list/exercice-list.component';
+import {ExerciceEditComponent} from './Paramètres/exercice/exercice-edit/exercice-edit.component';
+import {ExerciceLoaderComponent} from './Paramètres/exercice/exercice-loader/exercice-loader.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -446,6 +451,13 @@ export const DashboardRoutes: Routes = [
     }
   },
   {
+    path: 'fichier/traitement/programmation_des_taches',
+    component: ProgrammationDesTachesListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
     path: 'fichier/traitement/programmation_des_taches/add',
     component: ProgrammationDesTachesAddComponent,
     data: {
@@ -453,8 +465,8 @@ export const DashboardRoutes: Routes = [
     }
   },
   {
-    path: 'fichier/traitement/programmation_des_taches/list',
-    component: ProgrammationDesTachesListComponent,
+    path: 'fichier/traitement/programmation_des_taches/edit:id',
+    component: ProgrammationDesTachesEditComponent,
     data: {
       title: 'Dashboard'
     }
@@ -474,7 +486,7 @@ export const DashboardRoutes: Routes = [
     }
   },
   {
-    path: 'fichier/traitement/suivi_pta/list',
+    path: 'fichier/traitement/suivi_pta',
     component: SuiviPtaListComponent,
     data: {
       title: 'Dashboard'
@@ -495,8 +507,36 @@ export const DashboardRoutes: Routes = [
     }
   },
   {
-    path: 'fichier/traitement/indicateurs_realises/list',
+    path: 'fichier/traitement/indicateurs_realises',
     component: IndicateursRealisesListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'parametres/exercices',
+    component: ExerciceListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'parametres/exercices/add',
+    component: ExerciceAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'parametres/exercice/edit:id',
+    component: ExerciceEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'parametres/exercice/load',
+    component: ExerciceLoaderComponent,
     data: {
       title: 'Dashboard'
     }

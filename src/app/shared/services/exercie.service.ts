@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UtilsService} from './utils.service';
 import {BASE_URL} from '../../constants/urlConstants';
 
@@ -11,6 +11,44 @@ export class ExercieService {
   options = this.utilsService.getOption();
 
   getExerciceList() {
+    const header = new HttpHeaders;
+    header.append('Content-Type', 'application/json');
+    header.append('Access-Control-Allow-Headers', 'Origin,X-Requested-Width, Content-Type, Accept, Authorization');
+    header.append('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
+    header.append('Access-Control-Allow-Origin', 'http://localhost:4200');
     return this.httpClient.get(BASE_URL + 'exercices', this.options  );
   }
+
+  getExercice(id) {
+    return this.httpClient.get(BASE_URL + 'exercice/' + id, this.options  );
+  }
+
+
+  deleteExercice(id) {
+    return this.httpClient.delete(BASE_URL + 'administrateurs/1/supprimer-suivi-tache/' + id, this.options);
+  }
+
+  createExercice(identifiant: number, denomination: string, dateDebut: Date, dateFin: Date) {
+    const data = {
+      identifiant: identifiant,
+      denomination: denomination,
+      date_debut: dateDebut,
+      date_fin: dateFin,
+    };
+    return this.httpClient.post(BASE_URL + 'administrateurs/1/exercices', data, this.options);
+  }
+  updateExercice(identifiant: number, denomination: string, dateDebut: Date, dateFin: Date) {
+    const data = {
+      identifiant: identifiant,
+      denomination: denomination,
+      date_debut: dateDebut,
+      date_fin: dateFin,
+    };
+    return this.httpClient.post(BASE_URL + 'administrateurs/1/exercices', data, this.options);
+  }
+
+
+
+
+
 }

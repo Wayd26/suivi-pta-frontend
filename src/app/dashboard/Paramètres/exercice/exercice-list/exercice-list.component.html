@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="page-title">
-    <h4>Programmer les tâches</h4>
+    <h4>Liste des Exercices</h4>
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -22,54 +22,43 @@
             <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
               <thead>
               <tr>
-                <th>Activité</th>
-                <th>Tâche</th>
-                <th>Montant Tâche</th>
-                <th>Poids Tâche</th>
-                <th>Date de début</th>
-                <th>Date de fin</th>
+                <th>Numéro</th>
+                <th>Libellé</th>
+                <th>Date Début</th>
+                <th>Date Fin</th>
                 <th>Action</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let suiviTache of suiviTaches">
+              <tr *ngFor="let exercice of exercices">
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.links[2]._activite}}</span>
+                    <span>{{exercice.identifiant}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.links[0]._tache}}</span>
+                    <span>{{exercice.denomination}}</span>
                   </div>
                 </td>
 
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.montant}}</span>
+                    <span>{{exercice.date_debut}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.poids}}</span>
+                    <span>{{exercice.date_fin}}</span>
                   </div>
                 </td>
-                <td>
-                  <div class="mrg-top-15">
-                    <span>{{suiviTache.started_at}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="mrg-top-15">
-                    <span>{{suiviTache.end_at}}</span>
-                  </div>
-                </td>
+
                 <td>
                   <div class="mrg-top-10 text-center">
-                    <a [routerLink]="['edit/' + suiviTache.id]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                    <a [routerLink]="['edit/' + exercice.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
                       <i class="ti-pencil"></i>
                     </a>
-                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle " (click)="onDelete(suiviTache.id)">
+                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle " (click)="onDelete(exercice.identifiant)">
                       <i class="ti-trash"></i>
                     </button>
                   </div>

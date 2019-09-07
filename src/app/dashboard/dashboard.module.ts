@@ -38,9 +38,6 @@ import { SourceFinancementEditComponent } from './fichier/financement/source-fin
 import { ObjectifListComponent } from './fichier/fichier-de-base/objectif/objectif-list/objectif-list.component';
 import { ObjectifAddComponent } from './fichier/fichier-de-base/objectif/objectif-add/objectif-add.component';
 import { ObjectifEditComponent } from './fichier/fichier-de-base/objectif/objectif-edit/objectif-edit.component';
-import { ExerciceListComponent } from './fichier/fichier-de-base/exercice/exercice-list/exercice-list.component';
-import { ExerciceEditComponent } from './fichier/fichier-de-base/exercice/exercice-edit/exercice-edit.component';
-import { ExerciceAddComponent } from './fichier/fichier-de-base/exercice/exercice-add/exercice-add.component';
 import { ActionAddComponent } from './fichier/fichier-de-base/action/action-add/action-add.component';
 import {TachesAddComponent} from './fichier/fichier-de-base/taches/taches-add/taches-add.component';
 import { ActionEditComponent } from './fichier/fichier-de-base/action/action-edit/action-edit.component';
@@ -72,6 +69,11 @@ import { IndicateursRealisesEditComponent } from './fichier/traitement/indicateu
 import { ProgrammeImportComponent } from './fichier/fichier-de-base/programme/programme-import/programme-import.component';
 import { ObjectifImportComponent } from './fichier/fichier-de-base/objectif/objectif-import/objectif-import.component';
 import { StructureImportComponent } from './fichier/fichier-de-base/structure/structure-import/structure-import.component';
+import { ProgrammationDesTachesEditComponent } from './fichier/traitement/programmation_des_taches/programmation-des-taches-edit/programmation-des-taches-edit.component';
+import { ExerciceLoaderComponent } from './Paramètres/exercice/exercice-loader/exercice-loader.component';
+import { ExerciceAddComponent} from './Paramètres/exercice/exercice-add/exercice-add.component';
+import { ExerciceEditComponent} from './Paramètres/exercice/exercice-edit/exercice-edit.component';
+import { ExerciceListComponent} from './Paramètres/exercice/exercice-list/exercice-list.component';
 
 @NgModule({
   imports: [
@@ -138,7 +140,6 @@ import { StructureImportComponent } from './fichier/fichier-de-base/structure/st
         ObjectifImportComponent,
         StructureImportComponent,
         TachesEditComponent,
-        ProgrammationDesTachesLoaderComponent,
         ProgrammationDesTachesListComponent,
         ProgrammationDesTachesAddComponent,
         SuiviPtaLoaderComponent,
@@ -146,7 +147,10 @@ import { StructureImportComponent } from './fichier/fichier-de-base/structure/st
         SuiviPtaEditComponent,
         IndicateursRealisesLoaderComponent,
         IndicateursRealisesListComponent,
-        IndicateursRealisesEditComponent
+        IndicateursRealisesEditComponent,
+        ProgrammationDesTachesEditComponent,
+        ProgrammationDesTachesLoaderComponent,
+        ExerciceLoaderComponent
     ],
     providers: [
         ThemeConstants

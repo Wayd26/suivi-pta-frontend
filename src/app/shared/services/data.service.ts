@@ -11,6 +11,8 @@ import {SourceFinancement} from '../../models/sourceFi.model';
 import {TypeSourceFinancement} from '../../models/typeSourceFi.model';
 import {Departement} from '../../models/departement.model';
 import {Ville} from '../../models/ville.model';
+import {SuiviTache} from '../../models/suivi_tache.model';
+import {Indicateur} from '../../models/indicateur.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +30,9 @@ export class DataService {
   public typeSourceFinancement: TypeSourceFinancement[];
   public departements: Departement[];
   public villes: Ville[];
+  public suiviTaches: SuiviTache[];
+  public indicateurs: Indicateur[];
+
   constructor() { }
  public getProgrammes (): Programme[] {
     return this.programmes;
@@ -102,6 +107,18 @@ export class DataService {
     this.villes = data;
   }
 
+  getSuiviTaches (): SuiviTache[] {
+    return this.suiviTaches;
+  }
+  setSuiviTaches(data: SuiviTache[]) {
+    this.suiviTaches = data;
+  }
 
+  getIndicateurs (): Indicateur[] {
+    return this.indicateurs;
+  }
+  setIndicateurs(data: Indicateur[]) {
+    this.indicateurs = data;
+  }
 
 }

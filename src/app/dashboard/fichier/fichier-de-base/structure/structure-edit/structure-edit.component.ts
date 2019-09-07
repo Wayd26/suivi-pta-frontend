@@ -58,7 +58,7 @@ export class StructureEditComponent implements OnInit {
       form.value['telResp'], +this.singleSelectValue2, form.value['sigle'],
       form.value['cpost'], this.id).subscribe((res) => {
     }, (error) => {}, () => {
-        this.message = 'Operation echouer';
+        this.message = 'Operation echouée';
       this.router.navigate(['/dashboard/fichier/base/structures']);
     });
   }

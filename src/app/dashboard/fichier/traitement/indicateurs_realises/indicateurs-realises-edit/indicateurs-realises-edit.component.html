@@ -1,3 +1,64 @@
-<p>
-  indicateurs-realises-edit works!
-</p>
+<div *ngIf = "message !== ''" class="alert alert-danger" role="alert">
+  {{message}}
+</div>
+
+<div class="container-fluid">
+  <div class="page-title">
+    <h4 class="card-title">Modifier Indicateur réalisé</h4>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-md-7">
+
+              <form  class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)"  #f = "ngForm">
+
+
+                <div class="form-group row">
+                  <label for="form-1-1" class="col-md-2 control-label">Activité</label>
+                  <div class="col-md-10">
+                    <ng-selectize id="form-1-1"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="form-1-2" class="col-md-2 control-label">Libellé Indicateur</label>
+                  <div class="col-md-10">
+                    <ng-selectize id="form-1-2"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label for="form-1-3" class="col-md-2 control-label">Valeur cible</label>
+                  <div class="col-md-10">
+                    <input type="number" class="form-control" id="form-1-3" placeholder="" ngModel="" name="valeur_cible">
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label for="form-1-4" class="col-md-2 control-label">Valeur réalisée</label>
+                  <div class="col-md-10">
+                    <input type="number" class="form-control" id="form-1-4" placeholder="" ngModel="" name="valeur_"realisee>
+                  </div>
+                </div>
+
+                <a [routerLink]="['/dashboard/fichier/localisation/ville']" class="btn btn-primary">
+                  <i class="ti-back-left pdd-right-5"></i>
+                  <span>Retour</span>
+                </a> <button type="submit" class="btn btn-info" [disabled]="f.invalid">
+
+                <span>Valider</span>
+              </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

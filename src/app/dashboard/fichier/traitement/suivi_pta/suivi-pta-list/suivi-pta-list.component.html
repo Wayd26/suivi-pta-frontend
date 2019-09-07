@@ -1,3 +1,85 @@
-<p>
-  suivi-pta-list works!
-</p>
+<div class="container-fluid">
+  <div class="page-title">
+    <h4>Suivi PTA</h4>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-block">
+          <a [routerLink]="['add']" class="btn btn-info">
+            <i class="ti-plus pdd-right-5"></i>
+            <span>Ajouter</span>
+          </a>
+          <a [routerLink]="['import']" class="btn btn-info">
+            <i class="ti-import pdd-right-5"></i>
+            <span>Importer</span>
+          </a>
+          <a (click)="execelExport()" class="btn btn-info">
+            <i class="ti-export pdd-right-5"></i>
+            <span>EXCEL</span>
+          </a>
+          <div class="table-overflow">
+            <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
+              <thead>
+              <tr>
+                <th>Activité</th>
+                <th>Tâche</th>
+                <th>Poids Tâche</th>
+                <th>Réalisée</th>
+                <th>Date fin de réalisation</th>
+                <th>Commentaire</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let suiviTache of suiviTaches">
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{suiviTache.links[2]._activite}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{suiviTache.links[0]._tache}}</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{suiviTache.poids}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{suiviTache.est_realisee}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{suiviTache.real_end_at}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{suiviTache.commentaire}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="mrg-top-10 text-center">
+                    <a [routerLink]="['edit/' + suiviTache.id]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                      <i class="ti-pencil"></i>
+                    </a>
+                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle " (click)="onDelete(suiviTache.id)">
+                      <i class="ti-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

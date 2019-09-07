@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
   <div class="page-title">
-    <h4 class="card-title">Fiche de suivi PTA</h4>
+    <h4 class="card-title">Modifier un exercice</h4>
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -15,50 +15,47 @@
 
               <form  class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)"  #f = "ngForm">
 
-
                 <div class="form-group row">
-                  <label for="form-1-1" class="col-md-2 control-label">Activité</label>
+                  <label for="form-1-1" class="col-md-2 control-label">Numéro</label>
                   <div class="col-md-10">
-                    <ng-selectize id="form-1-1"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                    <input type="number" class="form-control" id="form-1-1" placeholder="" ngModel="{{exercice.identifiant}}" name="numero_exercice">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label for="form-1-2" class="col-md-2 control-label">Tâche</label>
+                  <label for="form-1-2" class="col-md-2 control-label">Dénomination</label>
                   <div class="col-md-10">
-                    <ng-selectize id="form-1-2"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                    <input type="number" class="form-control" id="form-1-2" placeholder="" ngModel="{{exercice.denomination}}" name="denomination_exercice">
                   </div>
                 </div>
 
-                <div class="form-group row">
-                  <label for="form-1-3" class="col-md-2 control-label">Réalisée</label>
-                  <div class="col-md-10">
 
-                    <input id="form-1-3" type="checkbox" name="toggle1" id="form-1-3" checked>
-
-                  </div>
-                </div>
 
                 <div class="form-group row">
-                  <label for="form-1-4" class="col-md-2 control-label">Date fin de réalisation</label>
+                  <label for="form-1-3" class="col-md-2 control-label">Date de début</label>
                   <div class="col-md-10">
                     <div class="timepicker-input input-group">
                   <span class="input-group-text">
 													<i class="ti-calendar"></i>
                   </span>
-                      <input id="form-1-4" type="text" class="form-control datepicker-2" placeholder="" data-provide="datepicker">
+                      <input id="form-1-3" type="text" class="form-control datepicker-2" placeholder="" data-provide="datepicker" name="date_debut_exercice" ngModel="{{exercice.date_debut}}">
                     </div>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label for="form-1-5" class="col-md-2 control-label">Observations</label>
+                  <label for="form-1-4" class="col-md-2 control-label">Date de fin</label>
                   <div class="col-md-10">
-                    <textarea class="form-control" rows="3" id="form-1-5"></textarea>
+                    <div class="timepicker-input input-group">
+                  <span class="input-group-text">
+													<i class="ti-calendar"></i>
+                  </span>
+                      <input id="form-1-4" type="text" class="form-control datepicker-2" placeholder="" data-provide="datepicker" name="date_fin_exercice" ngModel="{{exercice.date_fin}}">
+                    </div>
                   </div>
                 </div>
 
-                <a [routerLink]="['/dashboard/fichier/localisation/ville']" class="btn btn-primary">
+                <a [routerLink]="['/dashboard/paramètres/exercices']" class="btn btn-primary">
                   <i class="ti-back-left pdd-right-5"></i>
                   <span>Retour</span>
                 </a> <button type="submit" class="btn btn-info" [disabled]="f.invalid">
