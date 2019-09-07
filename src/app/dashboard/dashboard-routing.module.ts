@@ -59,6 +59,23 @@ import {IndicateursRealisesListComponent} from './fichier/traitement/indicateurs
 import {ProgrammeImportComponent} from './fichier/fichier-de-base/programme/programme-import/programme-import.component';
 import {ObjectifImportComponent} from './fichier/fichier-de-base/objectif/objectif-import/objectif-import.component';
 import {StructureImportComponent} from './fichier/fichier-de-base/structure/structure-import/structure-import.component';
+import {MinistereImportComponent} from './fichier/fichier-de-base/ministere/ministere-import/ministere-import.component';
+import {ActionImportComponent} from './fichier/fichier-de-base/action/action-import/action-import.component';
+import {ActiviteImportComponent} from './fichier/fichier-de-base/activite/activite-import/activite-import.component';
+import {TacheImportComponent} from './fichier/fichier-de-base/taches/tache-import/tache-import.component';
+import {DepartementImportComponent} from './fichier/localisation/departement/departement-import/departement-import.component';
+import {VilleImportComponent} from './fichier/localisation/ville/ville-import/ville-import.component';
+import {TypeSourceImportComponent} from './fichier/financement/type_source_financement/type-source-import/type-source-import.component';
+import {SourceImportComponent} from './fichier/financement/source-import/source-import.component';
+import {IndicateurActiviteComponent} from './statistique/liste/indicateur-activite/indicateur-activite.component';
+import {ActiviteLocalisationComponent} from './statistique/liste/activite-localisation/activite-localisation.component';
+import {TacheParPeriodeComponent} from './statistique/liste/tache-par-periode/tache-par-periode.component';
+import {SyntheseComponent} from './statistique/rapport/synthese/synthese.component';
+import {TepActionComponent} from './statistique/divers/tep-action/tep-action.component';
+import {TepProgrammeComponent} from './statistique/divers/tep-programme/tep-programme.component';
+import {TepProjetComponent} from './statistique/divers/tep-projet/tep-projet.component';
+import {TepPtaComponent} from './statistique/divers/tep-pta/tep-pta.component';
+import {TepPipComponent} from './statistique/divers/tep-pip/tep-pip.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -181,6 +198,13 @@ export const DashboardRoutes: Routes = [
     }
   },
   {
+    path: 'fichier/base/activite/import',
+    component: ActiviteImportComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
     path: 'fichier/base/activite/edit/:id',
     component: ActiviteEditComponent,
     data: {
@@ -197,6 +221,13 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/base/tache/add',
     component: TachesAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+    },
+  {
+    path: 'fichier/base/tache/import',
+    component: TacheImportComponent,
     data: {
       title: 'Dashboard'
     }
@@ -230,6 +261,13 @@ export const DashboardRoutes: Routes = [
      title: 'Dashboard'
   }
 },
+{
+  path: 'fichier/localisation/departement/import',
+  component: DepartementImportComponent,
+  data: {
+     title: 'Dashboard'
+  }
+},
   {
   path: 'fichier/localisation/departement/add',
   component: DepartementAddComponent,
@@ -259,6 +297,13 @@ export const DashboardRoutes: Routes = [
   }
 },
 {
+  path: 'fichier/localisation/ville/import',
+  component: VilleImportComponent,
+  data: {
+     title: 'Dashboard'
+  }
+},
+{
   path: 'fichier/financement/type/source',
   component: TypeSourceFinancementListComponent,
   data: {
@@ -268,6 +313,13 @@ export const DashboardRoutes: Routes = [
 {
   path: 'fichier/financement/type/source/load',
   component: TypeSourceLoaderComponent,
+  data: {
+     title: 'Dashboard'
+  }
+},
+{
+  path: 'fichier/financement/type/source/import',
+  component: TypeSourceImportComponent,
   data: {
      title: 'Dashboard'
   }
@@ -284,6 +336,14 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/financement/source/load',
     component: SourceLoaderComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+
+  {
+    path: 'fichier/financement/source/import',
+    component: SourceImportComponent,
     data: {
       title: 'Dashboard'
     }
@@ -327,6 +387,13 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/base/ministere/load',
     component: MinistereLoaderComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/ministere/import',
+    component: MinistereImportComponent,
     data: {
       title: 'Dashboard'
     }
@@ -391,6 +458,13 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/base/action/add',
     component: ActionAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/action/import',
+    component: ActionImportComponent,
     data: {
       title: 'Dashboard'
     }
@@ -497,6 +571,69 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/traitement/indicateurs_realises/list',
     component: IndicateursRealisesListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'statistique/list/indicateur/activite',
+    component: IndicateurActiviteComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'statistique/list/activite/localisation',
+    component: ActiviteLocalisationComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'statistique/list/pta/structure',
+    component: TacheParPeriodeComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'statistique/rapport/synthese',
+    component: SyntheseComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'statistique/diver/tep/action',
+    component: TepActionComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'statistique/diver/tep/programme',
+    component: TepProgrammeComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'statistique/diver/tep/projet',
+    component: TepProjetComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'statistique/diver/tep/pta',
+    component: TepPtaComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'statistique/diver/tep/pip',
+    component: TepPipComponent,
     data: {
       title: 'Dashboard'
     }

@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import {ListSourceFinancementResponse} from '../../../../../models/sourceFi.model';
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
+import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
+import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 
 @Component({
   selector: 'app-ministere-list',
@@ -14,7 +16,7 @@ import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 export class MinistereListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   Ministeres: Ministere[];
-  constructor(private ministereService: MinistereService, private router: Router, private dataService: DataService) { }
+  constructor(private ministereService: MinistereService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -32,6 +34,14 @@ export class MinistereListComponent implements OnInit {
       this.Ministeres = [];
     }, () => {
     });
+  }
+
+  execelExport() {
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.Ministeres)), 'ministere');
+  }
+  csvExport() {
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.Ministeres)), 'Ministere');
+
   }
 
   onDelete(id) {

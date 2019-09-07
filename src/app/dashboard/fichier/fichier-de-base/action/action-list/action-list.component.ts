@@ -4,6 +4,8 @@ import { ActionService } from 'src/app/shared/services/action.service';
 import { Router } from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
+import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
+import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 
 
 @Component({
@@ -15,7 +17,7 @@ export class ActionListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   actions: Action[];
 
-  constructor(private actionService: ActionService, private router: Router, private dataService: DataService) { }
+  constructor(private actionService: ActionService, private router: Router, private dataService: DataService , private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -36,6 +38,13 @@ export class ActionListComponent implements OnInit {
       }, () => {
 
       });
+  }
+  execelExport() {
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.actions)), 'action');
+  }
+  csvExport() {
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.actions)), 'Action');
+
   }
   onDelete(id) {
     const response = confirm(DELETE_CONFIRMATION);
