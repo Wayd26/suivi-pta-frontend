@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./source-financement-edit.component.css']
 })
 export class SourceFinancementEditComponent implements OnInit {
+  message: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.message = "" ;
   }
 
 }
