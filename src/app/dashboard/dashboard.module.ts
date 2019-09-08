@@ -74,6 +74,23 @@ import { ExerciceLoaderComponent } from './Paramètres/exercice/exercice-loader/
 import { ExerciceAddComponent} from './Paramètres/exercice/exercice-add/exercice-add.component';
 import { ExerciceEditComponent} from './Paramètres/exercice/exercice-edit/exercice-edit.component';
 import { ExerciceListComponent} from './Paramètres/exercice/exercice-list/exercice-list.component';
+import { MinistereImportComponent } from './fichier/fichier-de-base/ministere/ministere-import/ministere-import.component';
+import { ActionImportComponent } from './fichier/fichier-de-base/action/action-import/action-import.component';
+import { ActiviteImportComponent } from './fichier/fichier-de-base/activite/activite-import/activite-import.component';
+import { TacheImportComponent } from './fichier/fichier-de-base/taches/tache-import/tache-import.component';
+import { DepartementImportComponent } from './fichier/localisation/departement/departement-import/departement-import.component';
+import { VilleImportComponent } from './fichier/localisation/ville/ville-import/ville-import.component';
+import { TypeSourceImportComponent } from './fichier/financement/type_source_financement/type-source-import/type-source-import.component';
+import { SourceImportComponent } from './fichier/financement/source-import/source-import.component';
+import {IndicateurActiviteComponent} from './statistique/liste/indicateur-activite/indicateur-activite.component';
+import { ActiviteLocalisationComponent } from './statistique/liste/activite-localisation/activite-localisation.component';
+import { TacheParPeriodeComponent } from './statistique/liste/tache-par-periode/tache-par-periode.component';
+import { SyntheseComponent } from './statistique/rapport/synthese/synthese.component';
+import { TepActionComponent } from './statistique/divers/tep-action/tep-action.component';
+import { TepProgrammeComponent } from './statistique/divers/tep-programme/tep-programme.component';
+import { TepProjetComponent } from './statistique/divers/tep-projet/tep-projet.component';
+import { TepPtaComponent } from './statistique/divers/tep-pta/tep-pta.component';
+import { TepPipComponent } from './statistique/divers/tep-pip/tep-pip.component';
 
 @NgModule({
   imports: [
@@ -150,7 +167,25 @@ import { ExerciceListComponent} from './Paramètres/exercice/exercice-list/exerc
         IndicateursRealisesEditComponent,
         ProgrammationDesTachesEditComponent,
         ProgrammationDesTachesLoaderComponent,
-        ExerciceLoaderComponent
+        ExerciceLoaderComponent,
+        IndicateursRealisesEditComponent,
+        MinistereImportComponent,
+        ActionImportComponent,
+        ActiviteImportComponent,
+        TacheImportComponent,
+        DepartementImportComponent,
+        VilleImportComponent,
+        TypeSourceImportComponent,
+        SourceImportComponent,
+        IndicateurActiviteComponent,
+        ActiviteLocalisationComponent,
+        TacheParPeriodeComponent,
+        SyntheseComponent,
+        TepActionComponent,
+        TepProgrammeComponent,
+        TepProjetComponent,
+        TepPtaComponent,
+        TepPipComponent
     ],
     providers: [
         ThemeConstants

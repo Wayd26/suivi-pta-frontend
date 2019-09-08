@@ -14,12 +14,20 @@
             <i class="ti-import pdd-right-5"></i>
             <span>Importer</span>
           </a>
-          <a (click)="execelExport()" class="btn btn-info">
+          <a (click)="execelExport()" class="btn btn-info" style="color: white">
             <i class="ti-export pdd-right-5"></i>
             <span>EXCEL</span>
           </a>
+          <a (click)="pdfExport()" class="btn btn-info" style="color: white">
+            <i class="ti-export pdd-right-5"></i>
+            <span>PDF</span>
+          </a>
+          <a (click)="csvExport()" class="btn btn-info" style="color: white">
+            <i class="ti-export pdd-right-5"></i>
+            <span>CSV</span>
+          </a>
                     <div class="table-overflow">
-                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
+                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions" id="programmeTable">
                             <thead>
                                 <tr>
                                     <th>Code Programme</th>

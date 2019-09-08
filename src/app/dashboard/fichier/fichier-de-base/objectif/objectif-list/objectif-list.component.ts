@@ -5,6 +5,7 @@ import {ObjectifService} from '../../../../../shared/services/objectif.service';
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
+import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 
 @Component({
   selector: 'app-objectif-list',
@@ -31,7 +32,11 @@ export class ObjectifListComponent implements OnInit {
     });
   }
   execelExport() {
-    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.Objectifs)), 'test');
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.Objectifs)), 'objectif');
+  }
+  csvExport() {
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.Objectifs)), 'Objectif');
+
   }
 
   onDelete(id) {

@@ -27,11 +27,11 @@ export class ExerciceListComponent implements OnInit {
         {'width': '20%', 'targets': 1}
       ]
     };
-    this.exercice = this.dataService.getExercices();
+    this.exercices = this.dataService.getExercices();
     this.exerciceService.getExerciceList().subscribe((res: ListExerciceResponse) => {
       this.dataService.setExercices(res.data);
     }, (error) => {
-      this.exercice = [];
+      this.exercices = [];
     }, () => {
     });
   }

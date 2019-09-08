@@ -3,6 +3,8 @@ import {VilleService} from '../../../../../shared/services/ville.service';
 import {Router} from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
 import {ListVilleResponse} from '../../../../../models/ville.model';
+import {IndicateurService} from '../../../../../shared/services/indicateur.service';
+import {ListIndicateurResponse} from '../../../../../models/indicateur.model';
 
 @Component({
   selector: 'app-indicateurs-realises-loader',
@@ -10,14 +12,14 @@ import {ListVilleResponse} from '../../../../../models/ville.model';
   styleUrls: ['./indicateurs-realises-loader.component.css']
 })
 export class IndicateursRealisesLoaderComponent implements OnInit {
-  constructor(private villeService: VilleService, private router: Router, private dataService: DataService) { }
+  constructor(private indicService: IndicateurService, private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
-    this.villeService.getVilleList().subscribe((res: ListVilleResponse) => {
-      this.dataService.setVilles(res.data);
+    this.indicService.getIndicateurList().subscribe((res: ListIndicateurResponse) => {
+      this.dataService.setIndicateurs(res.data);
     } , (error) => {
     }, () => {
-      this.router.navigate(['/dashboard/fichier/localisation/ville']);
+      this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises']);
     });
   }
 

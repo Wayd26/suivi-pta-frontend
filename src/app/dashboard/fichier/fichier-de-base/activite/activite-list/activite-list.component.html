@@ -10,6 +10,14 @@
             <i class="ti-plus pdd-right-5"></i>
             <span>Ajouter</span>
           </a>
+          <a (click)="execelExport()" class="btn btn-info" style="color: white">
+            <i class="ti-export pdd-right-5"></i>
+            <span>EXCEL</span>
+          </a>
+          <a (click)="csvExport()" class="btn btn-info" style="color: white">
+            <i class="ti-export pdd-right-5"></i>
+            <span>CSV</span>
+          </a>
                     <div class="table-overflow">
                         <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
                             <thead>

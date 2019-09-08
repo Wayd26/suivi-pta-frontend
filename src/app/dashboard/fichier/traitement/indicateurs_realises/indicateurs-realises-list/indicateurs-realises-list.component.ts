@@ -32,7 +32,7 @@ export class IndicateursRealisesListComponent implements OnInit {
     this.indicateurService.getIndicateurList().subscribe((res: ListIndicateurResponse) => {
       this.dataService.setIndicateurs(res.data);
     } , (error) => {
-      this.departements = [];
+      this.indicateurs = [];
     }, () => {
     });
   }

@@ -37,9 +37,9 @@ export class IndicateurService {
     console.log(data);
     return this.httpClient.post(BASE_URL + 'administrateurs/9/indicateurs', data, this.options);
   }
-  updateIndicateur(identifiant: number, libelle: string, valeurCible: number, valeurRealisee: number, idActivite: string, id: number) {
+  updateIndicateur(libelle: string, valeurCible: number, valeurRealisee: number, idActivite: string, id: number) {
     const data = {
-      identifiant: identifiant,
+      // identifiant: identifiant,
       libelle: libelle,
       valeur_cible: valeurCible,
       valeur_realisee: valeurRealisee,

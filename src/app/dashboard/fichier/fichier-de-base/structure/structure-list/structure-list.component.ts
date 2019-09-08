@@ -5,6 +5,7 @@ import { Structure, ListStructureResponse } from 'src/app/models/structure.model
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
+import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 
 @Component({
   selector: 'app-structure-list',
@@ -38,6 +39,10 @@ export class StructureListComponent implements OnInit {
   }
   execelExport() {
     this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.structures)), 'structures');
+  }
+  csvExport() {
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.structures)), 'Structure');
+
   }
 
   onDelete(id) {

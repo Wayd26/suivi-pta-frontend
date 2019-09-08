@@ -38,6 +38,14 @@ export class ObjectifImportComponent implements OnInit {
   }
 
   Upload() {
+    if (this.file.name.endsWith('.xlsx')) {
+      this.UploadExcel();
+    } else if (this.file.name.endsWith('.csv')) {
+      this.uploadListener();
+    }
+  }
+
+  UploadExcel() {
     const fileReader = new FileReader();
     fileReader.onload = (e) => {
       this.arrayBuffer = fileReader.result;
@@ -71,6 +79,57 @@ export class ObjectifImportComponent implements OnInit {
     };
     fileReader.readAsArrayBuffer(this.file);
 
+  }
+  uploadListener(): void {
+
+    const reader = new FileReader();
+    reader.readAsText(this.file);
+
+    reader.onload = () => {
+      const csvData = reader.result;
+      const csvRecordsArray = (<string>csvData).split(/\r\n|\n/);
+
+      const headersRow = this.getHeaderArray(csvRecordsArray);
+
+      this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow.length);
+    };
+
+    reader.onerror = function () {
+      console.log('error is occured while reading file!');
+    };
+  }
+
+  getDataRecordsArrayFromCSVFile(csvRecordsArray: any, headerLength: any) {
+    const csvArr = [];
+
+    for (let i = 1; i < csvRecordsArray.length; i++) {
+      const curruntRecord = (<string>csvRecordsArray[i]).split(',');
+      if (curruntRecord.length === headerLength) {
+        /*const csvRecord: CSVRecord = new CSVRecord();
+        csvRecord.id = curruntRecord[0].trim();
+        csvRecord.firstName = curruntRecord[1].trim();
+        csvRecord.lastName = curruntRecord[2].trim();
+        csvRecord.age = curruntRecord[3].trim();
+        csvRecord.position = curruntRecord[4].trim();
+        csvRecord.mobile = curruntRecord[5].trim();
+        csvArr.push(csvRecord);*/
+        console.log(curruntRecord);
+      }
+    }
+    return csvArr;
+  }
+
+  isValidCSVFile(file: any) {
+    return file.name.endsWith('.csv');
+  }
+
+  getHeaderArray(csvRecordsArr: any) {
+    const headers = (<string>csvRecordsArr[0]).split(',');
+    const headerArray = [];
+    for (let j = 0; j < headers.length; j++) {
+      headerArray.push(headers[j]);
+    }
+    return headerArray;
   }
 
 }

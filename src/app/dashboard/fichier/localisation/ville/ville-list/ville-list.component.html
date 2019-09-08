@@ -10,12 +10,24 @@
             <i class="ti-plus pdd-right-5"></i>
             <span>Ajouter</span>
           </a>
+          <a [routerLink]="['import']" class="btn btn-info">
+            <i class="ti-import pdd-right-5"></i>
+            <span>Importer</span>
+          </a>
+          <a (click)="execelExport()" class="btn btn-info">
+            <i class="ti-export pdd-right-5"></i>
+            <span>EXCEL</span>
+          </a>
+          <a (click)="csvExport()" class="btn btn-info" style="color: white">
+            <i class="ti-export pdd-right-5"></i>
+            <span>CSV</span>
+          </a>
           <div class="table-overflow">
             <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
                               <thead>
                                   <tr>
 
-                                      <th>Code Departement</th>
+                                      <th>Département</th>
                                       <th>Code Ville</th>
                                       <th>Nom Ville</th>
                                       <th>Action</th>
@@ -42,7 +54,7 @@
                                       </td>
                                     <td>
                                       <div class="mrg-top-10 text-center">
-                                        <a [routerLink]="['edit']" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                        <a [routerLink]="['edit/' + ville.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
                                           <i class="ti-pencil"></i>
                                         </a>
                                         <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(ville.identifiant)">

@@ -4,6 +4,8 @@ import { DepartementService } from 'src/app/shared/services/departement.service'
 import { Router } from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
+import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
+import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 
 @Component({
   selector: 'app-departement-list',
@@ -14,7 +16,7 @@ export class DepartementListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   departements: Departement[];
 
-  constructor(private departementService: DepartementService, private router: Router, private dataService: DataService) { }
+  constructor(private departementService: DepartementService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService ) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -32,6 +34,13 @@ export class DepartementListComponent implements OnInit {
         this.departements = [];
       }, () => {
       });
+  }
+  execelExport() {
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.departements)), 'departements');
+  }
+  csvExport() {
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.departements)), 'Departements');
+
   }
 
   onDelete(id) {

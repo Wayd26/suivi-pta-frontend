@@ -42,27 +42,27 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
   constructor( private utilService: UtilsService, private router: Router, private route: ActivatedRoute, private progTache: SuiviTacheService, private exerciceService: ExercieService, private utilservice: UtilsService, private structureService: StructureService, private activiteService: ActiviteService, private tacheService: TacheService) { }
 
   ngOnInit() {
-    this.id = +this.route.snapshot.params['id'];
-    this.progTache.getSuiviTache(+this.route.snapshot.params['id']).subscribe((res: SuiviTachePesponse) => {
-      this.suiviTache = res.data;
+    // this.id = +this.route.snapshot.params['id'];
+    // this.progTache.getSuiviTache(+this.route.snapshot.params['id']).subscribe((res: SuiviTachePesponse) => {
+    //   this.suiviTache = res.data;
+    //
+    //   this.singleSelectValueActivite = [this.suiviTache.links[2]._activite];
+    //   this.singleSelectValueTache = [this.suiviTache.links[0]._tache];
 
-      this.singleSelectValueActivite = [this.suiviTache.links[2]._activite];
-      this.singleSelectValueTache = [this.suiviTache.links[0]._tache];
-
-    });
+    //});
 
 
   }
-  onSubmit(form: NgForm) {
-    console.log(this.singleSelectValue);
-    this.programmeService.update(form.value['libelle'], form.value['poids'], +this.singleSelectValue, this.id )
-      .subscribe((resp) => {
-        this.router.navigate(['/dashboard/fichier/base/programmes']);
-      } , (error) => {
-        console.log(error);
-        this.message = 'Echec de l\'operation';
-        this.router.navigate(['/dashboard/fichier/base/programmes/add']);
-      });
-  }
+//  onSubmit(form: NgForm){
+    // console.log(this.singleSelectValue);
+    // this.programmeService.update(form.value['libelle'], form.value['poids'], +this.singleSelectValue, this.id )
+    //   .subscribe((resp) => {
+    //     this.router.navigate(['/dashboard/fichier/base/programmes']);
+    //   } , (error) => {
+    //     console.log(error);
+    //     this.message = 'Echec de l\'operation';
+    //     this.router.navigate(['/dashboard/fichier/base/programmes/add']);
+    //   });
+  //}
 
 }

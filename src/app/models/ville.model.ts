@@ -1,6 +1,7 @@
+import {Tache} from './tache.model';
 
 
-  export interface Link {
+export interface Link {
       rel: string;
       href: string;
   }
@@ -39,4 +40,6 @@
   }
 
 
-
+export interface VilleResponse {
+  data: Ville;
+}

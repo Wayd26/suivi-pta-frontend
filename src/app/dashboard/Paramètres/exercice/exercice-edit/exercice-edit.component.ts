@@ -15,6 +15,7 @@ import {Exercice, ExerciceResponse} from '../../../../models/exercice.model';
   styleUrls: ['./exercice-edit.component.css']
 })
 export class ExerciceEditComponent implements OnInit {
+    message: string;
     id: number;
     exercice: Exercice;
 
