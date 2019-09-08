@@ -1,0 +1,13 @@
+<form class="md-form"   #f ="ngForm">
+  <div class="col-md-5">
+    <div>
+      <input type="file"  id="input" ngModel="" required [ngModelOptions]="{standalone: true}" name="file" (change)="incomingfile($event)">
+    </div>
+  </div>
+  <div class="mrg-top-5">
+    <button type="submit" class="btn btn-info" [disabled]="f.invalid" (click)="Upload()">
+      <span>Valider</span>
+    </button>
+  </div>
+
+</form>

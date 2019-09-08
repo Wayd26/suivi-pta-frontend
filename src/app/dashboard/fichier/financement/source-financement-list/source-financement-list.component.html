@@ -10,6 +10,18 @@
                         <i class="ti-plus pdd-right-5"></i>
                         <span>Ajouter</span>
                     </a>
+                    <a [routerLink]="['import']" class="btn btn-info">
+                        <i class="ti-import pdd-right-5"></i>
+                        <span>Importer</span>
+                    </a>
+                    <a (click)="execelExport()" class="btn btn-info">
+                        <i class="ti-export pdd-right-5"></i>
+                        <span>EXCEL</span>
+                    </a>
+                    <a (click)="csvExport()" class="btn btn-info" style="color: white">
+                        <i class="ti-export pdd-right-5"></i>
+                        <span>CSV</span>
+                    </a>
                     <div class="table-overflow">
                         <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
                             <thead>
@@ -53,25 +65,76 @@
                                     </td>
                                     <td>
                                         <div class="mrg-top-15">
-                                            <input type="checkbox" ngModel="{{source.est_projet}}" name="toggle1" id="form-1-6" value="{{source.est_projet}}" readonly>
+                                            <span>{{source.est_projet}}</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="mrg-top-10 text-center">
-                                            <a [routerLink]="['edit']" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                            <a [routerLink]="['edit/' + source.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
                                                 <i class="ti-pencil"></i>
                                             </a>
-                                            <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(source.identifiant)">
+                                            <div class="table-overflow">
+                                                <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Code Source Financement</th>
+                                                            <th>Libelle Source Financement</th>
+                                                            <th>Chapitre d'imputation</th>
+                                                            <th>Poids projet PIP</th>
+                                                            <th>Type source financement</th>
+                                                            <th>Projet</th>
+                                                            <th>Action</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let source of Sources">
+                                                            <td>
+                                                                <div class="mrg-top-15">
+                                                                    <span>{{source.code}}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="mrg-top-15">
+                                                                    <span>{{source.libelle}}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="mrg-top-15">
+                                                                    <span>{{source.chapitre_imputation}}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="mrg-top-15">
+                                                                    <span>{{source.poids_projet}}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="mrg-top-15">
+                                                                    <span>{{source._type}}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="mrg-top-15">
+                                                                    <input type="checkbox" ngModel="{{source.est_projet}}" name="toggle1" id="form-1-6" value="{{source.est_projet}}" readonly>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="mrg-top-10 text-center">
+                                                                    <a [routerLink]="['edit']" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                                                        <i class="ti-pencil"></i>
+                                                                    </a>
+                                                                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(source.identifiant)">
                       <i class="ti-trash"></i>
                     </button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>

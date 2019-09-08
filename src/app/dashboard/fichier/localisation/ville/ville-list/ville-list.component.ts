@@ -4,6 +4,8 @@ import { VilleService } from 'src/app/shared/services/ville.service';
 import { Router } from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
+import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
+import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 
 @Component({
   selector: 'app-ville-list',
@@ -15,7 +17,7 @@ export class VilleListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   villes: Ville[];
 
-  constructor(private villeService: VilleService, private router: Router, private dataService: DataService) { }
+  constructor(private villeService: VilleService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -36,6 +38,13 @@ export class VilleListComponent implements OnInit {
         this.villes = [];
       }, () => {
       });
+  }
+  execelExport() {
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.villes)), 'ville');
+  }
+  csvExport() {
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.villes)), 'Villes');
+
   }
 
   onDelete(id) {

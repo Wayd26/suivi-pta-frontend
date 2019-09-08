@@ -7,7 +7,7 @@ import { TemplateService } from './shared/services/template.service';
 import { HttpClientModule} from '@angular/common/http';
 import { CommonModule} from '@angular/common';
 
-//Layout Component
+// Layout Component
 import { CommonLayoutComponent } from './common/common-layout.component';
 import { AuthenticationLayoutComponent } from './common/authentication-layout.component';
 
@@ -30,6 +30,8 @@ import {MinistereService} from './shared/services/ministere.service';
 import {ExercieService} from './shared/services/exercie.service';
 import {ObjectifService} from './shared/services/objectif.service';
 import {DataService} from './shared/services/data.service';
+import {ExportAsExelService} from './shared/services/export-as-exel.service';
+import {ExportAsModule} from 'ngx-export-as';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import {DataService} from './shared/services/data.service';
         TemplateModule,
         HttpClientModule,
         CommonModule,
-        NgSelectizeModule
+        NgSelectizeModule,
+      ExportAsModule
     ],
     declarations: [
         AppComponent,
@@ -49,7 +52,7 @@ import {DataService} from './shared/services/data.service';
     ],
     providers: [TemplateService, ProgrammeService, UtilsService, StructureService,
        ActionService, TypeSourceFinancementService, ActiviteService, VilleService, DepartementService,
-      TacheService, MinistereService, ExercieService, ObjectifService, DataService],
+      TacheService, MinistereService, ExercieService, ObjectifService, DataService, ExportAsExelService],
     bootstrap: [AppComponent]
 })
 

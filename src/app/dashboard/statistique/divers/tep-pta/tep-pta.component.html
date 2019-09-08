@@ -1,0 +1,66 @@
+<div *ngIf = "message !== ''" class="alert alert-danger" role="alert">
+  {{message}}
+</div>
+<div class="container-fluid">
+  <div class="page-title">
+    <h4 class="card-title">TEP PTA</h4>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-md-7">
+
+              <form  class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)"  #f = "ngForm">
+
+
+                <div class="form-group row">
+                  <label  class="col-md-2 control-label" >Exercice</label>
+                  <div class="col-md-10">
+                    <ng-selectize readonly=""  [config]="singleSelectConfig" [options]="singleSelectOptionsProgramme" [(ngModel)]="singleSelectValueProgramme" ngDefaultControl [ngModelOptions]="{standalone: true}" ></ng-selectize>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label  class="col-md-2 control-label" >Periode</label>
+                  <div class="col-md-10">
+                    <ng-selectize readonly=""  [config]="singleSelectConfig" [options]="singleSelectOptionsProgramme" [(ngModel)]="singleSelectValueProgramme" ngDefaultControl [ngModelOptions]="{standalone: true}" ></ng-selectize>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label>Date Debut</label>
+                  <div class="input-group">
+									            <span class="input-group-text" (click)="d2.toggle()">
+										            <i class="ti-calendar"></i>
+                              </span>
+                    <input type="text" class="form-control"  placeholder="Pick your date" name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label>Date Fin</label>
+                  <div class="input-group">
+									            <span class="input-group-text" (click)="d2.toggle()">
+										            <i class="ti-calendar"></i>
+                              </span>
+                    <input type="text" class="form-control"  placeholder="Pick your date" name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" readonly>
+                  </div>
+                </div>
+
+
+
+                <a [routerLink]="['/dashboard/fichier/base/objectif']" class="btn btn-primary">
+                  <i class="ti-back-left pdd-right-5"></i>
+                  <span>Retour</span>
+                </a> <button type="submit" class="btn btn-info" [disabled]="f.invalid">
+
+                <span>Valider</span>
+              </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

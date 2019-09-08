@@ -5,6 +5,11 @@ import { Router } from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 import {el} from '@angular/platform-browser/testing/src/browser_util';
+import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
+import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
+import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
+
+
 
 @Component({
   selector: 'app-programme-list',
@@ -14,7 +19,23 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 export class ProgrammeListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   programmes: Programme[];
-  constructor(private programmeService: ProgrammeService, private router: Router, private dataService: DataService) { }
+  exportAsConfig: ExportAsConfig = {
+    type: 'csv', // the type you want to download
+    elementId: 'programmeTable', // the id of html/table element
+  };
+   options = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'Your title',
+    useBom: true,
+    noDownload: true,
+    headers: ['First Name', 'Last Name', 'ID'],
+    nullToEmptyString: true,
+  };
+  constructor(private programmeService: ProgrammeService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService, private exportAsService: ExportAsService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -29,12 +50,28 @@ export class ProgrammeListComponent implements OnInit {
         this.router.navigate(['/dashboard/fichier/base/programme/load']);
     }
     this.programmes = this.dataService.getProgrammes();
+
       this.programmeService.getProgrammeList().subscribe((res: ListProgrammeResponse) => {
        this.dataService.setProgrammes(res.data) ;
+       this.programmes.map((p) => {
+         console.log(JSON.parse(JSON.stringify(p)));
+       });
       }, (error) => {}, () => {
         //this.programmes = this.dataService.getProgrammes();
     });
       console.log(this.dataService.getProgrammes());
+  }
+  execelExport() {
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.programmes)), 'programmes');
+  }
+  pdfExport() {
+    this.exportAsService.save(this.exportAsConfig, 'Programmes').subscribe(() => {
+      // save started
+    });
+  }
+  csvExport() {
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.programmes)), 'My Report');
+
   }
 
   onDelete(id) {

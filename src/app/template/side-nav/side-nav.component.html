@@ -99,8 +99,180 @@
 
                     </ul>
                 </li>
+
+                <li class="nav-item dropdown">
+                  <a href="javascript:void(0);">
+                    <span>Traitement</span>
+                    <span class="arrow">
+                            <i class="ti-angle-right"></i>
+                        </span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a [routerLink]="['fichier/traitement/programmation_des_taches/load']">Programmation des tâches</a>
+                    </li>
+                    <li>
+                    <a [routerLink]="['fichier/traitement/suivi_pta/load']">Suivi PTA</a>
+                  </li>
+                    <li>
+                      <a [routerLink]="['fichier/traitement/indicateurs_realises/load']">Indicateurs Réalisés</a>
+                    </li>
+
+                  </ul>
+                </li>
+
               </ul>
           </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <li class="nav-item dropdown">
+            <a class="dropdown-toggle" href="javascript:void(0);">
+                  <span class="icon-holder">
+                      <i class="ti-view-list-alt"></i>
+                  </span>
+              <span class="title">Statistiques</span>
+              <span class="arrow">
+                      <i class="ti-angle-right"></i>
+                  </span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="nav-item dropdown">
+                <a href="javascript:void(0);">
+                  <span>Liste</span>
+                  <span class="arrow">
+                              <i class="ti-angle-right"></i>
+                          </span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a [routerLink]="['statistique/list/indicateur/activite']">Indicateurs d'Activités</a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['statistique/list/activite/localisation']">Activités par localisation</a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['statistique/list/pta/structure']">PTA Structure par période</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="javascript:void(0);">
+                  <span>Rapportd'Activité</span>
+                  <span class="arrow">
+                            <i class="ti-angle-right"></i>
+                        </span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a [routerLink]="['statistique/rapport/synthese']">Synthèse d'exécution physique du PTA par Structure</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="javascript:void(0);">
+                  <span>Statistiques Diverses</span>
+                  <span class="arrow">
+                            <i class="ti-angle-right"></i>
+                        </span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a [routerLink]="['statistique/diver/tep/action']">TEP Action</a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['statistique/diver/tep/programme']">TEP Programme</a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['statistique/diver/tep/projet']">TEP Projet</a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['statistique/diver/tep/pta']">TEP PTA</a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['statistique/diver/tep/pip']">TEP PIP</a>
+                  </li>
+
+                </ul>
+              </li>
+
+
+
+            </ul>
+          </li>
+
+
+
+
+
+
+          /////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </ul>
     </div>
 </div>
