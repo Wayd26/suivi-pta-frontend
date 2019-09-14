@@ -42,16 +42,16 @@ export class ProgrammationDesTachesAddComponent implements OnInit {
 
   ngOnInit() {
     this.message = '';
-    this.structureService.getStructureList()
-      .subscribe((res: ListStructureResponse) => {
-        res.data.map((structure) => {
-          this.singleSelectOptionsStructure.push({
-            label: structure.denomination,
-            value: structure.identifiant,
-            code: structure.identifiant
-          });
-        });
-      });
+    // this.structureService.getStructureList()
+    //   .subscribe((res: ListStructureResponse) => {
+    //     res.data.map((structure) => {
+    //       this.singleSelectOptionsStructure.push({
+    //         label: structure.denomination,
+    //         value: structure.identifiant,
+    //         code: structure.identifiant
+    //       });
+    //     });
+    //   });
     this.activiteService.getActiviteList()
       .subscribe((res: ListActiviteResponse) => {
       res.data.map((activite) => {
@@ -74,19 +74,19 @@ export class ProgrammationDesTachesAddComponent implements OnInit {
         });
       });
 
-    this.exerciceService.getExerciceList()
-      .subscribe((res: ListExerciceResponse) => {
-        res.data.map((exercice) => {
-          this.singleSelectOptionsExercice.push({
-            label: exercice.denomination,
-            value: exercice.identifiant,
-            code: exercice.identifiant
-          });
-        });
-      });
+    // this.exerciceService.getExerciceList()
+    //   .subscribe((res: ListExerciceResponse) => {
+    //     res.data.map((exercice) => {
+    //       this.singleSelectOptionsExercice.push({
+    //         label: exercice.denomination,
+    //         value: exercice.identifiant,
+    //         code: exercice.identifiant
+    //       });
+    //     });
+    //   });
   }
   onSubmit(form: NgForm) {
-    this.progTache.createSuiviTache(this.singleSelectOptionsActivite, this.singleSelectOptionsTache, form.value['date_debut_tache'],  form.value['date_fin_tache'], form.value['montant_tache'], form.value['poids_tache'])
+    this.progTache.createSuiviTache(+this.singleSelectValueActivite, this.singleSelectValueTache[0], form.value['date_debut_tache'],  form.value['date_fin_tache'], form.value['montant_tache'], form.value['poids_tache'])
       .subscribe((resp) => {
         this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches']);
       } , (error) => {

@@ -27,6 +27,6 @@ export class ActiviteService {
     const data = {
       denomination: denomination
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/activites', data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrateurs/2/activites', data, this.options);
   }
 }

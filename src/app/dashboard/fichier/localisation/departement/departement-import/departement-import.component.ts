@@ -45,7 +45,7 @@ export class DepartementImportComponent implements OnInit {
       const info = XLSX.utils.sheet_to_json(worksheet, {raw: true});
       info.map((i) => {
           this.dataNumber += 1;
-          this.departeemntService.createDepartement(i['denomination'])
+          this.departeemntService.createDepartement(i['code'], i['denomination'])
             .subscribe((resp) => {
               console.log(resp);
 

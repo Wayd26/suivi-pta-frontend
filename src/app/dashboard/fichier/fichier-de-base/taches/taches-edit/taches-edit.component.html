@@ -23,6 +23,13 @@
                 </div>
 
                 <div class="form-group row">
+                  <label for="form-1-2" class="col-md-2 control-label">Libellé Tâche</label>
+                  <div class="col-md-10">
+                    <input type="text" class="form-control" id="form-1-2" placeholder="" ngModel="{{tache.code}}" name="code_tache">
+                  </div>
+                </div>
+
+                <div class="form-group row">
                   <label for="form-1-3" class="col-md-2 control-label">Libellé Tâche</label>
                   <div class="col-md-10">
                     <input type="text" class="form-control" id="form-1-3" placeholder="" ngModel="{{tache.libelle}}" name="libelle_tache">
@@ -34,7 +41,6 @@
                   <i class="ti-back-left pdd-right-5"></i>
                   <span>Retour</span>
                 </a> <button type="submit" class="btn btn-info" [disabled]="f.invalid">
-
                 <span>Valider</span>
               </button>
               </form>

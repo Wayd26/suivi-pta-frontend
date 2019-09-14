@@ -31,13 +31,14 @@ export class TachesEditComponent implements OnInit {
 
   }
   onSubmit(form: NgForm) {
-    this.tacheService.update(form.value['denomination'])
+    this.tacheService.update(form.value['code_tache'], form.value['libelle_tache'], this.id)
       .subscribe((resp) => {
-        this.router.navigate(['/dashboard/fichier/base/taches']);
+        this.message = 'Succes de l\'operation';
+        this.router.navigate(['/dashboard/fichier/base/taches/load']);
       } , (error) => {
         console.log(error);
         this.message = 'Echec de l\'operation';
-        this.router.navigate(['/dashboard/fichier/base/taches/add']);
+        this.router.navigate(['/dashboard/fichier/base/taches/edit/' + this.id ]);
       });
   }
 

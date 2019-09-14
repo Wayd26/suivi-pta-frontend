@@ -24,20 +24,21 @@ export class ActionService {
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/actions/' + id, this.options);
   }
 
-  createAction(libelle: string, poids: number, resultat: number) {
+  createAction(code: string, libelle: string, poids: number, resultat: number) {
     const data = {
+      code: code,
       libelle: libelle,
       poids: poids,
       resultat_id: resultat
     };
     return this.httpClient.post(BASE_URL + 'administrateurs/2/actions', data, this.options);
   }
-  update(libelle: string, poids: number, resultat: number) {
+  updateAction(code: string, libelle: string, poids: number, resultat: number, id: number) {
     const data = {
       libelle: libelle,
       poids: poids,
       resultat_id: resultat
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/actions', data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrateurs/2/actions' + id, data, this.options);
   }
 }

@@ -13,6 +13,7 @@ import {Departement} from '../../models/departement.model';
 import {Ville} from '../../models/ville.model';
 import {SuiviTache} from '../../models/suivi_tache.model';
 import {Indicateur} from '../../models/indicateur.model';
+import {Resultat} from '../../models/resultat.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,7 @@ export class DataService {
   public villes: Ville[];
   public suiviTaches: SuiviTache[];
   public indicateurs: Indicateur[];
+  public resultats: Resultat[];
 
   constructor() { }
  public getProgrammes (): Programme[] {
@@ -119,6 +121,14 @@ export class DataService {
   }
   setIndicateurs(data: Indicateur[]) {
     this.indicateurs = data;
+  }
+
+
+  getResultats (): Resultat[] {
+    return this.resultats;
+  }
+  setResultats(data: Resultat[]) {
+    this.resultats = data;
   }
 
 }

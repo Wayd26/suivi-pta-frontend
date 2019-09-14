@@ -50,7 +50,7 @@ singleSelectValue2: number;
 
   onSubmit(form: NgForm) {
     console.log(this.singleSelectValue2);
-    this.structureService.createStructure(form.value['denomination'], form.value['email'],
+    this.structureService.createStructure(form.value['code'], form.value['denomination'], form.value['email'],
       form.value['telResp'], +this.singleSelectValue2, form.value['sigle'],
       form.value['cpost']).subscribe((res) => {
     }, (error) => {}, () => {

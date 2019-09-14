@@ -24,8 +24,8 @@ export class StructureEditComponent implements OnInit {
     searchField: ['label']
   };
 
-  singleSelectValue: string ;
-  singleSelectValue2: number;
+  singleSelectValue: string[] = ['reactjs'];
+  singleSelectValue2: string[];
   id: number;
 
   constructor( private villeService: VilleService, private utilService: UtilsService, private structureService: StructureService,
@@ -35,7 +35,8 @@ export class StructureEditComponent implements OnInit {
     this.id = +this.route.snapshot.params['id'] ;
     this.structureService.getStructure(this.id).subscribe((res: StructureResponse) => {
       this.structure = res.data;
-      this.singleSelectValue2 = this.utilService.getIdData(this.structure.links, 'ville');
+      console.log(res.data);
+      this.singleSelectValue2 = [this.utilService.getIdData(this.structure.links, 'ville')];
     });
     this.message = '';
     this.villeService.getVilleList()
@@ -44,7 +45,7 @@ export class StructureEditComponent implements OnInit {
         res.data.map((ville) => {
           this.singleSelectOptions2.push({
             label: ville.denomination,
-            value: ville.identifiant,
+            value: ville.identifiant.toString(),
             code: ville.code
           });
         });
@@ -54,12 +55,14 @@ export class StructureEditComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     console.log(this.singleSelectValue2);
-    this.structureService.update(form.value['denomination'], form.value['email'],
+    this.structureService.update(form.value['code'], form.value['denomination'], form.value['email'],
       form.value['telResp'], +this.singleSelectValue2, form.value['sigle'],
       form.value['cpost'], this.id).subscribe((res) => {
-    }, (error) => {}, () => {
+      this.message = 'Succes de l\'operation';
+      this.router.navigate(['/dashboard/fichier/base/structures/load']);
+      }, (error) => {}, () => {
         this.message = 'Operation echouée';
-      this.router.navigate(['/dashboard/fichier/base/structures']);
+      this.router.navigate(['/dashboard/fichier/base/structures/edit/' + this.id]);
     });
   }
 }

@@ -63,7 +63,7 @@ export class StructureImportComponent implements OnInit {
       const info = XLSX.utils.sheet_to_json(worksheet, {raw: true});
       info.map((i) => {
           this.dataNumber += 1;
-          this.structureService.createStructure(i['denomination'], i['email'], i['telephone'], +this.getVilleId(i['_ville']) , i['sigle'], i['boite_postal'])
+          this.structureService.createStructure(i['code'], i['denomination'], i['email'], i['telephone'], +this.getVilleId(i['_ville']) , i['sigle'], i['boite_postal'])
             .subscribe((resp) => {
               console.log(resp);
 

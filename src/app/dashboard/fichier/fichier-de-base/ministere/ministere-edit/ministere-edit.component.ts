@@ -25,7 +25,7 @@ export class MinistereEditComponent implements OnInit {
   };
   id: number;
 
-  singleSelectValue: string[] = ['reactjs'];
+  singleSelectValue: string[];
   constructor(private ministereService: MinistereService , private router: Router, private villeService: VilleService, private utilservice: UtilsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -33,24 +33,26 @@ export class MinistereEditComponent implements OnInit {
     this.id = +this.route.snapshot.params['id'];
     this.ministereService.getMinistere(this.id).subscribe((res: MinistereResponse) => {
       this.ministere = res.data;
-      this.singleSelectValue = this.utilservice.getIdData(this.ministere.links, 'ville');
+      console.log(res.data);
+      this.singleSelectValue = [this.utilservice.getIdData(res.data._ville, 'ville')];
     });
     this.villeService.getVilleList()
       .subscribe((res: ListVilleResponse) => {
         res.data.map((ville) => {
           this.singleSelectOptions.push({
             label: ville.denomination,
-            value: ville.identifiant,
+            value: ville.identifiant.toString(),
             code: ville.identifiant
           });
         });
       });
   }
   onSubmit(form: NgForm) {
-    this.ministereService.update(form.value['denomination_ministere'], form.value['sigle'],
+    this.ministereService.update(form.value['code_ministere'], form.value['denomination_ministere'], form.value['sigle'],
       +this.singleSelectValue, form.value['email'], form.value['telResp'], this.id)
       .subscribe((resp) => {
-        this.router.navigate(['/dashboard/fichier/base/ministere']);
+        this.message = 'Succes de l\'operation';
+        this.router.navigate(['/dashboard/fichier/base/ministere/load']);
       } , (error) => {
         console.log(error);
         this.message = 'Echec de l\'operation';

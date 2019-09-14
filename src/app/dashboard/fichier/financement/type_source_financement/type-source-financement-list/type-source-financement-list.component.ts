@@ -24,6 +24,10 @@ export class TypeSourceFinancementListComponent implements OnInit {
           scrollY: '500',
           pagingType: 'full_numbers'
       };
+      if (!this.dataService.getTypeSourceFis()) {
+        this.router.navigate(['/dashboard/fichier/financement/type/source/load']);
+    }
+
     this.typeSources = this.dataService.getTypeSourceFis();
       this.typeSourceFiService.getTypeSourceFinancementList().subscribe((res: ListTypeSourceFinancementResponse) => {
         this.dataService.setTypeSourceFis(res.data);

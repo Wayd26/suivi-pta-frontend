@@ -62,7 +62,7 @@ export class MinistereImportComponent implements OnInit {
       const info = XLSX.utils.sheet_to_json(worksheet, {raw: true});
       info.map((i) => {
           this.dataNumber += 1;
-          this.ministereService.createMinistere(i['denomination'] , i['sigle'], +this.getVilleId(i['_ville']), i['email'], i['telephone'])
+          this.ministereService.createMinistere(i['code'] , i['denomination'] , i['sigle'], +this.getVilleId(i['_ville']), i['email'], i['telephone'])
             .subscribe((resp) => {
               console.log(resp);
 

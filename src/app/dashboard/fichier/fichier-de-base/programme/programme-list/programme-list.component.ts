@@ -46,6 +46,9 @@ export class ProgrammeListComponent implements OnInit {
 
           ]
       };
+      if (!this.dataService.getProgrammes()) {
+        this.router.navigate(['/dashboard/fichier/base/programme/load']);
+    }
     this.programmes = this.dataService.getProgrammes();
 
       this.programmeService.getProgrammeList().subscribe((res: ListProgrammeResponse) => {

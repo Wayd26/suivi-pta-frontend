@@ -28,7 +28,10 @@ export class ActionListComponent implements OnInit {
 
           ]
       };
-    this.actions = this.dataService.getActions();
+      if (!this.dataService.getActions()) {
+          this.router.navigate(['/dashboard/fichier/base/action/load']);
+      } else {
+        this.actions = this.dataService.getActions();
       this.actionService.getActionList().subscribe((res: ListActionResponse) => {
         this.dataService.setActions(res.data);
         console.log(this.actions);
@@ -38,6 +41,8 @@ export class ActionListComponent implements OnInit {
       }, () => {
 
       });
+      }
+
   }
   execelExport() {
     this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.actions)), 'action');

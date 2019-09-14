@@ -45,7 +45,7 @@ export class TacheImportComponent implements OnInit {
       const info = XLSX.utils.sheet_to_json(worksheet, {raw: true});
       info.map((i) => {
           this.dataNumber += 1;
-          this.tacheService.createTache(i['libelle'])
+          this.tacheService.createTache(i['code'], i['libelle'])
             .subscribe((resp) => {
               console.log(resp);
 

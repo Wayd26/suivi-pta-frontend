@@ -40,9 +40,10 @@ export class ProgrammeAddComponent implements OnInit {
   }
   onSubmit(form: NgForm) {
     console.log(this.singleSelectValue);
-    this.programmeService.createProgramme(form.value['libelle'], form.value['poids'], +this.singleSelectValue)
+    this.programmeService.createProgramme(form.value['code'], form.value['libelle'], form.value['poids'], +this.singleSelectValue)
       .subscribe((resp) => {
-        this.router.navigate(['/dashboard/fichier/base/programmes']);
+        this.message = 'Succes de l\'operation';
+        this.router.navigate(['/dashboard/fichier/base/programmes/load']);
       } , (error) => {
         console.log(error);
         this.message = 'Echec de l\'operation';

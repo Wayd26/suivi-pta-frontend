@@ -14,7 +14,7 @@ export class VilleService {
   return this.httpClient.get(BASE_URL + 'villes', this.options  );
   }
   getVille(id) {
-    return this.httpClient.get(BASE_URL + 'villes' + id, this.options);
+    return this.httpClient.get(BASE_URL + 'villes/' + id, this.options);
   }
   deleteVille(id){
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/villes/' + id, this.options);
@@ -24,13 +24,13 @@ export class VilleService {
       denomination: denomination,
       departement_id: departement_id
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/villes', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrateurs/1/villes', data, this.options);
   }
   update(denomination: string, departement_id: number, id) {
     const data = {
       denomination: denomination,
       departement_id: departement_id
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/villes', data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrateurs/1/villes/' + id, data, this.options);
   }
 }

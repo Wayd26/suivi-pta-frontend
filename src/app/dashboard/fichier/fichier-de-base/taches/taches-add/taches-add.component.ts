@@ -18,7 +18,7 @@ export class TachesAddComponent implements OnInit {
     this.message = '';
   }
   onSubmit(form: NgForm) {
-    this.tacheService.createTache(form.value['libelle_tache'])
+    this.tacheService.createTache(form.value['code_tache'], form.value['libelle_tache'])
       .subscribe((resp) => {
         this.router.navigate(['/dashboard/fichier/base/tache']);
       } , (error) => {

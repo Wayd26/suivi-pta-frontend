@@ -34,13 +34,14 @@ export class TypeSourceFinancementEditComponent implements OnInit {
   }
   onSubmit(form: NgForm) {
     console.log(this.singleSelectValue);
-    this.typeSourceFiService.update(form.value['libelle'])
+    this.typeSourceFiService.update(form.value['code_type__source_financement'], form.value['libelle_type__source_financement'], this.id)
       .subscribe((resp) => {
-        this.router.navigate(['/dashboard/fichier/financement/type_source_financement']);
+        this.message = 'Succes de l\'operation';
+        this.router.navigate(['/dashboard/fichier/financement/type_source_financement/load']);
       } , (error) => {
         console.log(error);
         this.message = 'Echec de l\'operation';
-        this.router.navigate(['//dashboard/fichier/financement/type_source_financement/add']);
+        this.router.navigate(['//dashboard/fichier/financement/type_source_financement/edit/' + this.id]);
       });
   }
 

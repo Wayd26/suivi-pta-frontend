@@ -45,7 +45,7 @@ export class TypeSourceImportComponent implements OnInit {
       const info = XLSX.utils.sheet_to_json(worksheet, {raw: true});
       info.map((i) => {
           this.dataNumber += 1;
-          this.typeService.createTypeSource(i['libelle'])
+          this.typeService.createTypeSource(i['code'], i['libelle'])
             .subscribe((resp) => {
               console.log(resp);
 

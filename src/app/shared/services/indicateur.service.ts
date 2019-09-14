@@ -25,7 +25,7 @@ export class IndicateurService {
   getIndicateur(id) {
     return this.httpClient.get(BASE_URL + 'indicateurs/' + id, this.options  );
   }
-  createIndicateur(identifiant: number, libelle: string, valeurCible: number, valeurRealisee: number, idActivite: string) {
+  createIndicateur(identifiant: number, libelle: string, valeurCible: number, valeurRealisee: number, idActivite: number) {
     const data = {
       identifiant: identifiant,
       libelle: libelle,
@@ -37,7 +37,7 @@ export class IndicateurService {
     console.log(data);
     return this.httpClient.post(BASE_URL + 'administrateurs/9/indicateurs', data, this.options);
   }
-  updateIndicateur(libelle: string, valeurCible: number, valeurRealisee: number, idActivite: string, id: number) {
+  updateIndicateur(libelle: string, valeurCible: number, valeurRealisee: number, idActivite: number, id: number) {
     const data = {
       // identifiant: identifiant,
       libelle: libelle,

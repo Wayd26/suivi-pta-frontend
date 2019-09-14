@@ -1,3 +1,5 @@
+import {Action} from './action.model';
+
 export interface Link {
   rel: string;
   href: string;
@@ -34,4 +36,9 @@ export interface Meta {
 export interface ListeResultatResponse {
   data: Resultat[];
   meta: Meta;
+}
+
+
+export interface ResultatResponse {
+  data: Resultat;
 }

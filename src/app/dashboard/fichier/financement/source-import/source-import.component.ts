@@ -61,7 +61,7 @@ export class SourceImportComponent implements OnInit {
       const info = XLSX.utils.sheet_to_json(worksheet, {raw: true});
       info.map((i) => {
           this.dataNumber += 1;
-          this.sourcrService.createSource(i['libelle'], +i['poids'], i['est_projet'], +this.getTypeSourceId(i['_type']))
+          this.sourcrService.createSource(i['code'], i['libelle'], +i['poids'], i['est_projet'], i['chapitre_imputation'], (i['_type']))
             .subscribe((resp) => {
               console.log(resp);
 

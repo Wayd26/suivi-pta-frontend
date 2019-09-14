@@ -17,45 +17,52 @@ export class VilleListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   villes: Ville[];
 
-  constructor(private villeService: VilleService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
+  constructor(private villeService: VilleService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) {
+  }
 
   ngOnInit(): void {
-      this.dtOptions = {
-          scrollY: '500',
-          pagingType: 'full_numbers',
-          columnDefs: [
-            { 'width': '20%', 'targets': 0 },
-            { 'width': '20%', 'targets': 1 }
-          ]
-      };
+    this.dtOptions = {
+      scrollY: '500',
+      pagingType: 'full_numbers',
+      columnDefs: [
+        {'width': '20%', 'targets': 0},
+        {'width': '20%', 'targets': 1}
+      ]
+    };
+    if (!this.dataService.getVilles()) {
+      this.router.navigate(['/dashboard/fichier/localisation/ville/load']);
+    }
     this.villes = this.dataService.getVilles();
-      this.villeService.getVilleList().subscribe((res: ListVilleResponse) => {
-        this.dataService.setVilles(res.data);
-      } , (error) => {
-        this.villes = [];
-      }, () => {
-      });
+    this.villeService.getVilleList().subscribe((res: ListVilleResponse) => {
+      this.dataService.setVilles(res.data);
+    }, (error) => {
+      this.villes = [];
+    }, () => {
+    });
   }
+
   execelExport() {
     this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.villes)), 'ville');
   }
+
   csvExport() {
     return new Angular5Csv(JSON.parse(JSON.stringify(this.villes)), 'Villes');
 
   }
 
   onDelete(id) {
+
+
     const response = confirm(DELETE_CONFIRMATION);
     if (response) {
-      this.villes = this.villes.filter((action) => {
-        return action.identifiant !== id;
-      });
-      // this.activites.deleteStructure(id).subscribe((res) => {
-      //
-      //     this.router.navigate(['/dashboard/fichier/base/programme']);
-      //   }
-      // );
+      this.villeService.deleteVille(id).subscribe((res) => {
+          this.villes = this.villes.filter((action) => {
+            return action.identifiant !== id;
+          });
+          this.router.navigate(['/dashboard/fichier/localisation/ville']);
+        }
+      );
     }
-  }
 
+  }
 }

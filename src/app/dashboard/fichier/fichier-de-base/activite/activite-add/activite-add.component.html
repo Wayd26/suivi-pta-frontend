@@ -1,245 +1,246 @@
 <div class="container-fluid">
-  <div class="page-title">
-    <h4>Ajouter activite</h4>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-block">
-          <div class="row relative">
-            <div class="col-md-10 ml-auto mr-auto">
-              <aw-wizard [navBarLayout]="'large-filled-symbols'">
-                <aw-wizard-step stepTitle="Info Activite" [navigationSymbol]="{ symbol: '1' }">
-                  <form class="mrg-top-40">
-                    <div class="row">
-                      <div class="col-md-10 ml-auto mr-auto">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label>Exercice</label>
-                              <ng-selectize   [config]="singleSelectConfig" [options]="singleSelectOptionsExercice" [(ngModel)]="singleSelectValueExercice" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label>Code Activite</label>
-                              <input type="email" class="form-control" name="email">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label>Libelle Activite</label>
-                              <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label>Montant Activite</label>
-                              <input type="text" class="form-control" name="address">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-4">
-                            <label>Date Debut</label>
-                            <div class="input-group">
-									            <span class="input-group-text" (click)="d2.toggle()">
-										            <i class="ti-calendar"></i>
-                              </span>
-                              <input type="text" class="form-control"  placeholder="Pick your date" name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" readonly>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <label>Date Fin</label>
-                            <div class="input-group">
-									            <span class="input-group-text" (click)="d2.toggle()">
-										            <i class="ti-calendar"></i>
-                              </span>
-                              <input type="text" class="form-control"  placeholder="Pick your date" name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" readonly>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                              <label>Structure</label>
-                              <ng-selectize   [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructure" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Poids de l'activite dans l'action</label>
-                              <input type="text" class="form-control" name="firstName">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Mode d'execution</label>
-                              <input type="text" class="form-control" name="lastName">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Type Activite</label>
-                              <ng-selectize   [config]="singleSelectConfig" [options]="singleSelectOptionsTypeActivite" [(ngModel)]="singleSelectValueTypeActivite" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Action</label>
-                              <ng-selectize   [config]="singleSelectConfig" [options]="singleSelectOptionsAction" [(ngModel)]="singleSelectValueAction" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Departement</label>
-                              <ng-selectize   [config]="singleSelectConfig" [options]="singleSelectOptionsDepartement" [(ngModel)]="singleSelectValueDepartement" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Ville</label>
-                              <ng-selectize   [config]="singleSelectConfig" [options]="singleSelectOptionsVille" [(ngModel)]="singleSelectValueVille" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                  <div class="mrg-top-20">
-                    <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
-                  </div>
-                </aw-wizard-step>
-                <aw-wizard-step stepTitle="Structure Implique" [navigationSymbol]="{ symbol: '2' }">
-                  <div class="table-overflow">
-                    <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
-                      <thead>
-                      <tr>
-                        <th>Structure Implique</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr *ngFor="let structure of structures">
-
-                        <td>
-                          <div class="mrg-top-15">
-                            <span>{{structure.denomination}}</span>
-                          </div>
-                        </td>
-
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="mrg-top-20">
-                    <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
-                    <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
-                  </div>
-                </aw-wizard-step>
-                <aw-wizard-step stepTitle="Structure de Supervision" [navigationSymbol]="{ symbol: '3' }">
-                  <div class="table-overflow">
-                    <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
-                      <thead>
-                      <tr>
-                        <th>Structure de Supervision</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr *ngFor="let structure of structures">
-
-                        <td>
-                          <div class="mrg-top-15">
-                            <span>{{structure.denomination}}</span>
-                          </div>
-                        </td>
-
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="mrg-top-20">
-                    <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
-                    <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
-                  </div>
-                </aw-wizard-step>
-                <aw-wizard-step stepTitle="Source Financement" [navigationSymbol]="{ symbol: '4' }">
-                  <div class="table-overflow">
-                    <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
-                      <thead>
-                      <tr>
-                        <th>Source Financement</th>
-                        <th>Montant</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr *ngFor="let structure of structures">
-
-                        <td>
-                          <div class="mrg-top-15">
-                            <span>{{structure.denomination}}</span>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="mrg-top-15">
-                            <span>{{structure.denomination}}</span>
-                          </div>
-                        </td>
-
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="mrg-top-20">
-                    <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
-                    <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
-                  </div>
-                </aw-wizard-step>
-                <aw-wizard-step stepTitle="Indicateur d'activite" [navigationSymbol]="{ symbol: '5' }">
-                  <div class="table-overflow">
-                    <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
-                      <thead>
-                      <tr>
-                        <th>Libelle indicateur</th>
-                        <th>Valeur Cible</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr *ngFor="let structure of structures">
-
-                        <td>
-                          <div class="mrg-top-15">
-                            <span>{{structure.denomination}}</span>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="mrg-top-15">
-                            <span>{{structure.denomination}}</span>
-                          </div>
-                        </td>
-
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="mrg-top-20">
-                    <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
-                  </div>
-                </aw-wizard-step>
-              </aw-wizard>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="page-title">
+        <h4>Ajouter activite</h4>
     </div>
-  </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-block">
+                    <div class="row relative">
+                        <div class="col-md-10 ml-auto mr-auto">
+                            <aw-wizard [navBarLayout]="'large-filled-symbols'">
+                                <aw-wizard-step stepTitle="Info Activite" [navigationSymbol]="{ symbol: '1' }">
+                                    <form class="mrg-top-40">
+                                        <div class="row">
+                                            <div class="col-md-10 ml-auto mr-auto">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Exercice</label>
+                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsExercice" [(ngModel)]="singleSelectValueExercice" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Code Activite</label>
+                                                            <input type="email" class="form-control" name="email">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Libelle Activite</label>
+                                                            <textarea class="form-control" rows="3"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Montant Activite</label>
+                                                            <input type="text" class="form-control" name="address">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>Date Debut</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text" (click)="d2.toggle()">
+										            <i class="ti-calendar"></i>
+                              </span>
+                                                            <input type="text" class="form-control" placeholder="Pick your date" name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Date Fin</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text" (click)="d2.toggle()">
+										            <i class="ti-calendar"></i>
+                              </span>
+                                                            <input type="text" class="form-control" placeholder="Pick your date" name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Structure</label>
+                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructure" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Poids de l'activite dans l'action</label>
+                                                            <input type="text" class="form-control" name="firstName">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Mode d'execution</label>
+                                                            <input type="text" class="form-control" name="lastName">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Type Activite</label>
+                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsTypeActivite" [(ngModel)]="singleSelectValueTypeActivite" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Action</label>
+                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsAction" [(ngModel)]="singleSelectValueAction" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Departement</label>
+                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsDepartement" [(ngModel)]="singleSelectValueDepartement" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Ville</label>
+                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsVille" [(ngModel)]="singleSelectValueVille" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="mrg-top-20">
+                                        <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
+                                    </div>
+                                </aw-wizard-step>
+                                <aw-wizard-step stepTitle="Structure Implique" [navigationSymbol]="{ symbol: '2' }">
+                                    <div class="table-overflow">
+                                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
+                                            <thead>
+                                                <tr>
+                                                    <th>Structure Implique</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let structure of structures">
+
+                                                    <td>
+                                                        <div class="mrg-top-15">
+                                                            <span>{{structure.denomination}}</span>
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="mrg-top-20">
+                                        <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
+                                        <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
+                                    </div>
+                                </aw-wizard-step>
+                                <aw-wizard-step stepTitle="Structure de Supervision" [navigationSymbol]="{ symbol: '3' }">
+                                    <div class="table-overflow">
+                                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
+                                            <thead>
+                                                <tr>
+                                                    <th>Structure de Supervision</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let structure of structures">
+
+                                                    <td>
+                                                        <div class="mrg-top-15">
+                                                            <span>{{structure.denomination}}</span>
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="mrg-top-20">
+                                        <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
+                                        <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
+                                    </div>
+                                </aw-wizard-step>
+                                <aw-wizard-step stepTitle="Source Financement" [navigationSymbol]="{ symbol: '4' }">
+                                    <div class="table-overflow">
+                                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
+                                            <thead>
+                                                <tr>
+                                                    <th>Source Financement</th>
+                                                    <th>Montant</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let structure of structures">
+
+                                                    <td>
+                                                        <div class="mrg-top-15">
+                                                            <span>{{structure.denomination}}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mrg-top-15">
+                                                            <span>{{structure.denomination}}</span>
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="mrg-top-20">
+                                        <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
+                                        <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
+                                    </div>
+                                </aw-wizard-step>
+                                <aw-wizard-step stepTitle="Indicateur d'activite" [navigationSymbol]="{ symbol: '5' }">
+                                    <div class="table-overflow">
+                                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
+                                            <thead>
+                                                <tr>
+                                                    <th>Libelle indicateur</th>
+                                                    <th>Valeur Cible</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let structure of structures">
+
+                                                    <td>
+                                                        <div class="mrg-top-15">
+                                                            <span>{{structure.denomination}}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mrg-top-15">
+                                                            <span>{{structure.denomination}}</span>
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="mrg-top-20">
+                                        <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
+                                        <button type="button" class="btn btn-default  btn-rounded">Valider</button>
+                                    </div>
+                                </aw-wizard-step>
+                            </aw-wizard>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

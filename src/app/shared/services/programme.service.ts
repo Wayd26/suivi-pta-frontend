@@ -27,8 +27,9 @@ export class ProgrammeService {
   getProgramme(id) {
     return this.httpClient.get(BASE_URL + 'programmes/' + id, this.options);
   }
-  createProgramme(libelle: string, poids: number, exercice_id: number) {
+  createProgramme(code: string, libelle: string, poids: number, exercice_id: number) {
     const data = {
+      code: code,
       libelle: libelle,
       poids: poids,
       exercice_id: exercice_id
@@ -36,8 +37,9 @@ export class ProgrammeService {
     return this.httpClient.post(BASE_URL + 'administrateurs/2/programmes', data, this.options);
   }
 
-  update(libelle: string, poids: number, exercice_id: number, id: number) {
+  update(code: string, libelle: string, poids: number, exercice_id: number, id: number) {
     const data = {
+      code: code,
       libelle: libelle,
       poids: poids,
       exercice_id: exercice_id

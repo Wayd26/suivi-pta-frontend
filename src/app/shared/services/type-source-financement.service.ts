@@ -15,21 +15,23 @@ export class TypeSourceFinancementService {
     return this.httpClient.get(BASE_URL + 'types_sources_financements', this.options  );
   }
   getTypeSourceFinancement(id) {
-      return this.httpClient.get(BASE_URL + 'types_sources_financements' + id, this.options);
+      return this.httpClient.get(BASE_URL + 'types_sources_financements/' + id, this.options);
   }
   deleteTypeSource(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/types_sources_financements/' + id, this.options);
   }
-  createTypeSource(libelle: string) {
+  createTypeSource(code: string, libelle: string) {
     const data = {
+      code: code,
       libelle: libelle
     };
     return this.httpClient.post(BASE_URL + 'administrateurs/2/types_sf', data, this.options);
   }
-  update(libelle: string) {
+  update(code: string, libelle: string, id: number) {
     const data = {
+      code: code,
       libelle: libelle
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/types_sf', data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrateurs/2/types_sf/' + id, data, this.options);
   }
 }

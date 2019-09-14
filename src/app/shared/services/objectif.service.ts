@@ -21,20 +21,22 @@ export class ObjectifService {
   deleteObjectif(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/objectifs/' + id, this.options);
   }
-  createObjectif(libelle: string, programme: number) {
+  createObjectif(code: string, libelle: string, programme: number) {
     const data = {
+      code: code,
       libelle: libelle,
       programme_id: programme
     };
     console.log(data);
     return this.httpClient.post(BASE_URL + 'administrateurs/2/objectifs', data, this.options);
   }
-  updateObjectif(libelle: string, programme: string) {
+  updateObjectif(code: string, libelle: string, programme: number, id: number) {
     const data = {
+      code: code,
        libelle: libelle,
       programme_id: programme
     };
 
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/objectifs', data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrateurs/2/objectifs/'  + id, data, this.options);
   }
 }

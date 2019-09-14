@@ -81,6 +81,10 @@ import {TepProgrammeComponent} from './statistique/divers/tep-programme/tep-prog
 import {TepProjetComponent} from './statistique/divers/tep-projet/tep-projet.component';
 import {TepPtaComponent} from './statistique/divers/tep-pta/tep-pta.component';
 import {TepPipComponent} from './statistique/divers/tep-pip/tep-pip.component';
+import {ResultatEditComponent} from './fichier/fichier-de-base/resultat/resultat-edit/resultat-edit.component';
+import {ResultatLoaderComponent} from './fichier/fichier-de-base/resultat/resultat-loader/resultat-loader.component';
+import {ResultatAddComponent} from './fichier/fichier-de-base/resultat/resultat-add/resultat-add.component';
+import {ResultatListComponent} from './fichier/fichier-de-base/resultat/resultat-list/resultat-list.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -677,6 +681,36 @@ export const DashboardRoutes: Routes = [
     data: {
       title: 'Dashboard'
     }
+  },
+  {
+    path: 'fichier/base/resultat/load',
+    component: ResultatLoaderComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/resultat/add',
+    component: ResultatAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/resultat/edit/:id',
+    component: ResultatEditComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/resultat',
+    component:  ResultatListComponent,
+    data: {
+      title: 'Dashboard'
+    }
   }
+
+
 ];
 

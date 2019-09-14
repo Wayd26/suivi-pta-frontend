@@ -29,13 +29,14 @@ export class ExerciceEditComponent implements OnInit {
     });
   }
   onSubmit(form: NgForm) {
-    this.exerciceService.updateExercice(form.value['numero_exercice'], form.value['denomination_exercice'], form.value['date_debut_exercice'], form.value['date_fin_exercice'])
+    this.exerciceService.updateExercice(form.value['numero_exercice'], form.value['denomination_exercice'], form.value['date_debut_exercice'], form.value['date_fin_exercice'], this.id)
       .subscribe((resp) => {
-        this.router.navigate(['/dashboard/parametres/exercices']);
+        this.message = 'Succes de l\'operation';
+        this.router.navigate(['/dashboard/parametres/exercices/load']);
       } , (error) => {
         console.log(error);
         this.message = 'Echec de l\'operation';
-        this.router.navigate(['/dashboard/parametres/exercices/edit/' + this.id]);
+        this.router.navigate(['/dashboard/parametres/exercices/edit/' + this.id ]);
       });
   }
 }

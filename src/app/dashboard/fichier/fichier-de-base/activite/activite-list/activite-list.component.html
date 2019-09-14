@@ -1,23 +1,23 @@
 <div class="container-fluid">
-	<div class="page-title">
-		<h4>Liste des Activites</h4>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="card">
-				<div class="card-block">
-          <a [routerLink]="['add']" class="btn btn-info">
-            <i class="ti-plus pdd-right-5"></i>
-            <span>Ajouter</span>
-          </a>
-          <a (click)="execelExport()" class="btn btn-info" style="color: white">
-            <i class="ti-export pdd-right-5"></i>
-            <span>EXCEL</span>
-          </a>
-          <a (click)="csvExport()" class="btn btn-info" style="color: white">
-            <i class="ti-export pdd-right-5"></i>
-            <span>CSV</span>
-          </a>
+    <div class="page-title">
+        <h4>Liste des Activites</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-block">
+                    <a [routerLink]="['add']" class="btn btn-info">
+                        <i class="ti-plus pdd-right-5"></i>
+                        <span>Ajouter</span>
+                    </a>
+                    <a (click)="execelExport()" class="btn btn-info" style="color: white">
+                        <i class="ti-export pdd-right-5"></i>
+                        <span>EXCEL</span>
+                    </a>
+                    <a (click)="csvExport()" class="btn btn-info" style="color: white">
+                        <i class="ti-export pdd-right-5"></i>
+                        <span>CSV</span>
+                    </a>
                     <div class="table-overflow">
                         <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
                             <thead>
@@ -39,70 +39,70 @@
                             <tbody>
                                 <tr *ngFor="let activite of activites">
                                     <td>
-                                      <div class="mrg-top-15">
-                                        <span>{{activite._action}}</span>
-                                    </div>
+                                        <div class="mrg-top-15">
+                                            <span>{{activite._action}}</span>
+                                        </div>
                                     </td>
                                     <td>
-                                      <div class="mrg-top-15">
-                                        <span style="width: 20px">{{activite.code}}</span>
-                                    </div>
+                                        <div class="mrg-top-15">
+                                            <span style="width: 20px">{{activite.code}}</span>
+                                        </div>
                                     </td>
                                     <td>
-                                      <div class="mrg-top-15">
-                                        <span>{{activite.libelle}}</span>
-                                    </div>
-                                    </td>
-
-                                    <td>
-                                      <div class="mrg-top-15">
-                                        <span>{{activite.montant}}</span>
-                                    </div>
-                                    </td>
-                                    <td>
-                                      <div class="mrg-top-15">
-                                        <span>{{activite.date_debut}}</span>
-                                    </div>
-                                    </td>
-                                    <td>
-                                      <div class="mrg-top-15">
-                                        <span>{{activite.date_fin}}</span>
-                                    </div>
-                                    </td>
-                                    <td>
-                                      <div class="mrg-top-15">
-                                        <span>{{activite.poids}}</span>
-                                    </div>
-                                    </td>
-                                    <td>
-                                      <div class="mrg-top-15">
-                                        <span>{{activite.mode}}</span>
-                                    </div>
-                                    </td>
-                                    <td>
-                                      <div class="mrg-top-15">
-                                        <span></span>
-                                    </div>
-                                    </td>
-                                    <td>
-                                      <div class="mrg-top-15">
-                                        <span></span>
-                                    </div>
+                                        <div class="mrg-top-15">
+                                            <span>{{activite.libelle}}</span>
+                                        </div>
                                     </td>
 
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <span>{{activite.montant}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <span>{{activite.date_debut}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <span>{{activite.date_fin}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <span>{{activite.poids}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <span>{{activite.mode}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <span></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mrg-top-15">
+                                            <span></span>
+                                        </div>
+                                    </td>
+
 
                                     <td>
-                                      <div class="mrg-top-10 text-center">
-                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                        <div class="mrg-top-10 text-center">
+                                            <button [routerLink]="['edit/' + activite.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
                                             <i class="ti-pencil"></i>
                                         </button>
-                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(activite.identifiant)">
+                                            <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(activite.identifiant)">
                                           <i class="ti-trash"></i>
                                       </button>
-                                    </div>
+                                        </div>
                                     </td>
                                 </tr>
-                           </tbody>
+                            </tbody>
                         </table>
                     </div>
                 </div>

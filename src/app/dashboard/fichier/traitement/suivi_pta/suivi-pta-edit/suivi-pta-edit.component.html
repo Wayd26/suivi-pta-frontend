@@ -19,14 +19,14 @@
                 <div class="form-group row">
                   <label for="form-1-1" class="col-md-2 control-label">Activité</label>
                   <div class="col-md-10">
-                    <ng-selectize id="form-1-1"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                    <ng-selectize id="form-1-1"  [config]="singleSelectConfig" [options]="singleSelectOptionsActivite" [(ngModel)]="singleSelectValueActivite" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <label for="form-1-2" class="col-md-2 control-label">Tâche</label>
                   <div class="col-md-10">
-                    <ng-selectize id="form-1-2"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                    <ng-selectize id="form-1-2"  [config]="singleSelectConfig" [options]="singleSelectOptionsTache" [(ngModel)]="singleSelectValueTache" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
                   </div>
                 </div>
 
@@ -46,7 +46,7 @@
                   <span class="input-group-text">
 													<i class="ti-calendar"></i>
                   </span>
-                      <input id="form-1-4" type="text" class="form-control datepicker-2" placeholder="" data-provide="datepicker">
+                      <input id="form-1-4" type="text" class="form-control datepicker-2" placeholder="" data-provide="datepicker" name="date_fin_real">
                     </div>
                   </div>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="form-group row">
                   <label for="form-1-5" class="col-md-2 control-label">Observations</label>
                   <div class="col-md-10">
-                    <textarea class="form-control" rows="3" id="form-1-5"></textarea>
+                    <textarea class="form-control" rows="3" id="form-1-5" name="commentaire"></textarea>
                   </div>
                 </div>
 

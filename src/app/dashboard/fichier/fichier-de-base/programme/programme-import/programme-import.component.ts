@@ -71,7 +71,7 @@ export class ProgrammeImportComponent implements OnInit {
       const info = XLSX.utils.sheet_to_json(worksheet, {raw: true});
       info.map((i) => {
         this.dataNumber += 1;
-        this.programmeService.createProgramme(i['libelle'], i['poids'], +this.getExoId(i['_exercice']))
+        this.programmeService.createProgramme(i['code'], i['libelle'], i['poids'], +this.getExoId(i['_exercice']))
           .subscribe((resp) => {
             console.log(resp);
 

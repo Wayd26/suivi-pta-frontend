@@ -12,6 +12,7 @@ import {Departement, DepartementResponse} from '../../../../../models/departemen
 export class DepartementEditComponent implements OnInit {
   departement: Departement;
   id: number;
+  message: string;
   constructor(private departementService: DepartementService , private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -21,10 +22,14 @@ export class DepartementEditComponent implements OnInit {
     });
   }
   onSubmit(form: NgForm) {
-    this.departementService.update(form.value['nom_département'], this.id).subscribe((res) => {
+    this.departementService.update(form.value['code_département'], form.value['nom_département'], this.id).subscribe((res) => {
         console.log(res);
-        this.router.navigate(['/dashboard/fichier/localisation/departement']);
+        this.message = 'Succes de l\'operation';
+        this.router.navigate(['/dashboard/fichier/localisation/departement/load']);
       }, (error) => {
+        console.log(error);
+        this.message = 'Echec de l\'operation';
+        this.router.navigate(['/dashboard/fichier/localisation/departement/edit/' + this.id]);
       },
       () => {
 

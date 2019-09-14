@@ -1,4 +1,3 @@
-import {Programme} from './programme.model';
 
 export interface Link {
   rel: string;

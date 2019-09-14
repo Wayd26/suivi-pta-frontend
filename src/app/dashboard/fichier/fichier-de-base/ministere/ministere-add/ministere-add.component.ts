@@ -39,10 +39,11 @@ export class MinistereAddComponent implements OnInit {
       });
   }
   onSubmit(form: NgForm) {
-      this.ministereService.createMinistere(form.value['denomination_ministere'], form.value['sigle'],
+      this.ministereService.createMinistere(form.value['code_ministere'], form.value['denomination_ministere'], form.value['sigle'],
         +this.singleSelectValue, form.value['email'], form.value['telResp'])
         .subscribe((resp) => {
-          this.router.navigate(['/dashboard/fichier/base/ministere']);
+          this.message = 'Succes de l\'operation';
+          this.router.navigate(['/dashboard/fichier/base/ministere/load']);
         } , (error) => {
           console.log(error);
           this.message = 'Echec de l\'operation';

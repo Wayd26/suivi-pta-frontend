@@ -44,14 +44,15 @@ export class IndicateursRealisesEditComponent implements OnInit {
           });
   }
   onSubmit(form: NgForm) {
-    // this.indicService.updateIndicateur(+this.singleSelectValueIndicateur, form.value['valeur_cible'], form.value['valeur_realisee'], +this.singleSelectValueActivite, this.id)
-    //   .subscribe((resp) => {
-    //     this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises']);
-    //   } , (error) => {
-    //     console.log(error);
-    //     this.message = 'Echec de l\'operation';
-    //    // this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises/add']);
-    //   });
+    this.indicService.updateIndicateur(this.singleSelectValueIndicateur.toString(), form.value['valeur_cible'], form.value['valeur_realisee'], +this.singleSelectValueActivite, this.id)
+      .subscribe((resp) => {
+        this.message = 'Succes de l\'operation';
+        this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises/load']);
+      } , (error) => {
+        console.log(error);
+        this.message = 'Echec de l\'operation';
+       this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises/edit/' + this.id ]);
+      });
   }
 
 }

@@ -27,6 +27,9 @@ export class TachesListComponent implements OnInit {
 
           ]
       };
+      if (!this.dataService.getTaches()) {
+        this.router.navigate(['/dashboard/fichier/base/tache/load']);
+    }
     this.taches = this.dataService.getTaches();
       this.tacheService.getTacheList().subscribe((res: ListTacheResponse) => {
         this.dataService.setTaches(res.data);

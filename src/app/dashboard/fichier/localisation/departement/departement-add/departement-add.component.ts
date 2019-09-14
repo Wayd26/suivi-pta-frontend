@@ -9,16 +9,21 @@ import {Router} from '@angular/router';
   styleUrls: ['./departement-add.component.css']
 })
 export class DepartementAddComponent implements OnInit {
-
+  id: number;
+  message: string;
   constructor(private departeemntService: DepartementService , private router: Router) { }
 
   ngOnInit() {
   }
   onSubmit(form: NgForm) {
-      this.departeemntService.createDepartement(form.value['nom_département']).subscribe((res) => {
+      this.departeemntService.createDepartement(form.value['code_département'], form.value['nom_département']).subscribe((res) => {
         console.log(res);
+          this.message = 'Succes de l\'operation';
           this.router.navigate(['/dashboard/fichier/localisation/departement']);
-      }, (error) => {},
+      }, (error) => {
+          this.message = 'Echec de l\'operation';
+          this.router.navigate(['/dashboard/fichier/localisation/departement/add']);
+        },
         () => {
 
         }

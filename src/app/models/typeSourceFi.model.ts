@@ -7,6 +7,7 @@ export interface Link {
 
   export interface TypeSourceFinancement {
       identifiant: number;
+      code: string;
       libelle: string;
       _user: string;
       created_at: string;

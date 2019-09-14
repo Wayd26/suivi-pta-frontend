@@ -20,16 +20,22 @@ export class ResultatService {constructor(private httpClient: HttpClient, privat
   deleteResultat(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/resultats/' + id, this.options);
   }
-  createResultats(denomination: string) {
+  createResultat(code: string, denomination: string, objectif: number) {
     const data = {
-      denomination: denomination
+      code: code,
+      libelle: denomination,
+      objectif_specifique_id: objectif
     };
     return this.httpClient.post(BASE_URL + 'administrateurs/2/resultats', data, this.options);
   }
-  update(denomination: string) {
+  updateResultat(code: string, denomination: string, objectif: number, id: number) {
     const data = {
-      denomination: denomination
+      code: code,
+      libelle: denomination,
+      objectif_specifique_id: objectif
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/resultats', data, this.options);
+
+    console.log()
+    return this.httpClient.put(BASE_URL + 'administrateurs/2/resultats/'  + id, data, this.options);
   }
   }

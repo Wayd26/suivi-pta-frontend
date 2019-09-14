@@ -33,8 +33,10 @@ export class VilleEditComponent implements OnInit {
     this.villeService.getVille(+this.route.snapshot.params['id']).subscribe((res: VilleResponse) => {
       this.ville = res.data;
 
-      this.singleSelectValue = [this.ville._departement];
-      console.log(this.utilService.getIdData(res.data.links, 'departement'));
+      this.singleSelectValue = ['' + this.ville._departement] ;
+     // this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'departement_id')];
+      console.log('Info Rech  '   + this.ville._departement);
+
     });
 
 
@@ -52,6 +54,7 @@ export class VilleEditComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.villeService.update(form.value['nom_ville'], +this.singleSelectValue, this.id)
       .subscribe((resp) => {
+        this.message = 'Succes de l\'operation';
         this.router.navigate(['/dashboard/fichier/localisation/ville']);
       } , (error) => {
         console.log(error);

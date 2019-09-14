@@ -60,7 +60,9 @@ export class ObjectifImportComponent implements OnInit {
       const info = XLSX.utils.sheet_to_json(worksheet, {raw: true});
       info.map((i) => {
           this.dataNumber += 1;
-          this.objService.createObjectif(i['libelle'], +this.getProgrammeId(i['_programme']))
+          // this.objService.createObjectif(i['code'], i['libelle'], +this.getProgrammeId(i['_programme']))
+
+        this.objService.createObjectif(i['code'], i['libelle'], i['_programme'])
             .subscribe((resp) => {
               console.log(resp);
 

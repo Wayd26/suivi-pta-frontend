@@ -16,15 +16,17 @@ export class DepartementService {
   getDepartemen(id) {
   return this.httpClient.get(BASE_URL + 'departements/' + id, this.options  );
   }
-  createDepartement(denomination: string) {
+  createDepartement(code: string, denomination: string) {
     const data = {
+      code: code,
       denomination: denomination
     };
     console.log(data);
     return this.httpClient.post(BASE_URL + 'administrateurs/2/departements', data, this.options);
   }
-  update(denomination: string, id: number) {
+  update(code: string, denomination: string, id: number) {
     const data = {
+      code: code,
       denomination: denomination
     };
     return this.httpClient.put(BASE_URL + 'administrateurs/2/departements/' + id, data, this.options);

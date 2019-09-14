@@ -45,9 +45,10 @@ export class ActionAddComponent implements OnInit {
     this.message = '';
   }
   onSubmit(form: NgForm) {
-    this.actionService.createAction(form.value['libelle_action'], form.value['poids_action'], form.value['resultat_action'])
+    this.actionService.createAction(form.value['code_action'], form.value['libelle_action'], form.value['poids_action'], +this.singleSelectValue2)
       .subscribe((resp) => {
-        this.router.navigate(['/dashboard/fichier/base/action']);
+        this.message = 'Succes de l\'operation';
+        this.router.navigate(['/dashboard/fichier/base/action/load']);
       } , (error) => {
         this.message = 'Echec de l\'operation';
         this.router.navigate(['/dashboard/fichier/base/action/add']);

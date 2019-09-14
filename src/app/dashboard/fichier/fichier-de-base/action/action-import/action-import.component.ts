@@ -61,7 +61,8 @@ export class ActionImportComponent implements OnInit {
       const info = XLSX.utils.sheet_to_json(worksheet, {raw: true});
       info.map((i) => {
           this.dataNumber += 1;
-          this.actionService.createAction(i['libelle'], +i['poids'], +this.getResultatId(i['_resultat']))
+          // this.actionService.createAction(i['code'], i['libelle'], +i['poids'], +this.getResultatId(i['_resultat']))
+        this.actionService.createAction(i['code'], i['libelle'], +i['poids'], i['_resultat'])
             .subscribe((resp) => {
               console.log(resp);
 

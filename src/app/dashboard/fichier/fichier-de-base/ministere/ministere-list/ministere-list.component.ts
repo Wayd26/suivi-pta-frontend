@@ -27,6 +27,9 @@ export class MinistereListComponent implements OnInit {
 
       ]
     };
+    if (!this.dataService.getMinisteres()) {
+      this.router.navigate(['/dashboard/fichier/base/ministere/load']);
+  }
     this.Ministeres = this.dataService.getMinisteres();
     this.ministereService.getMinistereList().subscribe((res: ListMinistereResponse) => {
       this.dataService.setMinisteres(res.data);

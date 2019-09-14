@@ -1,4 +1,3 @@
-import {SourceFinancement} from './sourceFi.model';
 
 export interface Link {
   rel: string;

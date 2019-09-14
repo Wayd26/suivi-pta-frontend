@@ -21,8 +21,9 @@ export class MinistereService {
   deleteMinistere(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/1/ministeres/' + id, this.options);
   }
-  createMinistere(denomination: string, sigle: string , ville_id: number, email: string, telephone: string) {
+  createMinistere(code: string, denomination: string, sigle: string , ville_id: number, email: string, telephone: string) {
     const data = {
+      code: code,
       denomination: denomination,
       sigle: sigle,
       ville_id: ville_id,
@@ -32,8 +33,9 @@ export class MinistereService {
     console.log(data);
     return this.httpClient.post(BASE_URL + 'administrateurs/1/ministeres', data, this.options);
   }
-  update(denomination: string, sigle: string , ville_id: number, email: string, telephone: string, id: number) {
+  update(code: string, denomination: string, sigle: string , ville_id: number, email: string, telephone: string, id: number) {
     const data = {
+      code: code,
       denomination: denomination,
       sigle: sigle,
       ville_id: ville_id,
@@ -41,6 +43,6 @@ export class MinistereService {
       telephone: telephone
     };
     console.log(data);
-    return this.httpClient.post(BASE_URL + 'administrateurs/1/ministeres/' + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrateurs/1/ministeres/' + id, data, this.options);
   }
 }

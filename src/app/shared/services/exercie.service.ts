@@ -16,11 +16,11 @@ export class ExercieService {
     header.append('Access-Control-Allow-Headers', 'Origin,X-Requested-Width, Content-Type, Accept, Authorization');
     header.append('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
     header.append('Access-Control-Allow-Origin', 'http://localhost:4200');
-    return this.httpClient.get(BASE_URL + 'exercices', this.options  );
+    return this.httpClient.get(BASE_URL + 'exercices', this.options);
   }
 
   getExercice(id) {
-    return this.httpClient.get(BASE_URL + 'exercice/' + id, this.options  );
+    return this.httpClient.get(BASE_URL + 'exercice/' + id, this.options);
   }
 
 
@@ -31,20 +31,20 @@ export class ExercieService {
   createExercice(identifiant: number, denomination: string, dateDebut: Date, dateFin: Date) {
     const data = {
       identifiant: identifiant,
-      denomination: denomination,
-      date_debut: dateDebut,
-      date_fin: dateFin,
+      libelle: denomination,
+      started_at: dateDebut,
+      end_at: dateFin,
     };
     return this.httpClient.post(BASE_URL + 'administrateurs/1/exercices', data, this.options);
   }
-  updateExercice(identifiant: number, denomination: string, dateDebut: Date, dateFin: Date) {
+  updateExercice(identifiant: number, denomination: string, dateDebut: Date, dateFin: Date, id: number) {
     const data = {
       identifiant: identifiant,
-      denomination: denomination,
-      date_debut: dateDebut,
-      date_fin: dateFin,
+      libelle: denomination,
+      started_at: dateDebut,
+      end_at: dateFin,
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/1/exercices', data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrateurs/1/exercices/' + id, data, this.options);
   }
 
 

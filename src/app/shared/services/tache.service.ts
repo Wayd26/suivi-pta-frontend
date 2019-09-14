@@ -20,16 +20,18 @@ export class TacheService {
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/taches/' + id, this.options);
   }
 
-  createTache(denomination: string) {
+  createTache(code: string, denomination: string) {
     const data = {
+      code: code,
       denomination: denomination
     };
     return this.httpClient.post(BASE_URL + 'administrateurs/2/tache', data, this.options);
   }
-  update(denomination: string) {
+  update(code: string, denomination: string, id: number) {
     const data = {
+      code: code,
       denomination: denomination
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/tache', data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrateurs/2/tache/' + id, data, this.options);
   }
 }

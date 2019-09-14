@@ -21,7 +21,8 @@ export class ExerciceAddComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.exerciceService.createExercice(form.value['numero_exercice'], form.value['denomination_exercice'], form.value['date_debut_exercice'], form.value['date_fin_exercice'])
       .subscribe((resp) => {
-        this.router.navigate(['/dashboard/parametres/exercices']);
+        this.message = 'Succes de l\'operation';
+        this.router.navigate(['/dashboard/parametres/exercices/load']);
       } , (error) => {
         this.message = 'Echec de l\'operation';
         this.router.navigate(['/dashboard/parametres/exercices/add']);

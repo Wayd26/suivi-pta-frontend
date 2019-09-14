@@ -20,16 +20,17 @@ export class ActionEditComponent implements OnInit {
   action: Action;
   id: number;
 
-  singleSelectValue: string[] = ['reactjs'];
-  constructor(private actionService: ActionService, private router: Router, private utils: UtilsService, private resultatService: ResultatService, private route: ActivatedRoute) { }
+  singleSelectValue: string[] = [];
+
+  constructor(private actionService: ActionService, private router: Router, private utils: UtilsService, private resultatService: ResultatService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.message = '';
-    this.id = +this.route.snapshot.params['id'];
-    this.actionService.getAction(+this.route.snapshot.params['id']).subscribe((res: ActionResponse) => {
-      this.action = res.data;
-
-      this.singleSelectValue = [this.action._resultat];
+      this.id = +this.route.snapshot.params['id'];
+      this.actionService.getAction(+this.route.snapshot.params['id']).subscribe((res: ActionResponse) => {
+        this.action = res.data;
+      this.singleSelectValue = [this.utils.getIdData(res.data._resultat, 'resultat')];
       console.log(this.utils.getIdData(res.data.links, 'resultat'));
     });
     this.resultatService.getResultatList()
@@ -37,23 +38,25 @@ export class ActionEditComponent implements OnInit {
         res.data.map((resultat) => {
           this.singleSelectOptions.push({
             label: resultat.libelle,
-            value: resultat.identifiant,
+            value: resultat.identifiant.toString(),
             code: resultat.code
           });
         });
       });
-    }
   }
-  // onSubmit(form: NgForm) {
-  //   console.log(this.singleSelectValue);
-  //   this.programmeService.update(form.value['libelle'], form.value['poids'], +this.singleSelectValue, this.id )
-  //     .subscribe((resp) => {
-  //       this.router.navigate(['/dashboard/fichier/base/programmes']);
-  //     } , (error) => {
-  //       console.log(error);
-  //       this.message = 'Echec de l\'operation';
-  //       this.router.navigate(['/dashboard/fichier/base/programmes/add']);
-  //     });
-  // }
+
+  onSubmit(form: NgForm) {
+    console.log(this.singleSelectValue);
+    this.actionService.updateAction(form.value['code_action'], form.value['libelle_action'], form.value['poids_action'], +this.singleSelectValue, this.id)
+      .subscribe((resp) => {
+        this.message = 'Succes de l\'operation';
+        this.router.navigate(['/dashboard/fichier/base/action']);
+      }, (error) => {
+        console.log(error);
+        this.message = 'Echec de l\'operation';
+        this.router.navigate(['/dashboard/fichier/base/action/edit/' + this.id ]);
+      });
+  }
 
 
+}
