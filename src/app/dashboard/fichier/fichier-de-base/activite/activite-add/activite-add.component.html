@@ -52,7 +52,7 @@
                                                             <span class="input-group-text" (click)="d2.toggle()">
 										            <i class="ti-calendar"></i>
                               </span>
-                                                            <input type="text" class="form-control" placeholder="Pick your date" name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" readonly>
+                                                            <input type="text" class="form-control" placeholder="Pick your date" name="dp2" [(ngModel)]="dateDebut" ngbDatepicker #d2="ngbDatepicker" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -61,7 +61,7 @@
                                                             <span class="input-group-text" (click)="d2.toggle()">
 										            <i class="ti-calendar"></i>
                               </span>
-                                                            <input type="text" class="form-control" placeholder="Pick your date" name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" readonly>
+                                                            <input type="text" class="form-control" placeholder="Pick your date" name="dp2" [(ngModel)]="dateFin" ngbDatepicker #d2="ngbDatepicker" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -129,10 +129,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let structure of structures">
+                                                <tr *ngFor="let structure of structures" (click)="OnSelectOrUnselectEmploye(structure.identifiant)">
 
                                                     <td>
                                                         <div class="mrg-top-15">
+                                                          <span class="status offline" [ngClass]="{'status online': getColor(structure.identifiant)}"> </span>
                                                             <span>{{structure.denomination}}</span>
                                                         </div>
                                                     </td>
@@ -155,10 +156,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let structure of structures">
+                                                <tr *ngFor="let structure of structures" (click)="OnSelectOrUnselectEmploye(structure.identifiant)">
 
                                                     <td>
                                                         <div class="mrg-top-15">
+                                                          <span class="status offline" [ngClass]="{'status online': getColor(structure.identifiant)}"> </span>
                                                             <span>{{structure.denomination}}</span>
                                                         </div>
                                                     </td>
@@ -182,10 +184,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let structure of structures">
+                                                <tr *ngFor="let structure of structures" (click)="OnSelectOrUnselectEmploye(structure.identifiant)">
 
                                                     <td>
                                                         <div class="mrg-top-15">
+                                                          <span class="status offline" [ngClass]="{'status online': getColor(structure.identifiant)}"> </span>
                                                             <span>{{structure.denomination}}</span>
                                                         </div>
                                                     </td>
@@ -214,10 +217,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let structure of structures">
+                                                <tr *ngFor="let structure of structures" (click)="OnSelectOrUnselectEmploye(structure.identifiant)">
 
                                                     <td>
                                                         <div class="mrg-top-15">
+                                                          <span class="status offline" [ngClass]="{'status online': getColor(structure.identifiant)}"> </span>
                                                             <span>{{structure.denomination}}</span>
                                                         </div>
                                                     </td>
