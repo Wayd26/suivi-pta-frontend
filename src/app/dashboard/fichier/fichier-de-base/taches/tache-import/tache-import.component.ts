@@ -99,6 +99,20 @@ export class TacheImportComponent implements OnInit {
         csvRecord.position = curruntRecord[4].trim();
         csvRecord.mobile = curruntRecord[5].trim();
         csvArr.push(csvRecord);*/
+        this.dataNumber += 1;
+          this.tacheService.createTache(curruntRecord[0].trim(), curruntRecord[1].trim())
+            .subscribe((resp) => {
+              console.log(resp);
+
+            } , (error) => {
+              console.log(error);
+              this.message = 'Echec de l\'operation';
+              //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
+            });
+          console.log(this.dataNumber + '===' + csvRecordsArray.length);
+          if (this.dataNumber === csvRecordsArray.length) {
+            this.router.navigate(['/dashboard/fichier/base/tache/load']);
+          }
         console.log(curruntRecord);
       }
     }

@@ -115,6 +115,21 @@ export class VilleImportComponent implements OnInit {
         csvRecord.position = curruntRecord[4].trim();
         csvRecord.mobile = curruntRecord[5].trim();
         csvArr.push(csvRecord);*/
+        this.dataNumber += 1;
+          this.villeService.createVille(curruntRecord[0].trim(),
+          +this.getDepartementId(curruntRecord[0].trim()))
+            .subscribe((resp) => {
+              console.log(resp);
+
+            } , (error) => {
+              console.log(error);
+              this.message = 'Echec de l\'operation';
+              //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
+            });
+          console.log(this.dataNumber + '===' + csvRecordsArray.length);
+          if (this.dataNumber === csvRecordsArray.length) {
+            this.router.navigate(['/fichier/localisation/ville/load']);
+          }
         console.log(curruntRecord);
       }
     }

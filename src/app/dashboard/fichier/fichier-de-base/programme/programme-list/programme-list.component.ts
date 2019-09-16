@@ -18,12 +18,12 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 })
 export class ProgrammeListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  programmes: Programme[];
+  programmes: Programme[] = [];
   exportAsConfig: ExportAsConfig = {
     type: 'csv', // the type you want to download
     elementId: 'programmeTable', // the id of html/table element
   };
-  programmeExport: ProgrammeExport[];
+  programmeExport: ProgrammeExport[] = [];
   options = {
     fieldSeparator: ',',
     quoteStrings: '"',
@@ -59,7 +59,6 @@ export class ProgrammeListComponent implements OnInit {
          console.log(JSON.parse(JSON.stringify(p)));
        });
       }, (error) => {}, () => {
-        //this.programmes = this.dataService.getProgrammes();
     });
       console.log(this.dataService.getProgrammes());
       this.programmes.map((p) => {
@@ -82,7 +81,7 @@ export class ProgrammeListComponent implements OnInit {
     });
   }
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.programmeExport)), 'Programme', this.options);
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.programmeExport)), 'Programme');
 
   }
 

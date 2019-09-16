@@ -15,8 +15,8 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 export class StructureListComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
-  structures: Structure[];
-  structureExport: StructureExport[];
+  structures: Structure[] = [];
+  structureExport: StructureExport[] = [];
   options = {
     fieldSeparator: ',',
     quoteStrings: '"',

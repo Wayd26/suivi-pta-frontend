@@ -13,9 +13,9 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
   styleUrls: ['./objectif-list.component.css']
 })
 export class ObjectifListComponent implements OnInit {
-  Objectifs: ObjectifModel[];
+  Objectifs: ObjectifModel[] = [];
   dtOptions: DataTables.Settings = {};
-  objectifExport: ObjectifModelExport[];
+  objectifExport: ObjectifModelExport[] = [];
   options = {
     fieldSeparator: ',',
     quoteStrings: '"',
@@ -60,7 +60,7 @@ export class ObjectifListComponent implements OnInit {
     this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.objectifExport)), 'objectif');
   }
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.objectifExport)), 'Objectif', this.options);
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.objectifExport)), 'Objectif');
 
   }
 

@@ -116,6 +116,23 @@ export class MinistereImportComponent implements OnInit {
         csvRecord.position = curruntRecord[4].trim();
         csvRecord.mobile = curruntRecord[5].trim();
         csvArr.push(csvRecord);*/
+        this.dataNumber += 1;
+          this.ministereService.createMinistere(curruntRecord[0].trim() ,
+          curruntRecord[1].trim() ,
+          curruntRecord[2].trim(), +this.getVilleId(curruntRecord[3].trim()),
+          curruntRecord[4].trim(), curruntRecord[5].trim())
+            .subscribe((resp) => {
+              console.log(resp);
+
+            } , (error) => {
+              console.log(error);
+              this.message = 'Echec de l\'operation';
+              //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
+            });
+          console.log(this.dataNumber + '===' + csvRecordsArray.length);
+          if (this.dataNumber === csvRecordsArray.length) {
+            this.router.navigate(['/dashboard/fichier/base/ministere/load']);
+          }
         console.log(curruntRecord);
       }
     }

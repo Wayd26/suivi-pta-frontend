@@ -14,15 +14,14 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 })
 export class TachesListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  taches: Tache[];
-  tacheExport: TacheExport[];
+  taches: Tache[] = [];
+  tacheExport: TacheExport[] = [];
+  tache: TacheExport;
   options = {
     fieldSeparator: ',',
     quoteStrings: '"',
     decimalseparator: '.',
     showLabels: true,
-    showTitle: true,
-    title: 'Your title',
     useBom: true,
     noDownload: true,
     headers: ['identifiant', 'libelle', 'code'],
@@ -60,12 +59,19 @@ export class TachesListComponent implements OnInit {
           code: p.code
         });
       });
+      // this.taches.map((p) => {
+      //   this.tache.identifiant = p.identifiant;
+      //   this.tache.libelle = p.libelle;
+      //   this.tache.code = p.code;
+      //   this.tacheExport.push(this.tache);
+      //   });
   }
   execelExport() {
-    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.tacheExport)), 'tache');
+     this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.tacheExport)), 'tache');
   }
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.tacheExport)), 'Tache', this.options);
+    console.log(JSON.stringify(this.tacheExport));
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.tacheExport)), 'Tache');
 
   }
 

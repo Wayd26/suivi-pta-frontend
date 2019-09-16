@@ -15,8 +15,8 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 })
 export class ActionListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  actions: Action[];
-  actionExport: ActionExport[];
+  actions: Action[] = [];
+  actionExport: ActionExport[] = [];
   options = {
     fieldSeparator: ',',
     quoteStrings: '"',
@@ -73,7 +73,7 @@ export class ActionListComponent implements OnInit {
     this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.actionExport)), 'action');
   }
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.actionExport)), 'Action', this.options);
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.actionExport)), 'Action');
 
   }
   onDelete(id) {

@@ -15,8 +15,8 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 })
 export class MinistereListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  Ministeres: Ministere[];
-  ministereExport: MinistereExport[];
+  Ministeres: Ministere[] = [];
+  ministereExport: MinistereExport[] = [];
   options = {
     fieldSeparator: ',',
     quoteStrings: '"',
@@ -71,7 +71,7 @@ export class MinistereListComponent implements OnInit {
     this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.ministereExport)), 'ministere');
   }
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.ministereExport)), 'Ministere', this.options);
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.ministereExport)), 'Ministere');
 
   }
 
