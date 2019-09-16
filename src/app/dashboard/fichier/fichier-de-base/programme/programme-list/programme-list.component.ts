@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProgrammeService } from 'src/app/shared/services/programme.service';
-import { Programme, ListProgrammeResponse } from 'src/app/models/programme.model';
+import { Programme, ListProgrammeResponse, ProgrammeExport } from 'src/app/models/programme.model';
 import { Router } from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
@@ -23,7 +23,8 @@ export class ProgrammeListComponent implements OnInit {
     type: 'csv', // the type you want to download
     elementId: 'programmeTable', // the id of html/table element
   };
-   options = {
+  programmeExport: ProgrammeExport[];
+  options = {
     fieldSeparator: ',',
     quoteStrings: '"',
     decimalseparator: '.',
@@ -32,10 +33,11 @@ export class ProgrammeListComponent implements OnInit {
     title: 'Your title',
     useBom: true,
     noDownload: true,
-    headers: ['First Name', 'Last Name', 'ID'],
+    headers: ['identifiant', 'code', 'libelle', 'poids', '_exercice', '_ministere'],
     nullToEmptyString: true,
   };
-  constructor(private programmeService: ProgrammeService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService, private exportAsService: ExportAsService) { }
+  constructor(private programmeService: ProgrammeService, private router: Router,
+     private dataService: DataService, private exportService: ExportAsExelService, private exportAsService: ExportAsService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -60,9 +62,19 @@ export class ProgrammeListComponent implements OnInit {
         //this.programmes = this.dataService.getProgrammes();
     });
       console.log(this.dataService.getProgrammes());
+      this.programmes.map((p) => {
+        this.programmeExport.push({
+          identifiant: p.identifiant,
+          code: p.code,
+          libelle: p.libelle,
+          poids: p.poids,
+          _exercice: p._exercice,
+          _ministere: p._ministere
+        });
+      });
   }
   execelExport() {
-    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.programmes)), 'programmes');
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.programmeExport)), 'programmes');
   }
   pdfExport() {
     this.exportAsService.save(this.exportAsConfig, 'Programmes').subscribe(() => {
@@ -70,7 +82,7 @@ export class ProgrammeListComponent implements OnInit {
     });
   }
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.programmes)), 'My Report');
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.programmeExport)), 'Programme', this.options);
 
   }
 

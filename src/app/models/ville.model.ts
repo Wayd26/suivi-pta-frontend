@@ -16,6 +16,12 @@ export interface Link {
       updated_at: string;
       links: Link[];
   }
+  export interface VilleExport {
+    identifiant: number;
+    code: string;
+    denomination: string;
+    _departement: string;
+}
 
   export interface Links {
       next: string;

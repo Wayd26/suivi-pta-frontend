@@ -16,6 +16,15 @@ export interface Programme {
   links: Link[];
 }
 
+export interface ProgrammeExport {
+  identifiant: number;
+  code: string;
+  libelle: string;
+  poids: number;
+  _exercice: string;
+  _ministere: string;
+}
+
 export interface Links {
   next: string;
 }

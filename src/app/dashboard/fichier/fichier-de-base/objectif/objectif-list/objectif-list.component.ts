@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {ListObjectifResponse, ObjectifModel} from '../../../../../models/objectif.model';
+import {ListObjectifResponse, ObjectifModel, ObjectifModelExport} from '../../../../../models/objectif.model';
 import {ObjectifService} from '../../../../../shared/services/objectif.service';
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
@@ -15,8 +15,22 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 export class ObjectifListComponent implements OnInit {
   Objectifs: ObjectifModel[];
   dtOptions: DataTables.Settings = {};
+  objectifExport: ObjectifModelExport[];
+  options = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'Your title',
+    useBom: true,
+    noDownload: true,
+    headers: ['identifiant', 'code', 'libelle', '_programme'],
+    nullToEmptyString: true,
+  };
 
-  constructor(private objectifService: ObjectifService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
+  constructor(private objectifService: ObjectifService, private router: Router,
+     private dataService: DataService, private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -33,12 +47,20 @@ export class ObjectifListComponent implements OnInit {
       this.Objectifs = [];
     }, () => {
     });
+    this.Objectifs.map((o) => {
+      this.objectifExport.push({
+        identifiant: o.identifiant,
+        code: o.code,
+        libelle: o.libelle,
+        _programme: o._programme
+      });
+    });
   }
   execelExport() {
-    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.Objectifs)), 'objectif');
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.objectifExport)), 'objectif');
   }
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.Objectifs)), 'Objectif');
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.objectifExport)), 'Objectif', this.options);
 
   }
 

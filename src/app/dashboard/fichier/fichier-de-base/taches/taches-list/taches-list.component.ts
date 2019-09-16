@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tache, ListTacheResponse } from 'src/app/models/tache.model';
+import { Tache, ListTacheResponse, TacheExport } from 'src/app/models/tache.model';
 import { TacheService } from 'src/app/shared/services/tache.service';
 import { Router } from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
@@ -15,8 +15,22 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 export class TachesListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   taches: Tache[];
+  tacheExport: TacheExport[];
+  options = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'Your title',
+    useBom: true,
+    noDownload: true,
+    headers: ['identifiant', 'libelle', 'code'],
+    nullToEmptyString: true,
+  };
 
-  constructor(private tacheService: TacheService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
+  constructor(private tacheService: TacheService, private router: Router,
+     private dataService: DataService, private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -38,12 +52,20 @@ export class TachesListComponent implements OnInit {
       }, () => {
 
       });
+
+      this.taches.map((p) => {
+        this.tacheExport.push({
+          identifiant: p.identifiant,
+          libelle: p.libelle,
+          code: p.code
+        });
+      });
   }
   execelExport() {
-    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.taches)), 'tache');
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.tacheExport)), 'tache');
   }
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.taches)), 'Tache');
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.tacheExport)), 'Tache', this.options);
 
   }
 

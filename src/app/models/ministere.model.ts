@@ -22,6 +22,19 @@
     links: Link[];
   }
 
+  export interface MinistereExport {
+    identifiant: number;
+    code: string;
+    denomination: string;
+    sigle: string;
+    bp: string;
+    email: string;
+    telephone: string;
+    site_web: string;
+    _departement: string;
+    _ville: string;
+  }
+
   export interface Links {
     next: string;
   }

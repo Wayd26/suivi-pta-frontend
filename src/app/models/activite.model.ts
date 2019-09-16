@@ -45,4 +45,27 @@
       meta: Meta;
   }
 
+  export interface SourceFinancementActivite {
+    id: number;
+    montant: number;
+}
+
+export interface CreateActivite {
+    started_at: string;
+    libelle: string;
+    poids: number;
+    montant: number;
+    action_id: number;
+    structure_id: number;
+    est_pip: boolean;
+    source_financement: SourceFinancementActivite[];
+    structures_impliquees: number[];
+    structures_supervisions: number[];
+    code: string;
+}
+
+export interface ActiviteResponse {
+  data: Activite;
+}
+
 

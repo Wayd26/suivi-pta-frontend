@@ -17,6 +17,14 @@ export interface Indicateur {
   links: Link[];
 }
 
+export interface IndicateurExport {
+  identifiant: number;
+  libelle: string;
+  valeur_cible: number;
+  valeur_realisee: number;
+  activite_id: string;
+}
+
 export interface Pagination {
   total: number;
   count: number;

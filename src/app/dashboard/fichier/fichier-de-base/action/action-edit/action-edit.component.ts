@@ -22,7 +22,8 @@ export class ActionEditComponent implements OnInit {
 
   singleSelectValue: string[] = [];
 
-  constructor(private actionService: ActionService, private router: Router, private utils: UtilsService, private resultatService: ResultatService, private route: ActivatedRoute) {
+  constructor(private actionService: ActionService, private router: Router, private utils: UtilsService,
+     private resultatService: ResultatService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -47,7 +48,8 @@ export class ActionEditComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     console.log(this.singleSelectValue);
-    this.actionService.updateAction(form.value['code_action'], form.value['libelle_action'], form.value['poids_action'], +this.singleSelectValue, this.id)
+    this.actionService.updateAction(form.value['code_action'],
+    form.value['libelle_action'], form.value['poids_action'], +this.singleSelectValue, this.id)
       .subscribe((resp) => {
         this.message = 'Succes de l\'operation';
         this.router.navigate(['/dashboard/fichier/base/action']);

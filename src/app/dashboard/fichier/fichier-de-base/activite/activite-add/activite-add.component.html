@@ -25,7 +25,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Code Activite</label>
-                                                            <input type="email" class="form-control" name="email">
+                                                            <input type="text" class="form-control" name="code" [(ngModel)]="code">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -33,7 +33,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Libelle Activite</label>
-                                                            <textarea class="form-control" rows="3"></textarea>
+                                                            <textarea class="form-control" rows="3" name="libelle" [(ngModel)]="libelle"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -41,7 +41,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Montant Activite</label>
-                                                            <input type="text" class="form-control" name="address">
+                                                            <input type="number" class="form-control" name="montant" [(ngModel)]="montant">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -49,18 +49,18 @@
                                                     <div class="col-md-4">
                                                         <label>Date Debut</label>
                                                         <div class="input-group">
-                                                            <span class="input-group-text" (click)="d2.toggle()">
-										            <i class="ti-calendar"></i>
-                              </span>
-                                                            <input type="text" class="form-control" placeholder="Pick your date" name="dp2" [(ngModel)]="dateDebut" ngbDatepicker #d2="ngbDatepicker" readonly>
+                                                            <span class="input-group-text" (click)="d1.toggle()">
+                                                            <i class="ti-calendar"></i>
+                                                          </span>
+                                                            <input type="text" class="form-control" placeholder="Pick your date" name="dp" [(ngModel)]="dateDebut" ngbDatepicker #d1="ngbDatepicker" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Date Fin</label>
                                                         <div class="input-group">
                                                             <span class="input-group-text" (click)="d2.toggle()">
-										            <i class="ti-calendar"></i>
-                              </span>
+                                                            <i class="ti-calendar"></i>
+                                                          </span>
                                                             <input type="text" class="form-control" placeholder="Pick your date" name="dp2" [(ngModel)]="dateFin" ngbDatepicker #d2="ngbDatepicker" readonly>
                                                         </div>
                                                     </div>
@@ -75,23 +75,26 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Poids de l'activite dans l'action</label>
-                                                            <input type="text" class="form-control" name="firstName">
+                                                            <input type="number" class="form-control" name="poids" [(ngModel)]="poids">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Mode d'execution</label>
-                                                            <input type="text" class="form-control" name="lastName">
+                                                            <input type="text" class="form-control" name="mode" [(ngModel)]="mode">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="form-1-6">Projet</label>
+                                                            <input type="checkbox" [(ngModel)]="projet" name="toggle1" id="form-1-6" checked>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Type Activite</label>
-                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsTypeActivite" [(ngModel)]="singleSelectValueTypeActivite" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                                                        </div>
-                                                    </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Action</label>
@@ -129,12 +132,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let structure of structures" (click)="OnSelectOrUnselectEmploye(structure.identifiant)">
+                                                <tr *ngFor="let structure of structures" (click)="OnSelectOrUnselectStructureImpli(structure.identifiant)">
 
                                                     <td>
-                                                        <div class="mrg-top-15">
-                                                          <span class="status offline" [ngClass]="{'status online': getColor(structure.identifiant)}"> </span>
-                                                            <span>{{structure.denomination}}</span>
+                                                        <div class=" relative mrg-top-15">
+                                                            <span class="status offline" [ngClass]="{'status online': getColorStructureImpli(structure.identifiant)}"> </span>
+                                                            <span class="pdd-left-20">{{structure.denomination}}</span>
                                                         </div>
                                                     </td>
 
@@ -159,9 +162,9 @@
                                                 <tr *ngFor="let structure of structures" (click)="OnSelectOrUnselectEmploye(structure.identifiant)">
 
                                                     <td>
-                                                        <div class="mrg-top-15">
-                                                          <span class="status offline" [ngClass]="{'status online': getColor(structure.identifiant)}"> </span>
-                                                            <span>{{structure.denomination}}</span>
+                                                        <div class="relative mrg-top-15">
+                                                            <span class="status offline" [ngClass]="{'status online': getColor(structure.identifiant)}"> </span>
+                                                            <span class="pdd-left-20">{{structure.denomination}}</span>
                                                         </div>
                                                     </td>
 
@@ -184,17 +187,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let structure of structures" (click)="OnSelectOrUnselectEmploye(structure.identifiant)">
+                                                <tr *ngFor="let source of sources" (click)="OnSelectOrUnselectSource(source.identifiant)">
 
                                                     <td>
-                                                        <div class="mrg-top-15">
-                                                          <span class="status offline" [ngClass]="{'status online': getColor(structure.identifiant)}"> </span>
-                                                            <span>{{structure.denomination}}</span>
+                                                        <div class="relative mrg-top-15">
+                                                            <span class="status offline" [ngClass]="{'status online': getColorSource(source.identifiant)}"> </span>
+                                                            <span class="pdd-left-20">{{source.libelle}}</span>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="mrg-top-15">
-                                                            <span>{{structure.denomination}}</span>
+                                                            <span>{{source.poids_projet}}</span>
                                                         </div>
                                                     </td>
 
@@ -221,7 +224,7 @@
 
                                                     <td>
                                                         <div class="mrg-top-15">
-                                                          <span class="status offline" [ngClass]="{'status online': getColor(structure.identifiant)}"> </span>
+                                                            <span class="status offline" [ngClass]="{'status online': getColor(structure.identifiant)}"> </span>
                                                             <span>{{structure.denomination}}</span>
                                                         </div>
                                                     </td>
@@ -237,7 +240,7 @@
                                     </div>
                                     <div class="mrg-top-20">
                                         <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
-                                        <button type="button" class="btn btn-default  btn-rounded">Valider</button>
+                                        <button type="button" class="btn btn-default  btn-rounded" (click)="onSubmit()">Valider</button>
                                     </div>
                                 </aw-wizard-step>
                             </aw-wizard>
