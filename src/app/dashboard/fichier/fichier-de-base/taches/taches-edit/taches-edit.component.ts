@@ -36,7 +36,7 @@ export class TachesEditComponent implements OnInit {
     this.tacheService.getTache(+this.route.snapshot.params['id']).subscribe((res: TacheResponse) => {
       console.log(res.data);
       this.tache = res.data;
-
+      this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'exercice')];
     });
     this.exerciceService.getExerciceList()
       .subscribe((res: ListExerciceResponse) => {

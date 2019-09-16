@@ -14,7 +14,7 @@ export class TacheService {
   return this.httpClient.get(BASE_URL + 'taches', this.options );
   }
   getTache(id){
-    return this.httpClient.get(BASE_URL + 'taches' + id, this.options);
+    return this.httpClient.get(BASE_URL + 'taches/' + id, this.options);
   }
   deleteTache(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/taches/' + id, this.options);
