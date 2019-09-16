@@ -22,6 +22,21 @@
       updated_at: string;
       links: Link[];
   }
+  export interface ActiviteExport {
+      identifiant: number;
+      code: string;
+      date_debut: string;
+      date_fin: string;
+      libelle: string;
+      activite_pip: boolean;
+      mode: string;
+      montant: number;
+      poids: number;
+      _exercice: string;
+      _action: string;
+      _structure_executant: string;
+
+  }
 
   export interface Links {
       next: string;

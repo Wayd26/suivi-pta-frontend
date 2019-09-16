@@ -21,6 +21,11 @@ export class ActionEditComponent implements OnInit {
   id: number;
 
   singleSelectValue: string[] = [];
+  singleSelectConfig: any = {
+    labelField: 'label',
+    valueField: 'value',
+    searchField: ['label']
+  };
 
   constructor(private actionService: ActionService, private router: Router, private utils: UtilsService,
      private resultatService: ResultatService, private route: ActivatedRoute) {

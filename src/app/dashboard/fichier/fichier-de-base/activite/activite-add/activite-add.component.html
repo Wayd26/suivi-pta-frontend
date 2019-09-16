@@ -206,43 +206,11 @@
                                         </table>
                                     </div>
                                     <div class="mrg-top-20">
-                                        <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
-                                        <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
+                                      <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
+                                      <button type="button" class="btn btn-default  btn-rounded" (click)="onSubmit()">Valider</button>
                                     </div>
                                 </aw-wizard-step>
-                                <aw-wizard-step stepTitle="Indicateur d'activite" [navigationSymbol]="{ symbol: '5' }">
-                                    <div class="table-overflow">
-                                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
-                                            <thead>
-                                                <tr>
-                                                    <th>Libelle indicateur</th>
-                                                    <th>Valeur Cible</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let structure of structures" (click)="OnSelectOrUnselectEmploye(structure.identifiant)">
 
-                                                    <td>
-                                                        <div class="mrg-top-15">
-                                                            <span class="status offline" [ngClass]="{'status online': getColor(structure.identifiant)}"> </span>
-                                                            <span>{{structure.denomination}}</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="mrg-top-15">
-                                                            <span>{{structure.denomination}}</span>
-                                                        </div>
-                                                    </td>
-
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="mrg-top-20">
-                                        <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
-                                        <button type="button" class="btn btn-default  btn-rounded" (click)="onSubmit()">Valider</button>
-                                    </div>
-                                </aw-wizard-step>
                             </aw-wizard>
                         </div>
                     </div>
