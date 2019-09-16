@@ -18,7 +18,8 @@ export class VilleImportComponent implements OnInit {
   message: String = '';
   dataNumber = 0;
   departement: Departement[];
-  constructor(private router: Router, private villeService: VilleService, private utilservice: UtilsService, private departementService: DepartementService) { }
+  constructor(private router: Router, private villeService: VilleService,
+    private utilservice: UtilsService, private departementService: DepartementService) { }
 
   ngOnInit() {
     this.departementService.getDepartementList()
@@ -69,7 +70,6 @@ export class VilleImportComponent implements OnInit {
             } , (error) => {
               console.log(error);
               this.message = 'Echec de l\'operation';
-              //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
             });
           console.log(this.dataNumber + '===' + info.length);
           if (this.dataNumber === info.length) {
@@ -86,7 +86,6 @@ export class VilleImportComponent implements OnInit {
 
     const reader = new FileReader();
     reader.readAsText(this.file);
-
     reader.onload = () => {
       const csvData = reader.result;
       const csvRecordsArray = (<string>csvData).split(/\r\n|\n/);
