@@ -20,7 +20,8 @@ export class ProgrammeImportComponent implements OnInit {
   message: String = '';
   exercices: Exercice[];
   dataNumber = 0;
-  constructor(private  programmeService: ProgrammeService, private utilService: UtilsService, private router: Router, private exerciceService: ExercieService) { }
+  constructor(private  programmeService: ProgrammeService,
+     private utilService: UtilsService, private router: Router, private exerciceService: ExercieService) { }
 
   ngOnInit() {
     this.exerciceService.getExerciceList()
@@ -124,6 +125,22 @@ export class ProgrammeImportComponent implements OnInit {
         csvRecord.position = curruntRecord[4].trim();
         csvRecord.mobile = curruntRecord[5].trim();
         csvArr.push(csvRecord);*/
+        this.dataNumber += 1;
+        this.programmeService.createProgramme(curruntRecord[0].trim(),
+        curruntRecord[1].trim(), +curruntRecord[2].trim(),
+        +this.getExoId(curruntRecord[3].trim()))
+          .subscribe((resp) => {
+            console.log(resp);
+
+          } , (error) => {
+            console.log(error);
+            this.message = 'Echec de l\'operation';
+            // this.router.navigate(['/dashboard/fichier/base/programmes/import']);
+          });
+        if (this.dataNumber === csvRecordsArray.length) {
+          this.router.navigate(['/dashboard/fichier/base/programme/load']);
+          this.dataNumber = 0;
+        }
         console.log(curruntRecord);
       }
     }

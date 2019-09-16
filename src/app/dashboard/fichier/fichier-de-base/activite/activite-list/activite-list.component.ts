@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiviteService } from 'src/app/shared/services/activite.service';
 import { Router } from '@angular/router';
-import { Activite, ListActiviteResponse } from 'src/app/models/activite.model';
+import {Activite, ActiviteExport, ListActiviteResponse} from 'src/app/models/activite.model';
 import { ListActionResponse } from 'src/app/models/action.model';
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
@@ -15,7 +15,20 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 })
 export class ActiviteListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  activites: Activite[];
+  activites: Activite[] = [];
+  activiteExport: ActiviteExport[] = [];
+  options = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'Your title',
+    useBom: true,
+    noDownload: true,
+    headers: ['identifiant', 'code', 'libelle', 'poids', 'montant', '_resultat'],
+    nullToEmptyString: true,
+  };
 
   constructor(private activiteService: ActiviteService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
 
@@ -36,12 +49,29 @@ export class ActiviteListComponent implements OnInit {
       }, () => {
 
       });
+      this.activites.map((a) => {
+        this.activiteExport.push({
+          identifiant: a.identifiant,
+        code: a.code,
+        date_debut: a.date_debut,
+        date_fin: a.date_fin,
+        libelle: a.libelle,
+        activite_pip: a.activite_pip,
+        mode: a.mode,
+        montant: a.montant,
+        poids: a.poids,
+        _exercice: a._exercice,
+        _action: a._action,
+        _structure_executant: a._structure_executant
+
+      });
+      });
   }
   execelExport() {
-    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.activites)), 'action');
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.activiteExport)), 'action');
   }
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.activites)), 'Activite');
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.activiteExport)), 'Activite');
 
   }
 

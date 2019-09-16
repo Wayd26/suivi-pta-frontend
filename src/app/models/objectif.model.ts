@@ -14,6 +14,12 @@ export interface ObjectifModel {
   updated_at: string;
   links: Link[];
 }
+export interface ObjectifModelExport {
+  identifiant: number;
+  code: string;
+  libelle: string;
+  _programme: string;
+}
 
 export interface Links {
   next: string;

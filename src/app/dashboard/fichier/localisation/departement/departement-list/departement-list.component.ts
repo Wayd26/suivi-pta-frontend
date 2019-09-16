@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Departement, ListDepartementResponse } from 'src/app/models/departement.model';
+import { Departement, ListDepartementResponse, DepartementExport } from 'src/app/models/departement.model';
 import { DepartementService } from 'src/app/shared/services/departement.service';
 import { Router } from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
@@ -14,9 +14,23 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 })
 export class DepartementListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  departements: Departement[];
+  departements: Departement[] = [];
+  departementExport: DepartementExport[] = [];
+  options = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'Your title',
+    useBom: true,
+    noDownload: true,
+    headers: ['identifiant', 'code', 'denomination'],
+    nullToEmptyString: true,
+  };
 
-  constructor(private departementService: DepartementService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService ) { }
+  constructor(private departementService: DepartementService, private router: Router,
+     private dataService: DataService, private exportService: ExportAsExelService ) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -37,12 +51,19 @@ export class DepartementListComponent implements OnInit {
         this.departements = [];
       }, () => {
       });
+      this.departements.map((d) => {
+        this.departementExport.push({
+          identifiant: d.identifiant,
+          code: d.code,
+          denomination: d.denomination
+      });
+      });
   }
   execelExport() {
-    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.departements)), 'departements');
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.departementExport)), 'departements');
   }
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.departements)), 'Departements');
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.departementExport)), 'Departements');
 
   }
 

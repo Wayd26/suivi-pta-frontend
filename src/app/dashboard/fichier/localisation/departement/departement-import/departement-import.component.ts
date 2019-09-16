@@ -97,6 +97,20 @@ export class DepartementImportComponent implements OnInit {
         csvRecord.position = curruntRecord[4].trim();
         csvRecord.mobile = curruntRecord[5].trim();
         csvArr.push(csvRecord);*/
+        this.dataNumber += 1;
+        this.departeemntService.createDepartement(curruntRecord[0].trim(),
+        curruntRecord[1].trim())
+          .subscribe((resp) => {
+            console.log(resp);
+
+          } , (error) => {
+            console.log(error);
+            this.message = 'Echec de l\'operation';
+          });
+        console.log(this.dataNumber + '===' + csvRecordsArray.length);
+        if (this.dataNumber === csvRecordsArray.length) {
+          this.router.navigate(['/dashboard/fichier/base/departement/load']);
+        }
         console.log(curruntRecord);
       }
     }

@@ -14,6 +14,13 @@ export interface Tache {
   links: Link[];
 }
 
+
+export interface TacheExport {
+  identifiant: number;
+  libelle: string;
+  code: string;
+}
+
 export interface Pagination {
   total: number;
   count: number;

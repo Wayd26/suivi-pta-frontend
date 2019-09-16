@@ -17,7 +17,8 @@ export class ActionImportComponent implements OnInit {
   message: String = '';
   dataNumber = 0;
   resultats: Resultat[];
-  constructor(private resultatService: ResultatService,  private utilService: UtilsService, private actionService: ActionService, private router: Router) { }
+  constructor(private resultatService: ResultatService,
+    private utilService: UtilsService, private actionService: ActionService, private router: Router) { }
 
   ngOnInit() {
     this.resultatService.getResultatList()
@@ -62,7 +63,7 @@ export class ActionImportComponent implements OnInit {
       info.map((i) => {
           this.dataNumber += 1;
           // this.actionService.createAction(i['code'], i['libelle'], +i['poids'], +this.getResultatId(i['_resultat']))
-        this.actionService.createAction(i['code'], i['libelle'], +i['poids'], i['_resultat'])
+        this.actionService.createAction(i['code'], i['libelle'], +i['poids'], +this.getResultatId(i['_resultat']))
             .subscribe((resp) => {
               console.log(resp);
 
@@ -73,6 +74,7 @@ export class ActionImportComponent implements OnInit {
             });
           console.log(this.dataNumber + '===' + info.length);
           if (this.dataNumber === info.length) {
+            this.dataNumber = 0;
             this.router.navigate(['/dashboard/fichier/base/action/load']);
           }
         }
@@ -115,6 +117,23 @@ export class ActionImportComponent implements OnInit {
         csvRecord.position = curruntRecord[4].trim();
         csvRecord.mobile = curruntRecord[5].trim();
         csvArr.push(csvRecord);*/
+        this.dataNumber += 1;
+          // this.actionService.createAction(i['code'], i['libelle'], +i['poids'], +this.getResultatId(i['_resultat']))
+        this.actionService.createAction(curruntRecord[0].trim(), curruntRecord[1].trim(), +curruntRecord[2].trim(),
+        +this.getResultatId(curruntRecord[3].trim()))
+            .subscribe((resp) => {
+              console.log(resp);
+
+            } , (error) => {
+              console.log(error);
+              this.message = 'Echec de l\'operation';
+              //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
+            });
+          console.log(this.dataNumber + '===' + csvRecordsArray.length);
+          if (this.dataNumber === csvRecordsArray.length) {
+            this.dataNumber = 0;
+            this.router.navigate(['/dashboard/fichier/base/action/load']);
+          }
         console.log(curruntRecord);
       }
     }

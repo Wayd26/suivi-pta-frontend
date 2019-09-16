@@ -13,6 +13,11 @@
       updated_at: string;
       links: Link[];
   }
+  export interface DepartementExport {
+    identifiant: number;
+    code: string;
+    denomination: string;
+}
 
   export interface Pagination {
       total: number;

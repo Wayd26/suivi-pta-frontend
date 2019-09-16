@@ -19,6 +19,16 @@ export interface Link {
     links: Link[];
   }
 
+  export interface SourceFinancementExport {
+    identifiant: number;
+    code: string;
+    est_projet: boolean;
+    libelle: string;
+    poids_projet: number;
+    chapitre_imputation: string;
+    _type: string;
+  }
+
   export interface Pagination {
     total: number;
     count: number;

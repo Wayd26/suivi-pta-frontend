@@ -25,7 +25,7 @@ export class MinistereEditComponent implements OnInit {
   };
   id: number;
 
-  singleSelectValue: string[];
+  singleSelectValue: string[] = [];
   constructor(private ministereService: MinistereService , private router: Router, private villeService: VilleService, private utilservice: UtilsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class MinistereEditComponent implements OnInit {
     this.ministereService.getMinistere(this.id).subscribe((res: MinistereResponse) => {
       this.ministere = res.data;
       console.log(res.data);
-      this.singleSelectValue = [this.utilservice.getIdData(res.data._ville, 'ville')];
+      this.singleSelectValue = [this.utilservice.getIdData(res.data.links, 'ville')];
     });
     this.villeService.getVilleList()
       .subscribe((res: ListVilleResponse) => {

@@ -8,6 +8,7 @@ import {ListExerciceResponse} from '../../../../../models/exercice.model';
 import {NgForm} from '@angular/forms';
 import {Tache, TacheResponse} from '../../../../../models/tache.model';
 import {TacheService} from '../../../../../shared/services/tache.service';
+import {ListeResultatResponse} from '../../../../../models/resultat.model';
 
 @Component({
   selector: 'app-taches-edit',
@@ -18,6 +19,13 @@ export class TachesEditComponent implements OnInit {
   tache: Tache;
   id: number;
   message: string;
+  singleSelectConfig: any = {
+    labelField: 'label',
+    valueField: 'value',
+    searchField: ['label']
+  };
+  singleSelectOptions: any = [];
+  singleSelectValue: string[] = [];
 
 
   constructor(private  tacheService: TacheService, private utilService: UtilsService, private exerciceService: ExercieService, private router: Router, private route: ActivatedRoute) { }
@@ -26,8 +34,20 @@ export class TachesEditComponent implements OnInit {
     this.message = '';
     this.id = +this.route.snapshot.params['id'];
     this.tacheService.getTache(+this.route.snapshot.params['id']).subscribe((res: TacheResponse) => {
+      console.log(res.data);
       this.tache = res.data;
+
     });
+    this.exerciceService.getExerciceList()
+      .subscribe((res: ListExerciceResponse) => {
+        res.data.map((exo) => {
+          this.singleSelectOptions.push({
+            label: exo.denomination,
+            value: exo.identifiant.toString(),
+            code: exo.identifiant
+          });
+        });
+      });
 
   }
   onSubmit(form: NgForm) {

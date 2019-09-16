@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MinistereService } from 'src/app/shared/services/ministere.service';
-import { Ministere, ListMinistereResponse } from 'src/app/models/ministere.model';
+import { Ministere, ListMinistereResponse, MinistereExport } from 'src/app/models/ministere.model';
 import { Router } from '@angular/router';
 import {ListSourceFinancementResponse} from '../../../../../models/sourceFi.model';
 import {DataService} from '../../../../../shared/services/data.service';
@@ -15,8 +15,22 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 })
 export class MinistereListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  Ministeres: Ministere[];
-  constructor(private ministereService: MinistereService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
+  Ministeres: Ministere[] = [];
+  ministereExport: MinistereExport[] = [];
+  options = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'Your title',
+    useBom: true,
+    noDownload: true,
+    headers: ['identifiant', 'code', 'denomination', 'sigle', 'bp', 'email', 'telephone', 'site_web', '_departement', '_ville'],
+    nullToEmptyString: true,
+  };
+  constructor(private ministereService: MinistereService, private router: Router,
+     private dataService: DataService, private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -37,13 +51,27 @@ export class MinistereListComponent implements OnInit {
       this.Ministeres = [];
     }, () => {
     });
+    this.Ministeres.map((m) => {
+      this.ministereExport.push({
+        identifiant: m.identifiant,
+        code: m.code,
+        denomination: m.denomination,
+        sigle: m.sigle,
+        bp: m.sigle,
+        email: m.email,
+        telephone: m.telephone,
+        site_web: m.site_web,
+        _departement: m._departement,
+        _ville: m._ville
+      });
+    });
   }
 
   execelExport() {
-    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.Ministeres)), 'ministere');
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.ministereExport)), 'ministere');
   }
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.Ministeres)), 'Ministere');
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.ministereExport)), 'Ministere');
 
   }
 

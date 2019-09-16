@@ -14,6 +14,11 @@ export interface Link {
       updated_at: string;
       links: Link[];
   }
+  export interface TypeSourceFinancementExport {
+    identifiant: number;
+    code: string;
+    libelle: string;
+}
 
   export interface Links {
       next: string;

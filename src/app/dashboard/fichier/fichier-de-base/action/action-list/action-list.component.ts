@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Action, ListActionResponse } from 'src/app/models/action.model';
+import { Action, ListActionResponse, ActionExport } from 'src/app/models/action.model';
 import { ActionService } from 'src/app/shared/services/action.service';
 import { Router } from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
@@ -15,9 +15,23 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 })
 export class ActionListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  actions: Action[];
+  actions: Action[] = [];
+  actionExport: ActionExport[] = [];
+  options = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'Your title',
+    useBom: true,
+    noDownload: true,
+    headers: ['identifiant', 'code', 'libelle', 'poids', 'montant', '_resultat'],
+    nullToEmptyString: true,
+  };
 
-  constructor(private actionService: ActionService, private router: Router, private dataService: DataService , private exportService: ExportAsExelService) { }
+  constructor(private actionService: ActionService, private router: Router,
+     private dataService: DataService , private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -43,12 +57,23 @@ export class ActionListComponent implements OnInit {
       });
       }
 
+      this.actions.map((a) => {
+        this.actionExport.push({
+          identifiant: a.identifiant,
+          code: a.code,
+          libelle: a.libelle,
+          poids: a.poids,
+          montant: a.montant,
+          _resultat: a._resultat
+      });
+      });
+
   }
   execelExport() {
-    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.actions)), 'action');
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.actionExport)), 'action');
   }
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.actions)), 'Action');
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.actionExport)), 'Action');
 
   }
   onDelete(id) {

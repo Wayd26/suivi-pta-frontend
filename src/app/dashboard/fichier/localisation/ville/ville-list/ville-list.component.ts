@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Ville, ListVilleResponse } from 'src/app/models/ville.model';
+import { Ville, ListVilleResponse, VilleExport } from 'src/app/models/ville.model';
 import { VilleService } from 'src/app/shared/services/ville.service';
 import { Router } from '@angular/router';
 import {DataService} from '../../../../../shared/services/data.service';
@@ -15,9 +15,23 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 export class VilleListComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
-  villes: Ville[];
+  villes: Ville[] = [];
+  villeExport: VilleExport[] = [];
+  options = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'Your title',
+    useBom: true,
+    noDownload: true,
+    headers: ['identifiant', 'code', 'denomination', '_departement'],
+    nullToEmptyString: true,
+  };
 
-  constructor(private villeService: VilleService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) {
+  constructor(private villeService: VilleService, private router: Router,
+    private dataService: DataService, private exportService: ExportAsExelService) {
   }
 
   ngOnInit(): void {
@@ -39,14 +53,22 @@ export class VilleListComponent implements OnInit {
       this.villes = [];
     }, () => {
     });
+    this.villes.map((v) => {
+      this.villeExport.push( {
+        identifiant: v.identifiant,
+        code: v.code,
+        denomination: v.denomination,
+        _departement: v._departement
+    });
+    });
   }
 
   execelExport() {
-    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.villes)), 'ville');
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.villeExport)), 'ville');
   }
 
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.villes)), 'Villes');
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.villeExport)), 'Villes');
 
   }
 

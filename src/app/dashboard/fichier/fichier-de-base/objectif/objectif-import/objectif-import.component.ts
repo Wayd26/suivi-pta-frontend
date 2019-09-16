@@ -62,7 +62,7 @@ export class ObjectifImportComponent implements OnInit {
           this.dataNumber += 1;
           // this.objService.createObjectif(i['code'], i['libelle'], +this.getProgrammeId(i['_programme']))
 
-        this.objService.createObjectif(i['code'], i['libelle'], i['_programme'])
+          this.objService.createObjectif(i['code'], i['libelle'], +this.getProgrammeId(i['_programme']))
             .subscribe((resp) => {
               console.log(resp);
 
@@ -115,6 +115,24 @@ export class ObjectifImportComponent implements OnInit {
         csvRecord.position = curruntRecord[4].trim();
         csvRecord.mobile = curruntRecord[5].trim();
         csvArr.push(csvRecord);*/
+        this.dataNumber += 1;
+          // this.objService.createObjectif(i['code'], i['libelle'], +this.getProgrammeId(i['_programme']))
+
+          this.objService.createObjectif(curruntRecord[0],
+            curruntRecord[1],
+          +this.getProgrammeId(curruntRecord[2]))
+            .subscribe((resp) => {
+              console.log(resp);
+
+            } , (error) => {
+              console.log(error);
+              this.message = 'Echec de l\'operation';
+              //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
+            });
+          console.log(this.dataNumber + '===' + csvRecordsArray.length);
+          if (this.dataNumber === csvRecordsArray.length) {
+            this.router.navigate(['/dashboard/fichier/base/objectif/load']);
+          }
         console.log(curruntRecord);
       }
     }

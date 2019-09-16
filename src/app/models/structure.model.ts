@@ -22,6 +22,19 @@
       updated_at: string;
       links: Link[];
   }
+  export interface StructureExport {
+    identifiant: number;
+    code: string;
+    bp: string;
+    sigle: string;
+    denomination: string;
+    email: string;
+    site_web: string;
+    logo: string;
+    telephone: string;
+    _ville: string;
+    _departement: string;
+}
 
   export interface Links {
       next: string;

@@ -11,12 +11,22 @@ export interface Link {
       code: string;
       libelle: string;
       poids: number;
+      montant: number;
       _user: string;
       _resultat: string;
       created_at: string;
       updated_at: string;
       links: Link[];
   }
+
+  export interface ActionExport {
+    identifiant: number;
+    code: string;
+    libelle: string;
+    poids: number;
+    montant: number;
+    _resultat: string;
+}
 
   export interface Links {
       next: string;

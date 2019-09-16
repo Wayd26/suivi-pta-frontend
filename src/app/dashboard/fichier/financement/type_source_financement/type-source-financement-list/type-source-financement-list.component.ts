@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeSourceFinancementService } from 'src/app/shared/services/type-source-financement.service';
 import { Router } from '@angular/router';
-import { TypeSourceFinancement, ListTypeSourceFinancementResponse } from 'src/app/models/typeSourceFi.model';
+import { TypeSourceFinancement, ListTypeSourceFinancementResponse, TypeSourceFinancementExport } from 'src/app/models/typeSourceFi.model';
 import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
@@ -13,11 +13,25 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
   styleUrls: ['./type-source-financement-list.component.css']
 })
 export class TypeSourceFinancementListComponent implements OnInit {
-  typeSources: TypeSourceFinancement[];
+  typeSources: TypeSourceFinancement[] = [];
   dtOptions: DataTables.Settings = {};
+  typeExport: TypeSourceFinancementExport[] = [];
+  options = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'Your title',
+    useBom: true,
+    noDownload: true,
+    headers: ['identifiant', 'code', 'libelle'],
+    nullToEmptyString: true,
+  };
 
 
-  constructor(private typeSourceFiService: TypeSourceFinancementService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
+  constructor(private typeSourceFiService: TypeSourceFinancementService,
+    private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -35,12 +49,19 @@ export class TypeSourceFinancementListComponent implements OnInit {
         this.typeSources = [];
       }, () => {
       });
+      this.typeSources.map((d) => {
+        this.typeExport.push({
+          identifiant: d.identifiant,
+          code: d.code,
+          libelle: d.libelle
+      });
+      });
   }
   execelExport() {
-    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.typeSources)), 'typeSources');
+    this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.typeExport)), 'typeSources');
   }
   csvExport() {
-    return new Angular5Csv(JSON.parse(JSON.stringify(this.typeSources)), 'Type Source Financement');
+    return new Angular5Csv(JSON.parse(JSON.stringify(this.typeExport)), 'Type Source Financement');
 
   }
 

@@ -31,11 +31,18 @@ export class UtilsService {
     });
     return id;
   }
+  getDate(year, month, day) {
+    return new Date(year, month, day);
+  }
+  changeDateFornat(date: Date) {
+    const current_datetime = date;
+    return  current_datetime.getFullYear() + '-' + (current_datetime.getMonth() + 1) + '-' + current_datetime.getDate();
+  }
 
   getIdData(data, keys ) {
     console.log(data);
    const tab = data.find(function (e) { return e['rel'] === keys ; })['href'].split('/');
    console.log(tab);
-    return tab[tab.length - 1];
+    return tab[tab.length - 1].toString();
   }
 }
