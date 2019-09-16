@@ -42,7 +42,7 @@ export class SuiviTacheService {
       montant: montant,
       poids: poids
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/1/taches/2/suivre', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrateurs/1/taches/' + tache + '/suivre', data, this.options);
   }
   updateSuiviTache(activite: string, tache: string, dateDebut: Date, dateFin: Date, montant: number, poids: number, id: number) {
     const data = {
