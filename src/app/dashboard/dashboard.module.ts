@@ -57,19 +57,9 @@ import { VilleLoaderComponent } from './fichier/localisation/ville/ville-loader/
 import { TachesEditComponent } from './fichier/fichier-de-base/taches/taches-edit/taches-edit.component';
 import {ArchwizardModule} from 'angular-archwizard';
 import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
-import { ProgrammationDesTachesLoaderComponent } from './fichier/traitement/programmation_des_taches/programmation-des-taches-loader/programmation-des-taches-loader.component';
-import { ProgrammationDesTachesListComponent } from './fichier/traitement/programmation_des_taches/programmation-des-taches-list/programmation-des-taches-list.component';
-import { ProgrammationDesTachesAddComponent } from './fichier/traitement/programmation_des_taches/programmation-des-taches-add/programmation-des-taches-add.component';
-import { SuiviPtaLoaderComponent } from './fichier/traitement/suivi_pta/suivi-pta-loader/suivi-pta-loader.component';
-import { SuiviPtaListComponent } from './fichier/traitement/suivi_pta/suivi-pta-list/suivi-pta-list.component';
-import { SuiviPtaEditComponent } from './fichier/traitement/suivi_pta/suivi-pta-edit/suivi-pta-edit.component';
-import { IndicateursRealisesLoaderComponent } from './fichier/traitement/indicateurs_realises/indicateurs-realises-loader/indicateurs-realises-loader.component';
-import { IndicateursRealisesListComponent } from './fichier/traitement/indicateurs_realises/indicateurs-realises-list/indicateurs-realises-list.component';
-import { IndicateursRealisesEditComponent } from './fichier/traitement/indicateurs_realises/indicateurs-realises-edit/indicateurs-realises-edit.component';
 import { ProgrammeImportComponent } from './fichier/fichier-de-base/programme/programme-import/programme-import.component';
 import { ObjectifImportComponent } from './fichier/fichier-de-base/objectif/objectif-import/objectif-import.component';
 import { StructureImportComponent } from './fichier/fichier-de-base/structure/structure-import/structure-import.component';
-import { ProgrammationDesTachesEditComponent } from './fichier/traitement/programmation_des_taches/programmation-des-taches-edit/programmation-des-taches-edit.component';
 import { ExerciceLoaderComponent } from './Paramètres/exercice/exercice-loader/exercice-loader.component';
 import { ExerciceAddComponent} from './Paramètres/exercice/exercice-add/exercice-add.component';
 import { ExerciceEditComponent} from './Paramètres/exercice/exercice-edit/exercice-edit.component';
@@ -95,6 +85,16 @@ import { ResultatLoaderComponent } from './fichier/fichier-de-base/resultat/resu
 import { ResultatListComponent } from './fichier/fichier-de-base/resultat/resultat-list/resultat-list.component';
 import { ResultatAddComponent } from './fichier/fichier-de-base/resultat/resultat-add/resultat-add.component';
 import { ResultatEditComponent } from './fichier/fichier-de-base/resultat/resultat-edit/resultat-edit.component';
+import {ProgrammationDesTachesListComponent} from './traitement/programmation_des_taches/programmation-des-taches-list/programmation-des-taches-list.component';
+import {IndicateursRealisesListComponent} from './traitement/indicateurs_realises/indicateurs-realises-list/indicateurs-realises-list.component';
+import {ProgrammationDesTachesLoaderComponent} from './traitement/programmation_des_taches/programmation-des-taches-loader/programmation-des-taches-loader.component';
+import {IndicateursRealisesEditComponent} from './traitement/indicateurs_realises/indicateurs-realises-edit/indicateurs-realises-edit.component';
+import {ProgrammationDesTachesEditComponent} from './traitement/programmation_des_taches/programmation-des-taches-edit/programmation-des-taches-edit.component';
+import {IndicateursRealisesLoaderComponent} from './traitement/indicateurs_realises/indicateurs-realises-loader/indicateurs-realises-loader.component';
+import {SuiviPtaEditComponent} from './traitement/suivi_pta/suivi-pta-edit/suivi-pta-edit.component';
+import {SuiviPtaListComponent} from './traitement/suivi_pta/suivi-pta-list/suivi-pta-list.component';
+import {SuiviPtaLoaderComponent} from './traitement/suivi_pta/suivi-pta-loader/suivi-pta-loader.component';
+import {ProgrammationDesTachesAddComponent} from './traitement/programmation_des_taches/programmation-des-taches-add/programmation-des-taches-add.component';
 
 @NgModule({
   imports: [

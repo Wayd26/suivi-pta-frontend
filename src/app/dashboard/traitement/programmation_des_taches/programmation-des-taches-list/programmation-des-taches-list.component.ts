@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ListProgrammeResponse, Programme} from '../../../../../models/programme.model';
-import {ProgrammeService} from '../../../../../shared/services/programme.service';
+import {ListeSuiviTachePesponse, SuiviTache} from '../../../../models/suivi_tache.model';
+import {SuiviTacheService} from '../../../../shared/services/suivi-tache.service';
 import {Router} from '@angular/router';
-import {DataService} from '../../../../../shared/services/data.service';
-import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
-import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
-import {ListeSuiviTachePesponse, SuiviTache} from '../../../../../models/suivi_tache.model';
-import {SuiviTacheService} from '../../../../../shared/services/suivi-tache.service';
-import {ListVilleResponse, Ville} from '../../../../../models/ville.model';
-import {VilleService} from '../../../../../shared/services/ville.service';
+import {DataService} from '../../../../shared/services/data.service';
+
 
 @Component({
   selector: 'app-programmation-des-taches-list',

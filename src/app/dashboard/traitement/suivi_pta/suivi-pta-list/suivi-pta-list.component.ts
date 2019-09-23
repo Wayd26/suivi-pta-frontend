@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ListeSuiviTachePesponse, SuiviTache} from '../../../../../models/suivi_tache.model';
-import {SuiviTacheService} from '../../../../../shared/services/suivi-tache.service';
 import {Router} from '@angular/router';
-import {DataService} from '../../../../../shared/services/data.service';
+import {ListeSuiviTachePesponse, SuiviTache} from '../../../../models/suivi_tache.model';
+import {SuiviTacheService} from '../../../../shared/services/suivi-tache.service';
+import {DataService} from '../../../../shared/services/data.service';
+
 
 @Component({
   selector: 'app-suivi-pta-list',

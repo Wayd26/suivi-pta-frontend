@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {DepartementService} from '../../../../../shared/services/departement.service';
+
 import {Router} from '@angular/router';
-import {DataService} from '../../../../../shared/services/data.service';
-import {Departement, ListDepartementResponse} from '../../../../../models/departement.model';
-import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
-import {IndicateurService} from '../../../../../shared/services/indicateur.service';
-import {Indicateur, ListIndicateurResponse} from '../../../../../models/indicateur.model';
+import {Indicateur, ListIndicateurResponse} from '../../../../models/indicateur.model';
+import {IndicateurService} from '../../../../shared/services/indicateur.service';
+import {DataService} from '../../../../shared/services/data.service';
+import {DELETE_CONFIRMATION} from '../../../../constants/urlConstants';
+
 
 @Component({
   selector: 'app-indicateurs-realises-list',

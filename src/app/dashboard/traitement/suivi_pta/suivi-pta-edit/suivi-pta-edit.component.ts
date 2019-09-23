@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {SuiviTache, SuiviTachePesponse} from '../../../../../models/suivi_tache.model';
-import {UtilsService} from '../../../../../shared/services/utils.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {SuiviTacheService} from '../../../../../shared/services/suivi-tache.service';
-import {ExercieService} from '../../../../../shared/services/exercie.service';
-import {StructureService} from '../../../../../shared/services/structure.service';
-import {ActiviteService} from '../../../../../shared/services/activite.service';
-import {TacheService} from '../../../../../shared/services/tache.service';
-import {ListActiviteResponse} from '../../../../../models/activite.model';
-import {ListTacheResponse} from '../../../../../models/tache.model';
 import {NgForm} from '@angular/forms';
+import {SuiviTache, SuiviTachePesponse} from '../../../../models/suivi_tache.model';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SuiviTacheService} from '../../../../shared/services/suivi-tache.service';
+import {UtilsService} from '../../../../shared/services/utils.service';
+import {ListTacheResponse} from '../../../../models/tache.model';
+import {ListActiviteResponse} from '../../../../models/activite.model';
+import {ExercieService} from '../../../../shared/services/exercie.service';
+import {StructureService} from '../../../../shared/services/structure.service';
+import {ActiviteService} from '../../../../shared/services/activite.service';
+import {TacheService} from '../../../../shared/services/tache.service';
 
 @Component({
   selector: 'app-suivi-pta-edit',
@@ -80,10 +80,10 @@ export class SuiviPtaEditComponent implements OnInit {
     this.suiviPTAServ.updateSuiviPTA(this.singleSelectValueActivite[0], this.singleSelectValueTache[0], form.value['toggle1'],  form.value['date_fin_real'], form.value['commentaire'], this.id)
       .subscribe((resp) => {
         this.message = 'Succes de l\'operation';
-        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches']);
+        this.router.navigate(['/dashboard/traitement/programmation_des_taches']);
       } , (error) => {
         this.message = 'Echec de l\'operation';
-        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/edit:' + this.id ]);
+        this.router.navigate(['/dashboard/traitement/programmation_des_taches/edit:' + this.id ]);
       });
   }
 

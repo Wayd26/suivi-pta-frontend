@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {VilleService} from '../../../../../shared/services/ville.service';
+import {SuiviTacheService} from '../../../../shared/services/suivi-tache.service';
 import {Router} from '@angular/router';
-import {DataService} from '../../../../../shared/services/data.service';
-import {ListVilleResponse} from '../../../../../models/ville.model';
-import {SuiviTacheService} from '../../../../../shared/services/suivi-tache.service';
-import {ListeSuiviTachePesponse} from '../../../../../models/suivi_tache.model';
+import {DataService} from '../../../../shared/services/data.service';
+import {ListeSuiviTachePesponse} from '../../../../models/suivi_tache.model';
 
 @Component({
   selector: 'app-suivi-pta-loader',
@@ -19,7 +17,7 @@ export class SuiviPtaLoaderComponent implements OnInit {
       this.dataService.setSuiviTaches(res.data);
     } , (error) => {
     }, () => {
-      this.router.navigate(['/dashboard/fichier/traitement/suivi_pta']);
+      this.router.navigate(['/dashboard/traitement/suivi_pta']);
     });
   }
 

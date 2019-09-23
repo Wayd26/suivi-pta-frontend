@@ -1,20 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {ListProgrammeResponse, Programme, ProgrammeResponse} from '../../../../../models/programme.model';
-import {ProgrammeService} from '../../../../../shared/services/programme.service';
-import {UtilsService} from '../../../../../shared/services/utils.service';
-import {ExercieService} from '../../../../../shared/services/exercie.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ListExerciceResponse} from '../../../../../models/exercice.model';
 import {NgForm} from '@angular/forms';
-import {SuiviTache, SuiviTachePesponse} from '../../../../../models/suivi_tache.model';
-import {SuiviTacheService} from '../../../../../shared/services/suivi-tache.service';
-import {StructureService} from '../../../../../shared/services/structure.service';
-import {ActiviteService} from '../../../../../shared/services/activite.service';
-import {TacheService} from '../../../../../shared/services/tache.service';
-import {StructureResponse} from '../../../../../models/structure.model';
-import {ObjectifResponse} from '../../../../../models/objectif.model';
-import {ListActiviteResponse} from '../../../../../models/activite.model';
-import {ListTacheResponse} from '../../../../../models/tache.model';
+import {SuiviTache, SuiviTachePesponse} from '../../../../models/suivi_tache.model';
+import {UtilsService} from '../../../../shared/services/utils.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SuiviTacheService} from '../../../../shared/services/suivi-tache.service';
+import {ExercieService} from '../../../../shared/services/exercie.service';
+import {TacheService} from '../../../../shared/services/tache.service';
+import {ActiviteService} from '../../../../shared/services/activite.service';
+import {StructureService} from '../../../../shared/services/structure.service';
+import {ListActiviteResponse} from '../../../../models/activite.model';
+import {ListTacheResponse} from '../../../../models/tache.model';
+
 
 @Component({
   selector: 'app-programmation-des-taches-edit',
