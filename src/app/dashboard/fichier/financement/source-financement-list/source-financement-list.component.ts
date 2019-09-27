@@ -35,7 +35,7 @@ export class SourceFinancementListComponent implements OnInit {
 
   ngOnInit(): void {
     this.dtOptions = {
-      scrollY: '500',
+      scrollY: '380',
       pagingType: 'full_numbers'
     };
     if (!this.dataService.getSourceFis()) {

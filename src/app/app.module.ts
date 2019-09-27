@@ -32,6 +32,8 @@ import {ObjectifService} from './shared/services/objectif.service';
 import {DataService} from './shared/services/data.service';
 import {ExportAsExelService} from './shared/services/export-as-exel.service';
 import {ExportAsModule} from 'ngx-export-as';
+import {AgGridModule} from 'ag-grid-angular';
+import {Ng2SmartTableModule} from 'ng2-smart-table';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import {ExportAsModule} from 'ngx-export-as';
         HttpClientModule,
         CommonModule,
         NgSelectizeModule,
-      ExportAsModule
+      ExportAsModule,
+      Ng2SmartTableModule
     ],
     declarations: [
         AppComponent,

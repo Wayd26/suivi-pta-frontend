@@ -1,6 +1,6 @@
 <div class="side-nav" sideBar>
     <div class="side-nav-inner">
-        <div class="side-nav-logo">
+        <div class="side-nav-logo" style="background-color: #043762; height: 10%">
             <a href="" [routerLink]="['/dashboard']">
                 <div class="logo logo-dark" style="background-image: url('assets/images/logo/logo.png')"></div>
                 <div class="logo logo-white" style="background-image: url('assets/images/logo/logo-white.png')"></div>
@@ -112,7 +112,7 @@
                     <li class="nav-item dropdown">
             <a class="dropdown-toggle" href="javascript:void(0);">
                   <span class="icon-holder">
-                      <i class="ti-view-list-alt"></i>
+                      <i class="ti-stats-up"></i>
                   </span>
               <span class="title">Statistiques</span>
               <span class="arrow">
@@ -183,17 +183,13 @@
           </li>
 
 
-
-
-
-
-
           <li class="nav-item dropdown">
-            <a href="javascript:void(0);">
-              <span>Traitement</span>
-              <span class="arrow">
-                            <i class="ti-angle-right"></i>
-                        </span>
+            <a class="dropdown-toggle" href="javascript:void(0);">
+                  <span class="icon-holder">
+                      <i class="ti-write"></i>
+                  </span>
+              <span class="title">Traitement</span>
+
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -205,7 +201,6 @@
               <li>
                 <a [routerLink]="['traitement/indicateurs_realises/load']">Indicateurs Réalisés</a>
               </li>
-
             </ul>
           </li>
 
@@ -213,19 +208,20 @@
 
 
 
+
           <li class="nav-item dropdown">
-            <a href="javascript:void(0);">
-              <span>Paramètre</span>
-              <span class="arrow">
-                            <i class="ti-angle-right"></i>
-                        </span>
+            <a class="dropdown-toggle" href="javascript:void(0);">
+                  <span class="icon-holder">
+                      <i class="ti-settings"></i>
+                  </span>
+              <span class="title">Paramètre</span>
+
             </a>
             <ul class="dropdown-menu">
-              <li>
+              <li class="nav-item dropdown">
                 <a [routerLink]="['parametres/exercice/load']">Exercice</a>
+
               </li>
-
-
             </ul>
           </li>
 

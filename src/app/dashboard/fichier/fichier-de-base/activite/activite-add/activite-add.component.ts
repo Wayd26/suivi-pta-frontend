@@ -19,7 +19,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-activite-add',
   templateUrl: './activite-add.component.html',
-  styleUrls: ['./activite-add.component.css']
+  styleUrls: ['./activite-add.component.scss']
 })
 export class ActiviteAddComponent implements OnInit {
   public isCompleted: any;
@@ -62,6 +62,48 @@ export class ActiviteAddComponent implements OnInit {
   singleSelectValueDepartement: string[] = ['reactjs'];
   singleSelectValueVille: string[] = ['reactjs'];
    message: any;
+  settings = {
+    columns: {
+      id: {
+        title: 'ID'
+      },
+      name: {
+        title: 'Full Name'
+      },
+      username: {
+        title: 'User Name'
+      },
+      email: {
+        title: 'Email'
+      }
+    },
+    editor: {
+      type: 'list'
+    }
+  };
+  data = [
+    {
+      id: 1,
+      name: "Leanne Graham",
+      username: "Bret",
+      email: "Sincere@april.biz"
+    },
+    {
+      id: 2,
+      name: "Ervin Howell",
+      username: "Antonette",
+      email: "Shanna@melissa.tv"
+    },
+
+    // ... list of items
+
+    {
+      id: 11,
+      name: "Nicholas DuBuque",
+      username: "Nicholas.Stanton",
+      email: "Rey.Padberg@rosamond.biz"
+    }
+  ];
   constructor(private exerciceService: ExercieService, private structureService: StructureService, private actionService: ActionService
     , private departementService: DepartementService, private villeService: VilleService,
      private sourceServices: SourceFinancementService, private utilService: UtilsService,

@@ -95,6 +95,8 @@ import {SuiviPtaEditComponent} from './traitement/suivi_pta/suivi-pta-edit/suivi
 import {SuiviPtaListComponent} from './traitement/suivi_pta/suivi-pta-list/suivi-pta-list.component';
 import {SuiviPtaLoaderComponent} from './traitement/suivi_pta/suivi-pta-loader/suivi-pta-loader.component';
 import {ProgrammationDesTachesAddComponent} from './traitement/programmation_des_taches/programmation-des-taches-add/programmation-des-taches-add.component';
+import {AgGridModule} from 'ag-grid-angular';
+import {Ng2SmartTableModule} from 'ng2-smart-table';
 
 @NgModule({
   imports: [
@@ -104,7 +106,9 @@ import {ProgrammationDesTachesAddComponent} from './traitement/programmation_des
     NgSelectizeModule,
     FormsModule,
     ArchwizardModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
+    AgGridModule,
+    Ng2SmartTableModule
 
   ],
     declarations: [

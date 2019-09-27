@@ -178,33 +178,42 @@
                                     </div>
                                 </aw-wizard-step>
                                 <aw-wizard-step stepTitle="Source Financement" [navigationSymbol]="{ symbol: '4' }">
-                                    <div class="table-overflow">
-                                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
-                                            <thead>
-                                                <tr>
-                                                    <th>Source Financement</th>
-                                                    <th>Montant</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let source of sources" (click)="OnSelectOrUnselectSource(source.identifiant)">
+<!--                                    <div class="table-overflow">-->
+<!--                                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">-->
+<!--                                            <thead>-->
+<!--                                                <tr>-->
+<!--                                                    <th>Source Financement</th>-->
+<!--                                                    <th>Montant</th>-->
+<!--                                                </tr>-->
+<!--                                            </thead>-->
+<!--                                            <tbody>-->
+<!--                                                <tr *ngFor="let source of sources" (click)="OnSelectOrUnselectSource(source.identifiant)">-->
 
-                                                    <td>
-                                                        <div class="relative mrg-top-15">
-                                                            <span class="status offline" [ngClass]="{'status online': getColorSource(source.identifiant)}"> </span>
-                                                            <span class="pdd-left-20">{{source.libelle}}</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="mrg-top-15">
-                                                            <span>{{source.poids_projet}}</span>
-                                                        </div>
-                                                    </td>
+<!--                                                    <td>-->
+<!--                                                        <div class="relative mrg-top-15">-->
+<!--                                                            <span class="status offline" [ngClass]="{'status online': getColorSource(source.identifiant)}"> </span>-->
+<!--                                                            <span class="pdd-left-20">{{source.libelle}}</span>-->
+<!--                                                        </div>-->
+<!--                                                    </td>-->
+<!--                                                    <td>-->
+<!--                                                        <div class="mrg-top-15">-->
+<!--                                                            <span>{{source.poids_projet}}</span>-->
+<!--                                                        </div>-->
+<!--                                                    </td>-->
 
-                                                </tr>
-                                            </tbody>
-                                        </table>
+<!--                                                </tr>-->
+<!--                                            </tbody>-->
+<!--                                        </table>-->
+<!--                                    </div>-->
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                        <label>Action</label>
+                                        <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsAction" [(ngModel)]="singleSelectValueAction" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                      </div>
                                     </div>
+                                  </div>
+                                  <ng2-smart-table [settings]="settings" [source]="data" ></ng2-smart-table>
                                     <div class="mrg-top-20">
                                       <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
                                       <button type="button" class="btn btn-default  btn-rounded" (click)="onSubmit()">Valider</button>

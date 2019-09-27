@@ -35,7 +35,7 @@ export class ProgrammationDesTachesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.dtOptions = {
-      scrollY: '500',
+      scrollY: '380',
       pagingType: 'full_numbers',
       columnDefs: [
         {'width': '20%', 'targets': 0},
