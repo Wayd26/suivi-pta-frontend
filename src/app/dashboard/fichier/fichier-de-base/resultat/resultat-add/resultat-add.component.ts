@@ -42,7 +42,7 @@ export class ResultatAddComponent implements OnInit {
   }
   onSubmit(form: NgForm) {this.resultService.createResultat(form.value['code_resultat'], form.value['libelle_resultat'], +this.singleSelectValue).subscribe((resp) => {
     this.message = 'Succes de l\'operation';
-    this.router.navigate(['/dashboard/fichier/base/resultat']);
+    this.router.navigate(['/dashboard/fichier/base/resultat/load']);
   } , (error) => {
     console.log(error);
     this.message = 'Echec de l\'operation';

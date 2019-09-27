@@ -57,7 +57,7 @@ export class ActionEditComponent implements OnInit {
     form.value['libelle_action'], form.value['poids_action'], +this.singleSelectValue, this.id)
       .subscribe((resp) => {
         this.message = 'Succes de l\'operation';
-        this.router.navigate(['/dashboard/fichier/base/action']);
+        this.router.navigate(['/dashboard/fichier/base/action/load']);
       }, (error) => {
         console.log(error);
         this.message = 'Echec de l\'operation';

@@ -15,15 +15,23 @@
 
               <form  class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)"  #f = "ngForm">
 
+
                 <div class="form-group row">
-                  <label for="form-1-2" class="col-md-2 control-label">Denomination</label>
-                  <div class="col-md-10">
+                  <label for="form-1-1" class="col-md-3 control-label">Code Ville</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" id="form-1-1" placeholder="Code Ville" ngModel="{{ville.code}}" name="code_ville">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="form-1-2" class="col-md-2-3 control-label">Denomination</label>
+                  <div class="col-md-9">
                     <input type="text" class="form-control" id="form-1-2" placeholder="Nom Ville" ngModel="{{ville.denomination}}" name="nom_ville">
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="form-1-6" class="col-md-2 control-label">Département</label>
-                  <div class="col-md-10">
+                  <label for="form-1-6" class="col-md-3 control-label">Département</label>
+                  <div class="col-md-9">
                     <ng-selectize id="form-1-6"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
                   </div>
                 </div>

@@ -19,7 +19,7 @@ export class DepartementAddComponent implements OnInit {
       this.departeemntService.createDepartement(form.value['code_département'], form.value['nom_département']).subscribe((res) => {
         console.log(res);
           this.message = 'Succes de l\'operation';
-          this.router.navigate(['/dashboard/fichier/localisation/departement']);
+          this.router.navigate(['/dashboard/fichier/localisation/departement/load']);
       }, (error) => {
           this.message = 'Echec de l\'operation';
           this.router.navigate(['/dashboard/fichier/localisation/departement/add']);

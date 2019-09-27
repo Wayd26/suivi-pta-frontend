@@ -19,7 +19,7 @@ export class TypeSourceFinancementAddComponent implements OnInit {
   onSubmit(form: NgForm) {
       this.typeService.createTypeSource(form.value['code_type__source_financement'], form.value['libelle_type__source_financement'])
         .subscribe((resp) => {
-          this.router.navigate(['/dashboard/fichier/financement/type/source']);
+          this.router.navigate(['/dashboard/fichier/financement/type/source/load']);
         } , (error) => {
           this.message = 'Echec de l\'operation';
           this.router.navigate(['/dashboard/fichier/financement/type/source/add']);

@@ -45,11 +45,11 @@ export class IndicateursRealisesEditComponent implements OnInit {
     this.indicService.updateIndicateur(this.singleSelectValueIndicateur.toString(), form.value['valeur_cible'], form.value['valeur_realisee'], +this.singleSelectValueActivite, this.id)
       .subscribe((resp) => {
         this.message = 'Succes de l\'operation';
-        this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises/load']);
+        this.router.navigate(['/dashboard/traitement/indicateurs_realises/load']);
       } , (error) => {
         console.log(error);
         this.message = 'Echec de l\'operation';
-       this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises/edit/' + this.id ]);
+       this.router.navigate(['/dashboard/traitement/indicateurs_realises/edit/' + this.id ]);
       });
   }
 

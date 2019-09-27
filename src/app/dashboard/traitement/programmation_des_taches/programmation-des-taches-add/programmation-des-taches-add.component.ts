@@ -23,6 +23,8 @@ export class ProgrammationDesTachesAddComponent implements OnInit {
   singleSelectOptionsActivite: any = [];
   singleSelectOptionsTache: any = [];
   message: string;
+  dateDebut;
+  dateFin;
 
   singleSelectConfig: any = {
     labelField: 'label',
@@ -82,9 +84,11 @@ export class ProgrammationDesTachesAddComponent implements OnInit {
     //   });
   }
   onSubmit(form: NgForm) {
-    this.progTache.createSuiviTache(+this.singleSelectValueActivite, this.singleSelectValueTache[0], form.value['date_debut_tache'],  form.value['date_fin_tache'], form.value['montant_tache'], form.value['poids_tache'])
+    this.progTache.createSuiviTache(+this.singleSelectValueActivite, this.singleSelectValueTache[0], this.utilservice.changeDateFornat(this.utilservice
+      .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)),  this.utilservice.changeDateFornat(this.utilservice
+      .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), form.value['montant_tache'], form.value['poids_tache'])
       .subscribe((resp) => {
-        this.router.navigate(['/dashboard/traitement/programmation_des_taches']);
+        this.router.navigate(['/dashboard/traitement/programmation_des_taches/load']);
       } , (error) => {
         this.message = 'Echec de l\'operation';
         this.router.navigate(['/dashboard/traitement/programmation_des_taches/add']);

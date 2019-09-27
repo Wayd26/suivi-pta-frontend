@@ -35,7 +35,10 @@ export class SourceFinancementEditComponent implements OnInit {
     this.sourceFiService.getSourceFinancement(+this.route.snapshot.params['id']).subscribe((res: SourceFiResponse) => {
       this.sourceFi = res.data;
 
-      this.singleSelectValue = [this.sourceFi._type];
+      console.log(res.data);
+
+      //this.singleSelectValue = [this.sourceFi._type];
+      this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'type')];
       console.log(this.utilService.getIdData(res.data.links, 'type_Source'));
     });
 

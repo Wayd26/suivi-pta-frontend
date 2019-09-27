@@ -20,7 +20,7 @@ export class TachesAddComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.tacheService.createTache(form.value['code_tache'], form.value['libelle_tache'])
       .subscribe((resp) => {
-        this.router.navigate(['/dashboard/fichier/base/tache']);
+        this.router.navigate(['/dashboard/fichier/base/tache/load']);
       } , (error) => {
         this.message = 'Echec de l\'operation';
         this.router.navigate(['/dashboard/fichier/base/tache/add']);

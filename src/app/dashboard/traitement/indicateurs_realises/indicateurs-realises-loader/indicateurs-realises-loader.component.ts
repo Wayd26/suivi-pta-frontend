@@ -19,7 +19,7 @@ export class IndicateursRealisesLoaderComponent implements OnInit {
       this.dataService.setIndicateurs(res.data);
     } , (error) => {
     }, () => {
-      this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises']);
+      this.router.navigate(['/dashboard/traitement/indicateurs_realises']);
     });
   }
 

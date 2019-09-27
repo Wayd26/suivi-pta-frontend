@@ -19,6 +19,31 @@
             <span>EXCEL</span>
           </a>
           <div class="table-overflow">
+
+            <form  class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)"  #f = "ngForm">
+
+
+              <div class="form-group row">
+                <label for="form-1-6" class="col-md-2 control-label">Activité</label>
+                <div class="col-md-10">
+                  <ng-selectize id="form-1-6"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}" (ngModelChange)="onSelect()" ></ng-selectize>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="form-1-2" class="col-md-2 control-label">TEP</label>
+                <div class="col-md-10">
+                  <input type="number" class="form-control" id="form-1-2" placeholder="" ngModel="{{totalTEP_Real}}" name="tep_suivi_tache" readonly>
+                </div>
+              </div>
+
+
+            </form>
+
+
+
+
             <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
               <thead>
               <tr>
@@ -32,7 +57,7 @@
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let suiviTache of suiviTaches">
+              <tr *ngFor="let suiviTache of suiviTacheSelect">
                 <td>
                   <div class="mrg-top-15">
                     <span>{{suiviTache.links[2]._activite}}</span>

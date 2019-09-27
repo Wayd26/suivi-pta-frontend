@@ -63,7 +63,7 @@ export class VilleImportComponent implements OnInit {
       const info = XLSX.utils.sheet_to_json(worksheet, {raw: true});
       info.map((i) => {
           this.dataNumber += 1;
-          this.villeService.createVille(i['denomination'], +this.getDepartementId(i['_departement']))
+          this.villeService.createVille(i['code'], i['denomination'], +this.getDepartementId(i['_departement']))
             .subscribe((resp) => {
               console.log(resp);
 
@@ -115,7 +115,7 @@ export class VilleImportComponent implements OnInit {
         csvRecord.mobile = curruntRecord[5].trim();
         csvArr.push(csvRecord);*/
         this.dataNumber += 1;
-          this.villeService.createVille(curruntRecord[0].trim(),
+          this.villeService.createVille(curruntRecord[0].trim(), curruntRecord[1].trim(),
           +this.getDepartementId(curruntRecord[0].trim()))
             .subscribe((resp) => {
               console.log(resp);

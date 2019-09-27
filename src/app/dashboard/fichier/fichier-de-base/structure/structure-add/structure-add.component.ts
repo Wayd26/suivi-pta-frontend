@@ -16,6 +16,8 @@ import {error} from 'util';
   styleUrls: ['./structure-add.component.css']
 })
 export class StructureAddComponent implements OnInit {
+
+  message: string;
   singleSelectOptions: any = [];
   singleSelectOptions2: any = [];
   structure: CreateStructure;
@@ -53,8 +55,11 @@ singleSelectValue2: number;
     this.structureService.createStructure(form.value['code'], form.value['denomination'], form.value['email'],
       form.value['telResp'], +this.singleSelectValue2, form.value['sigle'],
       form.value['cpost']).subscribe((res) => {
+      this.message = 'Succes de l\'operation';
+      this.router.navigate(['/dashboard/fichier/base/structures/load']);
     }, (error) => {}, () => {
-      this.router.navigate(['/dashboard/fichier/base/structures']);
+      this.message = 'Operation echouée';
+      this.router.navigate(['/dashboard/fichier/base/structures/add']);
     });
   }
 

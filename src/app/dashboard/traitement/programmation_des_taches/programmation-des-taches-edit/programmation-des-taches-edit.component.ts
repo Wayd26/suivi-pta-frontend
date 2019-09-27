@@ -92,7 +92,7 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
    this.progTache.updateSuiviTache(this.singleSelectValueActivite[0], this.singleSelectValueTache[0], form.value['date_debut_tache'],  form.value['date_fin_tache'], form.value['montant_tache'], form.value['poids_tache'], this.id)
      .subscribe((resp) => {
        this.message = 'Succes de l\'operation';
-       this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches']);
+       this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/load']);
      } , (error) => {
        this.message = 'Echec de l\'operation';
        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/edit/' + this.id]);

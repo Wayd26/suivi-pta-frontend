@@ -39,7 +39,7 @@ export class VilleAddComponent implements OnInit {
       });
   }
   onSubmit(form: NgForm) {
-      this.villeService.createVille(form.value['nom_ville'], +this.singleSelectValue)
+      this.villeService.createVille(form.value['code_ville'], form.value['nom_ville'], +this.singleSelectValue)
         .subscribe((resp) => {
           this.message = 'Succes de l\'operation';
           this.router.navigate(['/dashboard/fichier/localisation/ville/load']);

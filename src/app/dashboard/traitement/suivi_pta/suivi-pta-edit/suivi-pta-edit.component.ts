@@ -29,6 +29,7 @@ export class SuiviPtaEditComponent implements OnInit {
   singleSelectValueTache: string[] = [];
   suiviTache: SuiviTache;
   id: number;
+  dateFinReal;
 
   singleSelectConfig: any = {
     labelField: 'label',
@@ -41,17 +42,18 @@ export class SuiviPtaEditComponent implements OnInit {
   ngOnInit() {
 
 
+
     this.message = '';
     this.id = +this.route.snapshot.params['id'];
     this.suiviPTAServ.getSuiviTache(+this.route.snapshot.params['id']).subscribe((res: SuiviTachePesponse) => {
-      // this.suiviTache = res.data[];
-      console.log(this.suiviTache);
+     this.suiviTache = res.data;
+      console.log(res);
 
-      this.singleSelectValueActivite = [this.utilService.getIdData(this.suiviTache.links[2], '_acivite')];
+      this.singleSelectValueActivite = [this.utilService.getIdData(this.suiviTache.links, '_acivite')];
       console.log(this.utilService.getIdData(this.suiviTache.links[2], 'acivite'));
 
-      this.singleSelectValueTache = [this.utilService.getIdData(this.suiviTache.links[0], 'tache')];
-      console.log(this.utilService.getIdData(this.suiviTache.links[0], 'tache'));
+      // this.singleSelectValueTache = [this.utilService.getIdData(this.suiviTache.links, '_tache')];
+      // console.log(this.utilService.getIdData(this.suiviTache.links[0], 'tache'));
     });
 
     this.activiteService.getActiviteList()
@@ -77,10 +79,11 @@ export class SuiviPtaEditComponent implements OnInit {
       });
   }
   onSubmit(form: NgForm){
-    this.suiviPTAServ.updateSuiviPTA(this.singleSelectValueActivite[0], this.singleSelectValueTache[0], form.value['toggle1'],  form.value['date_fin_real'], form.value['commentaire'], this.id)
+    this.suiviPTAServ.updateSuiviPTA(this.singleSelectValueActivite[0], this.singleSelectValueTache[0], form.value['toggle1'],  this.utilService.changeDateFornat(this.utilService
+      .getDate(this.dateFinReal.year, this.dateFinReal.month, this.dateFinReal.day)), form.value['commentaire'], this.id)
       .subscribe((resp) => {
         this.message = 'Succes de l\'operation';
-        this.router.navigate(['/dashboard/traitement/programmation_des_taches']);
+        this.router.navigate(['/dashboard/traitement/programmation_des_taches/load']);
       } , (error) => {
         this.message = 'Echec de l\'operation';
         this.router.navigate(['/dashboard/traitement/programmation_des_taches/edit:' + this.id ]);
