@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {SuiviTache, SuiviTachePesponse} from '../../../../../models/suivi_tache.model';
-import {UtilsService} from '../../../../../shared/services/utils.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {SuiviTacheService} from '../../../../../shared/services/suivi-tache.service';
-import {ExercieService} from '../../../../../shared/services/exercie.service';
-import {StructureService} from '../../../../../shared/services/structure.service';
-import {ActiviteService} from '../../../../../shared/services/activite.service';
-import {TacheService} from '../../../../../shared/services/tache.service';
-import {ListActiviteResponse} from '../../../../../models/activite.model';
-import {ListTacheResponse} from '../../../../../models/tache.model';
 import {NgForm} from '@angular/forms';
+import {SuiviTache, SuiviTachePesponse} from '../../../../models/suivi_tache.model';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SuiviTacheService} from '../../../../shared/services/suivi-tache.service';
+import {UtilsService} from '../../../../shared/services/utils.service';
+import {ListTacheResponse} from '../../../../models/tache.model';
+import {ListActiviteResponse} from '../../../../models/activite.model';
+import {ExercieService} from '../../../../shared/services/exercie.service';
+import {StructureService} from '../../../../shared/services/structure.service';
+import {ActiviteService} from '../../../../shared/services/activite.service';
+import {TacheService} from '../../../../shared/services/tache.service';
 
 @Component({
   selector: 'app-suivi-pta-edit',
@@ -29,6 +29,7 @@ export class SuiviPtaEditComponent implements OnInit {
   singleSelectValueTache: string[] = [];
   suiviTache: SuiviTache;
   id: number;
+  dateFinReal;
 
   singleSelectConfig: any = {
     labelField: 'label',
@@ -41,17 +42,18 @@ export class SuiviPtaEditComponent implements OnInit {
   ngOnInit() {
 
 
+
     this.message = '';
     this.id = +this.route.snapshot.params['id'];
     this.suiviPTAServ.getSuiviTache(+this.route.snapshot.params['id']).subscribe((res: SuiviTachePesponse) => {
-      // this.suiviTache = res.data[];
-      console.log(this.suiviTache);
+     this.suiviTache = res.data;
+      console.log(res);
 
-      this.singleSelectValueActivite = [this.utilService.getIdData(this.suiviTache.links[2], '_acivite')];
+      this.singleSelectValueActivite = [this.utilService.getIdData(this.suiviTache.links, '_acivite')];
       console.log(this.utilService.getIdData(this.suiviTache.links[2], 'acivite'));
 
-      this.singleSelectValueTache = [this.utilService.getIdData(this.suiviTache.links[0], 'tache')];
-      console.log(this.utilService.getIdData(this.suiviTache.links[0], 'tache'));
+      // this.singleSelectValueTache = [this.utilService.getIdData(this.suiviTache.links, '_tache')];
+      // console.log(this.utilService.getIdData(this.suiviTache.links[0], 'tache'));
     });
 
     this.activiteService.getActiviteList()
@@ -77,7 +79,8 @@ export class SuiviPtaEditComponent implements OnInit {
       });
   }
   onSubmit(form: NgForm){
-    this.suiviPTAServ.updateSuiviPTA(this.singleSelectValueActivite[0], this.singleSelectValueTache[0], form.value['toggle1'],  form.value['date_fin_real'], form.value['commentaire'], this.id)
+    this.suiviPTAServ.updateSuiviPTA(this.singleSelectValueActivite[0], this.singleSelectValueTache[0], form.value['toggle1'],  this.utilService.changeDateFornat(this.utilService
+      .getDate(this.dateFinReal.year, this.dateFinReal.month, this.dateFinReal.day)), form.value['commentaire'], this.id)
       .subscribe((resp) => {
         this.message = 'Succes de l\'operation';
         this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches']);

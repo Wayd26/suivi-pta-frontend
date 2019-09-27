@@ -33,7 +33,7 @@ export class SuiviTacheService {
   deleteSuiviTache(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/1/supprimer-suivi-tache/' + id, this.options);
   }
-  createSuiviTache(activite: number, tache: string, dateDebut: Date, dateFin: Date, montant: number, poids: number) {
+  createSuiviTache(activite: number, tache: string, dateDebut: string, dateFin: string, montant: number, poids: number) {
     const data = {
       activite_id: activite,
       _tache: tache,
@@ -42,9 +42,10 @@ export class SuiviTacheService {
       montant: montant,
       poids: poids
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/1/taches/2/suivre', data, this.options);
+    console.log(data);
+    return this.httpClient.post(BASE_URL + 'administrateurs/1/taches/' + tache + '/suivre', data, this.options);
   }
-  updateSuiviTache(activite: string, tache: string, dateDebut: Date, dateFin: Date, montant: number, poids: number, id: number) {
+  updateSuiviTache(activite: string, tache: string, dateDebut: string, dateFin: string, montant: number, poids: number, id: number) {
     const data = {
       _activite: activite,
       _tache: tache,
@@ -57,7 +58,7 @@ export class SuiviTacheService {
   }
 
 
-  updateSuiviPTA(activite: string, tache: string, est_realisee: boolean, dateFinRealisation: Date, observations: string, id: number) {
+  updateSuiviPTA(activite: string, tache: string, est_realisee: boolean, dateFinRealisation: string, observations: string, id: number) {
     const data = {
       _activite: activite,
       _tache: tache,

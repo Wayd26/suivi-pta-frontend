@@ -41,5 +41,5 @@ export interface ListeSuiviTachePesponse {
 
 
 export interface SuiviTachePesponse {
-  data: SuiviTache[];
+  data: SuiviTache;
 }

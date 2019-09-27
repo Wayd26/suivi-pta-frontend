@@ -28,19 +28,21 @@ export class ExercieService {
     return this.httpClient.delete(BASE_URL + 'administrateurs/1/supprimer-suivi-tache/' + id, this.options);
   }
 
-  createExercice(identifiant: number, denomination: string, dateDebut: Date, dateFin: Date) {
+  createExercice(identifiant: number, annee: number, denomination: string, dateDebut: Date, dateFin: Date) {
     const data = {
       identifiant: identifiant,
-      libelle: denomination,
+      denomination: denomination,
+      annee: annee,
       started_at: dateDebut,
       end_at: dateFin,
     };
     return this.httpClient.post(BASE_URL + 'administrateurs/1/exercices', data, this.options);
   }
-  updateExercice(identifiant: number, denomination: string, dateDebut: Date, dateFin: Date, id: number) {
+  updateExercice(identifiant: number, annee: number, denomination: string, dateDebut: Date, dateFin: Date, id: number) {
     const data = {
       identifiant: identifiant,
-      libelle: denomination,
+      denomination: denomination,
+      annee: annee,
       started_at: dateDebut,
       end_at: dateFin,
     };

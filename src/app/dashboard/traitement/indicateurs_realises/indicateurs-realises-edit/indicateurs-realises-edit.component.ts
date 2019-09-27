@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {Programme, ProgrammeResponse} from '../../../../../models/programme.model';
-import {ProgrammeService} from '../../../../../shared/services/programme.service';
-import {UtilsService} from '../../../../../shared/services/utils.service';
-import {ExercieService} from '../../../../../shared/services/exercie.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ListExerciceResponse} from '../../../../../models/exercice.model';
+
 import {NgForm} from '@angular/forms';
-import {Indicateur, IndicateurResponse} from '../../../../../models/indicateur.model';
-import {ActiviteService} from '../../../../../shared/services/activite.service';
-import {IndicateurService} from '../../../../../shared/services/indicateur.service';
+import {Indicateur, IndicateurResponse} from '../../../../models/indicateur.model';
+import {IndicateurService} from '../../../../shared/services/indicateur.service';
+import {UtilsService} from '../../../../shared/services/utils.service';
+import {ActiviteService} from '../../../../shared/services/activite.service';
+import {ActivatedRoute, Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-indicateurs-realises-edit',

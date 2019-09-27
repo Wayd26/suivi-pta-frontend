@@ -19,15 +19,17 @@ export class VilleService {
   deleteVille(id){
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/villes/' + id, this.options);
   }
-  createVille(denomination: string, departement_id: number) {
+  createVille(code: string, denomination: string, departement_id: number) {
     const data = {
+      code: code,
       denomination: denomination,
       departement_id: departement_id
     };
     return this.httpClient.post(BASE_URL + 'administrateurs/1/villes', data, this.options);
   }
-  update(denomination: string, departement_id: number, id) {
+  update(code: string, denomination: string, departement_id: number, id) {
     const data = {
+      code: code,
       denomination: denomination,
       departement_id: departement_id
     };

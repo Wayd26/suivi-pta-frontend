@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
   <div class="page-title">
-    <h4 class="card-title">Fiche de suivi PTA</h4>
+    <h4 class="card-title">Modifier Indicateur réalisé</h4>
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -24,41 +24,29 @@
                 </div>
 
                 <div class="form-group row">
-                  <label for="form-1-2" class="col-md-2 control-label">Tâche</label>
+                  <label for="form-1-2" class="col-md-2 control-label">Libellé Indicateur</label>
                   <div class="col-md-10">
-                    <ng-selectize id="form-1-2"  [config]="singleSelectConfig" [options]="singleSelectOptionsTache" [(ngModel)]="singleSelectValueTache" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                    <ng-selectize id="form-1-2"  [config]="singleSelectConfig" [options]="singleSelectOptionsIndicateur" [(ngModel)]="singleSelectValueIndicateur" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
                   </div>
                 </div>
+
 
                 <div class="form-group row">
-                  <label for="form-1-3" class="col-md-2 control-label">Réalisée</label>
+                  <label for="form-1-3" class="col-md-2 control-label">Valeur cible</label>
                   <div class="col-md-10">
-
-                    <input id="form-1-3" type="checkbox" name="toggle1" id="form-1-3" checked>
-
+                    <input type="number" class="form-control" id="form-1-3" placeholder="" ngModel="{{indicateur.valeur_cible}}" name="valeur_cible">
                   </div>
                 </div>
+
 
                 <div class="form-group row">
-                  <label for="form-1-4" class="col-md-2 control-label">Date fin de réalisation</label>
+                  <label for="form-1-4" class="col-md-2 control-label">Valeur réalisée</label>
                   <div class="col-md-10">
-                    <div class="timepicker-input input-group">
-                  <span class="input-group-text">
-													<i class="ti-calendar"></i>
-                  </span>
-                      <input id="form-1-4" type="text" class="form-control datepicker-2" placeholder="" data-provide="datepicker" name="date_fin_real">
-                    </div>
+                    <input type="number" class="form-control" id="form-1-4" placeholder="" ngModel="{{indicateur.valeur_realisee}}" name="valeur_realisee">
                   </div>
                 </div>
 
-                <div class="form-group row">
-                  <label for="form-1-5" class="col-md-2 control-label">Observations</label>
-                  <div class="col-md-10">
-                    <textarea class="form-control" rows="3" id="form-1-5" name="commentaire"></textarea>
-                  </div>
-                </div>
-
-                <a [routerLink]="['/dashboard/fichier/localisation/ville']" class="btn btn-primary">
+                <a [routerLink]="['/dashboard/traitement/indicateurs_realises']" class="btn btn-primary">
                   <i class="ti-back-left pdd-right-5"></i>
                   <span>Retour</span>
                 </a> <button type="submit" class="btn btn-info" [disabled]="f.invalid">

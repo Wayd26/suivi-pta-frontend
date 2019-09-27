@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {VilleService} from '../../../../../shared/services/ville.service';
-import {UtilsService} from '../../../../../shared/services/utils.service';
-import {DepartementService} from '../../../../../shared/services/departement.service';
-import {ListDepartementResponse} from '../../../../../models/departement.model';
 import {NgForm} from '@angular/forms';
-import {SuiviTacheService} from '../../../../../shared/services/suivi-tache.service';
-import {StructureService} from '../../../../../shared/services/structure.service';
-import {ActiviteService} from '../../../../../shared/services/activite.service';
-import {TacheService} from '../../../../../shared/services/tache.service';
-import {ListStructureResponse} from '../../../../../models/structure.model';
-import {ListActiviteResponse} from '../../../../../models/activite.model';
-import {ListTacheResponse} from '../../../../../models/tache.model';
-import {ExercieService} from '../../../../../shared/services/exercie.service';
-import {ListExerciceResponse} from '../../../../../models/exercice.model';
+import {SuiviTacheService} from '../../../../shared/services/suivi-tache.service';
+import {ExercieService} from '../../../../shared/services/exercie.service';
+import {UtilsService} from '../../../../shared/services/utils.service';
+import {ActiviteService} from '../../../../shared/services/activite.service';
+import {TacheService} from '../../../../shared/services/tache.service';
+import {StructureService} from '../../../../shared/services/structure.service';
+import {ListTacheResponse} from '../../../../models/tache.model';
+import {ListActiviteResponse} from '../../../../models/activite.model';
+
 
 @Component({
   selector: 'app-programmation-des-taches-add',
@@ -27,6 +23,8 @@ export class ProgrammationDesTachesAddComponent implements OnInit {
   singleSelectOptionsActivite: any = [];
   singleSelectOptionsTache: any = [];
   message: string;
+  dateDebut;
+  dateFin;
 
   singleSelectConfig: any = {
     labelField: 'label',
@@ -86,7 +84,9 @@ export class ProgrammationDesTachesAddComponent implements OnInit {
     //   });
   }
   onSubmit(form: NgForm) {
-    this.progTache.createSuiviTache(+this.singleSelectValueActivite, this.singleSelectValueTache[0], form.value['date_debut_tache'],  form.value['date_fin_tache'], form.value['montant_tache'], form.value['poids_tache'])
+    this.progTache.createSuiviTache(+this.singleSelectValueActivite, this.singleSelectValueTache[0], this.utilservice.changeDateFornat(this.utilservice
+      .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)),  this.utilservice.changeDateFornat(this.utilservice
+      .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), form.value['montant_tache'], form.value['poids_tache'])
       .subscribe((resp) => {
         this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches']);
       } , (error: ErrorResponse) => {

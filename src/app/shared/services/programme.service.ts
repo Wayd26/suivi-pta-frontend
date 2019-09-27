@@ -44,6 +44,9 @@ export class ProgrammeService {
       poids: poids,
       exercice_id: exercice_id
     };
+
+    console.log(data)
+
     return this.httpClient.put(BASE_URL + 'administrateurs/2/programmes/' + id, data, this.options);
   }
 }

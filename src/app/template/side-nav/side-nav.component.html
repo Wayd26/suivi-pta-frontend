@@ -100,28 +100,12 @@
                     </ul>
                 </li>
 
-                <li class="nav-item dropdown">
-                  <a href="javascript:void(0);">
-                    <span>Traitement</span>
-                    <span class="arrow">
-                            <i class="ti-angle-right"></i>
-                        </span>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a [routerLink]="['fichier/traitement/programmation_des_taches/load']">Programmation des tâches</a>
-                    </li>
-                    <li>
-                    <a [routerLink]="['fichier/traitement/suivi_pta/load']">Suivi PTA</a>
-                  </li>
-                    <li>
-                      <a [routerLink]="['fichier/traitement/indicateurs_realises/load']">Indicateurs Réalisés</a>
-                    </li>
 
-                  </ul>
-                </li>
 
               </ul>
+
+
+
           </li>
 
 
@@ -197,6 +181,58 @@
 
             </ul>
           </li>
+
+
+
+
+
+
+
+          <li class="nav-item dropdown">
+            <a href="javascript:void(0);">
+              <span>Traitement</span>
+              <span class="arrow">
+                            <i class="ti-angle-right"></i>
+                        </span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a [routerLink]="['traitement/programmation_des_taches/load']">Programmation des tâches</a>
+              </li>
+              <li>
+                <a [routerLink]="['traitement/suivi_pta/load']">Suivi PTA</a>
+              </li>
+              <li>
+                <a [routerLink]="['traitement/indicateurs_realises/load']">Indicateurs Réalisés</a>
+              </li>
+
+            </ul>
+          </li>
+
+
+
+
+
+          <li class="nav-item dropdown">
+            <a href="javascript:void(0);">
+              <span>Paramètre</span>
+              <span class="arrow">
+                            <i class="ti-angle-right"></i>
+                        </span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a [routerLink]="['parametres/exercice/load']">Exercice</a>
+              </li>
+
+
+            </ul>
+          </li>
+
+
+
+
+
 
         </ul>
     </div>

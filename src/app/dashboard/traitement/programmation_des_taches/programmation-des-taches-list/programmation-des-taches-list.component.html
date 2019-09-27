@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="page-title">
-    <h4>Suivi PTA</h4>
+    <h4>Programmer les tâches</h4>
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -8,7 +8,7 @@
         <div class="card-block">
           <a [routerLink]="['add']" class="btn btn-info">
             <i class="ti-plus pdd-right-5"></i>
-            <span>Ajouter</span>
+            <span>Ajouter</span>                                                                                                                                                                                                                                                                                                                                                                                                                          &
           </a>
           <a [routerLink]="['import']" class="btn btn-info">
             <i class="ti-import pdd-right-5"></i>
@@ -19,20 +19,46 @@
             <span>EXCEL</span>
           </a>
           <div class="table-overflow">
+
+            <form  class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)"  #f = "ngForm">
+
+
+              <div class="form-group row">
+                <label for="form-1-6" class="col-md-2 control-label">Activité</label>
+                <div class="col-md-10">
+                  <ng-selectize id="form-1-6"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}" (ngModelChange)="onSelect()"></ng-selectize>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="form-1-2" class="col-md-2 control-label">TEP</label>
+                <div class="col-md-10">
+                  <input type="text"  class="form-control" id="form-1-2" placeholder="" ngModel="{{totalTEP}}" name="tep_prog_tache" readonly>
+                </div>
+              </div>
+
+
+            </form>
+
+
+
+
+
             <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
               <thead>
               <tr>
                 <th>Activité</th>
                 <th>Tâche</th>
+                <th>Montant Tâche</th>
                 <th>Poids Tâche</th>
-                <th>Réalisée</th>
-                <th>Date fin de réalisation</th>
-                <th>Commentaire</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
                 <th>Action</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let suiviTache of suiviTaches">
+              <tr *ngFor="let suiviTache of suiviTacheSelect">
                 <td>
                   <div class="mrg-top-15">
                     <span>{{suiviTache.links[2]._activite}}</span>
@@ -46,22 +72,22 @@
 
                 <td>
                   <div class="mrg-top-15">
+                    <span>{{suiviTache.montant}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="mrg-top-15">
                     <span>{{suiviTache.poids}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.est_realisee}}</span>
+                    <span>{{suiviTache.started_at}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.real_end_at}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="mrg-top-15">
-                    <span>{{suiviTache.commentaire}}</span>
+                    <span>{{suiviTache.end_at}}</span>
                   </div>
                 </td>
                 <td>

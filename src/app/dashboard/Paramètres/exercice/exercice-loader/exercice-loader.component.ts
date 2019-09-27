@@ -20,7 +20,7 @@ export class ExerciceLoaderComponent implements OnInit {
       this.dataService.setExercices(res.data);
     } , (error) => {
     }, () => {
-      this.router.navigate(['/dashboard/parametres/exercices']);
+      this.router.navigate(['/dashboard/parametres/exercice']);
     });
   }
 

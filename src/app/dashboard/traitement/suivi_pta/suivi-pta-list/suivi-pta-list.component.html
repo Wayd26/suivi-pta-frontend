@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="page-title">
-    <h4>Programmer les tâches</h4>
+    <h4>Suivi PTA</h4>
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -19,20 +19,45 @@
             <span>EXCEL</span>
           </a>
           <div class="table-overflow">
+
+            <form  class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)"  #f = "ngForm">
+
+
+              <div class="form-group row">
+                <label for="form-1-6" class="col-md-2 control-label">Activité</label>
+                <div class="col-md-10">
+                  <ng-selectize id="form-1-6"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}" (ngModelChange)="onSelect()" ></ng-selectize>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="form-1-2" class="col-md-2 control-label">TEP</label>
+                <div class="col-md-10">
+                  <input type="number" class="form-control" id="form-1-2" placeholder="" ngModel="{{totalTEP_Real}}" name="tep_suivi_tache" readonly>
+                </div>
+              </div>
+
+
+            </form>
+
+
+
+
             <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
               <thead>
               <tr>
                 <th>Activité</th>
                 <th>Tâche</th>
-                <th>Montant Tâche</th>
                 <th>Poids Tâche</th>
-                <th>Date de début</th>
-                <th>Date de fin</th>
+                <th>Réalisée</th>
+                <th>Date fin de réalisation</th>
+                <th>Commentaire</th>
                 <th>Action</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let suiviTache of suiviTaches">
+              <tr *ngFor="let suiviTache of suiviTacheSelect">
                 <td>
                   <div class="mrg-top-15">
                     <span>{{suiviTache.links[2]._activite}}</span>
@@ -46,22 +71,22 @@
 
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.montant}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="mrg-top-15">
                     <span>{{suiviTache.poids}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.started_at}}</span>
+                    <span>{{suiviTache.est_realisee}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.end_at}}</span>
+                    <span>{{suiviTache.real_end_at}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{suiviTache.commentaire}}</span>
                   </div>
                 </td>
                 <td>
