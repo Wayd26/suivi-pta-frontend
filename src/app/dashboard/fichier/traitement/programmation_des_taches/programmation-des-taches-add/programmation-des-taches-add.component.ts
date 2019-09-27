@@ -89,8 +89,17 @@ export class ProgrammationDesTachesAddComponent implements OnInit {
     this.progTache.createSuiviTache(+this.singleSelectValueActivite, this.singleSelectValueTache[0], form.value['date_debut_tache'],  form.value['date_fin_tache'], form.value['montant_tache'], form.value['poids_tache'])
       .subscribe((resp) => {
         this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches']);
-      } , (error) => {
-        this.message = 'Echec de l\'operation';
+      } , (error: ErrorResponse) => {
+        console.log(error.error['error']);
+        // tslint:disable-next-line:forin
+        for (const key in error.error['error']) {
+          console.log(key);
+          if (key !== 'error') {
+            console.log(error.error['error'][key]);
+            this.message = error.error['error'][key];
+            break;
+          }
+        }
         this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/add']);
       });
   }

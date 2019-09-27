@@ -57,9 +57,17 @@ export class ObjectifEditComponent implements OnInit {
       .subscribe((resp) => {
         this.message = 'Succes de l\'operation';
         this.router.navigate(['/dashboard/fichier/base/objectif/load']);
-      } , (error) => {
-        console.log(error);
-        this.message = 'Echec de l\'operation';
+      } , (error: ErrorResponse) => {
+        console.log(error.error['error']);
+        // tslint:disable-next-line:forin
+        for (const key in error.error['error']) {
+          console.log(key);
+          if (key !== 'error') {
+            console.log(error.error['error'][key]);
+            this.message = error.error['error'][key];
+            break;
+          }
+        }
         this.router.navigate(['/dashboard/fichier/base/objectif/edit/' + this.id ]);
       });
   }

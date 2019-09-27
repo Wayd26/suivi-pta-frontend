@@ -43,9 +43,17 @@ export class SourceFinancementAddComponent implements OnInit {
       this.sourcrService.createSource(form.value['code_source_financement'], form.value['libellé_source_financement'], form.value['poids_projet_pip'], form.value['chapitre_imputation'], form.value['toggle1'], +this.singleSelectValue)
         .subscribe((resp) => {
           this.router.navigate(['/dashboard/fichier/financement/source']);
-        } , (error) => {
-          console.log(error);
-          this.message = 'Echec de l\'operation';
+        } , (error: ErrorResponse) => {
+        console.log(error.error['error']);
+        // tslint:disable-next-line:forin
+        for (const key in error.error['error']) {
+            console.log(key);
+            if (key !== 'error') {
+              console.log(error.error['error'][key]);
+            this.message = error.error['error'][key];
+            break;
+            }
+        }
           this.router.navigate(['/dashboard/fichier/financement/source']);
         });
   }

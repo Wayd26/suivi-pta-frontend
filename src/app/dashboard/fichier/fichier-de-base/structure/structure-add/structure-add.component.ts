@@ -19,6 +19,7 @@ export class StructureAddComponent implements OnInit {
   singleSelectOptions: any = [];
   singleSelectOptions2: any = [];
   structure: CreateStructure;
+  message: String = '';
 
 
 singleSelectConfig: any = {
@@ -53,8 +54,19 @@ singleSelectValue2: number;
     this.structureService.createStructure(form.value['code'], form.value['denomination'], form.value['email'],
       form.value['telResp'], +this.singleSelectValue2, form.value['sigle'],
       form.value['cpost']).subscribe((res) => {
-    }, (error) => {}, () => {
-      this.router.navigate(['/dashboard/fichier/base/structures']);
+    }, (error: ErrorResponse) => {
+        console.log(error.error['error']);
+        // tslint:disable-next-line:forin
+        for (const key in error.error['error']) {
+            console.log(key);
+            if (key !== 'error') {
+              console.log(error.error['error'][key]);
+            this.message = error.error['error'][key];
+            break;
+            }
+        }this.router.navigate(['/dashboard/fichier/base/structures/add']);
+        }, () => {
+      this.router.navigate(['/dashboard/fichier/base/structures/load']);
     });
   }
 

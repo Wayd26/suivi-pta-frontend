@@ -14,6 +14,7 @@ import { SourceFinancementService } from 'src/app/shared/services/source-finance
 import { UtilsService } from 'src/app/shared/services/utils.service';
 import { ActiviteService } from 'src/app/shared/services/activite.service';
 import { SourceFinancementActivite } from 'src/app/models/activite.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-activite-add',
@@ -60,10 +61,11 @@ export class ActiviteAddComponent implements OnInit {
   singleSelectValueAction: string[] = ['reactjs'];
   singleSelectValueDepartement: string[] = ['reactjs'];
   singleSelectValueVille: string[] = ['reactjs'];
+   message: any;
   constructor(private exerciceService: ExercieService, private structureService: StructureService, private actionService: ActionService
     , private departementService: DepartementService, private villeService: VilleService,
      private sourceServices: SourceFinancementService, private utilService: UtilsService,
-     private activiteService: ActiviteService) { }
+     private activiteService: ActiviteService, private router: Router) { }
 
   ngOnInit() {
     this.exerciceService.getExerciceList()
@@ -282,8 +284,19 @@ export class ActiviteAddComponent implements OnInit {
        this.projet, this.sourceFi, this.structureImpliSelect, this.structureSelect, this.code)
        .subscribe((res) => {
          console.log(res);
-       }, (error) => {
-         console.log(error);
+       }, (error: ErrorResponse) => {
+        console.log(error.error['error']);
+        // tslint:disable-next-line:forin
+        for (const key in error.error['error']) {
+            console.log(key);
+            if (key !== 'error') {
+              console.log(error.error['error'][key]);
+            this.message = error.error['error'][key];
+            break;
+            }
+        }
+            this.router.navigate(['/dashboard/fichier/base/activite/add']);
+
        });
   }
 

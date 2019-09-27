@@ -20,8 +20,17 @@ export class TypeSourceFinancementAddComponent implements OnInit {
       this.typeService.createTypeSource(form.value['code_type__source_financement'], form.value['libelle_type__source_financement'])
         .subscribe((resp) => {
           this.router.navigate(['/dashboard/fichier/financement/type/source']);
-        } , (error) => {
-          this.message = 'Echec de l\'operation';
+        } , (error: ErrorResponse) => {
+        console.log(error.error['error']);
+        // tslint:disable-next-line:forin
+        for (const key in error.error['error']) {
+            console.log(key);
+            if (key !== 'error') {
+              console.log(error.error['error'][key]);
+            this.message = error.error['error'][key];
+            break;
+            }
+        }
           this.router.navigate(['/dashboard/fichier/financement/type/source/add']);
         });
   }

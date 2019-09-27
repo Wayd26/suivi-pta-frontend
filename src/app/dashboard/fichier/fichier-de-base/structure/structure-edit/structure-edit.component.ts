@@ -60,9 +60,17 @@ export class StructureEditComponent implements OnInit {
       form.value['cpost'], this.id).subscribe((res) => {
       this.message = 'Succes de l\'operation';
       this.router.navigate(['/dashboard/fichier/base/structures/load']);
-      }, (error) => {}, () => {
-        this.message = 'Operation echouée';
-      this.router.navigate(['/dashboard/fichier/base/structures/edit/' + this.id]);
+      }, (error: ErrorResponse) => {
+        console.log(error.error['error']);
+        // tslint:disable-next-line:forin
+        for (const key in error.error['error']) {
+            console.log(key);
+            if (key !== 'error') {
+              console.log(error.error['error'][key]);
+            this.message = error.error['error'][key];
+            break;
+            }
+        }this.router.navigate(['/dashboard/fichier/base/structures/edit/' + this.id]);
     });
   }
 }

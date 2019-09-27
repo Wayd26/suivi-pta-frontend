@@ -10,7 +10,7 @@ import { VilleService } from 'src/app/shared/services/ville.service';
 import { SourceFinancementService } from 'src/app/shared/services/source-financement.service';
 import { UtilsService } from 'src/app/shared/services/utils.service';
 import { ActiviteService } from 'src/app/shared/services/activite.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ListExerciceResponse } from 'src/app/models/exercice.model';
 import { ListVilleResponse } from 'src/app/models/ville.model';
 import { ListActionResponse } from 'src/app/models/action.model';
@@ -37,6 +37,7 @@ export class ActiviteEditComponent implements OnInit {
   mode;
   projet;
   id: number;
+  message: String = '';
   activite: Activite;
   structures: Structure[] = [];
   sources: SourceFinancement[] = [];
@@ -66,7 +67,7 @@ export class ActiviteEditComponent implements OnInit {
   constructor(private exerciceService: ExercieService, private structureService: StructureService, private actionService: ActionService
     , private departementService: DepartementService, private villeService: VilleService,
      private sourceServices: SourceFinancementService, private utilService: UtilsService,
-     private activiteService: ActiviteService, private route: ActivatedRoute) { }
+     private activiteService: ActiviteService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.id = +this.route.snapshot.params['id'];
@@ -303,8 +304,18 @@ export class ActiviteEditComponent implements OnInit {
        this.projet, this.sourceFi, this.structureImpliSelect, this.structureSelect, this.code)
        .subscribe((res) => {
          console.log(res);
-       }, (error) => {
-         console.log(error);
+       }, (error: ErrorResponse) => {
+        console.log(error.error['error']);
+        // tslint:disable-next-line:forin
+        for (const key in error.error['error']) {
+            console.log(key);
+            if (key !== 'error') {
+              console.log(error.error['error'][key]);
+            this.message = error.error['error'][key];
+            break;
+            }
+        }
+            this.router.navigate(['/dashboard/fichier/base/activite/edit/' + this.id ]);
        });
   }
 }
