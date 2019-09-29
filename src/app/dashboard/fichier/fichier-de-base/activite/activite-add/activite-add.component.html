@@ -1,4 +1,7 @@
 <div class="container-fluid">
+    <div *ngIf="message !== ''" class="alert alert-danger" role="alert">
+        {{message}}
+    </div>
     <div class="page-title">
         <h4>Ajouter activite</h4>
     </div>
@@ -124,26 +127,50 @@
                                     </div>
                                 </aw-wizard-step>
                                 <aw-wizard-step stepTitle="Structure Implique" [navigationSymbol]="{ symbol: '2' }">
-                                    <div class="table-overflow">
-                                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
-                                            <thead>
-                                                <tr>
-                                                    <th>Structure Implique</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let structure of structures" (click)="OnSelectOrUnselectStructureImpli(structure.identifiant)">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Structures</label>
+                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructureImpl" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label></label>
+                                                <a class="btn btn-primary" (click)="addStructureImpli()" style="color: white">
+                                                    <i class="ti-plus pdd-right-5"></i>
+                                                    <span>Ajouter</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <div class="card-block">
+                                                    <div class="table-overflow">
+                                                        <table class="table table-bordered table-hover table-sm">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Structure Implique</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let structure of structureImpliSelectShow">
 
-                                                    <td>
-                                                        <div class=" relative mrg-top-15">
-                                                            <span class="status offline" [ngClass]="{'status online': getColorStructureImpli(structure.identifiant)}"> </span>
-                                                            <span class="pdd-left-20">{{structure.denomination}}</span>
-                                                        </div>
-                                                    </td>
+                                                                    <td>
+                                                                        <div class=" relative mrg-top-15">
+                                                                            <span class="pdd-left-20">{{structure.denomination}}</span>
+                                                                        </div>
+                                                                    </td>
 
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="mrg-top-20">
                                         <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
@@ -151,26 +178,50 @@
                                     </div>
                                 </aw-wizard-step>
                                 <aw-wizard-step stepTitle="Structure de Supervision" [navigationSymbol]="{ symbol: '3' }">
-                                    <div class="table-overflow">
-                                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
-                                            <thead>
-                                                <tr>
-                                                    <th>Structure de Supervision</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let structure of structures" (click)="OnSelectOrUnselectEmploye(structure.identifiant)">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Structures</label>
+                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructureSuper" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <a class="btn btn-primary" (click)="addStructureSuper()" style="color: white">
+                                                    <label></label>
+                                                    <i class="ti-plus pdd-right-5"></i>
+                                                    <span>Ajouter</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <div class="card-block">
+                                                    <div class="table-overflow">
+                                                        <table class="table table-bordered table-hover table-sm">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Structure de Supervision</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let structure of structureSelectShow">
 
-                                                    <td>
-                                                        <div class="relative mrg-top-15">
-                                                            <span class="status offline" [ngClass]="{'status online': getColor(structure.identifiant)}"> </span>
-                                                            <span class="pdd-left-20">{{structure.denomination}}</span>
-                                                        </div>
-                                                    </td>
+                                                                    <td>
+                                                                        <div class=" relative mrg-top-15">
+                                                                            <span class="pdd-left-20">{{structure.denomination}}</span>
+                                                                        </div>
+                                                                    </td>
 
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="mrg-top-20">
                                         <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
@@ -178,45 +229,63 @@
                                     </div>
                                 </aw-wizard-step>
                                 <aw-wizard-step stepTitle="Source Financement" [navigationSymbol]="{ symbol: '4' }">
-<!--                                    <div class="table-overflow">-->
-<!--                                        <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">-->
-<!--                                            <thead>-->
-<!--                                                <tr>-->
-<!--                                                    <th>Source Financement</th>-->
-<!--                                                    <th>Montant</th>-->
-<!--                                                </tr>-->
-<!--                                            </thead>-->
-<!--                                            <tbody>-->
-<!--                                                <tr *ngFor="let source of sources" (click)="OnSelectOrUnselectSource(source.identifiant)">-->
-
-<!--                                                    <td>-->
-<!--                                                        <div class="relative mrg-top-15">-->
-<!--                                                            <span class="status offline" [ngClass]="{'status online': getColorSource(source.identifiant)}"> </span>-->
-<!--                                                            <span class="pdd-left-20">{{source.libelle}}</span>-->
-<!--                                                        </div>-->
-<!--                                                    </td>-->
-<!--                                                    <td>-->
-<!--                                                        <div class="mrg-top-15">-->
-<!--                                                            <span>{{source.poids_projet}}</span>-->
-<!--                                                        </div>-->
-<!--                                                    </td>-->
-
-<!--                                                </tr>-->
-<!--                                            </tbody>-->
-<!--                                        </table>-->
-<!--                                    </div>-->
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                      <div class="form-group">
-                                        <label>Action</label>
-                                        <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsAction" [(ngModel)]="singleSelectValueAction" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                                      </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Sources de Financement</label>
+                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsSource" [(ngModel)]="singleSelectValueSource" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Montant</label>
+                                                <input type="number" class="form-control" name="montant" [(ngModel)]="montantValue">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label></label>
+                                                <a class="btn btn-primary" (click)="addSource()" style="color: white">
+                                                    <i class="ti-plus pdd-right-5"></i>
+                                                    <span>Ajouter</span>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
-                                  </div>
-                                  <ng2-smart-table [settings]="settings" [source]="data" ></ng2-smart-table>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <div class="card-block">
+                                                    <div class="table-overflow">
+                                                        <table class="table table-bordered table-hover table-sm">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Source Financement</th>
+                                                                    <th>Montant</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let source of sourcefiSelectShow; index as i;">
+
+                                                                    <td>
+                                                                        <div class=" relative mrg-top-15">
+
+                                                                            <span class="pdd-left-20">{{source.libelle}}</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>{{montantSelect[i]}}</td>
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="mrg-top-20">
-                                      <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
-                                      <button type="button" class="btn btn-default  btn-rounded" (click)="onSubmit()">Valider</button>
+                                        <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
+                                        <button type="button" class="btn btn-default  btn-rounded" (click)="onSubmit()">Valider</button>
                                     </div>
                                 </aw-wizard-step>
 

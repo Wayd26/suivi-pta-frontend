@@ -45,7 +45,8 @@ export class ActionAddComponent implements OnInit {
     this.message = '';
   }
   onSubmit(form: NgForm) {
-    this.actionService.createAction(form.value['code_action'], form.value['libelle_action'], form.value['poids_action'], +this.singleSelectValue2)
+    this.actionService.createAction(form.value['code_action'], form.value['libelle_action'],
+     form.value['poids_action'], +this.singleSelectValue2)
       .subscribe((resp) => {
         this.message = 'Succes de l\'operation';
         this.router.navigate(['/dashboard/fichier/base/action/load']);

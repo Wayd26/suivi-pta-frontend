@@ -36,9 +36,6 @@ export class ActiviteEditComponent implements OnInit {
   poids;
   mode;
   projet;
-  id: number;
-  message: String = '';
-  activite: Activite;
   structures: Structure[] = [];
   sources: SourceFinancement[] = [];
   sourceFi: SourceFinancementActivite[] = [];
@@ -48,9 +45,15 @@ export class ActiviteEditComponent implements OnInit {
   singleSelectOptionsAction: any = [];
   singleSelectOptionsDepartement: any = [];
   singleSelectOptionsVille: any = [];
+  singleSelectOptionsSource: any = [];
   structureSelect: number[] = [];
   sourcefiSelect: number[] = [];
   structureImpliSelect: number[] = [];
+  structureSelectShow: Structure[] = [];
+  sourcefiSelectShow: SourceFinancement[] = [];
+  structureImpliSelectShow: Structure[] = [];
+  montantValue = 0;
+  montantSelect: number[] = [];
 
   singleSelectConfig: any = {
     labelField: 'label',
@@ -64,6 +67,12 @@ export class ActiviteEditComponent implements OnInit {
   singleSelectValueAction: string[] = ['reactjs'];
   singleSelectValueDepartement: string[] = ['reactjs'];
   singleSelectValueVille: string[] = ['reactjs'];
+  singleSelectValueStructureSuper: string[] = ['reactjs'];
+  singleSelectValueStructureImpl: string[] = ['reactjs'];
+  singleSelectValueSource: string[] = ['reactjs'];
+  message = '';
+  id;
+  activite: Activite;
   constructor(private exerciceService: ExercieService, private structureService: StructureService, private actionService: ActionService
     , private departementService: DepartementService, private villeService: VilleService,
      private sourceServices: SourceFinancementService, private utilService: UtilsService,
@@ -141,6 +150,13 @@ export class ActiviteEditComponent implements OnInit {
       });
       this.sourceServices.getSourceFinancementList()
       .subscribe((res: ListSourceFinancementResponse) => {
+        res.data.map((source) => {
+          this.singleSelectOptionsSource.push({
+            label: source.libelle,
+            value: source.identifiant,
+            code: source.identifiant
+          });
+        });
         this.sources = res.data;
       });
   }
@@ -285,19 +301,30 @@ export class ActiviteEditComponent implements OnInit {
       console.log(this.sourcefiSelect.length + ' ' + this.sourcefiSelect);
     }
   }
+  getStructure(id) {
+    return this.structures.find(function (s) { return s.identifiant === +id; });
+  }
   getSource(id) {
     return this.sources.find(function (s) { return s.identifiant === +id; });
   }
+  addStructureSuper() {
+    this.structureSelect.push(+this.singleSelectValueStructureSuper[0]);
+    this.structureSelectShow.push(this.getStructure(+this.singleSelectValueStructureSuper[0]));
+  }
+  addStructureImpli() {
+    this.structureImpliSelect.push(+this.singleSelectValueStructureImpl[0]);
+    this.structureImpliSelectShow.push(this.getStructure(+this.singleSelectValueStructureImpl[0]));
+  }
+  addSource() {
+    this.sourceFi.push( {
+      id: +this.singleSelectValueSource[0],
+      montant: this.montantValue
+  });
+  this.sourcefiSelectShow.push(this.getSource(+this.singleSelectValueSource[0]));
+  this.montantSelect.push(this.montantValue);
+  }
 
   onSubmit() {
-    this.sourcefiSelect.map((s) => {
-      const source = this.getSource(s);
-      this.sourceFi.push( {
-        id: source.identifiant,
-        montant: source.poids_projet
-    });
-
-    });
     this.activiteService.updateActivite(this.utilService.changeDateFornat(this.utilService
       .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)), this.libelle,
        this.poids, this.montant, +this.singleSelectValueAction[0], +this.singleSelectValueStructure[0],
