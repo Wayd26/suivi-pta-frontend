@@ -21,14 +21,14 @@ export class MinistereService {
   deleteMinistere(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/1/ministeres/' + id, this.options);
   }
-  createMinistere(code: string, denomination: string, sigle: string , ville_id: number, email: string, telephone: string) {
+  createMinistere(code: string, denomination: string, email: string, sigle: string, telephone: string, ville_id: number) {
     const data = {
       code: code,
       denomination: denomination,
-      sigle: sigle,
-      ville_id: ville_id,
       email: email,
-      telephone: telephone
+      sigle: sigle,
+      telephone: telephone,
+      ville_id: ville_id
     };
     console.log(data);
     return this.httpClient.post(BASE_URL + 'administrateurs/1/ministeres', data, this.options);

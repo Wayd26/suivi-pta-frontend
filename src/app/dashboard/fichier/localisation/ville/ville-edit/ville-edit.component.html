@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="form-group row">
-                  <label for="form-1-2" class="col-md-2-3 control-label">Denomination</label>
+                  <label for="form-1-2" class="col-md-2-3 control-label">Dénomination</label>
                   <div class="col-md-9">
                     <input type="text" class="form-control" id="form-1-2" placeholder="Nom Ville" ngModel="{{ville.denomination}}" name="nom_ville">
                   </div>
@@ -35,7 +35,7 @@
                     <ng-selectize id="form-1-6"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
                   </div>
                 </div>
-                <a [routerLink]="['/dashboard/fichier/localisation/ville']" class="btn btn-primary">
+                <a [routerLink]="['/dashboard/fichier/localisation/ville/load']" class="btn btn-primary">
                   <i class="ti-back-left pdd-right-5"></i>
                   <span>Retour</span>
                 </a>

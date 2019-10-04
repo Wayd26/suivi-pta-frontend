@@ -68,9 +68,10 @@ export class SuiviPtaListComponent implements OnInit {
     console.log(this.singleSelectValue);
     this.suiviTacheSelect = this.dataService.getSuiviTaches().filter(a => {
       return this.utilservice.getIdData(a.links, 'activite'); } );
+
     this.suiviTacheSelectReal = this.suiviTacheSelect.filter( c => {
-      return c.est_realisee === true ;
-    })
+      return c.est_realisee === true;
+    });
 
     this.suiviTacheSelectReal.map(b => {
       this.totalTEP_Real = +(this.totalTEP_Real + (+b.poids)) ;
@@ -78,5 +79,4 @@ export class SuiviPtaListComponent implements OnInit {
 
     });
 
-  }
-}
+    }}

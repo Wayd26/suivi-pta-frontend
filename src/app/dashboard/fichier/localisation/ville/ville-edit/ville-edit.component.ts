@@ -33,9 +33,10 @@ export class VilleEditComponent implements OnInit {
     this.villeService.getVille(+this.route.snapshot.params['id']).subscribe((res: VilleResponse) => {
       this.ville = res.data;
 
-      //this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'departement')];
+      // this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'departement')];
+      console.log(res.data);
 
-      this.singleSelectValue = [this.ville._departement] ;
+      this.singleSelectValue = [this.utilService.getIdData(res.data, '_departement')];
 
      // this.singleSelectValue = [this.ville._departement] ;
       //this.singleSelectValue = [this.utilService.getIdData(res.data._departement, 'departement')];

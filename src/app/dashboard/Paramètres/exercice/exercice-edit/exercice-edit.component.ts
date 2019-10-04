@@ -8,6 +8,7 @@ import {ListVilleResponse} from '../../../../models/ville.model';
 import {NgForm} from '@angular/forms';
 import {ExercieService} from '../../../../shared/services/exercie.service';
 import {Exercice, ExerciceResponse} from '../../../../models/exercice.model';
+import {ProgrammeResponse} from '../../../../models/programme.model';
 
 @Component({
   selector: 'app-exercice-edit',
@@ -18,25 +19,41 @@ export class ExerciceEditComponent implements OnInit {
     message: string;
     id: number;
     exercice: Exercice;
-
-    constructor(private exerciceService: ExercieService , private router: Router, private utilservice: UtilsService, private route: ActivatedRoute) { }
+  dateDebut;
+  dateFin;
+  constructor(private exerciceService: ExercieService , private router: Router, private utilservice: UtilsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.message = '';
+      this.message = '';
+
     this.id = +this.route.snapshot.params['id'];
-    this.exerciceService.getExercice(this.id).subscribe((res: ExerciceResponse) => {
+    this.exerciceService.getExercice(+this.route.snapshot.params['id']).subscribe((res: ExerciceResponse) => {
       this.exercice = res.data;
+      this.dateDebut = this.exercice.date_debut;
+      this.dateFin = this.exercice.date_fin;
+
+      console.log(res.data);
     });
   }
 
   onSubmit(form: NgForm) {
-      this.exerciceService.updateExercice(form.value['numero_exercice'], form.value['annee_exercice'], form.value['denomination_exercice'], form.value['date_debut_exercice'], form.value['date_fin_exercice'], this.id)
+      this.exerciceService.updateExercice(form.value['annee_exercice'], form.value['denomination_exercice'], this.utilservice.changeDateFornat(this.utilservice
+        .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)),  this.utilservice.changeDateFornat(this.utilservice
+        .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), this.id)
       .subscribe((resp) => {
-        this.router.navigate(['/dashboard/parametres/exercices']);
-      } , (error) => {
-        console.log(error);
-        this.message = 'Echec de l\'operation';
-        this.router.navigate(['/dashboard/parametres/exercices/edit/' + this.id]);
+        this.router.navigate(['/dashboard/parametres/exercice/load']);
+      } , (error: ErrorResponse) => {
+        console.log(error.error['error']);
+        // tslint:disable-next-line:forin
+        for (const key in error.error['error']) {
+          console.log(key);
+          if (key !== 'error') {
+            console.log(error.error['error'][key]);
+            this.message = error.error['error'][key];
+            break;
+          }
+        }
+        this.router.navigate(['/dashboard/parametres/exercice/edit/' + this.id]);
       });
   }
 }

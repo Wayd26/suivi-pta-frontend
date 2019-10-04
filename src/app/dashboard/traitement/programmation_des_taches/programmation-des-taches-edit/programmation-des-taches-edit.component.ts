@@ -25,12 +25,14 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
   singleSelectOptionsTache: any = [];
   singleSelectOptionsExercice: any = [];
   message: string;
-  singleSelectValueStructure: string[] = [];
-  singleSelectValueActivite: string[] = [];
+  singleSelectValueStructure: string[] = ['reactJS'];
+  singleSelectValueActivite: string[] = ['reactJS'];
   singleSelectValueExercice: string[] = [];
-  singleSelectValueTache: string[] = [];
+  singleSelectValueTache: string[] = ['reactJS'];
   suiviTache: SuiviTache;
   id: number;
+  dateDebut;
+  dateFin;
 
   singleSelectConfig: any = {
       labelField: 'label',
@@ -46,14 +48,14 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
     this.message = '';
     this.id = +this.route.snapshot.params['id'];
     this.progTache.getSuiviTache(+this.route.snapshot.params['id']).subscribe((res: SuiviTachePesponse) => {
-      // this.suiviTache = res.data[];
-      console.log(this.suiviTache);
+      this.suiviTache = res.data;
+      console.log(res.data);
 
-      this.singleSelectValueActivite = [this.utilService.getIdData(this.suiviTache.links[2], '_acivite')];
-      console.log(this.utilService.getIdData(this.suiviTache.links[2], 'acivite'));
+      this.singleSelectValueActivite = [this.utilService.getIdData(res.data.links, 'acivite')];
+      console.log(this.utilService.getIdData(res.data.links, 'acivite'));
 
-      this.singleSelectValueTache = [this.utilService.getIdData(this.suiviTache.links[0], 'tache')];
-      console.log(this.utilService.getIdData(this.suiviTache.links[0], 'tache'));
+      this.singleSelectValueTache = [this.utilService.getIdData(res.data.links, 'tache')];
+      console.log(this.utilService.getIdData(res.data.links, 'tache'));
     });
 
     this.activiteService.getActiviteList()
@@ -89,7 +91,9 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
 
   }
  onSubmit(form: NgForm){
-   this.progTache.updateSuiviTache(this.singleSelectValueActivite[0], this.singleSelectValueTache[0], form.value['date_debut_tache'],  form.value['date_fin_tache'], form.value['montant_tache'], form.value['poids_tache'], this.id)
+   this.progTache.updateSuiviTache(this.singleSelectValueActivite[0], this.singleSelectValueTache[0], this.utilService.changeDateFornat(this.utilService
+     .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)),  this.utilService.changeDateFornat(this.utilService
+     .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), form.value['montant_tache'], form.value['poids_tache'], this.id)
      .subscribe((resp) => {
        this.message = 'Succes de l\'operation';
        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches']);

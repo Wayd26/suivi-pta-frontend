@@ -20,7 +20,7 @@ export class SourceFinancementService {
   deleteSourceFinamcement(id) {
     return this.httpClient.delete(BASE_URL + 'administrateurs/2/financements/' + id, this.options);
   }
-  createSource(code: string, libelle: string, poids: number, chapitre_imputation: string, isProject: boolean, typeSource: number) {
+  createSource(code: string, libelle: string, poids: number, chapitre_imputation: string, isProject: boolean, typeSource: string) {
     const data = {
       code: code,
       libelle: libelle,
@@ -32,7 +32,7 @@ export class SourceFinancementService {
     return this.httpClient.post(BASE_URL + 'administrateurs/2/financements', data, this.options);
   }
 
-  update(code: string, libelle: string, poids: number, chapitre_imputation: string, isProject: boolean, typeSource: number, id: number) {
+  update(code: string, libelle: string, poids: number, chapitre_imputation: string, isProject: boolean, typeSource: string, id: number) {
     const data = {
       code: code,
       libelle: libelle,
@@ -41,6 +41,6 @@ export class SourceFinancementService {
       type_source_financement_id: typeSource,
       chapitre_imputation: chapitre_imputation
     };
-    return this.httpClient.put(BASE_URL + 'administrateurs/2/sources_financements'  + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrateurs/1/financements'  + id, data, this.options);
   }
 }

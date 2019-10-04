@@ -35,7 +35,7 @@ export class SourceFinancementEditComponent implements OnInit {
     this.sourceFiService.getSourceFinancement(+this.route.snapshot.params['id']).subscribe((res: SourceFiResponse) => {
       this.sourceFi = res.data;
 
-      console.log(res.data);
+      console.log('Affichage des donnees ' + res.data);
 
       //this.singleSelectValue = [this.sourceFi._type];
       this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'type')];
@@ -56,14 +56,14 @@ export class SourceFinancementEditComponent implements OnInit {
   }
   onSubmit(form: NgForm) {
     console.log(this.singleSelectValue);
-    this.sourceFiService.update(form.value['code_source_financement'], form.value['libellé_source_financement'], form.value['poids_projet_pip'], form.value['chapitre_imputation'], form.value['toggle1'], +this.singleSelectValue, this.id)
+    this.sourceFiService.update(form.value['code_source_financement'], form.value['libellé_source_financement'], form.value['poids_projet_pip'], form.value['chapitre_imputation'], form.value['toggle1'], this.singleSelectValue.toString(), this.id)
       .subscribe((resp) => {
         this.message = 'Succes de l\'operation';
-        this.router.navigate(['/dashboard/fichier/financement/load']);
+        this.router.navigate(['/dashboard/fichier/financement/source/load']);
       } , (error) => {
         console.log(error);
         this.message = 'Echec de l\'operation';
-        this.router.navigate(['//dashboard/fichier/financement/edit/' + this.id]);
+        this.router.navigate(['//dashboard/fichier/financement/source/edit/' + this.id]);
       });
   }
 

@@ -40,9 +40,9 @@ export class TachesListComponent implements OnInit {
 
           ]
       };
-      if (!this.dataService.getTaches()) {
-        this.router.navigate(['/dashboard/fichier/base/tache/load']);
-    }
+    //   if (!this.dataService.getTaches()) {
+    //     this.router.navigate(['/dashboard/fichier/base/tache/load']);
+    // }
     this.taches = this.dataService.getTaches();
       this.tacheService.getTacheList().subscribe((res: ListTacheResponse) => {
         this.dataService.setTaches(res.data);
@@ -78,14 +78,13 @@ export class TachesListComponent implements OnInit {
   onDelete(id) {
     const response = confirm(DELETE_CONFIRMATION);
     if (response) {
-      this.taches = this.taches.filter((action) => {
-        return action.identifiant !== id;
-      });
-      // this.activites.deleteStructure(id).subscribe((res) => {
-      //
-      //     this.router.navigate(['/dashboard/fichier/base/programme']);
-      //   }
-      // );
+      this.tacheService.deleteTache(id).subscribe((res) => {
+          this.taches = this.taches.filter((action) => {
+            return action.identifiant !== id;
+          });
+          this.router.navigate(['/dashboard/fichier/base/tache']);
+        }
+      );
     }
   }
 

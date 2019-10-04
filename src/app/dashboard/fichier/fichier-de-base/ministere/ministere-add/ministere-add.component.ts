@@ -16,6 +16,9 @@ export class MinistereAddComponent implements OnInit {
   singleSelectOptions: any = [];
   message: string;
 
+  telephone;
+  email;
+
   singleSelectConfig: any = {
     labelField: 'label',
     valueField: 'value',
@@ -40,8 +43,9 @@ export class MinistereAddComponent implements OnInit {
       });
   }
   onSubmit(form: NgForm) {
-      this.ministereService.createMinistere(form.value['code_ministere'], form.value['denomination_ministere'], form.value['sigle'],
-        +this.singleSelectValue, form.value['email'], form.value['telResp'])
+        console.log('email  est le suivant :' + this.email);
+        this.ministereService.createMinistere(form.value['code_ministere'], form.value['denomination_ministere'], this.email , form.value['sigle']
+        , this.telephone , +this.singleSelectValue, )
         .subscribe((resp) => {
           this.message = 'Succes de l\'operation';
           this.router.navigate(['/dashboard/fichier/base/ministere/load']);
