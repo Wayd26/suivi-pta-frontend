@@ -15,12 +15,12 @@
                             <form class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)" #f="ngForm">
 
 
-                              <div class="form-group row">
-                                <label for="form-1-2" class="col-md-4 control-label">Code Source Financemen</label>
-                                <div class="col-md-8">
-                                  <input type="text" class="form-control" id="form-1-2" ngModel="{{sourceFi.code}}" placeholder="" name="code_source_financement">
+                                <div class="form-group row">
+                                    <label for="form-1-2" class="col-md-4 control-label">Code Source Financemen</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="form-1-2" ngModel="{{sourceFi.code}}" placeholder="" name="code_source_financement">
+                                    </div>
                                 </div>
-                              </div>
 
 
 
@@ -56,15 +56,15 @@
                                     </div>
                                 </div>
 
-                              <div class="form-group row">
-                                <label for="form-1-8" class="col-md-4 control-label">Chapitre d'Imputation</label>
-                                <div class="col-md-8">
-                                  <input type="text" class="form-control" id="form-1-8" ngModel="{{sourceFi.chapitre_imputation}}" placeholder="" name="chapitre_imputation">
+                                <div class="form-group row">
+                                    <label for="form-1-8" class="col-md-4 control-label">Chapitre d'Imputation</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="form-1-8" ngModel="{{sourceFi.chapitre_imputation}}" placeholder="" name="chapitre_imputation">
+                                    </div>
                                 </div>
-                              </div>
 
 
-                                <a [routerLink]="['/dashboard/fichier/financement/source/load']" class="btn btn-primary">
+                                <a [routerLink]="['/dashboard/fichier/financement/source/load']" class="btn btn-primary" style="color: white">
                                     <i class="ti-back-left pdd-right-5"></i>
                                     <span>Retour</span>
                                 </a> <button type="submit" class="btn btn-info" [disabled]="f.invalid">
