@@ -27,7 +27,8 @@ export class SourceFinancementEditComponent implements OnInit {
     labelField: 'label',
     valueField: 'value',
     searchField: ['value']}
-  constructor(private  sourceFiService: SourceFinancementService, private utilService: UtilsService, private typeSourceService: TypeSourceFinancementService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private  sourceFiService: SourceFinancementService, private utilService: UtilsService,
+    private typeSourceService: TypeSourceFinancementService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.message = '';
@@ -56,7 +57,8 @@ export class SourceFinancementEditComponent implements OnInit {
   }
   onSubmit(form: NgForm) {
     console.log(this.singleSelectValue);
-    this.sourceFiService.update(form.value['code_source_financement'], form.value['libellé_source_financement'], form.value['poids_projet_pip'], form.value['chapitre_imputation'], form.value['toggle1'], +this.singleSelectValue, this.id)
+    this.sourceFiService.update(form.value['code_source_financement'], form.value['libellé_source_financement'],
+    form.value['poids_projet_pip'], form.value['chapitre_imputation'], form.value['toggle1'], +this.singleSelectValue, this.id)
       .subscribe((resp) => {
         this.message = 'Succes de l\'operation';
         this.router.navigate(['/dashboard/fichier/financement/load']);
