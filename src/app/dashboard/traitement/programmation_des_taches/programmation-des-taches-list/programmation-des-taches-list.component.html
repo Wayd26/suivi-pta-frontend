@@ -32,7 +32,7 @@
 
 
               <div class="form-group row">
-                <label for="form-1-2" class="col-md-2 control-label">TEP</label>
+                <label for="form-1-2" class="col-md-2 control-label">Total Poids </label>
                 <div class="col-md-10">
                   <input type="text"  class="form-control" id="form-1-2" placeholder="" ngModel="{{totalTEP}}" name="tep_prog_tache" readonly>
                 </div>
@@ -40,10 +40,6 @@
 
 
             </form>
-
-
-
-
 
             <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
               <thead>
@@ -61,33 +57,33 @@
               <tr *ngFor="let suiviTache of suiviTacheSelect">
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.links[2]._activite}}</span>
+                    <span>{{suiviTache._activity}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.links[0]._tache}}</span>
+                    <span>{{suiviTache._task}}</span>
                   </div>
                 </td>
 
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.montant}}</span>
+                    <span>{{suiviTache.budget}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.poids}}</span>
+                    <span>{{suiviTache.weight_in_activity}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.started_at}}</span>
+                    <span>{{suiviTache.started_on}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.end_at}}</span>
+                    <span>{{suiviTache.ended_on}}</span>
                   </div>
                 </td>
                 <td>

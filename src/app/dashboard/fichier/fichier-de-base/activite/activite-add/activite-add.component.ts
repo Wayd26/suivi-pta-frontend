@@ -115,8 +115,8 @@ export class ActiviteAddComponent implements OnInit {
         res.data.map((exo) => {
           this.singleSelectOptionsExercice.push({
             label: exo.denomination,
-            value: exo.identifiant,
-            code: exo.identifiant
+            value: exo.id,
+            code: exo.id
           });
         });
       });
@@ -125,8 +125,8 @@ export class ActiviteAddComponent implements OnInit {
         res.data.map((ville) => {
           this.singleSelectOptionsVille.push({
             label: ville.denomination,
-            value: ville.identifiant,
-            code: ville.identifiant
+            value: ville.id,
+            code: ville.code
           });
         });
       });
@@ -136,8 +136,8 @@ export class ActiviteAddComponent implements OnInit {
         res.data.map((ville) => {
           this.singleSelectOptionsStructure.push({
             label: ville.denomination,
-            value: ville.identifiant,
-            code: ville.identifiant
+            value: ville.id,
+            code: ville.code
           });
         });
       });
@@ -145,9 +145,9 @@ export class ActiviteAddComponent implements OnInit {
       .subscribe((res: ListActionResponse) => {
         res.data.map((ville) => {
           this.singleSelectOptionsAction.push({
-            label: ville.libelle,
-            value: ville.identifiant,
-            code: ville.identifiant
+            label: ville.denomination,
+            value: ville.id,
+            code: ville.code
           });
         });
       });
@@ -156,8 +156,8 @@ export class ActiviteAddComponent implements OnInit {
         res.data.map((ville) => {
           this.singleSelectOptionsDepartement.push({
             label: ville.denomination,
-            value: ville.identifiant,
-            code: ville.identifiant
+            value: ville.id,
+            code: ville.code
           });
         });
       });
@@ -199,14 +199,14 @@ export class ActiviteAddComponent implements OnInit {
   OnSelectOrUnselectAllEmploye() {
     if (this.structureSelect.length === 0) {
       for (let i = 0 ; i < this.structures.length ; i++) {
-        this.structureSelect.push(this.structures[i].identifiant);
+        this.structureSelect.push(this.structures[i].id);
       }
     } else if (this.structureSelect.length === this.structures.length) {
       this.structureSelect = [];
     } else if (this.structureSelect.length > 0) {
       this.structureSelect = [];
       for (let i = 0 ; i < this.structures.length ; i++) {
-        this.structureSelect.push(this.structures[i].identifiant);
+        this.structureSelect.push(this.structures[i].id);
       }
     }
   }
@@ -308,15 +308,15 @@ export class ActiviteAddComponent implements OnInit {
     }
   }
   getSource(id) {
-    return this.sources.find(function (s) { return s.identifiant === +id; });
+    return this.sources.find(function (s) { return s.id === +id; });
   }
 
   onSubmit() {
     this.sourcefiSelect.map((s) => {
       const source = this.getSource(s);
       this.sourceFi.push( {
-        id: source.identifiant,
-        montant: source.poids_projet
+        id: source.id,
+        montant: source.weight_project
     });
 
     });

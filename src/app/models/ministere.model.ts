@@ -5,20 +5,19 @@
   }
 
   export interface Ministere {
-    identifiant: number;
+    id: number;
     code: string;
     denomination: string;
-    sigle: string;
-    bp: string;
+    po_box: string;
+    abbreviation: string;
     email: string;
-    telephone: string;
-    site_web: string;
-    logo: string;
-    _departement: string;
-    _ville: string;
-    _user: string;
+    website: string;
+    url_logo: string;
+    cellphone: string;
+    _town?: any;
     created_at: string;
     updated_at: string;
+    deleted_at?: any;
     links: Link[];
   }
 
@@ -39,23 +38,10 @@
     next: string;
   }
 
-  export interface Pagination {
-    total: number;
-    count: number;
-    per_page: number;
-    current_page: number;
-    total_pages: number;
-    links: Links;
-  }
-
-  export interface Meta {
-    pagination: Pagination;
-  }
-
   export interface ListMinistereResponse {
     data: Ministere[];
-    meta: Meta;
   }
+
   export interface MinistereResponse {
     data: Ministere;
   }

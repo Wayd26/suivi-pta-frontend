@@ -51,10 +51,10 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
       this.suiviTache = res.data;
       console.log(res.data);
 
-      this.singleSelectValueActivite = [this.utilService.getIdData(res.data.links, 'acivite')];
+      this.singleSelectValueActivite = [this.utilService.getIdData(res.data.links, 'activity')];
       console.log(this.utilService.getIdData(res.data.links, 'acivite'));
 
-      this.singleSelectValueTache = [this.utilService.getIdData(res.data.links, 'tache')];
+      this.singleSelectValueTache = [this.utilService.getIdData(res.data.links, 'task')];
       console.log(this.utilService.getIdData(res.data.links, 'tache'));
     });
 
@@ -62,9 +62,9 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
       .subscribe((res: ListActiviteResponse) => {
         res.data.map((activite) => {
           this.singleSelectOptionsActivite.push({
-            label: activite.libelle,
-            value: activite.identifiant,
-            code: activite.identifiant
+            label: activite.denomination,
+            value: activite.id,
+            code: activite.code
           });
         });
       });
@@ -73,31 +73,22 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
       .subscribe((res: ListTacheResponse) => {
         res.data.map((tache) => {
           this.singleSelectOptionsTache.push({
-            label: tache.libelle,
-            value: tache.identifiant,
-            code: tache.identifiant
+            label: tache.denomination,
+            value: tache.id,
+            code: tache.code
           });
         });
       });
-    // this.id = +this.route.snapshot.params['id'];
-    // this.progTache.getSuiviTache(+this.route.snapshot.params['id']).subscribe((res: SuiviTachePesponse) => {
-    //   this.suiviTache = res.data;
-    //
-    //   this.singleSelectValueActivite = [this.suiviTache.links[2]._activite];
-    //   this.singleSelectValueTache = [this.suiviTache.links[0]._tache];
-
-    //});
-
-
   }
  onSubmit(form: NgForm){
-   this.progTache.updateSuiviTache(this.singleSelectValueActivite[0], this.singleSelectValueTache[0], this.utilService.changeDateFornat(this.utilService
+   this.progTache.updateSuiviTache(+this.singleSelectValueActivite, +this.singleSelectValueTache, this.utilService.changeDateFornat(this.utilService
      .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)),  this.utilService.changeDateFornat(this.utilService
      .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), form.value['montant_tache'], form.value['poids_tache'], this.id)
      .subscribe((resp) => {
        this.message = 'Succes de l\'operation';
-       this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches']);
+       this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/load']);
      } , (error: ErrorResponse) => {
+       console.log(error);
        console.log(error.error['error']);
        // tslint:disable-next-line:forin
        for (const key in error.error['error']) {

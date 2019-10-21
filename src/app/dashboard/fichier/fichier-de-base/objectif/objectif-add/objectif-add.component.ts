@@ -34,28 +34,36 @@ export class ObjectifAddComponent implements OnInit {
       .subscribe((res: ListProgrammeResponse) => {
         res.data.map((programme) => {
           this.singleSelectOptions.push({
-            label: programme.libelle,
-            value: programme.identifiant,
+            label: programme.denomination,
+            value: programme.id,
             code: programme.code
           });
         });
       });
   }
-  onSubmit(form: NgForm) {this.objService.createObjectif(form.value['code_objectif_specifique'],
+  onSubmit(form: NgForm) {
+
+    console.log('Le code objectif est : ' + form.value['code_objectif_specifique']);
+    console.log('La dénomination objectif est : ' + form.value['libelle_objectif_specifique']);
+    console.log('l\'Id du programme est : ' + this.singleSelectValue);
+
+    this.objService.createObjectif(form.value['code_objectif_specifique'],
    form.value['libelle_objectif_specifique'], +this.singleSelectValue).subscribe((resp) => {
-    this.message = 'Succes de l\'operation';
+    //this.message = 'Succes de l\'operation';
+      this.utils.notifAjout_OK();
     this.router.navigate(['/dashboard/fichier/base/objectif/load']);
       } , (error: ErrorResponse) => {
     console.log(error.error['error']);
+    this.utils.notifAjout_Error(error.error['error']);
     // tslint:disable-next-line:forin
-    for (const key in error.error['error']) {
-      console.log(key);
-      if (key !== 'error') {
-        console.log(error.error['error'][key]);
-        this.message = error.error['error'][key];
-        break;
-      }
-        }
+    // for (const key in error.error['error']) {
+    //   console.log(key);
+    //   if (key !== 'error') {
+    //     console.log(error.error['error'][key]);
+    //     this.message = error.error['error'][key];
+    //     break;
+    //   }
+    //     }
 
         this.router.navigate(['/dashboard/fichier/base/objectif/add']);
       });

@@ -20,34 +20,35 @@ export class IndicateurService {
   options = this.utilsService.getOption();
 
   getIndicateurList() {
-    return this.httpClient.get(BASE_URL + 'indicateurs', this.options  );
+    return this.httpClient.get(BASE_URL + 'indicators', this.options  );
   }
   getIndicateur(id) {
-    return this.httpClient.get(BASE_URL + 'indicateurs/' + id, this.options  );
+    return this.httpClient.get(BASE_URL + 'indicators/' + id, this.options  );
   }
-  createIndicateur(identifiant: number, libelle: string, valeurCible: number, valeurRealisee: number, idActivite: number) {
+
+  createIndicateur(code: number, denomination: string, target_value: number, realized_value: number, _activity: number) {
     const data = {
-      identifiant: identifiant,
-      libelle: libelle,
-      valeur_cible: valeurCible,
-      valeur_realisee: valeurRealisee,
-      activite_id: idActivite
+      code: code,
+      denomination: denomination,
+      target_value: target_value,
+      realized_value: realized_value,
+      _activity: _activity
 
   };
     console.log(data);
-    return this.httpClient.post(BASE_URL + 'administrateurs/9/indicateurs', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrator/create-indicator', data, this.options);
   }
-  updateIndicateur(libelle: string, valeurCible: number, valeurRealisee: number, idActivite: number, id: number) {
+
+  updateIndicateur(denomination: string, target_value: number, realized_value: number, activity_id: number, id: number) {
     const data = {
-      // identifiant: identifiant,
-      libelle: libelle,
-      valeur_cible: valeurCible,
-      valeur_realisee: valeurRealisee,
-      activite_id: idActivite
+      denomination: denomination,
+      target_value: target_value,
+      realized_value: realized_value,
+      activity_id: activity_id
     };
-    return this.httpClient.put(BASE_URL + 'administrateurs/1/indicateurs/' + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrator/update-indicator/' + id, data, this.options);
   }
   deleteIndicateur(id) {
-    // return this.httpClient.delete(BASE_URL + 'administrateurs/2/departements/' + id, this.options);
+    // return this.httpClient.delete(BASE_URL + 'administrator/remove-indicator/' + id, this.options);
   }
 }

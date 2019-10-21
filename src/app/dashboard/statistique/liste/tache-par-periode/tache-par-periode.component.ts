@@ -31,8 +31,8 @@ export class TacheParPeriodeComponent implements OnInit {
         res.data.map((exo) => {
           this.singleSelectOptionsStructure.push({
             label: exo.denomination,
-            value: exo.identifiant,
-            code: exo.identifiant
+            value: exo.id,
+            code: exo.code
           });
         });
       });

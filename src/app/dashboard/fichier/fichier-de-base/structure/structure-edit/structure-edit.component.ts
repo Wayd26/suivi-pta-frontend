@@ -36,10 +36,7 @@ export class StructureEditComponent implements OnInit {
     this.structureService.getStructure(this.id).subscribe((res: StructureResponse) => {
       this.structure = res.data;
       console.log(res.data);
-      this.singleSelectValue2 = [this.utilService.getIdData(res.data.links, 'ville')];
-
-     // this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'exercice')];
-
+      this.singleSelectValue2 = [this.utilService.getIdData(res.data.links, 'town')];
     });
     this.message = '';
     this.villeService.getVilleList()
@@ -48,7 +45,7 @@ export class StructureEditComponent implements OnInit {
         res.data.map((ville) => {
           this.singleSelectOptions2.push({
             label: ville.denomination,
-            value: ville.identifiant.toString(),
+            value: ville.id.toString(),
             code: ville.code
           });
         });
@@ -57,23 +54,34 @@ export class StructureEditComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(this.singleSelectValue2);
-    this.structureService.update(form.value['code'], form.value['denomination'], form.value['email'],
-      form.value['telResp'], +this.singleSelectValue2, form.value['sigle'],
-      form.value['cpost'], this.id).subscribe((res) => {
-      this.message = 'Succes de l\'operation';
+    console.log('le code est : ' + form.value['code']);
+    console.log('la denomination est : ' + form.value['denomination']);
+    console.log('la b postale est : ' + form.value['bpost']);
+    console.log('les site web est : ' + form.value['website']);
+    console.log('l ID de la ville : ' + this.singleSelectValue2);
+    console.log('le Telephone est : ' + form.value['telResp']);
+    console.log(' le mail est : ' + form.value['email']);
+    console.log('le sigle est : ' + form.value['sigle']);
+
+    this.structureService.update(form.value['code'], form.value['denomination'], form.value['bpost'] , form.value['website'],
+      +this.singleSelectValue2, form.value['telResp'], form.value['email'], form.value['sigle'], this.id).subscribe((res) => {
+      // this.message = 'Succes de l\'operation';
+      this.utilService.notifModif_OK();
       this.router.navigate(['/dashboard/fichier/base/structures/load']);
       }, (error: ErrorResponse) => {
+        console.log(error);
         console.log(error.error['error']);
+        this.utilService.notifModif_Error(error.error['error']);
         // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-            console.log(key);
-            if (key !== 'error') {
-              console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-            }
-        }this.router.navigate(['/dashboard/fichier/base/structures/edit/' + this.id]);
+        // for (const key in error.error['error']) {
+        //     console.log(key);
+        //     if (key !== 'error') {
+        //       console.log(error.error['error'][key]);
+        //     this.message = error.error['error'][key];
+        //     break;
+        //     }
+        // }
+        this.router.navigate(['/dashboard/fichier/base/structures/edit/' + this.id]);
     });
   }
 }

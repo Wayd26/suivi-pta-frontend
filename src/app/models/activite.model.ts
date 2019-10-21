@@ -5,21 +5,20 @@
   }
 
   export interface Activite {
-      identifiant: number;
-      code: string;
-      date_debut: string;
-      date_fin: string;
-      libelle: string;
-      activite_pip: boolean;
-      mode: string;
-      montant: number;
-      poids: number;
-      _exercice: string;
-      _action: string;
-      _structure_executant: string;
-      _user: string;
-      created_at: string;
-      updated_at: string;
+    id: number;
+    code: string;
+    denomination: string;
+    execution_mode: string;
+    budget: number;
+    weight_in_action: number;
+    weight_in_subaction: number;
+    started_on: string;
+    ended_on: string;
+    is_pip: boolean;
+    _subaction: string;
+    created_at: string;
+    updated_at: string;
+    deleted_at?: any;
       links: Link[];
   }
   export interface ActiviteExport {
@@ -42,22 +41,8 @@
       next: string;
   }
 
-  export interface Pagination {
-      total: number;
-      count: number;
-      per_page: number;
-      current_page: number;
-      total_pages: number;
-      links: Links;
-  }
-
-  export interface Meta {
-      pagination: Pagination;
-  }
-
   export interface ListActiviteResponse {
       data: Activite[];
-      meta: Meta;
   }
 
   export interface SourceFinancementActivite {

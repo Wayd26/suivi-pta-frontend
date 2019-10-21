@@ -10,32 +10,33 @@ export class ResultatService {constructor(private httpClient: HttpClient, privat
   options = this.utilsService.getOption();
 
   getResultatList() {
-    return this.httpClient.get(BASE_URL + 'resultats', this.options  );
+    return this.httpClient.get(BASE_URL + 'results', this.options  );
     }
 
   getResultat(id) {
 
-    return this.httpClient.get(BASE_URL + 'resultats/' + id, this.options  );
+    return this.httpClient.get(BASE_URL + 'results/' + id, this.options  );
   }
   deleteResultat(id) {
-    return this.httpClient.delete(BASE_URL + 'administrateurs/2/resultats/' + id, this.options);
+    return this.httpClient.delete(BASE_URL + 'administrator/remove-result/' + id, this.options);
   }
-  createResultat(code: string, denomination: string, objectif: number) {
+
+  createResultat(code: string, denomination: string, objective_id: number) {
     const data = {
       code: code,
-      libelle: denomination,
-      objectif_specifique_id: objectif
+      denomination: denomination,
+      objective_id: objective_id
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/resultats', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrator/create-result', data, this.options);
   }
-  updateResultat(code: string, denomination: string, objectif: number, id: number) {
+  updateResultat(code: string, denomination: string, objective_id: number, id: number) {
     const data = {
       code: code,
-      libelle: denomination,
-      objectif_specifique_id: objectif
+      denomination: denomination,
+      objective_id: objective_id
     };
 
     console.log()
-    return this.httpClient.put(BASE_URL + 'administrateurs/2/resultats/'  + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrator/update-result/'  + id, data, this.options);
   }
   }

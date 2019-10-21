@@ -51,9 +51,9 @@ export class TypeSourceFinancementListComponent implements OnInit {
       });
       this.typeSources.map((d) => {
         this.typeExport.push({
-          identifiant: d.identifiant,
+          identifiant: d.id,
           code: d.code,
-          libelle: d.libelle
+          libelle: d.denomination
       });
       });
   }
@@ -70,7 +70,7 @@ export class TypeSourceFinancementListComponent implements OnInit {
     if (response) {
       this.typeSourceFiService.deleteTypeSource(id).subscribe((res) => {
           this.typeSources = this.typeSources.filter((action) => {
-            return action.identifiant !== id;
+            return action.id !== id;
           });
           this.router.navigate(['/dashboard/fichier/financement/type/source/load']);
         }

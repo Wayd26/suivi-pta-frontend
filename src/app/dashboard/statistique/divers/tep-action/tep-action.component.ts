@@ -29,9 +29,9 @@ export class TepActionComponent implements OnInit {
       .subscribe((res: ListActionResponse) => {
         res.data.map((exo) => {
           this.singleSelectOptionsAction.push({
-            label: exo.libelle,
-            value: exo.identifiant,
-            code: exo.identifiant
+            label: exo.denomination,
+            value: exo.id,
+            code: exo.code
           });
         });
       });

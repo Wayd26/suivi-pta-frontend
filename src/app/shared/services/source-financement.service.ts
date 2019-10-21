@@ -12,35 +12,36 @@ export class SourceFinancementService {
 
   getSourceFinancementList() {
 
-    return this.httpClient.get(BASE_URL + 'sources_financements', this.options  );
+    return this.httpClient.get(BASE_URL + 'fundings', this.options  );
   }
   getSourceFinancement(id){
-    return this.httpClient.get(BASE_URL + 'sources_financements/' + id, this.options);
+    return this.httpClient.get(BASE_URL + 'fundings/' + id, this.options);
   }
   deleteSourceFinamcement(id) {
-    return this.httpClient.delete(BASE_URL + 'administrateurs/2/financements/' + id, this.options);
-  }
-  createSource(code: string, libelle: string, poids: number, chapitre_imputation: string, isProject: boolean, typeSource: string) {
-    const data = {
-      code: code,
-      libelle: libelle,
-      poids_projet: poids,
-      est_projet: isProject,
-      type_source_financement_id: typeSource,
-      chapitre_imputation: chapitre_imputation
-    };
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/financements', data, this.options);
+    return this.httpClient.delete(BASE_URL + 'administrator/remove-funding/' + id, this.options);
   }
 
-  update(code: string, libelle: string, poids: number, chapitre_imputation: string, isProject: boolean, typeSource: string, id: number) {
+  createSource(imputation_chapter: string, code: string, is_project: boolean, denomination: string, weight_project: number,   type_funding_id: number) {
     const data = {
       code: code,
-      libelle: libelle,
-      poids_projet: poids,
-      est_projet: isProject,
-      type_source_financement_id: typeSource,
-      chapitre_imputation: chapitre_imputation
+      denomination: denomination,
+      weight_project: weight_project,
+      is_project: is_project,
+      type_funding_id: type_funding_id,
+      imputation_chapter: imputation_chapter
     };
-    return this.httpClient.put(BASE_URL + 'administrateurs/1/financements'  + id, data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrator/create-funding', data, this.options);
+  }
+
+  update(code: string, denomination: string, weight_project: number, imputation_chapter: string, is_project: boolean, type_funding_id: number, id: number) {
+    const data = {
+      code: code,
+      denomination: denomination,
+      weight_project: weight_project,
+      is_project: is_project,
+      type_funding_id: type_funding_id,
+      imputation_chapter: imputation_chapter
+    };
+    return this.httpClient.put(BASE_URL + 'administrator/update-funding/'  + id, data, this.options);
   }
 }

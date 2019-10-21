@@ -49,10 +49,10 @@ export class ObjectifListComponent implements OnInit {
     });
     this.Objectifs.map((o) => {
       this.objectifExport.push({
-        identifiant: o.identifiant,
+        identifiant: o.id,
         code: o.code,
-        libelle: o.libelle,
-        _programme: o._programme
+        libelle: o.denomination,
+        _programme: o._programm
       });
     });
   }
@@ -67,14 +67,13 @@ export class ObjectifListComponent implements OnInit {
   onDelete(id) {
     const response = confirm(DELETE_CONFIRMATION);
     if (response) {
-      this.Objectifs = this.Objectifs.filter((action) => {
-        return action.identifiant !== id;
-      });
-      // this.activites.deleteStructure(id).subscribe((res) => {
-      //
-      //     this.router.navigate(['/dashboard/fichier/base/programme']);
-      //   }
-      // );
+      this.objectifService.deleteObjectif(id).subscribe((res) => {
+          this.Objectifs = this.Objectifs.filter((action) => {
+            return action.id !== id;
+          });
+          this.router.navigate(['/dashboard/fichier/base/objectif/load']);
+        }
+      );
     }
   }
 

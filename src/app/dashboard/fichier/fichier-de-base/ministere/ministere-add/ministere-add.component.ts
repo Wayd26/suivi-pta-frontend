@@ -36,31 +36,31 @@ export class MinistereAddComponent implements OnInit {
         res.data.map((ville) => {
           this.singleSelectOptions.push({
             label: ville.denomination,
-            value: ville.identifiant,
-            code: ville.identifiant
+            value: ville.id,
+            code: ville.code
           });
         });
       });
   }
   onSubmit(form: NgForm) {
-        console.log('email  est le suivant :' + this.email);
-        this.ministereService.createMinistere(form.value['code_ministere'], form.value['denomination_ministere'], this.email , form.value['sigle']
-        , this.telephone , +this.singleSelectValue, )
-        .subscribe((resp) => {
-          this.message = 'Succes de l\'operation';
-          this.router.navigate(['/dashboard/fichier/base/ministere/load']);
-        } , (error: ErrorResponse) => {
-        console.log(error.error['error']);
-        // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-            console.log(key);
-            if (key !== 'error') {
-              console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-            }
-        }
-          this.router.navigate(['/dashboard/fichier/base/ministere/add']);
-        });
-  }
+  //       console.log('email  est le suivant :' + this.email);
+  //       this.ministereService.createMinistere(form.value['code_ministere'], form.value['denomination_ministere'], this.email , form.value['sigle']
+  //       , this.telephone , +this.singleSelectValue, )
+  //       .subscribe((resp) => {
+  //         this.message = 'Succes de l\'operation';
+  //         this.router.navigate(['/dashboard/fichier/base/ministere/load']);
+  //       } , (error: ErrorResponse) => {
+  //       console.log(error.error['error']);
+  //       // tslint:disable-next-line:forin
+  //       for (const key in error.error['error']) {
+  //           console.log(key);
+  //           if (key !== 'error') {
+  //             console.log(error.error['error'][key]);
+  //           this.message = error.error['error'][key];
+  //           break;
+  //           }
+  //       }
+  //         this.router.navigate(['/dashboard/fichier/base/ministere/add']);
+  //       });
+   }
 }

@@ -12,13 +12,13 @@ export class ActiviteService {
   options = this.utilsService.getOption();
 
   getActiviteList() {
-  return this.httpClient.get(BASE_URL + 'activites', this.options  );
+  return this.httpClient.get(BASE_URL + 'activities', this.options  );
   }
   getActivite(id) {
-    return this.httpClient.get(BASE_URL + 'activites/' + id, this.options  );
+    return this.httpClient.get(BASE_URL + 'activities/' + id, this.options  );
     }
   deleteActivite(id) {
-    return this.httpClient.delete(BASE_URL + 'administrateurs/2/activites/' + id, this.options);
+    return this.httpClient.delete(BASE_URL + 'administrator/remove-subaction/' + id, this.options);
   }
   createActivite(started_at: string, libelle: string, poids: number, montant: number, action_id: number,
     structure_id: number, est_pip: boolean, source_financement: SourceFinancementActivite[],
@@ -37,12 +37,12 @@ export class ActiviteService {
       code: code
     };
     console.log(data);
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/activites', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrator/create-activity', data, this.options);
   }
 
   updateActivite(started_at: string, libelle: string, poids: number, montant: number, action_id: number,
     structure_id: number, est_pip: boolean, source_financement: SourceFinancementActivite[],
-    structures_impliquees: number[], structures_supervisions: number[], code: string) {
+    structures_impliquees: number[], structures_supervisions: number[], code: string, id: number) {
     const data = {
       started_at: started_at,
       libelle: libelle,
@@ -57,6 +57,6 @@ export class ActiviteService {
       code: code
     };
     console.log(data);
-    return this.httpClient.put(BASE_URL + 'administrateurs/2/activites', data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrator/update-subaction/' + id , data, this.options);
   }
 }

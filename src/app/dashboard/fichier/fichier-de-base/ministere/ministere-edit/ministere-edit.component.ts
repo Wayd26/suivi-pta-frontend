@@ -41,22 +41,22 @@ export class MinistereEditComponent implements OnInit {
         res.data.map((ville) => {
           this.singleSelectOptions.push({
             label: ville.denomination,
-            value: ville.identifiant.toString(),
-            code: ville.identifiant
+            value: ville.id.toString(),
+            code: ville.code
           });
         });
       });
   }
   onSubmit(form: NgForm) {
-    this.ministereService.update(form.value['code_ministere'], form.value['denomination_ministere'], form.value['sigle'],
-      +this.singleSelectValue, form.value['email'], form.value['telResp'], this.id)
-      .subscribe((resp) => {
-        this.message = 'Succes de l\'operation';
-        this.router.navigate(['/dashboard/fichier/base/ministere/load']);
-      } , (error) => {
-        console.log(error);
-        this.message = 'Echec de l\'operation';
-        this.router.navigate(['/dashboard/fichier/base/ministere/edit/' + this.id]);
-      });
-  }
+  //   this.ministereService.update(form.value['code_ministere'], form.value['denomination_ministere'], form.value['sigle'],
+  //     +this.singleSelectValue, form.value['email'], form.value['telResp'], this.id)
+  //     .subscribe((resp) => {
+  //       this.message = 'Succes de l\'operation';
+  //       this.router.navigate(['/dashboard/fichier/base/ministere/load']);
+  //     } , (error) => {
+  //       console.log(error);
+  //       this.message = 'Echec de l\'operation';
+  //       this.router.navigate(['/dashboard/fichier/base/ministere/edit/' + this.id]);
+  //     });
+   }
 }

@@ -33,25 +33,25 @@
               <tr *ngFor="let indicateur of indicateurs">
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{indicateur.activite_id}}</span>
+                    <span>{{indicateur._activity}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{indicateur.libelle}}</span>
+                    <span>{{indicateur.denomination}}</span>
                   </div>
                 </td>
 
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{indicateur.valeur_cible}}</span>
+                    <span>{{indicateur.target_value}}</span>
                   </div>
                 </td>
 
 
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{indicateur.valeur_realisee}}</span>
+                    <span>{{indicateur.realized_value}}</span>
                   </div>
                 </td>
 
@@ -59,10 +59,10 @@
 
                 <td>
                   <div class="mrg-top-10 text-center">
-                    <a [routerLink]="['edit/' + indicateur.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                    <a [routerLink]="['edit/' + indicateur.id]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
                       <i class="ti-pencil"></i>
                     </a>
-                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle " (click)="onDelete(indicateur.identifiant)">
+                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle " (click)="onDelete(indicateur.id)">
                       <i class="ti-trash"></i>
                     </button>
                   </div>

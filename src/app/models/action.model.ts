@@ -7,23 +7,22 @@ export interface Link {
   }
 
   export interface Action {
-      identifiant: number;
-      code: string;
-      libelle: string;
-      poids: number;
-      montant: number;
-      _user: string;
-      _resultat: string;
-      created_at: string;
-      updated_at: string;
-      links: Link[];
+    id: number;
+    code: string;
+    denomination: string;
+    weight_in_result: number;
+    _result: string;
+    created_at: string;
+    updated_at: string;
+    deleted_at?: any;
+    links: Link[];
   }
 
   export interface ActionExport {
-    identifiant: number;
+    id: number;
     code: string;
-    libelle: string;
-    poids: number;
+    denomination: string;
+    weight_in_result: number;
     montant: number;
     _resultat: string;
 }
@@ -32,22 +31,9 @@ export interface Link {
       next: string;
   }
 
-  export interface Pagination {
-      total: number;
-      count: number;
-      per_page: number;
-      current_page: number;
-      total_pages: number;
-      links: Links;
-  }
-
-  export interface Meta {
-      pagination: Pagination;
-  }
 
   export interface ListActionResponse {
       data: Action[];
-      meta: Meta;
   }
 
 

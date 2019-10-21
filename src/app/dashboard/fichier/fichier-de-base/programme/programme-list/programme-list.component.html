@@ -45,21 +45,21 @@
                                     </td>
                                     <td>
                                       <div class="mrg-top-15">
-                                        <span>{{programme.libelle}}</span>
+                                        <span>{{programme.denomination}}</span>
                                     </div>
                                     </td>
 
                                     <td>
                                         <div class="mrg-top-15">
-                                            <span>{{programme.poids}}</span>
+                                            <span>{{programme.weight_in_programm}}</span>
                                         </div>
                                     </td>
                                   <td>
                                     <div class="mrg-top-10 text-center">
-                                      <a [routerLink]="['edit/' + programme.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                      <a [routerLink]="['edit/' + programme.id]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
                                         <i class="ti-pencil"></i>
                                       </a>
-                                      <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle " (click)="onDelete(programme.identifiant)">
+                                      <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle " (click)="onDelete(programme.id)">
                                         <i class="ti-trash"></i>
                                       </button>
                                     </div>

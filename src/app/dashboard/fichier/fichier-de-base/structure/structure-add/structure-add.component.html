@@ -11,24 +11,23 @@
 
                             <form class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)" #f="ngForm">
 
-
                               <div class="form-group row">
                                 <label for="form-1-1" class="col-md-3 control-label">Code</label>
                                 <div class="col-md-9">
-                                  <input type="text" class="form-control" id="form-1-1" ngModel="" placeholder="Code" name="code">
+                                  <input type="text" class="form-control" id="form-1-1" ngModel="" placeholder="Code" name="code" required>
                                 </div>
                               </div>
 
                                 <div class="form-group row">
                                     <label for="form-1-2" class="col-md-3 control-label">Denomination</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" id="form-1-2" ngModel="" placeholder="Denomination" name="denomination">
+                                        <input type="text" class="form-control" id="form-1-2" ngModel="" placeholder="Denomination" name="denomination" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="form-1-4" class="col-md-3 control-label">Telephone du responsable</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" id="form-1-4" ngModel="" placeholder="Telephone du responsable" name="telResp">
+                                        <input type="text" class="form-control" id="form-1-4" ngModel="" placeholder="Téléphone du responsable" name="telResp">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -38,9 +37,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="form-1-8" class="col-md-3 control-label">Code Postale</label>
+                                    <label for="form-1-8" class="col-md-3 control-label">Boîte Postale</label>
                                     <div class="col-md-9">
-                                        <input type="email" class="form-control" id="form-1-8" ngModel="" placeholder="Code Postale" name="cpost">
+                                        <input type="email" class="form-control" id="form-1-8" ngModel="" placeholder="Boîte Postale" name="bpost">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -49,6 +48,13 @@
                                         <input type="email" class="form-control" id="form-1-9" ngModel="" placeholder="Sigle" name="sigle">
                                     </div>
                                 </div>
+
+                              <div class="form-group row">
+                                <label for="form-1-10" class="col-md-3 control-label">Site Web</label>
+                                <div class="col-md-9">
+                                  <input type="text" class="form-control" id="form-1-10" ngModel="" placeholder="site web" name="website">
+                                </div>
+                              </div>
                                 <!--  <div class="form-group row">
                                     <label for="form-1-6" class="col-md-2 control-label">Departement</label>
                                     <div class="col-md-10">

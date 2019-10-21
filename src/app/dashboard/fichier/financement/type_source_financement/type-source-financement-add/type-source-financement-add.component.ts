@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {TypeSourceFinancementService} from '../../../../../shared/services/type-source-financement.service';
 import {Router} from '@angular/router';
+import {UtilsService} from '../../../../../shared/services/utils.service';
 
 @Component({
   selector: 'app-type-source-financement-add',
@@ -11,7 +12,7 @@ import {Router} from '@angular/router';
 export class TypeSourceFinancementAddComponent implements OnInit {
 
   message: string;
-  constructor(private typeService: TypeSourceFinancementService, private router: Router) { }
+  constructor(private typeService: TypeSourceFinancementService, private router: Router, private utils: UtilsService) { }
 
   ngOnInit() {
     this.message = '';
@@ -21,18 +22,21 @@ export class TypeSourceFinancementAddComponent implements OnInit {
 
       this.typeService.createTypeSource(form.value['code_type__source_financement'], form.value['libelle_type__source_financement'])
         .subscribe((resp) => {
+          this.utils.notifAjout_OK();
           this.router.navigate(['/dashboard/fichier/financement/type/source/load']);
         } , (error: ErrorResponse) => {
+          console.log(error);
         console.log(error.error['error']);
+        this.utils.notifAjout_Error(error.error['error']);
         // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-            console.log(key);
-            if (key !== 'error') {
-              console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-            }
-        }
+        // for (const key in error.error['error']) {
+        //     console.log(key);
+        //     if (key !== 'error') {
+        //       console.log(error.error['error'][key]);
+        //     this.message = error.error['error'][key];
+        //     break;
+        //     }
+        // }
           this.router.navigate(['/dashboard/fichier/financement/type/source/add']);
         });
   }

@@ -40,23 +40,14 @@ export class ProgrammationDesTachesAddComponent implements OnInit {
 
   ngOnInit() {
     this.message = '';
-    // this.structureService.getStructureList()
-    //   .subscribe((res: ListStructureResponse) => {
-    //     res.data.map((structure) => {
-    //       this.singleSelectOptionsStructure.push({
-    //         label: structure.denomination,
-    //         value: structure.identifiant,
-    //         code: structure.identifiant
-    //       });
-    //     });
-    //   });
+
     this.activiteService.getActiviteList()
       .subscribe((res: ListActiviteResponse) => {
       res.data.map((activite) => {
         this.singleSelectOptionsActivite.push({
-          label: activite.libelle,
-          value: activite.identifiant,
-          code: activite.identifiant
+          label: activite.denomination,
+          value: activite.id,
+          code: activite.code
         });
       });
     });
@@ -65,9 +56,9 @@ export class ProgrammationDesTachesAddComponent implements OnInit {
       .subscribe((res: ListTacheResponse) => {
         res.data.map((tache) => {
           this.singleSelectOptionsTache.push({
-            label: tache.libelle,
-            value: tache.identifiant,
-            code: tache.identifiant
+            label: tache.denomination,
+            value: tache.id,
+            code: tache.code
           });
         });
       });
@@ -84,12 +75,13 @@ export class ProgrammationDesTachesAddComponent implements OnInit {
     //   });
   }
   onSubmit(form: NgForm) {
-    this.progTache.createSuiviTache(+this.singleSelectValueActivite, this.singleSelectValueTache[0], this.utilservice.changeDateFornat(this.utilservice
+    this.progTache.createSuiviTache(+this.singleSelectValueActivite, +this.singleSelectValueTache, this.utilservice.changeDateFornat(this.utilservice
       .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)),  this.utilservice.changeDateFornat(this.utilservice
       .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), form.value['montant_tache'], form.value['poids_tache'])
       .subscribe((resp) => {
-        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches']);
+        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/load']);
       } , (error: ErrorResponse) => {
+        console.log(error);
         console.log(error.error['error']);
         // tslint:disable-next-line:forin
         for (const key in error.error['error']) {

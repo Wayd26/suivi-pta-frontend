@@ -19,34 +19,35 @@ export class ProgrammeService {
     header.append('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
     header.append('Access-Control-Allow-Origin', 'http://localhost:4200');
 
-    return this.httpClient.get(BASE_URL + 'programmes', this.options  );
+    return this.httpClient.get(BASE_URL + 'programs', this.options  );
   }
   deleteProgramme(id) {
-    return this.httpClient.delete(BASE_URL + 'administrateurs/2/programmes/' + id, this.options);
+    return this.httpClient.delete(BASE_URL + 'administrator/remove-program/' + id, this.options);
   }
   getProgramme(id) {
-    return this.httpClient.get(BASE_URL + 'programmes/' + id, this.options);
-  }
-  createProgramme(code: string, libelle: string, poids: number, exercice_id: number) {
-    const data = {
-      code: code,
-      libelle: libelle,
-      poids: poids,
-      exercice_id: exercice_id
-    };
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/programmes', data, this.options);
+    return this.httpClient.get(BASE_URL + 'programs/' + id, this.options);
   }
 
-  update(code: string, libelle: string, poids: number, exercice_id: number, id: number) {
+  createProgramme(code: string, denomination: string, weight_in_exercise: number, exercise_id: number) {
     const data = {
       code: code,
-      libelle: libelle,
-      poids: poids,
-      exercice_id: exercice_id
+      denomination: denomination,
+      weight_in_exercise: weight_in_exercise,
+      exercise_id: exercise_id
+    };
+    return this.httpClient.post(BASE_URL + 'administrator/create-program', data, this.options);
+  }
+
+  update(code: string, denomination: string, weight_in_exercise: number, exercise_id: number, id: number) {
+    const data = {
+      code: code,
+      denomination: denomination,
+      weight_in_exercise: weight_in_exercise,
+      exercise_id: exercise_id
     };
 
     console.log(data)
 
-    return this.httpClient.put(BASE_URL + 'administrateurs/2/programmes/' + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrator/update-program/' + id, data, this.options);
   }
 }

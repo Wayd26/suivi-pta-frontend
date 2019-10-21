@@ -6,20 +6,19 @@
   }
 
   export interface Structure {
-      identifiant: number;
-      code: string;
-      bp: string;
-      sigle: string;
-      denomination: string;
-      email: string;
-      site_web: string;
-      logo: string;
-      telephone: string;
-      _ville: string;
-      _departement: string;
-      _user: string;
-      created_at: string;
-      updated_at: string;
+    id: number;
+    code: string;
+    denomination: string;
+    po_box: string;
+    abbreviation: string;
+    email: string;
+    website: string;
+    url_logo?: any;
+    cellphone: string;
+    _town: string;
+    created_at: string;
+    updated_at: string;
+    deleted_at?: any;
       links: Link[];
   }
   export interface StructureExport {
@@ -33,8 +32,7 @@
     logo: string;
     telephone: string;
     _ville: string;
-    _departement: string;
-}
+    }
 
   export interface Links {
       next: string;

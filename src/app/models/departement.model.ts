@@ -5,12 +5,12 @@
   }
 
   export interface Departement {
-      identifiant: number;
-      code: string;
-      denomination: string;
-      _user: string;
-      created_at: string;
-      updated_at: string;
+    id: number;
+    code: string;
+    denomination: string;
+    created_at: string;
+    updated_at: string;
+    deleted_at?: any;
       links: Link[];
   }
   export interface DepartementExport {

@@ -20,34 +20,37 @@ export class StructureService {
 
     return this.httpClient.get(BASE_URL + 'structures/' + id, this.options  );
   }
-  createStructure(code, denomination, email, telephon, ville,  sigle, boite_postal) {
+
+  createStructure(code, denomination, po_box, website, town_id, cellphone, email, abbreviation) {
     const data = {
       code : code,
       denomination : denomination,
+      po_box: po_box,
+      website: website,
+      town_id: town_id,
+      cellphone : cellphone,
       email : email,
-      telephone : telephon,
-      ville_id : ville,
-      sigle: sigle,
-      boite_postal: boite_postal
+      abbreviation : abbreviation
     };
     console.log(data);
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/structures', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrator/create-structure', data, this.options);
   }
-  update(code, denomination, email, telephon, ville, sigle, boite_postal, id) {
+  update(code, denomination, po_box, website, town_id, cellphone, email, abbreviation, id) {
     const data = {
       code : code,
       denomination : denomination,
+      po_box: po_box,
+      website: website,
+      town_id: town_id,
+      cellphone : cellphone,
       email : email,
-      telephone : telephon,
-      ville_id : ville,
-      sigle: sigle,
-      boite_postal: boite_postal
+      abbreviation : abbreviation
     };
     console.log(data);
-    return this.httpClient.put(BASE_URL + 'administrateurs/2/structures/' + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrator/update-structure/' + id, data, this.options);
   }
 
   deleteStructure(id) {
-      return this.httpClient.delete(BASE_URL + 'administrateurs/2/structures/' + id, this.options);
+      return this.httpClient.delete(BASE_URL + 'administrator/remove-structure/' + id, this.options);
   }
 }

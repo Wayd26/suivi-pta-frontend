@@ -19,8 +19,8 @@ export class ExerciceEditComponent implements OnInit {
     message: string;
     id: number;
     exercice: Exercice;
-  dateDebut;
-  dateFin;
+  date_debut;
+  date_fin;
   constructor(private exerciceService: ExercieService , private router: Router, private utilservice: UtilsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -29,30 +29,39 @@ export class ExerciceEditComponent implements OnInit {
     this.id = +this.route.snapshot.params['id'];
     this.exerciceService.getExercice(+this.route.snapshot.params['id']).subscribe((res: ExerciceResponse) => {
       this.exercice = res.data;
-      this.dateDebut = this.exercice.date_debut;
-      this.dateFin = this.exercice.date_fin;
+      this.date_debut = this.exercice.started_on;
+      this.date_fin = this.exercice.ended_on;
 
       console.log(res.data);
+
+      console.log('la date de début est ' + this.exercice.started_on);
+
+      console.log('la date de fin est ' + this.exercice.ended_on);
+
     });
   }
 
   onSubmit(form: NgForm) {
       this.exerciceService.updateExercice(form.value['annee_exercice'], form.value['denomination_exercice'], this.utilservice.changeDateFornat(this.utilservice
-        .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)),  this.utilservice.changeDateFornat(this.utilservice
-        .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), this.id)
+        .getDate(this.date_debut.year, this.date_debut.month, this.date_debut.day)),  this.utilservice.changeDateFornat(this.utilservice
+        .getDate(this.date_fin.year, this.date_fin.month, this.date_fin.day)), this.id)
       .subscribe((resp) => {
+        this.utilservice.notifModif_OK();
         this.router.navigate(['/dashboard/parametres/exercice/load']);
       } , (error: ErrorResponse) => {
+
+        console.log(error);
         console.log(error.error['error']);
+        this.utilservice.notifModif_Error(error.error['error']);
         // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-          console.log(key);
-          if (key !== 'error') {
-            console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-          }
-        }
+        // for (const key in error.error['error']) {
+        //   console.log(key);
+        //   if (key !== 'error') {
+        //     console.log(error.error['error'][key]);
+        //     this.message = error.error['error'][key];
+        //     break;
+        //   }
+        // }
         this.router.navigate(['/dashboard/parametres/exercice/edit/' + this.id]);
       });
   }

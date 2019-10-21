@@ -6,14 +6,15 @@ export interface Link {
 }
 
 export interface Indicateur {
-  identifiant: number;
-  libelle: string;
-  valeur_cible: number;
-  valeur_realisee: number;
-  activite_id: string;
-  _user: string;
+  id: number;
+  code: string;
+  denomination: string;
+  target_value: number;
+  realized_value: number;
+  _activity: string;
   created_at: string;
   updated_at: string;
+  deleted_at?: any;
   links: Link[];
 }
 
@@ -25,22 +26,9 @@ export interface IndicateurExport {
   activite_id: string;
 }
 
-export interface Pagination {
-  total: number;
-  count: number;
-  per_page: number;
-  current_page: number;
-  total_pages: number;
-  links: any[];
-}
-
-export interface Meta {
-  pagination: Pagination;
-}
 
 export interface ListIndicateurResponse {
   data: Indicateur[];
-  meta: Meta;
 }
 export interface IndicateurResponse {
   data: Indicateur;

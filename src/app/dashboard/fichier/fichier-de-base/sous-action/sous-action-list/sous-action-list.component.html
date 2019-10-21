@@ -1,0 +1,78 @@
+<div class="container-fluid">
+  <div class="page-title">
+    <h4>Liste des Sous-Actions</h4>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-block">
+          <a [routerLink]="['add']" class="btn btn-info">
+            <i class="ti-plus pdd-right-5"></i>
+            <span>Ajouter</span>
+          </a>
+          <a [routerLink]="['import']" class="btn btn-info">
+            <i class="ti-import pdd-right-5"></i>
+            <span>Importer</span>
+          </a>
+          <a (click)="execelExport()" class="btn btn-info">
+            <i class="ti-export pdd-right-5"></i>
+            <span>EXCEL</span>
+          </a>
+          <a (click)="csvExport()" class="btn btn-info" style="color: white">
+            <i class="ti-export pdd-right-5"></i>
+            <span>CSV</span>
+          </a>
+          <div class="table-overflow">
+            <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
+              <thead>
+              <tr>
+                <th>Action</th>
+                <th>Code </th>
+                <th>Dénomination</th>
+                <th>Poids</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let sous_action of sousActions">
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{sous_action._action}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="mrg-top-15">
+                    <span style="width: 20px">{{sous_action.code}}</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{sous_action.denomination}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="mrg-top-15">
+                    <span>{{sous_action.weight_in_action}}</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="mrg-top-10 text-center">
+                    <a [routerLink]="['edit/' + sous_action.id]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                      <i class="ti-pencil"></i>
+                    </a>
+                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(sous_action.id)">
+                      <i class="ti-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

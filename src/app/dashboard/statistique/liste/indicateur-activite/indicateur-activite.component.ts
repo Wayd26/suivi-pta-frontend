@@ -35,8 +35,8 @@ export class IndicateurActiviteComponent implements OnInit {
         res.data.map((exo) => {
           this.singleSelectOptionsExercice.push({
             label: exo.denomination,
-            value: exo.identifiant,
-            code: exo.identifiant
+            value: exo.id,
+            code: exo.id
           });
         });
       });
@@ -45,8 +45,8 @@ export class IndicateurActiviteComponent implements OnInit {
         res.data.map((exo) => {
           this.singleSelectOptionsStructure.push({
             label: exo.denomination,
-            value: exo.identifiant,
-            code: exo.identifiant
+            value: exo.id,
+            code: exo.code
           });
         });
       });
@@ -54,9 +54,9 @@ export class IndicateurActiviteComponent implements OnInit {
       .subscribe((res: ListActiviteResponse) => {
         res.data.map((exo) => {
           this.singleSelectOptionsActivite.push({
-            label: exo.libelle,
-            value: exo.identifiant,
-            code: exo.identifiant
+            label: exo.denomination,
+            value: exo.id,
+            code: exo.code
           });
         });
       });

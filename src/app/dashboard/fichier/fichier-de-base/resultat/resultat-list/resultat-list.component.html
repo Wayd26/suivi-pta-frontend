@@ -37,7 +37,7 @@
               <tr *ngFor="let resultat of Resultats">
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{resultat._objectif}}</span>
+                    <span>{{resultat._objective}}</span>
                   </div>
                 </td>
                 <td>
@@ -47,16 +47,16 @@
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{resultat.libelle}}</span>
+                    <span>{{resultat.denomination}}</span>
                   </div>
                 </td>
 
                 <td>
                   <div class="mrg-top-10 text-center">
-                    <a [routerLink]="['edit/' + resultat.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                    <a [routerLink]="['edit/' + resultat.id]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
                       <i class="ti-pencil"></i>
                     </a>
-                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(resultat.identifiant)">
+                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(resultat.id)">
                       <i class="ti-trash"></i>
                     </button>
                   </div>

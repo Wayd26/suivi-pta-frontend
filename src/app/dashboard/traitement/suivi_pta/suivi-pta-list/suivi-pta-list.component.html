@@ -60,33 +60,33 @@
               <tr *ngFor="let suiviTache of suiviTacheSelect">
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.links[2]._activite}}</span>
+                    <span>{{suiviTache._activity}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.links[0]._tache}}</span>
+                    <span>{{suiviTache._task}}</span>
                   </div>
                 </td>
 
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.poids}}</span>
+                    <span>{{suiviTache.weight_in_activity}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.est_realisee}}</span>
+                    <span>{{suiviTache.is_realized}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.real_end_at}}</span>
+                    <span>{{suiviTache.effective_end_date}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{suiviTache.commentaire}}</span>
+                    <span>{{suiviTache.comment}}</span>
                   </div>
                 </td>
                 <td>

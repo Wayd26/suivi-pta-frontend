@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Exercice, ListExerciceResponse} from '../../../../models/exercice.model';
 import {ExercieService} from '../../../../shared/services/exercie.service';
 import {DataService} from '../../../../shared/services/data.service';
+import {DELETE_CONFIRMATION} from '../../../../constants/urlConstants';
 
 @Component({
   selector: 'app-exercice-list',
@@ -35,4 +36,18 @@ export class ExerciceListComponent implements OnInit {
     }, () => {
     });
   }
+
+  onDelete(id) {
+    const response = confirm(DELETE_CONFIRMATION);
+    if (response) {
+      this.exerciceService.deleteExercice(id).subscribe((res) => {
+          this.exercices = this.exercices.filter((action) => {
+            return action.id !== id;
+          });
+          this.router.navigate(['/dashboard/parametres/exercice/load']);
+        }
+      );
+    }
+  }
+
 }

@@ -39,7 +39,7 @@
                                   <tr *ngFor="let ville of villes">
                                       <td>
                                         <div class="mrg-top-15">
-                                          <span>{{ville._departement}}</span>
+                                          <span>{{ville._department}}</span>
                                       </div>
                                       </td>
                                       <td>
@@ -54,10 +54,10 @@
                                       </td>
                                     <td>
                                       <div class="mrg-top-10 text-center">
-                                        <a [routerLink]="['edit/' + ville.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                        <a [routerLink]="['edit/' + ville.id]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
                                           <i class="ti-pencil"></i>
                                         </a>
-                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(ville.identifiant)">
+                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(ville.id)">
                                           <i class="ti-trash"></i>
                                         </button>
                                       </div>

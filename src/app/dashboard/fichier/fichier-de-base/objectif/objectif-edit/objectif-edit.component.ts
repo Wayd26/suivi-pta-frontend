@@ -33,19 +33,19 @@ export class ObjectifEditComponent implements OnInit {
     this.id = +this.route.snapshot.params['id'];
     this.objService.getObjectif(+this.route.snapshot.params['id']).subscribe((res: ObjectifResponse) => {
       this.objectif = res.data;
-      console.log(this.objectif);
+      console.log(res.data);
 
-      this.singleSelectValue = [this.utils.getIdData(res.data.links, 'programme')];
-      console.log(this.utils.getIdData(res.data.links, 'programme'));
+      this.singleSelectValue = [this.utils.getIdData(res.data.links, 'program')];
+      console.log(this.utils.getIdData(res.data.links, 'program'));
     });
 
     this.progra.getProgrammeList()
       .subscribe((res: ListProgrammeResponse) => {
-        res.data.map((objectif) => {
+        res.data.map((prog) => {
           this.singleSelectOptions.push({
-            label: objectif.libelle,
-            value: objectif.identifiant.toString(),
-            code: objectif.code
+            label: prog.denomination,
+            value: prog.id.toString(),
+            code: prog.code
           });
         });
       });
@@ -55,19 +55,22 @@ export class ObjectifEditComponent implements OnInit {
     console.log(this.singleSelectValue);
     this.objService.updateObjectif(form.value['code_objectif_specifique'], form.value['libelle_objectif_specifique'], +this.singleSelectValue, this.id )
       .subscribe((resp) => {
-        this.message = 'Succes de l\'operation';
+        //this.message = 'Succes de l\'operation';
+        this.utils.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/base/objectif/load']);
       } , (error: ErrorResponse) => {
+        console.log(error);
         console.log(error.error['error']);
+        this.utils.notifModif_Error(error.error['error']);
         // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-          console.log(key);
-          if (key !== 'error') {
-            console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-          }
-        }
+        // for (const key in error.error['error']) {
+        //   console.log(key);
+        //   if (key !== 'error') {
+        //     console.log(error.error['error'][key]);
+        //     this.message = error.error['error'][key];
+        //     break;
+        //   }
+        // }
         this.router.navigate(['/dashboard/fichier/base/objectif/edit/' + this.id ]);
       });
   }

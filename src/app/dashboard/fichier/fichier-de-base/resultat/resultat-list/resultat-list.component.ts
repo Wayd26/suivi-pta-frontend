@@ -48,14 +48,13 @@ export class ResultatListComponent implements OnInit {
   onDelete(id) {
     const response = confirm(DELETE_CONFIRMATION);
     if (response) {
-      this.Resultats = this.Resultats.filter((action) => {
-        return action.identifiant !== id;
-      });
-      // this.activites.deleteStructure(id).subscribe((res) => {
-      //
-      //     this.router.navigate(['/dashboard/fichier/base/programme']);
-      //   }
-      // );
+      this.resultatService.deleteResultat(id).subscribe((res) => {
+          this.Resultats = this.Resultats.filter((action) => {
+            return action.id !== id;
+          });
+          this.router.navigate(['/dashboard/fichier/base/resultat/load']);
+        }
+      );
     }
   }
 

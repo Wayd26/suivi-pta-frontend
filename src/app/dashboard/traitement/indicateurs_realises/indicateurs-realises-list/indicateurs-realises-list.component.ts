@@ -36,14 +36,4 @@ export class IndicateursRealisesListComponent implements OnInit {
     }, () => {
     });
   }
-
-  onDelete(id) {
-    const response = confirm(DELETE_CONFIRMATION);
-    if (response) {
-      this.indicateurs = this.indicateurs.filter((indicateurs) => {
-        return indicateurs.identifiant !== id;
-      });
-    }
   }
-
-}

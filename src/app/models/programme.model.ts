@@ -3,16 +3,17 @@ export interface Link {
   href: string;
 }
 
+
 export interface Programme {
-  identifiant: number;
+  id: number;
   code: string;
-  libelle: string;
-  poids: number;
-  _exercice: string;
-  _ministere: string;
-  _user: string;
+  denomination: string;
+  weight_in_programm: number;
+  _exercise: string;
+  _ministry: string;
   created_at: string;
   updated_at: string;
+  deleted_at?: any;
   links: Link[];
 }
 
@@ -29,22 +30,10 @@ export interface Links {
   next: string;
 }
 
-export interface Pagination {
-  total: number;
-  count: number;
-  per_page: number;
-  current_page: number;
-  total_pages: number;
-  links: Links;
-}
 
-export interface Meta {
-  pagination: Pagination;
-}
 
 export interface ListProgrammeResponse {
   data: Programme[];
-  meta: Meta;
 }
 export interface ProgrammeResponse {
   data: Programme;

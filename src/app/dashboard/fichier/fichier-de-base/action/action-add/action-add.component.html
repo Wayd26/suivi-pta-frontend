@@ -57,13 +57,13 @@
                 <div class="form-group row">
                   <label for="form-1-6" class="col-md-2 control-label">Résultat</label>
                   <div class="col-md-10">
-                    <ng-selectize id="form-1-6" name="resulat_action" [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue2" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                    <ng-selectize id="form-1-6" name="resulat_action" [config]="singleSelectConfig" [options]="singleSelectOptions2" [(ngModel)]="singleSelectValue2" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
                   </div>
                 </div>
 
 
 
-                <a [routerLink]="['/dashboard/fichier/base/action']" class="btn btn-primary">
+                <a [routerLink]="['/dashboard/fichier/base/action/load']" class="btn btn-primary">
                   <i class="ti-back-left pdd-right-5"></i>
                   <span>Retour</span>
                 </a> <button type="submit" class="btn btn-info" [disabled]="f.invalid">

@@ -57,16 +57,16 @@ export class ActionListComponent implements OnInit {
       });
     //  }
 
-      this.actions.map((a) => {
-        this.actionExport.push({
-          identifiant: a.identifiant,
-          code: a.code,
-          libelle: a.libelle,
-          poids: a.poids,
-          montant: a.montant,
-          _resultat: a._resultat
-      });
-      });
+      // this.actions.map((a) => {
+      //   this.actionExport.push({
+      //     identifiant: a.identifiant,
+      //     code: a.code,
+      //     libelle: a.libelle,
+      //     poids: a.poids,
+      //     montant: a.montant,
+      //     _resultat: a._resultat
+      // });
+      // });
 
   }
   execelExport() {
@@ -81,9 +81,9 @@ export class ActionListComponent implements OnInit {
     if (response) {
       this.actionService.deleteAction(id).subscribe((res) => {
           this.actions = this.actions.filter((action) => {
-            return action.identifiant !== id;
+            return action.id !== id;
           });
-          this.router.navigate(['/dashboard/fichier/base/action']);
+          this.router.navigate(['/dashboard/fichier/base/action/load']);
         }
       );
     }

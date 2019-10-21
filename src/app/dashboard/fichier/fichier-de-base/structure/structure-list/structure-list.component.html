@@ -27,10 +27,9 @@
                             <thead>
                                 <tr>
                                     <th>Code Structure</th>
-                                    <th>Denomination</th>
+                                    <th>Dénomination</th>
                                     <th>Tel. Responsable</th>
                                     <th>Email</th>
-                                    <th>Departement</th>
                                     <th>Ville</th>
                                     <th>Action</th>
                                 </tr>
@@ -50,7 +49,7 @@
 
                                     <td>
                                         <div class="mrg-top-15">
-                                            <span>{{structure.telephone}}</span>
+                                            <span>{{structure.cellphone}}</span>
                                         </div>
                                     </td>
                                     <td>
@@ -58,22 +57,18 @@
                                           <span>{{structure.email}}</span>
                                       </div>
                                   </td>
-                                  <td>
-                                    <div class="mrg-top-15">
-                                        <span>{{structure._departement}}</span>
-                                    </div>
-                                </td>
+
                                 <td>
                                   <div class="mrg-top-15">
-                                      <span>{{structure._ville}}</span>
+                                      <span>{{structure._town}}</span>
                                   </div>
                                 </td>
                                   <td>
                                     <div class="mrg-top-10 text-center">
-                                      <a [routerLink]="['edit/' + structure.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                      <a [routerLink]="['edit/' + structure.id]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
                                         <i class="ti-pencil"></i>
                                       </a>
-                                      <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(structure.identifiant)">
+                                      <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(structure.id)">
                                         <i class="ti-trash"></i>
                                       </button>
                                     </div>

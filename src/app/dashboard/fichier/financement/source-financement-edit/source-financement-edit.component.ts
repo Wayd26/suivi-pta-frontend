@@ -38,8 +38,8 @@ export class SourceFinancementEditComponent implements OnInit {
       console.log('Affichage des donnees ' + res.data);
 
       //this.singleSelectValue = [this.sourceFi._type];
-      this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'type')];
-      console.log(this.utilService.getIdData(res.data.links, 'type_Source'));
+      this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'type-funding')];
+      console.log(this.utilService.getIdData(res.data.links, 'type-funding'));
     });
 
 
@@ -47,22 +47,24 @@ export class SourceFinancementEditComponent implements OnInit {
       .subscribe((res: ListTypeSourceFinancementResponse) => {
         res.data.map((typeS) => {
           this.singleSelectOptions.push({
-            label: typeS.libelle,
-            value: typeS.identifiant,
-            code: typeS.identifiant
+            label: typeS.denomination,
+            value: typeS.id,
+            code: typeS.code
           });
         });
       });
   }
   onSubmit(form: NgForm) {
     console.log(this.singleSelectValue);
-    this.sourceFiService.update(form.value['code_source_financement'], form.value['libellé_source_financement'], form.value['poids_projet_pip'], form.value['chapitre_imputation'], form.value['toggle1'], this.singleSelectValue.toString(), this.id)
+    this.sourceFiService.update(form.value['code_source_financement'], form.value['libellé_source_financement'], form.value['poids_projet_pip'], form.value['chapitre_imputation'], form.value['toggle1'], +this.singleSelectValue, this.id)
       .subscribe((resp) => {
-        this.message = 'Succes de l\'operation';
+        // this.message = 'Succes de l\'operation';
+        this.utilService.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/financement/source/load']);
       } , (error) => {
         console.log(error);
-        this.message = 'Echec de l\'operation';
+        // this.message = 'Echec de l\'operation';
+        this.utilService.notifModif_Error(error.error['error']);
         this.router.navigate(['//dashboard/fichier/financement/source/edit/' + this.id]);
       });
   }

@@ -55,10 +55,10 @@ export class VilleListComponent implements OnInit {
     });
     this.villes.map((v) => {
       this.villeExport.push( {
-        identifiant: v.identifiant,
+        identifiant: v.id,
         code: v.code,
         denomination: v.denomination,
-        _departement: v._departement
+        _departement: v._department
     });
     });
   }
@@ -79,7 +79,7 @@ export class VilleListComponent implements OnInit {
     if (response) {
       this.villeService.deleteVille(id).subscribe((res) => {
           this.villes = this.villes.filter((action) => {
-            return action.identifiant !== id;
+            return action.id !== id;
           });
           this.router.navigate(['/dashboard/fichier/localisation/ville/load']);
         }

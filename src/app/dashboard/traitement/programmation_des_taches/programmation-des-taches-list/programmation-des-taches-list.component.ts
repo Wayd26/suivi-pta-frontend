@@ -6,6 +6,7 @@ import {DataService} from '../../../../shared/services/data.service';
 import {UtilsService} from '../../../../shared/services/utils.service';
 import {ActiviteService} from '../../../../shared/services/activite.service';
 import {ListActiviteResponse} from '../../../../models/activite.model';
+import {DELETE_CONFIRMATION} from '../../../../constants/urlConstants';
 
 
 @Component({
@@ -47,9 +48,9 @@ export class ProgrammationDesTachesListComponent implements OnInit {
       .subscribe((res: ListActiviteResponse) => {
         res.data.map((activite) => {
           this.singleSelectOptions.push({
-            label: activite.libelle,
-            value: activite.identifiant,
-            code: activite.identifiant
+            label: activite.denomination,
+            value: activite.id,
+            code: activite.code
           });
         });
       });
@@ -71,10 +72,25 @@ export class ProgrammationDesTachesListComponent implements OnInit {
     this.suiviTacheSelect = this.dataService.getSuiviTaches().filter(a => {
       return this.utilservice.getIdData(a.links, 'activite'); } );
      this.dataService.getSuiviTaches().map(b => {
-      this.totalTEP = this.totalTEP + (+b.poids) ;
+      this.totalTEP = this.totalTEP + (+b.weight_in_activity) ;
       this.totalTEP.toFixed(2);
       console.log(this.totalTEP);
     });
 
   }
+
+  onDelete(id) {
+    const response = confirm(DELETE_CONFIRMATION);
+    if (response) {
+      this.suiviTacheService.deleteSuiviTache(id).subscribe((res) => {
+          this.suiviTaches = this.suiviTaches.filter((action) => {
+            return action.id !== id;
+          });
+          this.router.navigate(['/dashboard/traitement/programmation_des_taches/load']);
+        }
+      );
+    }
+  }
+
+
 }

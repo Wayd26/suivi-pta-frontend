@@ -28,7 +28,7 @@
                                 <div class="form-group row">
                                     <label for="form-1-4" class="col-md-3 control-label">Telephone du responsable</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" id="form-1-4" ngModel="{{structure.telephone}}" placeholder="Telephone du responsable" name="telResp">
+                                        <input type="text" class="form-control" id="form-1-4" ngModel="{{structure.cellphone}}" placeholder="Telephone du responsable" name="telResp">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -40,15 +40,23 @@
                                 <div class="form-group row">
                                     <label for="form-1-5" class="col-md-3 control-label">Code Postale</label>
                                     <div class="col-md-9">
-                                        <input type="email" class="form-control" id="form-1-8" ngModel="{{structure.bp}}" placeholder="Code Postale" name="cpost">
+                                        <input type="email" class="form-control" id="form-1-8" ngModel="{{structure.po_box}}" placeholder="Code Postale" name="bpost">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="form-1-5" class="col-md-3 control-label">Sigle</label>
                                     <div class="col-md-9">
-                                        <input type="email" class="form-control" id="form-1-9" ngModel="{{structure.sigle}}" placeholder="Sigle" name="sigle">
+                                        <input type="email" class="form-control" id="form-1-9" ngModel="{{structure.abbreviation}}" placeholder="Sigle" name="sigle">
                                     </div>
                                 </div>
+
+
+                              <div class="form-group row">
+                                <label for="form-1-10" class="col-md-3 control-label">Site Web</label>
+                                <div class="col-md-9">
+                                  <input type="text" class="form-control" id="form-1-10" ngModel="{{structure.website}}" placeholder="site web" name="website">
+                                </div>
+                              </div>
                                 <!--  <div class="form-group row">
                       <label for="form-1-6" class="col-md-2 control-label">Departement</label>
                       <div class="col-md-10">

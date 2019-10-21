@@ -31,10 +31,10 @@ export class ActionImportComponent implements OnInit {
   getResultatId(libelle) {
     console.log(libelle);
     const vil = this.resultats.find((e) => {
-      return e.libelle === libelle;
+      return e.denomination === libelle;
     });
     console.log(vil);
-    return vil !== undefined ? vil.identifiant : 0;
+    return vil !== undefined ? vil.id : 0;
   }
   incomingfile($event) {
     this.file = $event.target.files[0];

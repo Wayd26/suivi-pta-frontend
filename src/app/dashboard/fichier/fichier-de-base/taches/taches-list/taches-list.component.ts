@@ -54,8 +54,8 @@ export class TachesListComponent implements OnInit {
 
       this.taches.map((p) => {
         this.tacheExport.push({
-          identifiant: p.identifiant,
-          libelle: p.libelle,
+          identifiant: p.id,
+          libelle: p.denomination,
           code: p.code
         });
       });
@@ -80,9 +80,9 @@ export class TachesListComponent implements OnInit {
     if (response) {
       this.tacheService.deleteTache(id).subscribe((res) => {
           this.taches = this.taches.filter((action) => {
-            return action.identifiant !== id;
+            return action.id !== id;
           });
-          this.router.navigate(['/dashboard/fichier/base/tache']);
+          this.router.navigate(['/dashboard/fichier/base/tache/load']);
         }
       );
     }

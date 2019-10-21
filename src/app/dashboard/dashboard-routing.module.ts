@@ -85,6 +85,10 @@ import {SuiviPtaListComponent} from './traitement/suivi_pta/suivi-pta-list/suivi
 import {IndicateursRealisesLoaderComponent} from './traitement/indicateurs_realises/indicateurs-realises-loader/indicateurs-realises-loader.component';
 import {IndicateursRealisesListComponent} from './traitement/indicateurs_realises/indicateurs-realises-list/indicateurs-realises-list.component';
 import {IndicateursRealisesEditComponent} from './traitement/indicateurs_realises/indicateurs-realises-edit/indicateurs-realises-edit.component';
+import {SousActionListComponent} from './fichier/fichier-de-base/sous-action/sous-action-list/sous-action-list.component';
+import {SousActionLoaderComponent} from './fichier/fichier-de-base/sous-action/sous-action-loader/sous-action-loader.component';
+import {SousActionAddComponent} from './fichier/fichier-de-base/sous-action/sous-action-add/sous-action-add.component';
+import {SousActionEditComponent} from './fichier/fichier-de-base/sous-action/sous-action-edit/sous-action-edit.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -706,6 +710,34 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/base/resultat',
     component:  ResultatListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/sous_action',
+    component: SousActionListComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/sous_action/load',
+    component: SousActionLoaderComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'fichier/base/sous_action/add',
+    component: SousActionAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  } ,
+  {
+    path: 'fichier/base/sous_action/edit/:id',
+    component: SousActionEditComponent,
     data: {
       title: 'Dashboard'
     }

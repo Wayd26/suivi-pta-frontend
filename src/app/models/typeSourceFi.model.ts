@@ -6,12 +6,12 @@ export interface Link {
   }
 
   export interface TypeSourceFinancement {
-      identifiant: number;
-      code: string;
-      libelle: string;
-      _user: string;
-      created_at: string;
-      updated_at: string;
+    id: number;
+    denomination: string;
+    code: string;
+    created_at: string;
+    updated_at: string;
+    deleted_at?: any;
       links: Link[];
   }
   export interface TypeSourceFinancementExport {
@@ -20,26 +20,12 @@ export interface Link {
     libelle: string;
 }
 
-  export interface Links {
+export interface Links {
       next: string;
-  }
+}
 
-  export interface Pagination {
-      total: number;
-      count: number;
-      per_page: number;
-      current_page: number;
-      total_pages: number;
-      links: Links;
-  }
-
-  export interface Meta {
-      pagination: Pagination;
-  }
-
-  export interface ListTypeSourceFinancementResponse {
+export interface ListTypeSourceFinancementResponse {
       data: TypeSourceFinancement[];
-      meta: Meta;
   }
 
 export interface TypeSourceFiResponse {

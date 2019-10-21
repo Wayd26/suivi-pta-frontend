@@ -12,31 +12,32 @@ export class ObjectifService {
 
   getObjectifList() {
 
-    return this.httpClient.get(BASE_URL + 'objectifs', this.options  );
+    return this.httpClient.get(BASE_URL + 'objectives', this.options  );
   }
 
   getObjectif(id) {
-    return this.httpClient.get(BASE_URL + 'objectifs/' + id, this.options);
+    return this.httpClient.get(BASE_URL + 'objectives/' + id, this.options);
   }
   deleteObjectif(id) {
-    return this.httpClient.delete(BASE_URL + 'administrateurs/2/objectifs/' + id, this.options);
+    return this.httpClient.delete(BASE_URL + 'administrator/remove-objective/' + id, this.options);
   }
-  createObjectif(code: string, libelle: string, programme: number) {
+
+  createObjectif(code: string, denomination: string, programm_id: number) {
     const data = {
       code: code,
-      libelle: libelle,
-      programme_id: programme
+      denomination: denomination,
+      programm_id: programm_id
     };
     console.log(data);
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/objectifs', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrator/create-objective', data, this.options);
   }
-  updateObjectif(code: string, libelle: string, programme: number, id: number) {
+  updateObjectif(code: string, denomination: string, programm_id: number, id: number) {
     const data = {
       code: code,
-       libelle: libelle,
-      programme_id: programme
+      denomination: denomination,
+      programm_id: programm_id
     };
 
-    return this.httpClient.put(BASE_URL + 'administrateurs/2/objectifs/'  + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrator/update-objective/'  + id, data, this.options);
   }
 }
