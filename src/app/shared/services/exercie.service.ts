@@ -20,7 +20,7 @@ export class ExercieService {
   }
 
   getExercice(id) {
-    return this.httpClient.get(BASE_URL + 'exercice/' + id, this.options);
+    return this.httpClient.get(BASE_URL + 'exercices/' + id, this.options);
   }
 
 
@@ -28,20 +28,18 @@ export class ExercieService {
     return this.httpClient.delete(BASE_URL + 'administrateurs/1/supprimer-suivi-tache/' + id, this.options);
   }
 
-  createExercice(identifiant: number, annee: number, denomination: string, dateDebut: Date, dateFin: Date) {
+  createExercice(annee: number, libelle: string, dateDebut: string, dateFin: string) {
     const data = {
-      identifiant: identifiant,
-      denomination: denomination,
+      libelle: libelle,
       annee: annee,
       started_at: dateDebut,
       end_at: dateFin,
     };
     return this.httpClient.post(BASE_URL + 'administrateurs/1/exercices', data, this.options);
   }
-  updateExercice(identifiant: number, annee: number, denomination: string, dateDebut: Date, dateFin: Date, id: number) {
+  updateExercice(annee: number, libelle: string, dateDebut: string, dateFin: string, id: number) {
     const data = {
-      identifiant: identifiant,
-      denomination: denomination,
+      libelle: libelle,
       annee: annee,
       started_at: dateDebut,
       end_at: dateFin,

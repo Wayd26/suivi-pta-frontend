@@ -41,9 +41,9 @@ export class DepartementListComponent implements OnInit {
 
           ]
       };
-      if (!this.dataService.getDepartements()) {
-        this.router.navigate(['/dashboard/fichier/localisation/departement/load']);
-    }
+    //   if (!this.dataService.getDepartements()) {
+    //     this.router.navigate(['/dashboard/fichier/localisation/departement/load']);
+    // }
     this.departements = this.dataService.getDepartements();
       this.departementService.getDepartementList().subscribe((res: ListDepartementResponse) => {
         this.dataService.setDepartements(res.data);

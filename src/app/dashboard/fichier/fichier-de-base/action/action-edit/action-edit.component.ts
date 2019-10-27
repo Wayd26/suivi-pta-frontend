@@ -36,7 +36,10 @@ export class ActionEditComponent implements OnInit {
       this.id = +this.route.snapshot.params['id'];
       this.actionService.getAction(+this.route.snapshot.params['id']).subscribe((res: ActionResponse) => {
         this.action = res.data;
-      this.singleSelectValue = [this.utils.getIdData(res.data._resultat, 'resultat')];
+
+       // this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'exercice')];
+      this.singleSelectValue = [this.utils.getIdData(res.data.links, 'resultat')];
+
       console.log(this.utils.getIdData(res.data.links, 'resultat'));
     });
     this.resultatService.getResultatList()

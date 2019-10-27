@@ -48,9 +48,9 @@ export class ProgrammeListComponent implements OnInit {
 
           ]
       };
-      if (!this.dataService.getProgrammes()) {
-        this.router.navigate(['/dashboard/fichier/base/programme/load']);
-    }
+    //   if (!this.dataService.getProgrammes()) {
+    //     this.router.navigate(['/dashboard/fichier/base/programme/load']);
+    // }
     this.programmes = this.dataService.getProgrammes();
 
       this.programmeService.getProgrammeList().subscribe((res: ListProgrammeResponse) => {
@@ -92,7 +92,7 @@ export class ProgrammeListComponent implements OnInit {
          this.programmes = this.programmes.filter((action) => {
            return action.identifiant !== id;
          });
-         this.router.navigate(['/dashboard/fichier/base/programme']);
+         this.router.navigate(['/dashboard/fichier/base/programme/load']);
        }
      );
    }

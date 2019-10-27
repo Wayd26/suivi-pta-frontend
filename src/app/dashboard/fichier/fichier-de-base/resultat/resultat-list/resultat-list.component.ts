@@ -26,9 +26,9 @@ export class ResultatListComponent implements OnInit {
       scrollY: '380',
       pagingType: 'full_numbers'
     };
-    if (!this.dataService.getResultats()) {
-      this.router.navigate(['/dashboard/fichier/base/resultat/load']);
-    }
+    // if (!this.dataService.getResultats()) {
+    //   this.router.navigate(['/dashboard/fichier/base/resultat/load']);
+    // }
     this.Resultats = this.dataService.getResultats();
     this.resultatService.getResultatList().subscribe((res: ListeResultatResponse) => {
       this.dataService.setResultats(res.data);

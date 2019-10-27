@@ -37,9 +37,9 @@ export class ObjectifListComponent implements OnInit {
       scrollY: '380',
       pagingType: 'full_numbers'
     };
-    if (!this.dataService.getObjectifs()) {
-      this.router.navigate(['/dashboard/fichier/base/objectif/load']);
-  }
+  //   if (!this.dataService.getObjectifs()) {
+  //     this.router.navigate(['/dashboard/fichier/base/objectif/load']);
+  // }
     this.Objectifs = this.dataService.getObjectifs();
     this.objectifService.getObjectifList().subscribe((res: ListObjectifResponse) => {
       this.dataService.setObjectifs(res.data);

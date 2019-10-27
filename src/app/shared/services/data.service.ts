@@ -42,92 +42,92 @@ export class DataService {
  public setProgrammes(data: Programme[]) {
     this.programmes = data;
   }
-  getActions (): Action[] {
+  public getActions (): Action[] {
     return this.actions;
 }
-  setActions(data: Action[]) {
+  public setActions(data: Action[]) {
     this.actions = data;
   }
-  getActivites (): Activite[] {
+  public getActivites (): Activite[] {
     return this.activites;
 }
-  setActivites(data: Activite[]) {
+  public setActivites(data: Activite[]) {
     this.activites = data;
   }
-  getExercices (): Exercice[] {
+  public getExercices (): Exercice[] {
     return this.exercices;
   }
-  setExercices(data: Exercice[]) {
+  public setExercices(data: Exercice[]) {
     this.exercices = data;
   }
-  getMinisteres (): Ministere[] {
+  public getMinisteres (): Ministere[] {
     return this.ministere;
   }
-  setMinisteres(data: Ministere[]) {
+  public setMinisteres(data: Ministere[]) {
     this.ministere = data;
   }
-  getObjectifs (): ObjectifModel[] {
+  public getObjectifs (): ObjectifModel[] {
     return this.objectifs;
   }
-  setObjectifs(data: ObjectifModel[]) {
+  public setObjectifs(data: ObjectifModel[]) {
     this.objectifs = data;
   }
-  getStructures (): Structure[] {
+  public getStructures (): Structure[] {
     return this.structures;
   }
-  setStructures(data: Structure[]) {
+  public setStructures(data: Structure[]) {
     this.structures = data;
   }
-  getTaches (): Tache[] {
+  public getTaches (): Tache[] {
     return this.taches;
   }
-  setTaches(data: Tache[]) {
+  public setTaches(data: Tache[]) {
     this.taches = data;
   }
-  getSourceFis (): SourceFinancement[] {
+  public getSourceFis (): SourceFinancement[] {
     return this.sourceFinancements;
   }
-  setSourceFis(data: SourceFinancement[]) {
+  public setSourceFis(data: SourceFinancement[]) {
     this.sourceFinancements = data;
   }
-  getTypeSourceFis (): TypeSourceFinancement[] {
+  public getTypeSourceFis (): TypeSourceFinancement[] {
     return this.typeSourceFinancement;
   }
-  setTypeSourceFis(data: TypeSourceFinancement[]) {
+  public setTypeSourceFis(data: TypeSourceFinancement[]) {
     this.typeSourceFinancement = data;
   }
-  getDepartements (): Departement[] {
+  public getDepartements (): Departement[] {
     return this.departements;
   }
-  setDepartements(data: Departement[]) {
+  public setDepartements(data: Departement[]) {
     this.departements = data;
   }
-  getVilles (): Ville[] {
+  public getVilles (): Ville[] {
     return this.villes;
   }
-  setVilles(data: Ville[]) {
+  public setVilles(data: Ville[]) {
     this.villes = data;
   }
 
-  getSuiviTaches (): SuiviTache[] {
+ public getSuiviTaches (): SuiviTache[] {
     return this.suiviTaches;
   }
-  setSuiviTaches(data: SuiviTache[]) {
+ public setSuiviTaches(data: SuiviTache[]) {
     this.suiviTaches = data;
   }
 
-  getIndicateurs (): Indicateur[] {
+  public getIndicateurs (): Indicateur[] {
     return this.indicateurs;
   }
-  setIndicateurs(data: Indicateur[]) {
+  public setIndicateurs(data: Indicateur[]) {
     this.indicateurs = data;
   }
 
 
-  getResultats (): Resultat[] {
+  public getResultats (): Resultat[] {
     return this.resultats;
   }
-  setResultats(data: Resultat[]) {
+  public setResultats(data: Resultat[]) {
     this.resultats = data;
   }
 

@@ -40,6 +40,6 @@ export interface ListeSuiviTachePesponse {
 }
 
 
-export interface SuiviTachePesponse {
+export interface SuiviTacheResponse {
   data: SuiviTache;
 }

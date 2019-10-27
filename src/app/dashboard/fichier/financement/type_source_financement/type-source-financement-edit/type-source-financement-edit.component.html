@@ -15,20 +15,20 @@
               <form  class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)"  #f = "ngForm">
 
                 <div class="form-group row">
-                  <label for="form-1-1" class="col-md-2 control-label">Code Type Source Financement</label>
-                  <div class="col-md-10">
-                    <input type="text" class="form-control" id="form-1-1" ngModel="{{typeSourceFi.code}}" placeholder="" name="code_type__source_financement">
+                  <label for="form-1-1" class="col-md-3 control-label">Code Type Source Financement</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" id="form-1-1" ngModel="{{typeSourceFi.code}}" placeholder="" name="code">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label for="form-1-2" class="col-md-2 control-label">Libellé Type Source Financement</label>
-                  <div class="col-md-10">
+                  <label for="form-1-2" class="col-md-3 control-label">Libellé Type Source Financement</label>
+                  <div class="col-md-9">
                     <input type="text" class="form-control" id="form-1-2" ngModel="{{typeSourceFi.libelle}}" placeholder="" name="libelle_type__source_financement">
                   </div>
                 </div>
 
-                <a [routerLink]="['/dashboard/fichier/financement/type/source']" class="btn btn-primary">
+                <a [routerLink]="['/dashboard/fichier/financement/type/source/load']" class="btn btn-primary">
                   <i class="ti-back-left pdd-right-5"></i>
                   <span>Retour</span>
                 </a> <button type="submit" class="btn btn-info" [disabled]="f.invalid">

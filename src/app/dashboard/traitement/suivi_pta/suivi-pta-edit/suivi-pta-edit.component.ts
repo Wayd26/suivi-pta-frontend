@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {SuiviTache, SuiviTachePesponse} from '../../../../models/suivi_tache.model';
+import {SuiviTache, SuiviTacheResponse} from '../../../../models/suivi_tache.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SuiviTacheService} from '../../../../shared/services/suivi-tache.service';
 import {UtilsService} from '../../../../shared/services/utils.service';
@@ -45,7 +45,7 @@ export class SuiviPtaEditComponent implements OnInit {
 
     this.message = '';
     this.id = +this.route.snapshot.params['id'];
-    this.suiviPTAServ.getSuiviTache(+this.route.snapshot.params['id']).subscribe((res: SuiviTachePesponse) => {
+    this.suiviPTAServ.getSuiviTache(+this.route.snapshot.params['id']).subscribe((res: SuiviTacheResponse) => {
      this.suiviTache = res.data;
       console.log(res);
 

@@ -120,7 +120,7 @@ export class SourceImportComponent implements OnInit {
           +curruntRecord[2].trim(),
           curruntRecord[3].trim(),
           Boolean(curruntRecord[4].trim()),
-          this.getTypeSourceId(curruntRecord[5].trim()))
+          this.getTypeSourceId(curruntRecord[5].trim()).toString())
             .subscribe((resp) => {
               console.log(resp);
 

@@ -36,7 +36,10 @@ export class StructureEditComponent implements OnInit {
     this.structureService.getStructure(this.id).subscribe((res: StructureResponse) => {
       this.structure = res.data;
       console.log(res.data);
-      this.singleSelectValue2 = [this.utilService.getIdData(this.structure.links, 'ville')];
+      this.singleSelectValue2 = [this.utilService.getIdData(res.data.links, 'ville')];
+
+     // this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'exercice')];
+
     });
     this.message = '';
     this.villeService.getVilleList()

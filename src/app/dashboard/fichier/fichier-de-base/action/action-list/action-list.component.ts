@@ -42,9 +42,9 @@ export class ActionListComponent implements OnInit {
 
           ]
       };
-      if (!this.dataService.getActions()) {
-          this.router.navigate(['/dashboard/fichier/base/action/load']);
-      } else {
+      // if (!this.dataService.getActions()) {
+      //     this.router.navigate(['/dashboard/fichier/base/action/load']);
+      // } else {
         this.actions = this.dataService.getActions();
       this.actionService.getActionList().subscribe((res: ListActionResponse) => {
         this.dataService.setActions(res.data);
@@ -55,7 +55,7 @@ export class ActionListComponent implements OnInit {
       }, () => {
 
       });
-      }
+    //  }
 
       this.actions.map((a) => {
         this.actionExport.push({

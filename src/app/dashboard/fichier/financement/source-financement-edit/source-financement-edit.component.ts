@@ -26,7 +26,8 @@ export class SourceFinancementEditComponent implements OnInit {
   singleSelectConfig: any = {
     labelField: 'label',
     valueField: 'value',
-    searchField: ['value']}
+    searchField: ['value'] };
+
   constructor(private  sourceFiService: SourceFinancementService, private utilService: UtilsService,
     private typeSourceService: TypeSourceFinancementService, private router: Router, private route: ActivatedRoute) { }
 
@@ -36,9 +37,7 @@ export class SourceFinancementEditComponent implements OnInit {
     this.sourceFiService.getSourceFinancement(+this.route.snapshot.params['id']).subscribe((res: SourceFiResponse) => {
       this.sourceFi = res.data;
 
-      console.log(res.data);
-
-      //this.singleSelectValue = [this.sourceFi._type];
+      console.log('Affichage des donnees ' + res.data);
       this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'type')];
       console.log(this.utilService.getIdData(res.data.links, 'type_Source'));
     });
@@ -58,14 +57,14 @@ export class SourceFinancementEditComponent implements OnInit {
   onSubmit(form: NgForm) {
     console.log(this.singleSelectValue);
     this.sourceFiService.update(form.value['code_source_financement'], form.value['libellé_source_financement'],
-    form.value['poids_projet_pip'], form.value['chapitre_imputation'], form.value['toggle1'], +this.singleSelectValue, this.id)
+    form.value['poids_projet_pip'], form.value['chapitre_imputation'], form.value['toggle1'], this.singleSelectValue[0], this.id)
       .subscribe((resp) => {
         this.message = 'Succes de l\'operation';
-        this.router.navigate(['/dashboard/fichier/financement/load']);
+        this.router.navigate(['/dashboard/fichier/financement/source/load']);
       } , (error) => {
         console.log(error);
         this.message = 'Echec de l\'operation';
-        this.router.navigate(['//dashboard/fichier/financement/edit/' + this.id]);
+        this.router.navigate(['//dashboard/fichier/financement/source/edit/' + this.id]);
       });
   }
 

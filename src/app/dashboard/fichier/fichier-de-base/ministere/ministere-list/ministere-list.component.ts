@@ -41,9 +41,9 @@ export class MinistereListComponent implements OnInit {
 
       ]
     };
-    if (!this.dataService.getMinisteres()) {
-      this.router.navigate(['/dashboard/fichier/base/ministere/load']);
-  }
+  //   if (!this.dataService.getMinisteres()) {
+  //     this.router.navigate(['/dashboard/fichier/base/ministere/load']);
+  // }
     this.Ministeres = this.dataService.getMinisteres();
     this.ministereService.getMinistereList().subscribe((res: ListMinistereResponse) => {
       this.dataService.setMinisteres(res.data);
@@ -78,14 +78,13 @@ export class MinistereListComponent implements OnInit {
   onDelete(id) {
     const response = confirm(DELETE_CONFIRMATION);
     if (response) {
-      this.Ministeres = this.Ministeres.filter((action) => {
-        return action.identifiant !== id;
-      });
-      // this.activites.deleteStructure(id).subscribe((res) => {
-      //
-      //     this.router.navigate(['/dashboard/fichier/base/programme']);
-      //   }
-      // );
+      this.ministereService.deleteMinistere(id).subscribe((res) => {
+          this.Ministeres = this.Ministeres.filter((action) => {
+            return action.identifiant !== id;
+          });
+          this.router.navigate(['/dashboard/fichier/base/ministere/load']);
+        }
+      );
     }
   }
 

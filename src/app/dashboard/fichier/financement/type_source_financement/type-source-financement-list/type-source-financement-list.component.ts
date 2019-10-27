@@ -38,9 +38,9 @@ export class TypeSourceFinancementListComponent implements OnInit {
           scrollY: '380',
           pagingType: 'full_numbers'
       };
-      if (!this.dataService.getTypeSourceFis()) {
-        this.router.navigate(['/dashboard/fichier/financement/type/source/load']);
-    }
+    //   if (!this.dataService.getTypeSourceFis()) {
+    //     this.router.navigate(['/dashboard/fichier/financement/type/source/load']);
+    // }
 
     this.typeSources = this.dataService.getTypeSourceFis();
       this.typeSourceFiService.getTypeSourceFinancementList().subscribe((res: ListTypeSourceFinancementResponse) => {
@@ -68,15 +68,13 @@ export class TypeSourceFinancementListComponent implements OnInit {
   onDelete(id) {
     const response = confirm(DELETE_CONFIRMATION);
     if (response) {
-      this.typeSources = this.typeSources.filter((action) => {
-        return action.identifiant !== id;
-      });
-      // this.activites.deleteStructure(id).subscribe((res) => {
-      //
-      //     this.router.navigate(['/dashboard/fichier/base/programme']);
-      //   }
-      // );
+      this.typeSourceFiService.deleteTypeSource(id).subscribe((res) => {
+          this.typeSources = this.typeSources.filter((action) => {
+            return action.identifiant !== id;
+          });
+          this.router.navigate(['/dashboard/fichier/financement/type/source/load']);
+        }
+      );
     }
   }
-
 }

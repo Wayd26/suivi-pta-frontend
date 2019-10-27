@@ -22,7 +22,6 @@
             <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
               <thead>
               <tr>
-                <th>Numéro</th>
                 <th>Libellé</th>
                 <th>Date Début</th>
                 <th>Date Fin</th>
@@ -31,11 +30,11 @@
               </thead>
               <tbody>
               <tr *ngFor="let exercice of exercices">
-                <td>
-                  <div class="mrg-top-15">
-                    <span>{{exercice.identifiant}}</span>
-                  </div>
-                </td>
+                <!--<td>-->
+                  <!--<div class="mrg-top-15">-->
+                    <!--<span>{{exercice.identifiant}}</span>-->
+                  <!--</div>-->
+                <!--</td>-->
                 <td>
                   <div class="mrg-top-15">
                     <span>{{exercice.denomination}}</span>
