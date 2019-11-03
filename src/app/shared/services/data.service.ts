@@ -14,6 +14,7 @@ import {Ville} from '../../models/ville.model';
 import {SuiviTache} from '../../models/suivi_tache.model';
 import {Indicateur} from '../../models/indicateur.model';
 import {Resultat} from '../../models/resultat.model';
+import {SousAction} from '../../models/sous_action.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,7 @@ export class DataService {
   public suiviTaches: SuiviTache[];
   public indicateurs: Indicateur[];
   public resultats: Resultat[];
+  public sousActions: SousAction[];
   public auth = false;
 
   constructor() { }
@@ -132,6 +134,12 @@ export class DataService {
     this.resultats = data;
   }
 
+  public getSousActions (): SousAction[] {
+    return this.sousActions;
+  }
+  public setSousActions(data: SousAction[]) {
+    this.sousActions = data;
+  }
   public isAuth(): boolean {
     return  this.auth;
   }

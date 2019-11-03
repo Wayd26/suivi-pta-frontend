@@ -27,6 +27,7 @@
                               <thead>
                                   <tr>
 
+                                    <th>Code</th>
                                       <th>Libelle Tache</th>
                                       <th>Action</th>
 
@@ -35,17 +36,22 @@
                               </thead>
                               <tbody>
                                   <tr *ngFor="let tache of taches">
+                                    <td>
+                                      <div class="mrg-top-15">
+                                        <span>{{tache.code}}</span>
+                                      </div>
+                                    </td>
                                       <td>
                                         <div class="mrg-top-15">
-                                          <span>{{tache.libelle}}</span>
+                                          <span>{{tache.denomination}}</span>
                                       </div>
                                       </td>
                                     <td>
                                       <div class="mrg-top-10 text-center">
-                                        <a [routerLink]="['edit/' + tache.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                        <a [routerLink]="['edit/' + tache.id]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
                                           <i class="ti-pencil"></i>
                                         </a>
-                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(tache.identifiant)">
+                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(tache.id)">
                                           <i class="ti-trash"></i>
                                         </button>
                                       </div>

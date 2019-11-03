@@ -16,35 +16,35 @@ export class ExercieService {
     header.append('Access-Control-Allow-Headers', 'Origin,X-Requested-Width, Content-Type, Accept, Authorization');
     header.append('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
     header.append('Access-Control-Allow-Origin', 'http://localhost:4200');
-    return this.httpClient.get(BASE_URL + 'exercices', this.options);
+    return this.httpClient.get(BASE_URL + 'exercises', this.options);
   }
 
   getExercice(id) {
-    return this.httpClient.get(BASE_URL + 'exercices/' + id, this.options);
+    return this.httpClient.get(BASE_URL + 'exercises/' + id, this.options);
   }
 
 
   deleteExercice(id) {
-    return this.httpClient.delete(BASE_URL + 'administrateurs/1/supprimer-suivi-tache/' + id, this.options);
+    return this.httpClient.delete(BASE_URL + 'administrator/remove-exercise/' + id, this.options);
   }
 
-  createExercice(annee: number, libelle: string, dateDebut: string, dateFin: string) {
+  createExercice(denomination: string, year: number, started_on: string, ended_on: string) {
     const data = {
-      libelle: libelle,
-      annee: annee,
-      started_at: dateDebut,
-      end_at: dateFin,
+      denomination: denomination,
+      year: year,
+      started_on: started_on,
+      ended_on: ended_on,
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/1/exercices', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrator/create-exercise', data, this.options);
   }
-  updateExercice(annee: number, libelle: string, dateDebut: string, dateFin: string, id: number) {
+  updateExercice(denomination: string, year: number, started_on: string, ended_on: string, id: number) {
     const data = {
-      libelle: libelle,
-      annee: annee,
-      started_at: dateDebut,
-      end_at: dateFin,
+      denomination: denomination,
+      year: year,
+      started_on: started_on,
+      ended_on: ended_on,
     };
-    return this.httpClient.put(BASE_URL + 'administrateurs/1/exercices/' + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrator/update-exercise/' + id, data, this.options);
   }
 
 

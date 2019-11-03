@@ -35,18 +35,18 @@ export class IndicateursRealisesEditComponent implements OnInit {
     this.indicService.getIndicateur(+this.route.snapshot.params['id']).subscribe((res: IndicateurResponse) => {
       this.indicateur = res.data;
 
-      this.singleSelectValueActivite = [this.indicateur.activite_id];
-      this.singleSelectValueIndicateur = [this.indicateur.libelle];
-      this.singleSelectValueActivite = this.utilService.getIdData(this.indicateur, 'activite_id');
-      this.singleSelectValueIndicateur = this.utilService.getIdData(this.indicateur, 'libelle');
+      this.singleSelectValueActivite = this.utilService.getIdData(res.data.links, 'activity');
+      this.singleSelectValueIndicateur = this.utilService.getIdData(res.data, 'denomination');
           });
   }
   onSubmit(form: NgForm) {
+
     this.indicService.updateIndicateur(this.singleSelectValueIndicateur.toString(), form.value['valeur_cible'], form.value['valeur_realisee'], +this.singleSelectValueActivite, this.id)
       .subscribe((resp) => {
         this.message = 'Succes de l\'operation';
         this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises/load']);
       } , (error: ErrorResponse) => {
+        console.log(error);
         console.log(error.error['error']);
         // tslint:disable-next-line:forin
         for (const key in error.error['error']) {

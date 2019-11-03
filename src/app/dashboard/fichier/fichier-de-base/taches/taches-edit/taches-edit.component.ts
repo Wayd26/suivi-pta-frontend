@@ -43,8 +43,8 @@ export class TachesEditComponent implements OnInit {
         res.data.map((exo) => {
           this.singleSelectOptions.push({
             label: exo.denomination,
-            value: exo.identifiant.toString(),
-            code: exo.identifiant
+            value: exo.id.toString(),
+            code: exo.id
           });
         });
       });
@@ -53,19 +53,25 @@ export class TachesEditComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.tacheService.update(form.value['code_tache'], form.value['libelle_tache'], this.id)
       .subscribe((resp) => {
-        this.message = 'Succes de l\'operation';
+
+        // this.message = 'Succes de l\'operation';
+        this.utilService.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/base/taches/load']);
       } , (error: ErrorResponse) => {
+        console.log(error);
         console.log(error.error['error']);
+        this.utilService.notifModif_Error(error.error['error']);
         // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-            console.log(key);
-            if (key !== 'error') {
-              console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-            }
-        }this.router.navigate(['/dashboard/fichier/base/taches/edit/' + this.id ]);
+        // for (const key in error.error['error']) {
+        //   console.log(error);
+        //     console.log(key);
+        //     if (key !== 'error') {
+        //       console.log(error.error['error'][key]);
+        //     this.message = error.error['error'][key];
+        //     break;
+        //     }
+        // }
+        this.router.navigate(['/dashboard/fichier/base/taches/edit/' + this.id ]);
       }) ;
   }
 

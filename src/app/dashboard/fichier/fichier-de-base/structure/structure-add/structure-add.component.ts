@@ -41,7 +41,7 @@ singleSelectValue2: number;
         res.data.map((ville) => {
           this.singleSelectOptions2.push({
             label: ville.denomination,
-            value: ville.identifiant,
+            value: ville.id,
             code: ville.code
           });
         });
@@ -51,23 +51,25 @@ singleSelectValue2: number;
 
   onSubmit(form: NgForm) {
     console.log(this.singleSelectValue2);
-    this.structureService.createStructure(form.value['code'], form.value['denomination'], form.value['email'],
-      form.value['telResp'], +this.singleSelectValue2, form.value['sigle'],
-      form.value['cpost']).subscribe((res) => {
-    }, (error: ErrorResponse) => {
-        console.log(error.error['error']);
-        // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-            console.log(key);
-            if (key !== 'error') {
-              console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-            }
-        }this.router.navigate(['/dashboard/fichier/base/structures/add']);
-        }, () => {
+    this.structureService.createStructure(form.value['code'], form.value['denomination'], form.value['bpost'] , form.value['website'],
+      +this.singleSelectValue2, form.value['telResp'], form.value['email'], form.value['sigle']).subscribe((res) => {
       this.router.navigate(['/dashboard/fichier/base/structures/load']);
+      this.utilService.notifAjout_OK();
+    }, (error: ErrorResponse) => {
+        console.log(error);
+        console.log(error.error['error']);
+        this.utilService.notifAjout_Error(error.error['error']);
+        // tslint:disable-next-line:forin
+        // for (const key in error.error['error']) {
+        //     console.log(key);
+        //     if (key !== 'error') {
+        //       console.log(error.error['error'][key]);
+        //     this.message = error.error['error'][key];
+        //     break;
+        //     }
+        // }
+        this.router.navigate(['/dashboard/fichier/base/structures/add']);
     });
   }
-
 }
+

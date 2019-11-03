@@ -34,7 +34,7 @@ export class VilleImportComponent implements OnInit {
       return e.denomination === libelle;
     });
     console.log(vil);
-    return vil !== undefined ? vil.identifiant : 0;
+    return vil !== undefined ? vil.id : 0;
   }
   incomingfile($event) {
     this.file = $event.target.files[0];

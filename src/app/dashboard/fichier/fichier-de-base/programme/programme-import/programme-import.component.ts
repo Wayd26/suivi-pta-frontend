@@ -40,7 +40,7 @@ export class ProgrammeImportComponent implements OnInit {
      console.log(libelle);
       return e.denomination === libelle;
     });
-    return exo.identifiant;
+    return exo.id;
   }
   public fileEvent($event) {
     const fileSelected = $event.target.files[0];

@@ -5,12 +5,12 @@ export interface Link {
 }
 
 export interface Tache {
-  identifiant: number;
-  libelle: string;
+  id: number;
   code: string;
-  _user: string;
+  denomination: string;
   created_at: string;
   updated_at: string;
+  deleted_at?: any;
   links: Link[];
 }
 
@@ -21,22 +21,9 @@ export interface TacheExport {
   code: string;
 }
 
-export interface Pagination {
-  total: number;
-  count: number;
-  per_page: number;
-  current_page: number;
-  total_pages: number;
-  links: any[];
-}
-
-export interface Meta {
-  pagination: Pagination;
-}
 
 export interface ListTacheResponse {
   data: Tache[];
-  meta: Meta;
 }
 
 export interface TacheResponse {

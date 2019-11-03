@@ -27,9 +27,9 @@ export class TepProjetComponent implements OnInit {
       .subscribe((res: ListProgrammeResponse) => {
         res.data.map((exo) => {
           this.singleSelectOptionsProgramme.push({
-            label: exo.libelle,
-            value: exo.identifiant,
-            code: exo.identifiant
+            label: exo.denomination,
+            value: exo.id,
+            code: exo.code
           });
         });
       });

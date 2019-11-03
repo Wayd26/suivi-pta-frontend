@@ -97,6 +97,10 @@ import {SuiviPtaLoaderComponent} from './traitement/suivi_pta/suivi-pta-loader/s
 import {ProgrammationDesTachesAddComponent} from './traitement/programmation_des_taches/programmation-des-taches-add/programmation-des-taches-add.component';
 import {AgGridModule} from 'ag-grid-angular';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
+import { SousActionListComponent } from './fichier/fichier-de-base/sous-action/sous-action-list/sous-action-list.component';
+import { SousActionAddComponent } from './fichier/fichier-de-base/sous-action/sous-action-add/sous-action-add.component';
+import { SousActionEditComponent } from './fichier/fichier-de-base/sous-action/sous-action-edit/sous-action-edit.component';
+import { SousActionLoaderComponent } from './fichier/fichier-de-base/sous-action/sous-action-loader/sous-action-loader.component';
 
 @NgModule({
   imports: [
@@ -197,7 +201,11 @@ import {Ng2SmartTableModule} from 'ng2-smart-table';
         ResultatLoaderComponent,
         ResultatListComponent,
         ResultatAddComponent,
-        ResultatEditComponent
+        ResultatEditComponent,
+        SousActionListComponent,
+        SousActionAddComponent,
+        SousActionEditComponent,
+        SousActionLoaderComponent
     ],
     providers: [
         ThemeConstants

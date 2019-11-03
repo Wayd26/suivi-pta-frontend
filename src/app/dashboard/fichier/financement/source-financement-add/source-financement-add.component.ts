@@ -22,7 +22,7 @@ export class SourceFinancementAddComponent implements OnInit {
     searchField: ['label']
   };
 
-  singleSelectValue: string[] = ['reactjs'];
+  singleSelectValue: string[] = [];
   constructor(private sourcrService: SourceFinancementService, private router: Router, private utils: UtilsService, private typeSource: TypeSourceFinancementService) { }
 
   ngOnInit() {
@@ -31,30 +31,41 @@ export class SourceFinancementAddComponent implements OnInit {
       .subscribe((res: ListTypeSourceFinancementResponse) => {
         res.data.map((type) => {
           this.singleSelectOptions.push({
-            label: type.libelle,
-            value: type.identifiant,
-            code: type.identifiant
+            label: type.denomination,
+            value: type.id,
+            code: type.code
           });
         });
       });
   }
   onSubmit(form: NgForm) {
+
+
+    console.log('code : ' + form.value['code_source_financement']);
+    console.log('denomination : ' + form.value['libellé_source_financement']);
+    console.log('poids : ' + form.value['poids_projet_pip']);
+    console.log('chapitre : ' +  form.value['chapitre_imputation']);
+    console.log('Est_projet : ' + form.value['toggle1']);
+    console.log('typeSF : ' + this.singleSelectValue);
+
     console.log(this.singleSelectValue[0]);
-      this.sourcrService.createSource(form.value['code_source_financement'], form.value['libellé_source_financement'], form.value['poids_projet_pip'], form.value['chapitre_imputation'], form.value['toggle1'], this.singleSelectValue.toString())
+    this.sourcrService.createSource(form.value['chapitre_imputation'], form.value['code_source_financement'], form.value['toggle1'], form.value['libellé_source_financement'], form.value['poids_projet_pip'], +this.singleSelectValue)
         .subscribe((resp) => {
-          this.router.navigate(['/dashboard/fichier/financement/source']);
+          this.utils.notifAjout_OK();
+          this.router.navigate(['/dashboard/fichier/financement/source/load']);
         } , (error: ErrorResponse) => {
           console.log(error);
         console.log(error.error['error']);
+        this.utils.notifAjout_Error(error.error['error']);
         // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-            console.log(key);
-            if (key !== 'error') {
-              console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-            }
-        }
+        // for (const key in error.error['error']) {
+        //     console.log(key);
+        //     if (key !== 'error') {
+        //       console.log(error.error['error'][key]);
+        //     this.message = error.error['error'][key];
+        //     break;
+        //     }
+        // }
           this.router.navigate(['/dashboard/fichier/financement/source']);
         });
   }

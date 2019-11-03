@@ -6,13 +6,13 @@ export interface Link {
 }
 
 export interface Resultat {
-  identifiant: number;
+  id: number;
   code: string;
-  libelle: string;
-  _user: string;
-  _objectif: string;
+  denomination: string;
+  _objective: string;
   created_at: string;
   updated_at: string;
+  deleted_at?: any;
   links: Link[];
 }
 
@@ -20,22 +20,9 @@ export interface Links {
   next: string;
 }
 
-export interface Pagination {
-  total: number;
-  count: number;
-  per_page: number;
-  current_page: number;
-  total_pages: number;
-  links: Links;
-}
-
-export interface Meta {
-  pagination: Pagination;
-}
 
 export interface ListeResultatResponse {
   data: Resultat[];
-  meta: Meta;
 }
 
 

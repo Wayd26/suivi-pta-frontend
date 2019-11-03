@@ -17,22 +17,23 @@ export class VilleService {
     return this.httpClient.get(BASE_URL + 'towns/' + id, this.options);
   }
   deleteVille(id){
-    return this.httpClient.delete(BASE_URL + 'administrateurs/2/towns/' + id, this.options);
+    return this.httpClient.delete(BASE_URL + 'administrateurs/2/villes/' + id, this.options);
   }
-  createVille(code: string, denomination: string, departement_id: number) {
+
+  createVille(code: string, denomination: string, department_id: number) {
     const data = {
       code: code,
       denomination: denomination,
-      departement_id: departement_id
+      department_id: department_id
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/1/towns', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrator/create-town', data, this.options);
   }
-  update(code: string, denomination: string, departement_id: number, id) {
+  update(code: string, denomination: string, department_id: number, id) {
     const data = {
       code: code,
       denomination: denomination,
-      departement_id: departement_id
+      department_id: department_id
     };
-    return this.httpClient.put(BASE_URL + 'administrateurs/1/towns/' + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrator/update-town/' + id, data, this.options);
   }
 }

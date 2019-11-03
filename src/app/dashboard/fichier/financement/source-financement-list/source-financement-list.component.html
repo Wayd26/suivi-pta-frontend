@@ -45,35 +45,35 @@
                                     </td>
                                     <td>
                                         <div class="mrg-top-15">
-                                            <span>{{source.libelle}}</span>
+                                            <span>{{source.denomination}}</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="mrg-top-15">
-                                            <span>{{source.chapitre_imputation}}</span>
+                                            <span>{{source.imputation_chapter}}</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="mrg-top-15">
-                                            <span>{{source.poids_projet}}</span>
+                                            <span>{{source.weight_project}}</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="mrg-top-15">
-                                            <span>{{source._type}}</span>
+                                            <span>{{source._type_funding}}</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="mrg-top-15">
-                                            <span>{{source.est_projet}}</span>
+                                            <span>{{source.is_project}}</span>
                                         </div>
                                     </td>
                                     <table>
                                         <div class="mrg-top-10 text-center">
-                                            <a [routerLink]="['edit/' + source.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                            <a [routerLink]="['edit/' + source.id]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
                                                 <i class="ti-pencil"></i>
                                             </a>
-                                          <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(source.identifiant)">
+                                          <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(source.id)">
                                             <i class="ti-trash"></i>
                                           </button>
 

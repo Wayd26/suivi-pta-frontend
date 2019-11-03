@@ -43,21 +43,21 @@
 
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{exercice.date_debut}}</span>
+                    <span>{{exercice.started_on}}</span>
                   </div>
                 </td>
                 <td>
                   <div class="mrg-top-15">
-                    <span>{{exercice.date_fin}}</span>
+                    <span>{{exercice.ended_on}}</span>
                   </div>
                 </td>
 
                 <td>
                   <div class="mrg-top-10 text-center">
-                    <a [routerLink]="['edit/' + exercice.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                    <a [routerLink]="['edit/' + exercice.id]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
                       <i class="ti-pencil"></i>
                     </a>
-                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle " (click)="onDelete(exercice.identifiant)">
+                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle " (click)="onDelete(exercice.id)">
                       <i class="ti-trash"></i>
                     </button>
                   </div>

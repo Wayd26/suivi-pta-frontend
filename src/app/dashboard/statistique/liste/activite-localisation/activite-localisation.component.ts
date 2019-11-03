@@ -37,8 +37,8 @@ export class ActiviteLocalisationComponent implements OnInit {
         res.data.map((exo) => {
           this.singleSelectOptionsDepartement.push({
             label: exo.denomination,
-            value: exo.identifiant,
-            code: exo.identifiant
+            value: exo.id,
+            code: exo.code
           });
         });
       });
@@ -49,12 +49,12 @@ export class ActiviteLocalisationComponent implements OnInit {
   }
   onSelectDepartement () {
     this.villes.filter((ville) => {
-      return ville._departement === this.dep.find((d) => d.identifiant === +this.singleSelectValueDepartement).denomination;
+      return ville._department === this.dep.find((d) => d.id === +this.singleSelectValueDepartement).denomination;
     }).map((exo) => {
       this.singleSelectOptionsVille.push({
         label: exo.denomination,
-        value: exo.identifiant,
-        code: exo.identifiant
+        value: exo.id,
+        code: exo.code
       });
     });
     this.router.navigate(['/dashboard/statistique/list/activite/localisation']);

@@ -29,9 +29,9 @@ export class ObjectifImportComponent implements OnInit {
   }
   getProgrammeId(libelle) {
     const prog = this.programmes.find((e) => {
-      return e.libelle === libelle;
+      return e.denomination === libelle;
     });
-    return prog.identifiant;
+    return prog.id;
   }
   incomingfile($event) {
     this.file = $event.target.files[0];

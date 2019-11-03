@@ -7,13 +7,13 @@ export interface Link {
   }
 
   export interface Ville {
-      identifiant: number;
-      code: string;
-      denomination: string;
-      _departement: string;
-      _user: string;
-      created_at: string;
-      updated_at: string;
+    id: number;
+    code: string;
+    denomination: string;
+    _department: string;
+    created_at: string;
+    updated_at: string;
+    deleted_at?: any;
       links: Link[];
   }
   export interface VilleExport {

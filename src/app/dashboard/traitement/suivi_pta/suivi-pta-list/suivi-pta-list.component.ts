@@ -47,9 +47,9 @@ export class SuiviPtaListComponent implements OnInit {
       .subscribe((res: ListActiviteResponse) => {
         res.data.map((activite) => {
           this.singleSelectOptions.push({
-            label: activite.libelle,
-            value: activite.identifiant,
-            code: activite.identifiant
+            label: activite.denomination,
+            value: activite.id.toString(),
+            code: activite.code
           });
         });
       });
@@ -70,13 +70,14 @@ export class SuiviPtaListComponent implements OnInit {
       return this.utilservice.getIdData(a.links, 'activite'); } );
 
     this.suiviTacheSelectReal = this.suiviTacheSelect.filter( c => {
-      return c.est_realisee === true;
+      return c.is_realized === true;
     });
 
     this.suiviTacheSelectReal.map(b => {
-      this.totalTEP_Real = +(this.totalTEP_Real + (+b.poids)) ;
+      this.totalTEP_Real = +(this.totalTEP_Real + (+b.weight_in_activity)) ;
       console.log(this.totalTEP_Real);
 
     });
 
-    }}
+    }
+}

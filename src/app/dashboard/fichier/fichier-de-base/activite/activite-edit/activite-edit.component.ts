@@ -87,11 +87,11 @@ export class ActiviteEditComponent implements OnInit {
     () => {
       this.singleSelectValueExercice = [this.utilService.getIdData(this.activite.links, 'exercice')];
       this.code = this.activite.code;
-      this.libelle = this.activite.libelle;
-      this.montant = this.activite.montant;
-      this.dateDebut = this.activite.date_debut;
-      this.dateFin = this.activite.date_fin;
-      this.poids = this.activite.poids;
+      this.libelle = this.activite.denomination;
+      this.montant = this.activite.budget;
+      this.dateDebut = this.activite.started_on;
+      this.dateFin = this.activite.ended_on;
+      this.poids = this.activite.weight_in_subaction;
       this.singleSelectValueStructure = [this.utilService.getIdData(this.activite.links, 'structure')];
       this.singleSelectValueAction = [this.utilService.getIdData(this.activite.links, 'action')];
       this.singleSelectValueDepartement = [this.utilService.getIdData(this.activite.links, 'departement')];
@@ -102,8 +102,8 @@ export class ActiviteEditComponent implements OnInit {
         res.data.map((exo) => {
           this.singleSelectOptionsExercice.push({
             label: exo.denomination,
-            value: exo.identifiant,
-            code: exo.identifiant
+            value: exo.id,
+            code: exo.id
           });
         });
       });
@@ -112,8 +112,8 @@ export class ActiviteEditComponent implements OnInit {
         res.data.map((ville) => {
           this.singleSelectOptionsVille.push({
             label: ville.denomination,
-            value: ville.identifiant,
-            code: ville.identifiant
+            value: ville.id,
+            code: ville.code
           });
         });
       });
@@ -123,8 +123,8 @@ export class ActiviteEditComponent implements OnInit {
         res.data.map((ville) => {
           this.singleSelectOptionsStructure.push({
             label: ville.denomination,
-            value: ville.identifiant,
-            code: ville.identifiant
+            value: ville.id,
+            code: ville.code
           });
         });
       });
@@ -132,9 +132,9 @@ export class ActiviteEditComponent implements OnInit {
       .subscribe((res: ListActionResponse) => {
         res.data.map((ville) => {
           this.singleSelectOptionsAction.push({
-            label: ville.libelle,
-            value: ville.identifiant,
-            code: ville.identifiant
+            label: ville.denomination,
+            value: ville.id,
+            code: ville.code
           });
         });
       });
@@ -143,8 +143,8 @@ export class ActiviteEditComponent implements OnInit {
         res.data.map((ville) => {
           this.singleSelectOptionsDepartement.push({
             label: ville.denomination,
-            value: ville.identifiant,
-            code: ville.identifiant
+            value: ville.id,
+            code: ville.code
           });
         });
       });
@@ -193,14 +193,14 @@ export class ActiviteEditComponent implements OnInit {
   OnSelectOrUnselectAllEmploye() {
     if (this.structureSelect.length === 0) {
       for (let i = 0 ; i < this.structures.length ; i++) {
-        this.structureSelect.push(this.structures[i].identifiant);
+        this.structureSelect.push(this.structures[i].id);
       }
     } else if (this.structureSelect.length === this.structures.length) {
       this.structureSelect = [];
     } else if (this.structureSelect.length > 0) {
       this.structureSelect = [];
       for (let i = 0 ; i < this.structures.length ; i++) {
-        this.structureSelect.push(this.structures[i].identifiant);
+        this.structureSelect.push(this.structures[i].id);
       }
     }
   }
@@ -305,7 +305,7 @@ export class ActiviteEditComponent implements OnInit {
     return this.structures.find(function (s) { return s.identifiant === +id; });
   }
   getSource(id) {
-    return this.sources.find(function (s) { return s.identifiant === +id; });
+    return this.sources.find(function (s) { return s.id === +id; });
   }
   addStructureSuper() {
     this.structureSelect.push(+this.singleSelectValueStructureSuper[0]);
@@ -325,13 +325,22 @@ export class ActiviteEditComponent implements OnInit {
   }
 
   onSubmit() {
+    this.sourcefiSelect.map((s) => {
+      const source = this.getSource(s);
+      this.sourceFi.push( {
+        id: source.id,
+        montant: source.weight_project
+    });
+
+  onSubmit() {
     this.activiteService.updateActivite(this.utilService.changeDateFornat(this.utilService
       .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)), this.libelle,
        this.poids, this.montant, +this.singleSelectValueAction[0], +this.singleSelectValueStructure[0],
-       this.projet, this.sourceFi, this.structureImpliSelect, this.structureSelect, this.code)
+       this.projet, this.sourceFi, this.structureImpliSelect, this.structureSelect, this.code, this.id)
        .subscribe((res) => {
          console.log(res);
        }, (error: ErrorResponse) => {
+         console.log(error);
         console.log(error.error['error']);
         // tslint:disable-next-line:forin
         for (const key in error.error['error']) {

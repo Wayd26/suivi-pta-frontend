@@ -5,13 +5,13 @@ export interface Link {
 }
 
 export interface ObjectifModel {
-  identifiant: number;
+  id: number;
   code: string;
-  libelle: string;
-  _user: string;
-  _programme: string;
+  denomination: string;
+  _programm: string;
   created_at: string;
   updated_at: string;
+  deleted_at?: any;
   links: Link[];
 }
 export interface ObjectifModelExport {
@@ -25,22 +25,9 @@ export interface Links {
   next: string;
 }
 
-export interface Pagination {
-  total: number;
-  count: number;
-  per_page: number;
-  current_page: number;
-  total_pages: number;
-  links: Links;
-}
-
-export interface Meta {
-  pagination: Pagination;
-}
 
 export interface ListObjectifResponse {
   data: ObjectifModel[];
-  meta: Meta;
 }
 
 export interface ObjectifResponse {

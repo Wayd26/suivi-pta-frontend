@@ -36,13 +36,8 @@ export class VilleEditComponent implements OnInit {
       // this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'departement')];
       console.log(res.data);
 
-      this.singleSelectValue = [this.utilService.getIdData(res.data, '_departement')];
-
-     // this.singleSelectValue = [this.ville._departement] ;
-      //this.singleSelectValue = [this.utilService.getIdData(res.data._departement, 'departement')];
-     // this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'departement_id')];
-      console.log('Info Rech  '   + this.ville._departement);
-
+      this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'department')];
+      console.log('Info Rech ' + this.singleSelectValue);
     });
 
 
@@ -51,8 +46,8 @@ export class VilleEditComponent implements OnInit {
         res.data.map((dep) => {
           this.singleSelectOptions.push({
             label: dep.denomination,
-            value: dep.identifiant,
-            code: dep.identifiant
+            value: dep.id.toString(),
+            code: dep.code
           });
         });
       });
@@ -60,11 +55,13 @@ export class VilleEditComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.villeService.update(form.value['code_ville'], form.value['nom_ville'], +this.singleSelectValue, this.id)
       .subscribe((resp) => {
-        this.message = 'Succes de l\'operation';
+        // this.message = 'Succes de l\'operation';
+        this.utilService.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/localisation/ville/load']);
       } , (error) => {
         console.log(error);
-        this.message = 'Echec de l\'operation';
+        this.utilService.notifModif_Error(error.error['error']);
+        // this.message = 'Echec de l\'operation';
         this.router.navigate(['/dashboard/fichier/localisation/ville/edit/' + this.id]);
       });
   }

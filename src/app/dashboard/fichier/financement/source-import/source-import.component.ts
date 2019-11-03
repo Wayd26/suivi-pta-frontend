@@ -29,10 +29,10 @@ export class SourceImportComponent implements OnInit {
   getTypeSourceId(libelle) {
     console.log(libelle);
     const vil = this.typeSource.find((e) => {
-      return e.libelle === libelle;
+      return e.denomination === libelle;
     });
     console.log(vil);
-    return vil !== undefined ? vil.identifiant : 0;
+    return vil !== undefined ? vil.id : 0;
   }
   incomingfile($event) {
     this.file = $event.target.files[0];
@@ -60,20 +60,20 @@ export class SourceImportComponent implements OnInit {
       const worksheet = workbook.Sheets[first_sheet_name];
       const info = XLSX.utils.sheet_to_json(worksheet, {raw: true});
       info.map((i) => {
-          this.dataNumber += 1;
-          this.sourcrService.createSource(i['code'], i['libelle'], +i['poids'], i['est_projet'], i['chapitre_imputation'], (i['_type']))
-            .subscribe((resp) => {
-              console.log(resp);
-
-            } , (error) => {
-              console.log(error);
-              this.message = 'Echec de l\'operation';
-              //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
-            });
-          console.log(this.dataNumber + '===' + info.length);
-          if (this.dataNumber === info.length) {
-            this.router.navigate(['/dashboard/fichier/financement/source/load']);
-          }
+          // this.dataNumber += 1;
+          // this.sourcrService.createSource(i['code'], i['libelle'], +i['poids'], i['est_projet'], i['chapitre_imputation'], (i['_type']))
+          //   .subscribe((resp) => {
+          //     console.log(resp);
+          //
+          //   } , (error) => {
+          //     console.log(error);
+          //     this.message = 'Echec de l\'operation';
+          //     //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
+          //   });
+          // console.log(this.dataNumber + '===' + info.length);
+          // if (this.dataNumber === info.length) {
+          //   this.router.navigate(['/dashboard/fichier/financement/source/load']);
+          // }
         }
       );
       console.log(info[0]['identifiant']);
@@ -114,26 +114,26 @@ export class SourceImportComponent implements OnInit {
         csvRecord.position = curruntRecord[4].trim();
         csvRecord.mobile = curruntRecord[5].trim();
         csvArr.push(csvRecord);*/
-        this.dataNumber += 1;
-          this.sourcrService.createSource(curruntRecord[0].trim(),
-          curruntRecord[1].trim(),
-          +curruntRecord[2].trim(),
-          curruntRecord[3].trim(),
-          Boolean(curruntRecord[4].trim()),
-          this.getTypeSourceId(curruntRecord[5].trim()).toString())
-            .subscribe((resp) => {
-              console.log(resp);
-
-            } , (error) => {
-              console.log(error);
-              this.message = 'Echec de l\'operation';
-              //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
-            });
-          console.log(this.dataNumber + '===' + csvRecordsArray.length);
-          if (this.dataNumber === csvRecordsArray.length) {
-            this.router.navigate(['/dashboard/fichier/financement/source/load']);
-          }
-        console.log(curruntRecord);
+        // this.dataNumber += 1;
+        //   this.sourcrService.createSource(curruntRecord[0].trim(),
+        //   curruntRecord[1].trim(),
+        //   +curruntRecord[2].trim(),
+        //   curruntRecord[3].trim(),
+        //   Boolean(curruntRecord[4].trim()),
+        //   this.getTypeSourceId(curruntRecord[5].trim()))
+        //     .subscribe((resp) => {
+        //       console.log(resp);
+        //
+        //     } , (error) => {
+        //       console.log(error);
+        //       this.message = 'Echec de l\'operation';
+        //       //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
+        //     });
+        //   console.log(this.dataNumber + '===' + csvRecordsArray.length);
+        //   if (this.dataNumber === csvRecordsArray.length) {
+        //     this.router.navigate(['/dashboard/fichier/financement/source/load']);
+        //   }
+        // console.log(curruntRecord);
       }
     }
     return csvArr;

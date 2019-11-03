@@ -63,12 +63,12 @@ export class ProgrammeListComponent implements OnInit {
       console.log(this.dataService.getProgrammes());
       this.programmes.map((p) => {
         this.programmeExport.push({
-          identifiant: p.identifiant,
+          identifiant: p.id,
           code: p.code,
-          libelle: p.libelle,
-          poids: p.poids,
-          _exercice: p._exercice,
-          _ministere: p._ministere
+          libelle: p.denomination,
+          poids: p.weight_in_programm,
+          _exercice: p._exercise,
+          _ministere: p._ministry
         });
       });
   }
@@ -90,7 +90,7 @@ export class ProgrammeListComponent implements OnInit {
    if (response) {
      this.programmeService.deleteProgramme(id).subscribe((res) => {
          this.programmes = this.programmes.filter((action) => {
-           return action.identifiant !== id;
+           return action.id !== id;
          });
          this.router.navigate(['/dashboard/fichier/base/programme/load']);
        }

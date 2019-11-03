@@ -49,20 +49,20 @@ export class SuiviPtaEditComponent implements OnInit {
      this.suiviTache = res.data;
       console.log(res);
 
-      this.singleSelectValueActivite = [this.utilService.getIdData(this.suiviTache.links, '_acivite')];
-      console.log(this.utilService.getIdData(this.suiviTache.links[2], 'acivite'));
+      this.singleSelectValueActivite = [this.utilService.getIdData(res.data.links, 'activity')];
+      console.log(this.utilService.getIdData(res.data.links, 'acivite'));
 
-      // this.singleSelectValueTache = [this.utilService.getIdData(this.suiviTache.links, '_tache')];
-      // console.log(this.utilService.getIdData(this.suiviTache.links[0], 'tache'));
+      this.singleSelectValueTache = [this.utilService.getIdData(res.data.links, 'task')];
+      console.log(this.utilService.getIdData(res.data.links, 'tache'));
     });
 
     this.activiteService.getActiviteList()
       .subscribe((res: ListActiviteResponse) => {
         res.data.map((activite) => {
           this.singleSelectOptionsActivite.push({
-            label: activite.libelle,
-            value: activite.identifiant,
-            code: activite.identifiant
+            label: activite.denomination,
+            value: activite.id,
+            code: activite.code
           });
         });
       });
@@ -71,20 +71,21 @@ export class SuiviPtaEditComponent implements OnInit {
       .subscribe((res: ListTacheResponse) => {
         res.data.map((tache) => {
           this.singleSelectOptionsTache.push({
-            label: tache.libelle,
-            value: tache.identifiant,
-            code: tache.identifiant
+            label: tache.denomination,
+            value: tache.id,
+            code: tache.code
           });
         });
       });
   }
   onSubmit(form: NgForm){
-    this.suiviPTAServ.updateSuiviPTA(this.singleSelectValueActivite[0], this.singleSelectValueTache[0], form.value['toggle1'],  this.utilService.changeDateFornat(this.utilService
+    this.suiviPTAServ.updateSuiviPTA(+this.singleSelectValueActivite, +this.singleSelectValueTache, form.value['toggle1'],  this.utilService.changeDateFornat(this.utilService
       .getDate(this.dateFinReal.year, this.dateFinReal.month, this.dateFinReal.day)), form.value['commentaire'], this.id)
       .subscribe((resp) => {
         this.message = 'Succes de l\'operation';
-        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches']);
+        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/load']);
       } , (error: ErrorResponse) => {
+        console.log(error);
         console.log(error.error['error']);
         // tslint:disable-next-line:forin
         for (const key in error.error['error']) {

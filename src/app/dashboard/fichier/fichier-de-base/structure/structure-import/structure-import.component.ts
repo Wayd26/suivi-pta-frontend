@@ -33,7 +33,7 @@ export class StructureImportComponent implements OnInit {
       return e.denomination === libelle;
     });
     console.log(vil);
-    return vil !== undefined ? vil.identifiant : 0;
+    return vil !== undefined ? vil.id : 0;
   }
   incomingfile($event) {
     console.log(this.villes);
@@ -62,21 +62,21 @@ export class StructureImportComponent implements OnInit {
       const worksheet = workbook.Sheets[first_sheet_name];
       const info = XLSX.utils.sheet_to_json(worksheet, {raw: true});
       info.map((i) => {
-          this.dataNumber += 1;
-          this.structureService.createStructure(i['code'],
-          i['denomination'], i['email'], i['telephone'], +this.getVilleId(i['_ville']) , i['sigle'], i['boite_postal'])
-            .subscribe((resp) => {
-              console.log(resp);
-
-            } , (error) => {
-              console.log(error);
-              this.message = 'Echec de l\'operation';
-              //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
-            });
-          console.log(this.dataNumber + '===' + info.length);
-          if (this.dataNumber === info.length) {
-            this.router.navigate(['/dashboard/fichier/base/structures/load']);
-          }
+          // this.dataNumber += 1;
+          // this.structureService.createStructure(i['code'],
+          // i['denomination'], i['email'], i['telephone'], +this.getVilleId(i['_ville']) , i['sigle'], i['boite_postal'])
+          //   .subscribe((resp) => {
+          //     console.log(resp);
+          //
+          //   } , (error) => {
+          //     console.log(error);
+          //     this.message = 'Echec de l\'operation';
+          //     //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
+          //   });
+          // console.log(this.dataNumber + '===' + info.length);
+          // if (this.dataNumber === info.length) {
+          //   this.router.navigate(['/dashboard/fichier/base/structures/load']);
+          // }
         }
       );
       console.log(info[0]['identifiant']);
@@ -119,21 +119,21 @@ export class StructureImportComponent implements OnInit {
         csvRecord.mobile = curruntRecord[5].trim();
         csvArr.push(csvRecord);*/
         this.dataNumber += 1;
-        this.structureService.createStructure(curruntRecord[0].trim(),
-        curruntRecord[1].trim(),
-        curruntRecord[2].trim(),
-        curruntRecord[3].trim(),
-        +this.getVilleId(curruntRecord[4].trim()),
-        curruntRecord[5].trim(),
-        curruntRecord[6].trim())
-          .subscribe((resp) => {
-            console.log(resp);
-
-          } , (error) => {
-            console.log(error);
-            this.message = 'Echec de l\'operation';
-            //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
-          });
+        // this.structureService.createStructure(curruntRecord[0].trim(),
+        // curruntRecord[1].trim(),
+        // curruntRecord[2].trim(),
+        // curruntRecord[3].trim(),
+        // +this.getVilleId(curruntRecord[4].trim()),
+        // curruntRecord[5].trim(),
+        // curruntRecord[6].trim())
+        //   .subscribe((resp) => {
+        //     console.log(resp);
+        //
+        //   } , (error) => {
+        //     console.log(error);
+        //     this.message = 'Echec de l\'operation';
+        //     //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
+        //   });
         console.log(this.dataNumber + '===' + csvRecordsArray.length);
         if (this.dataNumber === csvRecordsArray.length) {
           this.router.navigate(['/dashboard/fichier/base/structures/load']);

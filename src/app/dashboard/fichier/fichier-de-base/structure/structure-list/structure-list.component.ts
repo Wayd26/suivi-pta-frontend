@@ -56,17 +56,16 @@ export class StructureListComponent implements OnInit {
 
        this.structures.map((m) => {
         this.structureExport.push({
-          identifiant: m.identifiant,
+          identifiant: m.id,
           code: m.code,
-          sigle: m.sigle,
-          bp: m.sigle,
+          sigle: m.abbreviation,
+          bp: m.po_box,
           denomination: m.denomination,
           email: m.email,
-          telephone: m.telephone,
-          site_web: m.site_web,
-          logo: m.logo,
-          _ville: m._ville,
-          _departement: m._departement
+          telephone: m.cellphone,
+          site_web: m.website,
+          logo: m.url_logo,
+          _ville: m._town
         });
       });
   }
@@ -83,9 +82,9 @@ export class StructureListComponent implements OnInit {
     if (response) {
       this.structureService.deleteStructure(id).subscribe((res) => {
           this.structures = this.structures.filter((action) => {
-            return action.identifiant !== id;
+            return action.id !== id;
           });
-          this.router.navigate(['/dashboard/fichier/base/programme']);
+          this.router.navigate(['/dashboard/fichier/base/structure/load']);
         }
       );
     }

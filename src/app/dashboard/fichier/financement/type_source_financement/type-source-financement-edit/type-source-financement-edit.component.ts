@@ -39,21 +39,23 @@ export class TypeSourceFinancementEditComponent implements OnInit {
 
     this.typeSourceFiService.update(form.value['code'], form.value['libelle_type__source_financement'], this.id)
       .subscribe((resp) => {
-        this.message = 'Succes de l\'operation';
+        // this.message = 'Succes de l\'operation';
+        this.utilService.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/financement/type/source/load']);
       } , (error: ErrorResponse) => {
 
         console.log(error);
         console.log(error.error['error']);
+        this.utilService.notifModif_Error(error.error['error']);
         // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-            console.log(key);
-            if (key !== 'error') {
-              console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-            }
-        }
+        // for (const key in error.error['error']) {
+        //   console.log(key);
+        //   if (key !== 'error') {
+        //     console.log(error.error['error'][key]);
+        //     this.message = error.error['error'][key];
+        //     break;
+        //   }
+        // }
         this.router.navigate(['//dashboard/fichier/financement/type_source_financement/edit/' + this.id]);
       });
   }

@@ -9,34 +9,25 @@ export interface Link {
 
 export interface SuiviTache {
   id: number;
-  started_at: string;
-  end_at: string;
-  real_end_at?: any;
-  commentaire: string;
-  est_realisee: boolean;
-  poids: number;
-  montant: number;
+  started_on: string;
+  ended_on: string;
+  effective_end_date: string;
+  comment: string;
+  is_realized: boolean;
+  budget: number;
+  weight_in_activity: number;
+  _activity: string;
+  _task: string;
   created_at: string;
   updated_at: string;
+  deleted_at?: any;
   links: Link[];
 }
 
-export interface Pagination {
-  total: number;
-  count: number;
-  per_page: number;
-  current_page: number;
-  total_pages: number;
-  links: any[];
-}
 
-export interface Meta {
-  pagination: Pagination;
-}
 
 export interface ListeSuiviTachePesponse {
   data: SuiviTache[];
-  meta: Meta;
 }
 
 

@@ -21,24 +21,25 @@ export class ActionService {
   }
 
   deleteAction(id) {
-    return this.httpClient.delete(BASE_URL + 'administrateurs/2/actions/' + id, this.options);
+    return this.httpClient.delete(BASE_URL + 'administrator/remove-action/' + id, this.options);
   }
 
-  createAction(code: string, libelle: string, poids: number, resultat: number) {
+  createAction(code: string, denomination: string, weight_in_result: number, result_id: number) {
     const data = {
       code: code,
-      libelle: libelle,
-      poids: poids,
-      resultat_id: resultat
+      denomination: denomination,
+      weight_in_result: weight_in_result,
+      result_id: result_id
     };
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/actions', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrator/create-action', data, this.options);
   }
-  updateAction(code: string, libelle: string, poids: number, resultat: number, id: number) {
+  updateAction(code: string, denomination: string, weight_in_result: number, result_id: number, id: number) {
     const data = {
-      libelle: libelle,
-      poids: poids,
-      resultat_id: resultat
+      code: code,
+      denomination: denomination,
+      weight_in_result: weight_in_result,
+      result_id: result_id
     };
-    return this.httpClient.put(BASE_URL + 'administrateurs/2/actions' + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrator/update-action/' + id, data, this.options);
   }
 }

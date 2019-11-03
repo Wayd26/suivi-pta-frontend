@@ -19,30 +19,33 @@ export class MinistereService {
     return this.httpClient.get(BASE_URL + 'ministries/' + id, this.options  );
   }
   deleteMinistere(id) {
-    return this.httpClient.delete(BASE_URL + 'administrateurs/1/ministries/' + id, this.options);
+    return this.httpClient.delete(BASE_URL + 'administrator/remove-ministry/' + id, this.options);
   }
-  createMinistere(code: string, denomination: string, email: string, sigle: string, telephone: string, ville_id: number) {
+
+  createMinistere(code: string, denomination: string, po_box: string, abbreviation: string, email: string, cellphone: string, _town: number) {
     const data = {
       code: code,
       denomination: denomination,
       email: email,
-      sigle: sigle,
-      telephone: telephone,
-      ville_id: ville_id
+      po_box: po_box,
+      abbreviation: abbreviation,
+      cellphone: cellphone,
+      _town: _town
     };
     console.log(data);
-    return this.httpClient.post(BASE_URL + 'administrateurs/1/ministries', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrator/create-ministry', data, this.options);
   }
-  update(code: string, denomination: string, sigle: string , ville_id: number, email: string, telephone: string, id: number) {
+  update(code: string, denomination: string, po_box: string, abbreviation: string, email: string, cellphone: string, _town: number, id: number) {
     const data = {
       code: code,
       denomination: denomination,
-      sigle: sigle,
-      ville_id: ville_id,
       email: email,
-      telephone: telephone
+      po_box: po_box,
+      abbreviation: abbreviation,
+      cellphone: cellphone,
+      _town: _town
     };
     console.log(data);
-    return this.httpClient.put(BASE_URL + 'administrateurs/1/ministries/' + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrator/update-ministry/' + id, data, this.options);
   }
 }

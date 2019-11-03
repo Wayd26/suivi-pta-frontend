@@ -49,23 +49,23 @@ export class ActiviteListComponent implements OnInit {
       }, () => {
 
       });
-      this.activites.map((a) => {
-        this.activiteExport.push({
-          identifiant: a.identifiant,
-        code: a.code,
-        date_debut: a.date_debut,
-        date_fin: a.date_fin,
-        libelle: a.libelle,
-        activite_pip: a.activite_pip,
-        mode: a.mode,
-        montant: a.montant,
-        poids: a.poids,
-        _exercice: a._exercice,
-        _action: a._action,
-        _structure_executant: a._structure_executant
-
-      });
-      });
+      // this.activites.map((a) => {
+      //   this.activiteExport.push({
+      //     identifiant: a.id,
+      //   code: a.code,
+      //   date_debut: a.started_on,
+      //   date_fin: a.ended_on,
+      //   libelle: a.denomination,
+      //   activite_pip: a.is_pip,
+      //   mode: a.execution_mode,
+      //   montant: a.budget,
+      //   poids: a.weight_in_subaction,
+      //   _exercice: a.exer,
+      //   _action: a._subaction,
+      //   _structure_executant: a._structure_executant
+      //
+      // });
+      // });
   }
   execelExport() {
     this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.activiteExport)), 'action');
@@ -79,7 +79,7 @@ export class ActiviteListComponent implements OnInit {
     const response = confirm(DELETE_CONFIRMATION);
     if (response) {
       this.activites = this.activites.filter((action) => {
-        return action.identifiant !== id;
+        return action.id !== id;
       });
       // this.activites.deleteStructure(id).subscribe((res) => {
       //

@@ -53,7 +53,7 @@ export class DepartementListComponent implements OnInit {
       });
       this.departements.map((d) => {
         this.departementExport.push({
-          identifiant: d.identifiant,
+          identifiant: d.id,
           code: d.code,
           denomination: d.denomination
       });
@@ -70,14 +70,13 @@ export class DepartementListComponent implements OnInit {
   onDelete(id) {
     const response = confirm(DELETE_CONFIRMATION);
     if (response) {
-      this.departements = this.departements.filter((action) => {
-        return action.identifiant !== id;
-      });
-      // this.activites.deleteStructure(id).subscribe((res) => {
-      //
-      //     this.router.navigate(['/dashboard/fichier/base/programme']);
-      //   }
-      // );
+      this.departementService.deleteDepartement(id).subscribe((res) => {
+          this.departements = this.departements.filter((action) => {
+            return action.id !== id;
+          });
+          this.router.navigate(['/dashboard/fichier/localisation/departement/load']);
+        }
+      );
     }
   }
 

@@ -5,6 +5,7 @@ import {ActionService} from '../../../../../shared/services/action.service';
 import {ResultatService} from '../../../../../shared/services/resultat.service';
 import {ListeResultatResponse} from '../../../../../models/resultat.model';
 import {UtilsService} from '../../../../../shared/services/utils.service';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -23,22 +24,20 @@ export class ActionAddComponent implements OnInit {
   };
 
   singleSelectValue: string ;
-  singleSelectValue2: number;
+  singleSelectValue2: string[] = ['reactjs'];
 
   message: string;
   constructor(private resultatService: ResultatService,  private utilService: UtilsService, private actionService: ActionService, private router: Router) { }
 
   ngOnInit() {
-
-    this.singleSelectValue2 = 0;
     this.resultatService.getResultatList()
       .subscribe((res: ListeResultatResponse) => {
         console.log(res.data);
-        res.data.map((resultat) => {
+        res.data.map((action) => {
           this.singleSelectOptions2.push({
-            label: resultat.libelle,
-            value: resultat.identifiant,
-            code: resultat.code
+            label: action.denomination,
+            value: action.id,
+            code: action.code
           });
         });
       });
@@ -48,19 +47,22 @@ export class ActionAddComponent implements OnInit {
     this.actionService.createAction(form.value['code_action'], form.value['libelle_action'],
      form.value['poids_action'], +this.singleSelectValue2)
       .subscribe((resp) => {
-        this.message = 'Succes de l\'operation';
+        // this.message = 'Succes de l\'operation';
+        this.utilService.notifAjout_OK();
         this.router.navigate(['/dashboard/fichier/base/action/load']);
       } , (error: ErrorResponse) => {
+
+        this.utilService.notifAjout_Error(error.error['error']);
         console.log(error.error['error']);
         // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-          console.log(key);
-          if (key !== 'error') {
-            console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-          }
-        }
+        // for (const key in error.error['error']) {
+        //   console.log(key);
+        //   if (key !== 'error') {
+        //     console.log(error.error['error'][key]);
+        //     this.message = error.error['error'][key];
+        //     break;
+        //   }
+        // }
         this.router.navigate(['/dashboard/fichier/base/action/add']);
       });
   }

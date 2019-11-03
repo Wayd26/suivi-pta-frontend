@@ -50,13 +50,13 @@ export class SourceFinancementListComponent implements OnInit {
     });
     this.Sources.map((s) => {
       this.sourceExport.push({
-        identifiant: s.identifiant,
+        identifiant: s.id,
         code: s.code,
-        est_projet: s.est_projet,
-        libelle: s.libelle,
-        poids_projet: s.poids_projet,
-        chapitre_imputation: s.chapitre_imputation,
-        _type: s._type
+        est_projet: s.is_project,
+        libelle: s.denomination,
+        poids_projet: s.weight_project,
+        chapitre_imputation: s.imputation_chapter,
+        _type: s._type_funding
       });
     });
   }
@@ -71,14 +71,13 @@ export class SourceFinancementListComponent implements OnInit {
   onDelete(id) {
     const response = confirm(DELETE_CONFIRMATION);
     if (response) {
-      this.Sources = this.Sources.filter((action) => {
-        return action.identifiant !== id;
-      });
-      // this.activites.deleteStructure(id).subscribe((res) => {
-      //
-      //     this.router.navigate(['/dashboard/fichier/base/programme']);
-      //   }
-      // );
+      this.SourceFiService.deleteSourceFinamcement(id).subscribe((res) => {
+          this.Sources = this.Sources.filter((action) => {
+            return action.id !== id;
+          });
+          this.router.navigate(['/dashboard/fichier/financement/source/load']);
+        }
+      );
     }
   }
 

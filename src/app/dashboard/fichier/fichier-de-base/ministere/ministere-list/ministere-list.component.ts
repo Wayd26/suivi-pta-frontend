@@ -7,6 +7,7 @@ import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
 import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ministere-list',
@@ -51,20 +52,20 @@ export class MinistereListComponent implements OnInit {
       this.Ministeres = [];
     }, () => {
     });
-    this.Ministeres.map((m) => {
-      this.ministereExport.push({
-        identifiant: m.identifiant,
-        code: m.code,
-        denomination: m.denomination,
-        sigle: m.sigle,
-        bp: m.sigle,
-        email: m.email,
-        telephone: m.telephone,
-        site_web: m.site_web,
-        _departement: m._departement,
-        _ville: m._ville
-      });
-    });
+    // this.Ministeres.map((m) => {
+    //   this.ministereExport.push({
+    //     identifiant: m.identifiant,
+    //     code: m.code,
+    //     denomination: m.denomination,
+    //     sigle: m.sigle,
+    //     bp: m.sigle,
+    //     email: m.email,
+    //     telephone: m.telephone,
+    //     site_web: m.site_web,
+    //     _departement: m._departement,
+    //     _ville: m._ville
+    //   });
+    // });
   }
 
   execelExport() {
@@ -76,16 +77,76 @@ export class MinistereListComponent implements OnInit {
   }
 
   onDelete(id) {
-    const response = confirm(DELETE_CONFIRMATION);
-    if (response) {
-      this.ministereService.deleteMinistere(id).subscribe((res) => {
-          this.Ministeres = this.Ministeres.filter((action) => {
-            return action.identifiant !== id;
-          });
-          this.router.navigate(['/dashboard/fichier/base/ministere/load']);
-        }
-      );
-    }
+    // const response = confirm(DELETE_CONFIRMATION);
+    // if (response) {
+    //   this.ministereService.deleteMinistere(id).subscribe((res) => {
+    //       this.Ministeres = this.Ministeres.filter((action) => {
+    //         return action.identifiant !== id;
+    //       });
+    //       this.router.navigate(['/dashboard/fichier/base/ministere/load']);
+    //     }
+    //   );
+    // }
+
+    swal({
+      title: 'Attention !',
+      text: 'Etes-vous sûr de vouloir supprimer ?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Oui, Supprimer !',
+      cancelButtonText: 'Non, Annuler !',
+      buttonsStyling: true,
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+    }).then(function() {
+
+        this.ministereService.deleteMinistere(id).subscribe((res) => {
+            this.Ministeres = this.Ministeres.filter((action) => {
+              return action.identifiant !== id;
+            });
+            this.router.navigate(['/dashboard/fichier/base/ministere/load']);
+          }
+        );
+
+      // swal(
+      //   'Booyah!'
+      // );
+
+    });
+
+
+
+    // swal({
+    //   title: 'Etes-vous sûr ?',
+    //   text: 'Impossible de retourner en arrière une fois effectué',
+    //   type: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Oui, Supprimer !',
+    //   cancelButtonText: 'Non, Annuler !',
+    //   confirmButtonClass: 'btn btn-success',
+    //   cancelButtonClass: 'btn btn-danger',
+    //   buttonsStyling: false
+    // }).then(function () {
+    //   swal(
+    //     'Supprimé !',
+    //     'La suppression a été effectuée avec succès.',
+    //     'success'
+    //   );
+    // }, function (dismiss) {
+    //   // dismiss can be 'cancel', 'overlay',
+    //   // 'close', and 'timer'
+    //   // if (dismiss === 'cancel') {
+    //     swal(
+    //       'Annulation',
+    //       'Suppression annulée',
+    //       'error'
+    //     );
+    // //  }
+    // });
+
   }
 
 }

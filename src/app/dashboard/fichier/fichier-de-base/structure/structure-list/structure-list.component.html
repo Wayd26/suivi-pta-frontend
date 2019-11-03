@@ -1,36 +1,35 @@
 <div class="container-fluid">
-    <div class="page-title">
-        <h4>Liste des Structures</h4>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-block">
-                    <a [routerLink]="['add']" class="btn btn-info">
-                        <i class="ti-plus pdd-right-5"></i>
-                        <span>Ajouter</span>
-                    </a>
-                    <a [routerLink]="['import']" class="btn btn-info">
-                        <i class="ti-import pdd-right-5"></i>
-                        <span>Importer</span>
-                    </a>
-                    <a (click)="execelExport()" class="btn btn-info" style="color: white">
-                        <i class="ti-export pdd-right-5"></i>
-                        <span>EXCEL</span>
-                    </a>
-                    <a (click)="csvExport()" class="btn btn-info" style="color: white">
-                        <i class="ti-export pdd-right-5"></i>
-                        <span>CSV</span>
-                    </a>
+	<div class="page-title">
+		<h4>Liste des Structures</h4>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-block">
+          <a [routerLink]="['add']" class="btn btn-info">
+            <i class="ti-plus pdd-right-5"></i>
+            <span>Ajouter</span>
+          </a>
+          <a [routerLink]="['import']" class="btn btn-info">
+            <i class="ti-import pdd-right-5"></i>
+            <span>Importer</span>
+          </a>
+          <a (click)="execelExport()" class="btn btn-info">
+            <i class="ti-export pdd-right-5"></i>
+            <span style="color: #D9D9D9">EXCEL</span>
+          </a>
+          <a (click)="csvExport()" class="btn btn-info" style="color: white">
+            <i class="ti-export pdd-right-5"></i>
+            <span>CSV</span>
+          </a>
                     <div class="table-overflow">
                         <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
                             <thead>
                                 <tr>
                                     <th>Code Structure</th>
-                                    <th>Denomination</th>
+                                    <th>Dénomination</th>
                                     <th>Tel. Responsable</th>
                                     <th>Email</th>
-                                    <th>Departement</th>
                                     <th>Ville</th>
                                     <th>Action</th>
                                 </tr>
@@ -38,52 +37,48 @@
                             <tbody>
                                 <tr *ngFor="let structure of structures">
                                     <td>
-                                        <div class="mrg-top-15">
-                                            <span>{{structure.code}}</span>
-                                        </div>
+                                      <div class="mrg-top-15">
+                                        <span>{{structure.code}}</span>
+                                    </div>
                                     </td>
                                     <td>
-                                        <div class="mrg-top-15">
-                                            <span>{{structure.denomination}}</span>
-                                        </div>
+                                      <div class="mrg-top-15">
+                                        <span>{{structure.denomination}}</span>
+                                    </div>
                                     </td>
 
                                     <td>
                                         <div class="mrg-top-15">
-                                            <span>{{structure.telephone}}</span>
+                                            <span>{{structure.cellphone}}</span>
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="mrg-top-15">
-                                            <span>{{structure.email}}</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="mrg-top-15">
-                                            <span>{{structure._departement}}</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="mrg-top-15">
-                                            <span>{{structure._ville}}</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="mrg-top-10 text-center">
-                                            <a [routerLink]="['edit/' + structure.identifiant]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
-                                                <i class="ti-pencil"></i>
-                                            </a>
-                                            <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(structure.identifiant)">
+                                      <div class="mrg-top-15">
+                                          <span>{{structure.email}}</span>
+                                      </div>
+                                  </td>
+
+                                <td>
+                                  <div class="mrg-top-15">
+                                      <span>{{structure._town}}</span>
+                                  </div>
+                                </td>
+                                  <td>
+                                    <div class="mrg-top-10 text-center">
+                                      <a [routerLink]="['edit/' + structure.id]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                        <i class="ti-pencil"></i>
+                                      </a>
+                                      <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="onDelete(structure.id)">
                                         <i class="ti-trash"></i>
                                       </button>
-                                        </div>
-                                    </td>
+                                    </div>
+                                  </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
-            </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

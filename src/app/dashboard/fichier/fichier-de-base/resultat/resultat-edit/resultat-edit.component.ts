@@ -35,16 +35,16 @@ export class ResultatEditComponent implements OnInit {
       this.resultat = res.data;
       console.log(this.resultat);
 
-      this.singleSelectValue = [this.utils.getIdData(res.data.links, 'objectif')];
-      console.log(this.utils.getIdData(res.data.links, 'objectif'));
+      this.singleSelectValue = [this.utils.getIdData(res.data.links, 'objective')];
+      console.log(this.utils.getIdData(res.data.links, 'objective'));
     });
 
     this.odjService.getObjectifList()
       .subscribe((res: ListObjectifResponse) => {
         res.data.map((objectif) => {
           this.singleSelectOptions.push({
-            label: objectif.libelle,
-            value: objectif.identifiant.toString(),
+            label: objectif.denomination,
+            value: objectif.id.toString(),
             code: objectif.code
           });
         });
@@ -57,19 +57,22 @@ export class ResultatEditComponent implements OnInit {
     console.log('single selector = ' + this.singleSelectValue.toString());
     this.resultatService.updateResultat(form.value['code_resultat'], form.value['libelle_resultat'], +this.singleSelectValue, this.id )
       .subscribe((resp) => {
-        this.message = 'Succes de l\'operation';
+        //this.message = 'Succes de l\'operation';
+        this.utils.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/base/resultat/load']);
       } , (error: ErrorResponse) => {
+        console.log(error);
         console.log(error.error['error']);
+        this.utils.notifModif_Error(error.error['error']);
         // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-            console.log(key);
-            if (key !== 'error') {
-              console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-            }
-        }
+        // for (const key in error.error['error']) {
+        //     console.log(key);
+        //     if (key !== 'error') {
+        //       console.log(error.error['error'][key]);
+        //     this.message = error.error['error'][key];
+        //     break;
+        //     }
+        // }
         this.router.navigate(['/dashboard/fichier/base/resultat/edit/' + this.id ]);
       });
   }
