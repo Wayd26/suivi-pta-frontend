@@ -5,6 +5,7 @@ import {UtilsService} from '../../../../../shared/services/utils.service';
 import {ProgrammeService} from '../../../../../shared/services/programme.service';
 import {ListProgrammeResponse, Programme} from '../../../../../models/programme.model';
 import * as XLSX from 'xlsx';
+import {EXCEL_EXTENSION} from '../../../../../constants/urlConstants';
 
 @Component({
   selector: 'app-objectif-import',
@@ -38,12 +39,15 @@ export class ObjectifImportComponent implements OnInit {
   }
 
   Upload() {
-    if (this.file.name.endsWith('.xlsx')) {
+    console.log(this.file.name.split('.').pop());
+    console.log(EXCEL_EXTENSION.indexOf(this.file.name.split('.').pop()))
+    if (EXCEL_EXTENSION.indexOf(this.file.name.split('.').pop()) !== -1) {
       this.UploadExcel();
     } else if (this.file.name.endsWith('.csv')) {
       this.uploadListener();
     }
   }
+
 
   UploadExcel() {
     const fileReader = new FileReader();

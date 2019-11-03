@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TypeSourceFinancementService} from '../../../../../shared/services/type-source-financement.service';
 import {Router} from '@angular/router';
 import * as XLSX from 'xlsx';
+import {EXCEL_EXTENSION} from '../../../../../constants/urlConstants';
 
 @Component({
   selector: 'app-type-source-import',
@@ -23,7 +24,9 @@ export class TypeSourceImportComponent implements OnInit {
   }
 
   Upload() {
-    if (this.file.name.endsWith('.xlsx')) {
+    console.log(this.file.name.split('.').pop());
+    console.log(EXCEL_EXTENSION.indexOf(this.file.name.split('.').pop()))
+    if (EXCEL_EXTENSION.indexOf(this.file.name.split('.').pop()) !== -1) {
       this.UploadExcel();
     } else if (this.file.name.endsWith('.csv')) {
       this.uploadListener();

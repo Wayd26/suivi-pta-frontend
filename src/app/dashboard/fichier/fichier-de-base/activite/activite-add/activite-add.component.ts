@@ -15,6 +15,8 @@ import { UtilsService } from 'src/app/shared/services/utils.service';
 import { ActiviteService } from 'src/app/shared/services/activite.service';
 import { SourceFinancementActivite } from 'src/app/models/activite.model';
 import {Router} from '@angular/router';
+import {Indicateur, ListIndicateurResponse} from '../../../../../models/indicateur.model';
+import {IndicateurService} from '../../../../../shared/services/indicateur.service';
 
 @Component({
   selector: 'app-activite-add',
@@ -37,8 +39,9 @@ export class ActiviteAddComponent implements OnInit {
   mode;
   projet;
   structures: Structure[] = [];
+  indicateur: Indicateur[] = [];
   sources: SourceFinancement[] = [];
-  sourceFi: SourceFinancementActivite[] = [];
+  sourceFi: any = [];
   singleSelectOptionsExercice: any = [];
   singleSelectOptionsStructure: any = [];
   singleSelectOptionsTypeActivite: any = [];
@@ -46,12 +49,15 @@ export class ActiviteAddComponent implements OnInit {
   singleSelectOptionsDepartement: any = [];
   singleSelectOptionsVille: any = [];
   singleSelectOptionsSource: any = [];
-  structureSelect: number[] = [];
+  singleSelectOptionsIndicateur: any = [];
+  structureSelect: any = [];
   sourcefiSelect: number[] = [];
-  structureImpliSelect: number[] = [];
+  indicateurSelect: any = [];
+  structureImpliSelect: any = [];
   structureSelectShow: Structure[] = [];
   sourcefiSelectShow: SourceFinancement[] = [];
   structureImpliSelectShow: Structure[] = [];
+  indicateurSelectShow: Indicateur[] = [];
   montantValue = 0;
   montantSelect: number[] = [];
 
@@ -70,11 +76,12 @@ export class ActiviteAddComponent implements OnInit {
   singleSelectValueStructureSuper: string[] = ['reactjs'];
   singleSelectValueStructureImpl: string[] = ['reactjs'];
   singleSelectValueSource: string[] = ['reactjs'];
+  singleSelectValueIndicateur: string[] = ['reactjs'];
   message = '';
   constructor(private exerciceService: ExercieService, private structureService: StructureService, private actionService: ActionService
     , private departementService: DepartementService, private villeService: VilleService,
      private sourceServices: SourceFinancementService, private utilService: UtilsService,
-     private activiteService: ActiviteService, private router: Router) { }
+     private activiteService: ActiviteService, private router: Router, private indicateurService: IndicateurService) { }
 
   ngOnInit() {
     this.exerciceService.getExerciceList()
@@ -108,6 +115,17 @@ export class ActiviteAddComponent implements OnInit {
           });
         });
       });
+      this.indicateurService.getIndicateurList()
+      .subscribe((res: ListIndicateurResponse) => {
+        this.indicateur = res.data;
+        res.data.map((ind) => {
+          this.singleSelectOptionsIndicateur.push({
+            label: ind.denomination,
+            value: ind.id,
+            code: ind.code
+          });
+        });
+      });
       this.actionService.getActionList()
       .subscribe((res: ListActionResponse) => {
         res.data.map((ville) => {
@@ -132,9 +150,9 @@ export class ActiviteAddComponent implements OnInit {
       .subscribe((res: ListSourceFinancementResponse) => {
         res.data.map((source) => {
           this.singleSelectOptionsSource.push({
-            label: source.libelle,
-            value: source.identifiant,
-            code: source.identifiant
+            label: source.denomination,
+            value: source.id,
+            code: source.id
           });
         });
         this.sources = res.data;
@@ -287,18 +305,33 @@ export class ActiviteAddComponent implements OnInit {
   getSource(id) {
     return this.sources.find(function (s) { return s.id === +id; });
   }
+  getIndicateur(id) {
+    return this.indicateur.find(function (s) { return s.id === +id; });
+  }
   addStructureSuper() {
-    this.structureSelect.push(+this.singleSelectValueStructureSuper[0]);
+    this.structureSelect.push({
+      id: +this.singleSelectValueStructureSuper[0],
+      type: 1
+    });
     this.structureSelectShow.push(this.getStructure(+this.singleSelectValueStructureSuper[0]));
   }
   addStructureImpli() {
-    this.structureImpliSelect.push(+this.singleSelectValueStructureImpl[0]);
+    this.structureImpliSelect.push({
+      id: +this.singleSelectValueStructureImpl[0],
+      type: 1
+    });
     this.structureImpliSelectShow.push(this.getStructure(+this.singleSelectValueStructureImpl[0]));
   }
-  addSource() {
+  addIndicateur() {
+    this.indicateurSelect.push( {
+      denomination: this.getIndicateur(+this.singleSelectValueIndicateur[0]).denomination
+  });
+  this.indicateurSelectShow.push(this.getIndicateur(+this.singleSelectValueIndicateur[0]));
+  }
+   addSource() {
     this.sourceFi.push( {
       id: +this.singleSelectValueSource[0],
-      montant: this.montantValue
+      budget_allocated : this.montantValue
   });
   this.sourcefiSelectShow.push(this.getSource(+this.singleSelectValueSource[0]));
   this.montantSelect.push(this.montantValue);
@@ -308,9 +341,10 @@ export class ActiviteAddComponent implements OnInit {
 
   onSubmit() {
     this.activiteService.createActivite(this.utilService.changeDateFornat(this.utilService
-      .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)), this.libelle,
+      .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)), this.utilService.changeDateFornat(this.utilService
+        .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), this.libelle,
        this.poids, this.montant, +this.singleSelectValueAction[0], +this.singleSelectValueStructure[0],
-       this.projet, this.sourceFi, this.structureImpliSelect, this.structureSelect, this.code)
+       this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect) , this.code, this.indicateurSelect)
        .subscribe((res) => {
          console.log(res);
        }, (error: ErrorResponse) => {

@@ -20,6 +20,7 @@ export class ProgrammeImportComponent implements OnInit {
   message: String = '';
   exercices: Exercice[];
   dataNumber = 0;
+  extensions = ['xlsx', 'xls', 'xlsm', 'xlsb', 'xltx', 'xltm', 'xlt', 'xml'];
   constructor(private  programmeService: ProgrammeService,
      private utilService: UtilsService, private router: Router, private exerciceService: ExercieService) { }
 
@@ -50,7 +51,7 @@ export class ProgrammeImportComponent implements OnInit {
     this.file = $event.target.files[0];
   }
   Upload() {
-    if (this.file.name.endsWith('.xlsx')) {
+    if (this.extensions.indexOf(this.file.name.split('.').pop()) ) {
       this.UploadExcel();
     } else if (this.file.name.endsWith('.csv')) {
       this.uploadListener();

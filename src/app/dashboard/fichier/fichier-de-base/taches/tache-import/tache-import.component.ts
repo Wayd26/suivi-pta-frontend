@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TacheService} from '../../../../../shared/services/tache.service';
 import {Router} from '@angular/router';
 import * as XLSX from 'xlsx';
+import {EXCEL_EXTENSION} from '../../../../../constants/urlConstants';
 
 @Component({
   selector: 'app-tache-import',
@@ -23,7 +24,9 @@ export class TacheImportComponent implements OnInit {
   }
 
   Upload() {
-    if (this.file.name.endsWith('.xlsx')) {
+    console.log(this.file.name.split('.').pop());
+    console.log(EXCEL_EXTENSION.indexOf(this.file.name.split('.').pop()))
+    if (EXCEL_EXTENSION.indexOf(this.file.name.split('.').pop()) !== -1) {
       this.UploadExcel();
     } else if (this.file.name.endsWith('.csv')) {
       this.uploadListener();

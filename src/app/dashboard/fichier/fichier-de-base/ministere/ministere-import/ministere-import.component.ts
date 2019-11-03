@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {VilleService} from '../../../../../shared/services/ville.service';
 import {ListVilleResponse, Ville} from '../../../../../models/ville.model';
 import * as XLSX from 'xlsx';
+import {EXCEL_EXTENSION} from '../../../../../constants/urlConstants';
 
 @Component({
   selector: 'app-ministere-import',
@@ -40,7 +41,9 @@ export class MinistereImportComponent implements OnInit {
   }
 
   Upload() {
-    if (this.file.name.endsWith('.xlsx')) {
+    console.log(this.file.name.split('.').pop());
+    console.log(EXCEL_EXTENSION.indexOf(this.file.name.split('.').pop()))
+    if (EXCEL_EXTENSION.indexOf(this.file.name.split('.').pop()) !== -1) {
       this.UploadExcel();
     } else if (this.file.name.endsWith('.csv')) {
       this.uploadListener();

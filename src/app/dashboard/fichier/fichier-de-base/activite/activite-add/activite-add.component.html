@@ -228,7 +228,59 @@
                                         <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
                                     </div>
                                 </aw-wizard-step>
-                                <aw-wizard-step stepTitle="Source Financement" [navigationSymbol]="{ symbol: '4' }">
+                              <aw-wizard-step stepTitle="Indicateurs" [navigationSymbol]="{ symbol: '4' }">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label>Indicateurs</label>
+                                      <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsIndicateur" [(ngModel)]="singleSelectValueIndicateur" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="form-group">
+                                      <label></label>
+                                      <a class="btn btn-primary" (click)="addIndicateur()" style="color: white">
+                                        <i class="ti-plus pdd-right-5"></i>
+                                        <span>Ajouter</span>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="card">
+                                      <div class="card-block">
+                                        <div class="table-overflow">
+                                          <table class="table table-bordered table-hover table-sm">
+                                            <thead>
+                                            <tr>
+                                              <th>Indicateurs</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let ind of indicateurSelectShow">
+
+                                              <td>
+                                                <div class=" relative mrg-top-15">
+                                                  <span class="pdd-left-20">{{ind.denomination}}</span>
+                                                </div>
+                                              </td>
+
+                                            </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="mrg-top-20">
+                                  <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
+                                  <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
+                                </div>
+                              </aw-wizard-step>
+
+                              <aw-wizard-step stepTitle="Source Financement" [navigationSymbol]="{ symbol: '5' }">
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
@@ -270,7 +322,7 @@
                                                                     <td>
                                                                         <div class=" relative mrg-top-15">
 
-                                                                            <span class="pdd-left-20">{{source.libelle}}</span>
+                                                                            <span class="pdd-left-20">{{source.denomination}}</span>
                                                                         </div>
                                                                     </td>
                                                                     <td>{{montantSelect[i]}}</td>

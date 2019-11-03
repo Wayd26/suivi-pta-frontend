@@ -20,40 +20,42 @@ export class ActiviteService {
   deleteActivite(id) {
     return this.httpClient.delete(BASE_URL + 'administrator/remove-subaction/' + id, this.options);
   }
-  createActivite(started_at: string, libelle: string, poids: number, montant: number, action_id: number,
+  createActivite(started_at: string, ended_on: string, libelle: string, poids: number, montant: number, action_id: number,
     structure_id: number, est_pip: boolean, source_financement: SourceFinancementActivite[],
-    structures_impliquees: number[], structures_supervisions: number[], code: string) {
+    structures: any [], code: string, indicators: any []) {
     const data = {
-      started_at: started_at,
-      libelle: libelle,
-      poids: poids,
-      montant: montant,
-      action_id: action_id,
+      started_on: started_at,
+      ended_on: ended_on,
+      denomination: libelle,
+      weight_in_subaction: poids,
+      budget: montant,
+      subaction_id: action_id,
       structure_id: structure_id,
-      est_pip: est_pip,
-      source_financement: source_financement,
-      structures_impliquees: structures_impliquees,
-      structures_supervisions: structures_supervisions,
+      is_pip: est_pip === true ? 1 : 0,
+      fundings: source_financement,
+      structures: structures,
+      indicators: indicators,
       code: code
     };
     console.log(data);
     return this.httpClient.post(BASE_URL + 'administrator/create-activity', data, this.options);
   }
 
-  updateActivite(started_at: string, libelle: string, poids: number, montant: number, action_id: number,
-    structure_id: number, est_pip: boolean, source_financement: SourceFinancementActivite[],
-    structures_impliquees: number[], structures_supervisions: number[], code: string, id: number) {
+  updateActivite(started_at: string, ended_on: string, libelle: string, poids: number, montant: number, action_id: number,
+                 structure_id: number, est_pip: boolean, source_financement: SourceFinancementActivite[],
+                 structures: any [], code: string, indicators: any [],  id: number) {
     const data = {
-      started_at: started_at,
-      libelle: libelle,
-      poids: poids,
-      montant: montant,
-      action_id: action_id,
+      started_on: started_at,
+      ended_on: ended_on,
+      denomination: libelle,
+      weight_in_subaction: poids,
+      budget: montant,
+      subaction_id: action_id,
       structure_id: structure_id,
-      est_pip: est_pip,
-      source_financement: source_financement,
-      structures_impliquees: structures_impliquees,
-      structures_supervisions: structures_supervisions,
+      is_pip: est_pip === true ? 1 : 0,
+      fundings: source_financement,
+      structures: structures,
+      indicators: indicators,
       code: code
     };
     console.log(data);
