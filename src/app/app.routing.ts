@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 // Layouts
 import { CommonLayoutComponent } from './common/common-layout.component';
 import { AuthenticationLayoutComponent } from './common/authentication-layout.component';
+import {AuthGuardService} from './shared/services/auth-guard.service';
 
 export const AppRoutes: Routes = [
     {
@@ -12,6 +13,7 @@ export const AppRoutes: Routes = [
     },
     {
         path: '',
+        // canActivate: [AuthGuardService],
         component: CommonLayoutComponent,
         children: [
             {

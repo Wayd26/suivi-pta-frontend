@@ -10,11 +10,15 @@ import { SignIn2Component } from './sign-in2/sign-in2.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { Page500Component } from './500/500.component';
 import { Page404Component } from './404/404.component';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
-    imports: [
-        RouterModule.forChild(AuthenticationRoutes),
-    ],
+  imports: [
+    RouterModule.forChild(AuthenticationRoutes),
+    FormsModule,
+    CommonModule,
+  ],
     declarations: [
         SignInComponent,
         SignIn2Component,

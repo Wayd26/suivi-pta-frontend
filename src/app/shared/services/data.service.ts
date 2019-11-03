@@ -34,6 +34,7 @@ export class DataService {
   public suiviTaches: SuiviTache[];
   public indicateurs: Indicateur[];
   public resultats: Resultat[];
+  public auth = false;
 
   constructor() { }
  public getProgrammes (): Programme[] {
@@ -129,6 +130,13 @@ export class DataService {
   }
   public setResultats(data: Resultat[]) {
     this.resultats = data;
+  }
+
+  public isAuth(): boolean {
+    return  this.auth;
+  }
+  public setAuth(auth: boolean) {
+    this.auth = auth;
   }
 
 }

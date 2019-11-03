@@ -12,14 +12,14 @@ export class MinistereService {
 
   getMinistereList() {
 
-    return this.httpClient.get(BASE_URL + 'ministeres', this.options  );
+    return this.httpClient.get(BASE_URL + 'ministries', this.options  );
   }
   getMinistere(id) {
 
-    return this.httpClient.get(BASE_URL + 'ministeres/' + id, this.options  );
+    return this.httpClient.get(BASE_URL + 'ministries/' + id, this.options  );
   }
   deleteMinistere(id) {
-    return this.httpClient.delete(BASE_URL + 'administrateurs/1/ministeres/' + id, this.options);
+    return this.httpClient.delete(BASE_URL + 'administrateurs/1/ministries/' + id, this.options);
   }
   createMinistere(code: string, denomination: string, email: string, sigle: string, telephone: string, ville_id: number) {
     const data = {
@@ -31,7 +31,7 @@ export class MinistereService {
       ville_id: ville_id
     };
     console.log(data);
-    return this.httpClient.post(BASE_URL + 'administrateurs/1/ministeres', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrateurs/1/ministries', data, this.options);
   }
   update(code: string, denomination: string, sigle: string , ville_id: number, email: string, telephone: string, id: number) {
     const data = {
@@ -43,6 +43,6 @@ export class MinistereService {
       telephone: telephone
     };
     console.log(data);
-    return this.httpClient.put(BASE_URL + 'administrateurs/1/ministeres/' + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrateurs/1/ministries/' + id, data, this.options);
   }
 }

@@ -12,14 +12,14 @@ export class ObjectifService {
 
   getObjectifList() {
 
-    return this.httpClient.get(BASE_URL + 'objectifs', this.options  );
+    return this.httpClient.get(BASE_URL + 'objectives', this.options  );
   }
 
   getObjectif(id) {
-    return this.httpClient.get(BASE_URL + 'objectifs/' + id, this.options);
+    return this.httpClient.get(BASE_URL + 'objectives/' + id, this.options);
   }
   deleteObjectif(id) {
-    return this.httpClient.delete(BASE_URL + 'administrateurs/2/objectifs/' + id, this.options);
+    return this.httpClient.delete(BASE_URL + 'administrateurs/2/objectives/' + id, this.options);
   }
   createObjectif(code: string, libelle: string, programme: number) {
     const data = {
@@ -28,7 +28,7 @@ export class ObjectifService {
       programme_id: programme
     };
     console.log(data);
-    return this.httpClient.post(BASE_URL + 'administrateurs/2/objectifs', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrateurs/2/objectives', data, this.options);
   }
   updateObjectif(code: string, libelle: string, programme: number, id: number) {
     const data = {
@@ -37,6 +37,6 @@ export class ObjectifService {
       programme_id: programme
     };
 
-    return this.httpClient.put(BASE_URL + 'administrateurs/2/objectifs/'  + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrateurs/2/objectives/'  + id, data, this.options);
   }
 }

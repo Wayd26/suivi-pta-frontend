@@ -22,16 +22,16 @@ export class SuiviTacheService {
     header.append('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
     header.append('Access-Control-Allow-Origin', 'http://localhost:4200');
 
-    return this.httpClient.get(BASE_URL + 'taches/suivis', this.options);
+    return this.httpClient.get(BASE_URL + 'task-trackings', this.options);
   }
 
   getSuiviTache(id) {
-    return this.httpClient.get(BASE_URL + 'suivi-tache/' + id, this.options  );
+    return this.httpClient.get(BASE_URL + 'task-trackings/' + id, this.options  );
   }
 
 
   deleteSuiviTache(id) {
-    return this.httpClient.delete(BASE_URL + 'administrateurs/1/supprimer-suivi-tache/' + id, this.options);
+    return this.httpClient.delete(BASE_URL + 'administrateurs/1/task-trackings/' + id, this.options);
   }
   createSuiviTache(activite: number, tache: string, dateDebut: string, dateFin: string, montant: number, poids: number) {
     const data = {
@@ -43,7 +43,7 @@ export class SuiviTacheService {
       poids: poids
     };
     console.log(data);
-    return this.httpClient.post(BASE_URL + 'administrateurs/1/taches/' + tache + '/suivre', data, this.options);
+    return this.httpClient.post(BASE_URL + 'administrateurs/1/taches/task-trackings', data, this.options);
   }
   updateSuiviTache(activite: string, tache: string, dateDebut: string, dateFin: string, montant: number, poids: number, id: number) {
     const data = {
@@ -54,7 +54,7 @@ export class SuiviTacheService {
       montant: montant,
       poids: poids
     };
-    return this.httpClient.put(BASE_URL + 'administrateurs/1/modifier-suvi-tache/' + id, data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrateurs/1/task-trackings/' + id, data, this.options);
   }
 
 
