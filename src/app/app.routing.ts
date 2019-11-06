@@ -13,7 +13,7 @@ export const AppRoutes: Routes = [
     },
     {
         path: '',
-        // canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService],
         component: CommonLayoutComponent,
         children: [
             {

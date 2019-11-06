@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders} from '@angular/common/http';
+import { HttpHeaders, HttpClient} from '@angular/common/http';
 import {element} from 'protractor';
 import swal from 'sweetalert2';
+import { BASE_URL } from 'src/app/constants/urlConstants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   getOption() {
     const header = new HttpHeaders ;
@@ -45,6 +46,17 @@ export class UtilsService {
    const tab = data.find(function (e) { return e['rel'] === keys ; })['href'].split('/');
    console.log(tab);
     return tab[tab.length - 1].toString();
+  }
+
+  getToken(username,password) {
+    const data = {
+      grant_type: 'client_credentials',
+      client_id: 2,
+      client_secret: 'QnOSnZuTTegkLJSHOhwIBuNVQJb6t1elj39WGIhE',
+      username:username,
+      password: password
+    };
+    return this.httpClient.put(BASE_URL + 'oauth/token?', data, this.getOption());
   }
 
   notifAjout_OK(){return swal('Succes !', 'Ajout effectué !', 'success');}
