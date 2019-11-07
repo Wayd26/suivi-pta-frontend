@@ -3,13 +3,14 @@ import { HttpHeaders, HttpClient} from '@angular/common/http';
 import {element} from 'protractor';
 import swal from 'sweetalert2';
 import { BASE_URL } from 'src/app/constants/urlConstants';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private data: DataService) { }
 
   getOption() {
     const header = new HttpHeaders ;
@@ -17,6 +18,7 @@ export class UtilsService {
     header.append('Access-Control-Allow-Origin', '*');
     header.append('Access-Control-Allow-Headers', 'Origin,X-Requested-Width, Content-Type, Accept, Authorization');
     header.append('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
+    header.append('Authorization', 'Bearer ' + this.data.getToken );
 
     return  {headers: header};
   }
