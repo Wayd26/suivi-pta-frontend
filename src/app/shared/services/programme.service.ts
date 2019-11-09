@@ -3,13 +3,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import { UtilsService } from './utils.service';
 import { BASE_URL } from 'src/app/constants/urlConstants';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProgrammeService {
 
-  constructor(private httpClient: HttpClient, private utilsService: UtilsService) { }
+  constructor(private httpClient: HttpClient, private utilsService: UtilsService, private data: DataService) { }
   options = this.utilsService.getOption();
 
   getProgrammeList() {
@@ -18,7 +19,8 @@ export class ProgrammeService {
     header.append('Access-Control-Allow-Headers', 'Origin,X-Requested-Width, Content-Type, Accept, Authorization');
     header.append('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
     header.append('Access-Control-Allow-Origin', 'http://localhost:4200');
-
+    console.log(this.data.getToken);
+    console.log(this.options);
     return this.httpClient.get(BASE_URL + 'programs', this.options  );
   }
   deleteProgramme(id) {

@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders} from '@angular/common/http';
 import {element} from 'protractor';
 import swal from 'sweetalert2';
+import { DataService } from './data.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
 
-  constructor() { }
+  constructor(private data: DataService, private cookieService: CookieService) { }
 
   getOption() {
     const header = new HttpHeaders ;
@@ -16,6 +18,10 @@ export class UtilsService {
     header.append('Access-Control-Allow-Origin', '*');
     header.append('Access-Control-Allow-Headers', 'Origin,X-Requested-Width, Content-Type, Accept, Authorization');
     header.append('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
+    header.append('Authorization', 'Bearer ' + this.data.getToken() );
+    console.log( this.cookieService.get('token'));
+    console.log( this.data.getToken());
+    console.log(header);
 
     return  {headers: header};
   }

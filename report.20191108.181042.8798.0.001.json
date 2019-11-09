@@ -1,0 +1,362 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20191108.181042.8798.0.001.json",
+    "dumpEventTime": "2019-11-08T18:10:48Z",
+    "dumpEventTimeStamp": "1573233048783",
+    "processId": 8798,
+    "cwd": "/home/cerco-ia/Documents/new_frontend",
+    "commandLine": [
+      "/home/cerco-ia/.nvm/versions/node/v12.13.0/bin/node",
+      "/home/cerco-ia/Documents/WebStorm-192.5728.87/plugins/JavaScriptLanguage/jsLanguageServicesImpl/js-language-service.js",
+      "-id=1573232951420",
+      "-debug-name=tslint"
+    ],
+    "nodejsVersion": "v12.13.0",
+    "glibcVersionRuntime": "2.27",
+    "glibcVersionCompiler": "2.17",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "linux",
+    "componentVersions": {
+      "node": "12.13.0",
+      "v8": "7.7.299.13-node.12",
+      "uv": "1.32.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.39.2",
+      "napi": "5",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1d",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019a",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.13.0/node-v12.13.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.13.0/node-v12.13.0.tar.gz"
+    },
+    "osName": "Linux",
+    "osRelease": "4.15.0-20-generic",
+    "osVersion": "#21-Ubuntu SMP Tue Apr 24 06:16:15 UTC 2018",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i5-7400 CPU @ 3.00GHz",
+        "speed": 800,
+        "user": 1972800,
+        "nice": 0,
+        "sys": 413500,
+        "idle": 38810400,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-7400 CPU @ 3.00GHz",
+        "speed": 800,
+        "user": 3172600,
+        "nice": 0,
+        "sys": 519400,
+        "idle": 38687900,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-7400 CPU @ 3.00GHz",
+        "speed": 800,
+        "user": 2291700,
+        "nice": 0,
+        "sys": 425400,
+        "idle": 37594100,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-7400 CPU @ 3.00GHz",
+        "speed": 800,
+        "user": 2030200,
+        "nice": 0,
+        "sys": 420700,
+        "idle": 38458600,
+        "irq": 0
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "lo",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "enx0c5b8f279a64",
+        "internal": false,
+        "mac": "0c:5b:8f:27:9a:64",
+        "address": "192.168.8.102",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "lo",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "enx0c5b8f279a64",
+        "internal": false,
+        "mac": "0c:5b:8f:27:9a:64",
+        "address": "fe80::c2b2:e0bb:56ba:d439",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 5
+      }
+    ],
+    "host": "cerco-ia-dev"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x0000000000b027f5",
+      "symbol": "report::TriggerNodeReport(v8::Isolate*, node::Environment*, char const*, char const*, std::string const&, v8::Local<v8::String>) [/home/cerco-ia/.nvm/versions/node/v12.13.0/bin/node]"
+    },
+    {
+      "pc": "0x00000000009d9fc3",
+      "symbol": "node::OnFatalError(char const*, char const*) [/home/cerco-ia/.nvm/versions/node/v12.13.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000b37dbe",
+      "symbol": "v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/home/cerco-ia/.nvm/versions/node/v12.13.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000b38139",
+      "symbol": "v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/home/cerco-ia/.nvm/versions/node/v12.13.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000ce34f5",
+      "symbol": " [/home/cerco-ia/.nvm/versions/node/v12.13.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000cba920",
+      "symbol": "v8::internal::Factory::NewUninitializedFixedArray(int, v8::internal::AllocationType) [/home/cerco-ia/.nvm/versions/node/v12.13.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000e24e01",
+      "symbol": " [/home/cerco-ia/.nvm/versions/node/v12.13.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000e250b0",
+      "symbol": " [/home/cerco-ia/.nvm/versions/node/v12.13.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000000fc6d8b",
+      "symbol": "v8::internal::Runtime_GrowArrayElements(int, unsigned long*, v8::internal::Isolate*) [/home/cerco-ia/.nvm/versions/node/v12.13.0/bin/node]"
+    },
+    {
+      "pc": "0x00000000013725d9",
+      "symbol": " [/home/cerco-ia/.nvm/versions/node/v12.13.0/bin/node]"
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2638827520,
+    "totalCommittedMemory": 2604635536,
+    "usedMemory": 2603248416,
+    "availableMemory": 16989384,
+    "memoryLimit": 2049966080,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 32568,
+        "capacity": 261872,
+        "used": 32296,
+        "available": 229576
+      },
+      "new_space": {
+        "memorySize": 33554432,
+        "committedMemory": 34816,
+        "capacity": 16759808,
+        "used": 0,
+        "available": 16759808
+      },
+      "old_space": {
+        "memorySize": 14004224,
+        "committedMemory": 13854040,
+        "capacity": 12889048,
+        "used": 12889048,
+        "available": 0
+      },
+      "code_space": {
+        "memorySize": 425984,
+        "committedMemory": 243520,
+        "capacity": 203744,
+        "used": 203744,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 1314816,
+        "committedMemory": 1204672,
+        "capacity": 941840,
+        "used": 941840,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 1656434688,
+        "committedMemory": 1656434688,
+        "capacity": 1656399696,
+        "used": 1656399696,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 49152,
+        "committedMemory": 49152,
+        "capacity": 3552,
+        "used": 3552,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 932782080,
+        "committedMemory": 932782080,
+        "capacity": 932778240,
+        "used": 932778240,
+        "available": 0
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 5.57077,
+    "kernelCpuSeconds": 3.34166,
+    "cpuConsumptionPercent": 8.73768,
+    "maxRss": 2629128192,
+    "pageFaults": {
+      "IORequired": 93,
+      "IONotRequired": 709114
+    },
+    "fsActivity": {
+      "reads": 59200,
+      "writes": 0
+    }
+  },
+  "uvthreadResourceUsage": {
+    "userCpuSeconds": 5.16511,
+    "kernelCpuSeconds": 3.32014,
+    "cpuConsumptionPercent": 8.31887,
+    "fsActivity": {
+      "reads": 59256,
+      "writes": 0
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "PATH": "/home/cerco-ia/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+    "XAUTHORITY": "/home/cerco-ia/.Xauthority",
+    "XDG_DATA_DIRS": "/usr/share/cinnamon:/usr/share/gnome:/home/cerco-ia/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop",
+    "GDMSESSION": "cinnamon",
+    "MANDATORY_PATH": "/usr/share/gconf/cinnamon.mandatory.path",
+    "XDG_CONFIG_DIRS": "/etc/xdg/xdg-cinnamon:/etc/xdg",
+    "LANG": "fr_FR.UTF-8",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "XDG_SEAT_PATH": "/org/freedesktop/DisplayManager/Seat0",
+    "XDG_SESSION_ID": "c1",
+    "XDG_SESSION_TYPE": "x11",
+    "DEFAULTS_PATH": "/usr/share/gconf/cinnamon.default.path",
+    "XDG_CURRENT_DESKTOP": "X-Cinnamon",
+    "DISPLAY": ":0",
+    "SSH_AGENT_PID": "2065",
+    "SESSION_MANAGER": "local/cerco-ia-dev:@/tmp/.ICE-unix/1997,unix/cerco-ia-dev:/tmp/.ICE-unix/1997",
+    "LOGNAME": "cerco-ia",
+    "PWD": "/home/cerco-ia/Documents/new_frontend",
+    "LANGUAGE": "fr_FR",
+    "SHELL": "/bin/bash",
+    "GDM_LANG": "fr_FR",
+    "XDG_GREETER_DATA_DIR": "/var/lib/lightdm-data/cerco-ia",
+    "GIO_LAUNCHED_DESKTOP_FILE": "/usr/share/applications/jetbrains-webstorm.desktop",
+    "GPG_AGENT_INFO": "/run/user/1000/gnupg/S.gpg-agent:0:1",
+    "DESKTOP_SESSION": "cinnamon",
+    "OLDPWD": "/home/cerco-ia/Documents/WebStorm-192.5728.87/bin",
+    "USER": "cerco-ia",
+    "GIO_LAUNCHED_DESKTOP_FILE_PID": "3305",
+    "QT_ACCESSIBILITY": "1",
+    "GNOME_DESKTOP_SESSION_ID": "this-is-deprecated",
+    "SSH_AUTH_SOCK": "/run/user/1000/keyring/ssh",
+    "GTK_MODULES": "gail:atk-bridge",
+    "XDG_SEAT": "seat0",
+    "GTK_OVERLAY_SCROLLING": "1",
+    "XDG_SESSION_PATH": "/org/freedesktop/DisplayManager/Session0",
+    "QT_QPA_PLATFORMTHEME": "qt5ct",
+    "GSETTINGS_SCHEMA_DIR": "/home/cerco-ia/data",
+    "XDG_VTNR": "7",
+    "XDG_SESSION_DESKTOP": "cinnamon",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "HOME": "/home/cerco-ia",
+    "SHLVL": "0"
+  },
+  "userLimits": {
+    "core_file_size_blocks": {
+      "soft": 0,
+      "hard": "unlimited"
+    },
+    "data_seg_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_locked_memory_bytes": {
+      "soft": 16777216,
+      "hard": 16777216
+    },
+    "max_memory_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "open_files": {
+      "soft": 1048576,
+      "hard": 1048576
+    },
+    "stack_size_bytes": {
+      "soft": 8388608,
+      "hard": "unlimited"
+    },
+    "cpu_time_seconds": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_user_processes": {
+      "soft": 14184,
+      "hard": 14184
+    },
+    "virtual_memory_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    }
+  },
+  "sharedObjects": [
+    "linux-vdso.so.1",
+    "/lib/x86_64-linux-gnu/libdl.so.2",
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6",
+    "/lib/x86_64-linux-gnu/libm.so.6",
+    "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+    "/lib/x86_64-linux-gnu/libpthread.so.0",
+    "/lib/x86_64-linux-gnu/libc.so.6",
+    "/lib64/ld-linux-x86-64.so.2"
+  ]
+}

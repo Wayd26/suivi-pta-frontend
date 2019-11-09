@@ -36,7 +36,7 @@ import {AgGridModule} from 'ag-grid-angular';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {AuthService} from './shared/services/auth.service';
 import {AuthGuardService} from './shared/services/auth-guard.service';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
     imports: [
@@ -58,7 +58,7 @@ import {AuthGuardService} from './shared/services/auth-guard.service';
     providers: [TemplateService, ProgrammeService, UtilsService, StructureService,
        ActionService, TypeSourceFinancementService, ActiviteService, VilleService, DepartementService,
       TacheService, MinistereService, ExercieService, ObjectifService, DataService, ExportAsExelService, AuthService,
-      AuthGuardService],
+      AuthGuardService, CookieService],
     bootstrap: [AppComponent]
 })
 

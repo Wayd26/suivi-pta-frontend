@@ -37,6 +37,7 @@ export class DataService {
   public resultats: Resultat[];
   public sousActions: SousAction[];
   public auth = false;
+  public token: any;
 
   constructor() { }
  public getProgrammes (): Programme[] {
@@ -145,6 +146,13 @@ export class DataService {
   }
   public setAuth(auth: boolean) {
     this.auth = auth;
+  }
+
+  public getToken(): any {
+    return  this.token;
+  }
+  public setToken(token: any) {
+    this.token = token;
   }
 
 }

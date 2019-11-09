@@ -17,7 +17,11 @@ export class LoaderComponent implements OnInit {
 
     this.programmeService.getProgrammeList().subscribe((res: ListProgrammeResponse) => {
       this.dataService.setProgrammes(res.data) ;
-    }, (error) => {}, () => {
+    }, (error) => {
+      console.log(error);
+    }, () => {
+
+
       this.router.navigate(['/dashboard/fichier/base/programme']);
     });
   }
