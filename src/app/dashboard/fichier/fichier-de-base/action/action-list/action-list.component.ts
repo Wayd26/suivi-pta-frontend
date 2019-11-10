@@ -57,16 +57,15 @@ export class ActionListComponent implements OnInit {
       });
     //  }
 
-      // this.actions.map((a) => {
-      //   this.actionExport.push({
-      //     identifiant: a.identifiant,
-      //     code: a.code,
-      //     libelle: a.libelle,
-      //     poids: a.poids,
-      //     montant: a.montant,
-      //     _resultat: a._resultat
-      // });
-      // });
+      this.actions.map((a) => {
+        this.actionExport.push({
+          id: a.id,
+          code: a.code,
+          denomination: a.denomination,
+          weight_in_result: a.weight_in_result,
+          _result: a._result
+      });
+      });
 
   }
   execelExport() {

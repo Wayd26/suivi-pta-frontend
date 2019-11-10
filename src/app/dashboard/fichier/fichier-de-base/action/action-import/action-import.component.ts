@@ -66,14 +66,14 @@ export class ActionImportComponent implements OnInit {
       info.map((i) => {
           this.dataNumber += 1;
           // this.actionService.createAction(i['code'], i['libelle'], +i['poids'], +this.getResultatId(i['_resultat']))
-        this.actionService.createAction(i['code'], i['libelle'], +i['poids'], +this.getResultatId(i['_resultat']))
+        this.actionService.createAction(i['code'], i['denomination'], +i['weight_in_result'], +this.getResultatId(i['_result']))
             .subscribe((resp) => {
               console.log(resp);
 
             } , (error) => {
               console.log(error);
               this.message = 'Echec de l\'operation';
-              //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
+              // this.router.navigate(['/dashboard/fichier/base/programmes/import']);
             });
           console.log(this.dataNumber + '===' + info.length);
           if (this.dataNumber === info.length) {

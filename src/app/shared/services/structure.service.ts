@@ -16,6 +16,10 @@ export class StructureService {
 
     return this.httpClient.get(BASE_URL + 'structures', this.options  );
   }
+  getStructureListByUser() {
+
+    return this.httpClient.get(BASE_URL + 'user/ministry/all-structures', this.options  );
+  }
   getStructure(id) {
 
     return this.httpClient.get(BASE_URL + 'structures/' + id, this.options  );

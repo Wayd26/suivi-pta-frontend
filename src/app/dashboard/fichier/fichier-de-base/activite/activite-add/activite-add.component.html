@@ -231,9 +231,11 @@
                               <aw-wizard-step stepTitle="Indicateurs" [navigationSymbol]="{ symbol: '4' }">
                                 <div class="row">
                                   <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label>Indicateurs</label>
-                                      <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsIndicateur" [(ngModel)]="singleSelectValueIndicateur" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+
+                                      <div class="form-group">
+                                        <label>Indicateur</label>
+                                        <input type="number" class="form-control" name="indicateur" [(ngModel)]="indicateurLabel">
+
                                     </div>
                                   </div>
                                   <div class="col-md-2">
@@ -262,7 +264,7 @@
 
                                               <td>
                                                 <div class=" relative mrg-top-15">
-                                                  <span class="pdd-left-20">{{ind.denomination}}</span>
+                                                  <span class="pdd-left-20">{{ind}}</span>
                                                 </div>
                                               </td>
 

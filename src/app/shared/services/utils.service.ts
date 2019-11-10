@@ -4,6 +4,7 @@ import {element} from 'protractor';
 import swal from 'sweetalert2';
 import { DataService } from './data.service';
 import { CookieService } from 'ngx-cookie-service';
+import {StructureActivite} from '../../models/activite.model';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,10 @@ export class UtilsService {
   changeDateFornat(date: Date) {
     const current_datetime = date;
     return  current_datetime.getFullYear() + '-' + (current_datetime.getMonth()) + '-' + current_datetime.getDate();
+  }
+
+  getElementByType(type, table: StructureActivite []) {
+    return table.find((str) => str.type === type);
   }
 
   getIdData(data, keys ) {

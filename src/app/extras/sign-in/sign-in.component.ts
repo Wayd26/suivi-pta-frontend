@@ -3,24 +3,27 @@ import {AuthService} from '../../shared/services/auth.service';
 import {Router} from '@angular/router';
 import {DataService} from '../../shared/services/data.service';
 import {NgForm} from '@angular/forms';
-import { TokenResponse } from 'src/app/models/token.model';
+import {TokenResponse, TokenUserResponse} from 'src/app/models/token.model';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component ({
     templateUrl: 'sign-in.html'
 })
 
-export class SignInComponent implements OnInit{
-    constructor(private cookieService: CookieService, private authService: AuthService , private router: Router, private data: DataService) { }
+export class SignInComponent implements OnInit {
+    constructor(private cookieService: CookieService, private authService: AuthService ,
+                private router: Router, private data: DataService) { }
 
   message = '';
   singleSelectOptions: any = [];
   onSubmit(form: NgForm) {
-    this.authService.logIn(form.value['login'], form.value['password']).subscribe((res: TokenResponse) => {
+    this.authService.signIn(form.value['login'], form.value['password']).subscribe((res: TokenUserResponse) => {
            console.log(res);
           this.data.setAuth(true);
-          this.data.setToken(res.access_token);
-          this.cookieService.set( 'token', res.access_token, 0.0006944 );
+          this.cookieService.set( 'auth', 'true', 0.0069444 );
+          this.data.setToken(res.token);
+          this.cookieService.set( 'token', res.token, 0.0069444 );
+          console.log('auth ' + this.cookieService.check('auth'));
           this.router.navigate(['dashboard']);
 
       } , (erro) => {

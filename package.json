@@ -30,6 +30,7 @@
     "ammap3": "^3.21.13",
     "angular-archwizard": "^3.0.0",
     "angular-datatables": "^5.0.0",
+    "angular2-jwt": "^0.2.3",
     "angular2-moment": "^1.7.0",
     "angular5-csv": "^0.2.11",
     "ap-angular-fullcalendar": "^1.6.4",

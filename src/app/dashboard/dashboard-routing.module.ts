@@ -89,6 +89,7 @@ import {SousActionListComponent} from './fichier/fichier-de-base/sous-action/sou
 import {SousActionLoaderComponent} from './fichier/fichier-de-base/sous-action/sous-action-loader/sous-action-loader.component';
 import {SousActionAddComponent} from './fichier/fichier-de-base/sous-action/sous-action-add/sous-action-add.component';
 import {SousActionEditComponent} from './fichier/fichier-de-base/sous-action/sous-action-edit/sous-action-edit.component';
+import {SousActionImportComponent} from './fichier/fichier-de-base/sous-action/sous-action-import/sous-action-import.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -731,6 +732,13 @@ export const DashboardRoutes: Routes = [
   {
     path: 'fichier/base/sous_action/add',
     component: SousActionAddComponent,
+    data: {
+      title: 'Dashboard'
+    }
+  } ,
+  {
+    path: 'fichier/base/sous_action/import',
+    component: SousActionImportComponent,
     data: {
       title: 'Dashboard'
     }

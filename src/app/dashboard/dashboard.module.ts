@@ -101,6 +101,7 @@ import { SousActionListComponent } from './fichier/fichier-de-base/sous-action/s
 import { SousActionAddComponent } from './fichier/fichier-de-base/sous-action/sous-action-add/sous-action-add.component';
 import { SousActionEditComponent } from './fichier/fichier-de-base/sous-action/sous-action-edit/sous-action-edit.component';
 import { SousActionLoaderComponent } from './fichier/fichier-de-base/sous-action/sous-action-loader/sous-action-loader.component';
+import { SousActionImportComponent } from './fichier/fichier-de-base/sous-action/sous-action-import/sous-action-import.component';
 
 @NgModule({
   imports: [
@@ -205,7 +206,8 @@ import { SousActionLoaderComponent } from './fichier/fichier-de-base/sous-action
         SousActionListComponent,
         SousActionAddComponent,
         SousActionEditComponent,
-        SousActionLoaderComponent
+        SousActionLoaderComponent,
+        SousActionImportComponent
     ],
     providers: [
         ThemeConstants

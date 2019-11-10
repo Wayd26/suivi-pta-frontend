@@ -10,15 +10,26 @@ export class AuthService {
   isAuth = false;
   uri = 'http://timuxx.com/api_timux/api/v1/';
   constructor(private httpClient: HttpClient, private utilsService: UtilsService) { }
-  logIn(username,password) {
+  logIn(username, password) {
     const data = {
       grant_type: 'client_credentials',
       client_id: 2,
-      client_secret: 'XONcRMbI7tNyjjeAdH9ulaIEg3r9CGHpqKzKTyMr',
-      username:username,
+      client_secret: '43WRlhZrjE0c2nLpCtxFOMxKiwQfe9pyQ4X4rVBp',
+      username: username,
       password: password
     };
     return this.httpClient.post(BASE_URL + 'oauth/token', data, this.utilsService.getOption());
+  }
+
+  signIn(username, password) {
+    const data = new FormData();
+    data.append('email', username);
+    data.append('password', password);
+    // const data = {
+    //   username: username,
+    //   password: password
+    // };
+    return this.httpClient.post<any> (BASE_URL + 'login', data, this.utilsService.getOption());
   }
 
   // logIn(login, password) {
@@ -34,7 +45,7 @@ export class AuthService {
   //   return this.http.post(this.uri + 'login', userLogin, this.options);
   // }
 
-  signIn() {
+  signIn2() {
     return  new Promise(
 
       (resolve, reject) => {
