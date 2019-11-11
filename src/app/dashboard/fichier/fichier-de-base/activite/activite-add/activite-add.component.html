@@ -77,7 +77,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Poids de l'activite dans l'action</label>
+                                                            <label>Poids de l'activite dans la Sous Action</label>
                                                             <input type="number" class="form-control" name="poids" [(ngModel)]="poids">
                                                         </div>
                                                     </div>
@@ -100,12 +100,12 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Action</label>
+                                                            <label>Sous Action</label>
                                                             <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsAction" [(ngModel)]="singleSelectValueAction" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <!-- <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Departement</label>
@@ -118,7 +118,7 @@
                                                             <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsVille" [(ngModel)]="singleSelectValueVille" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </form>
@@ -234,7 +234,7 @@
 
                                       <div class="form-group">
                                         <label>Indicateur</label>
-                                        <input type="number" class="form-control" name="indicateur" [(ngModel)]="indicateurLabel">
+                                        <input type="text" class="form-control" name="indicateur" [(ngModel)]="indicateurLabel">
 
                                     </div>
                                   </div>
