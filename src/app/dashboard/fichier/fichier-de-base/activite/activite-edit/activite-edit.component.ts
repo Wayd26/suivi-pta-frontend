@@ -74,7 +74,7 @@ export class ActiviteEditComponent implements OnInit {
   singleSelectValueStructureSuper: string[] = ['reactjs'];
   singleSelectValueStructureImpl: string[] = ['reactjs'];
   singleSelectValueSource: string[] = ['reactjs'];
-  indicateurSelectShow: Indicateur[] = [];
+  indicateurSelectShow: String[] = [];
   indicateurSelect: any = [];
   singleSelectValueIndicateur: string[] = ['reactjs'];
   singleSelectOptionsIndicateur: any = [];
@@ -184,7 +184,10 @@ export class ActiviteEditComponent implements OnInit {
           // this.singleSelectValueDepartement = [this.utilService.getIdData(this.activite.links, 'departement')];
           // this.singleSelectValueVille = [this.utilService.getIdData(this.activite.links, 'ville')];
           this.structureSelectShow = this.activite.structures.filter((str) => str.type === 1).map((str) => str.structure);
-          this.structureImpliSelect = this.activite.structures.filter((str) => str.type === 2).map((str) => str.structure);
+          this.structureImpliSelectShow = this.activite.structures.filter((str) => str.type === 2).map((str) => str.structure);
+          this.structureImpliSelectShow.map((str) => {this.structureImpliSelect.push({id: +this.singleSelectValueStructureImpl[0],type: 2});});
+          this.structureSelectShow.map((str) => {this.structureSelect.push({id: +this.singleSelectValueStructureImpl[0],type: 1});});
+          this.activite.indicators.map((str) => {this.indicateurSelectShow.push(str.denomination); this.indicateurSelect.push( {denomination: str.denomination});});
         });
   }
   getColor(data: number) {
@@ -345,10 +348,7 @@ export class ActiviteEditComponent implements OnInit {
     this.structureSelectShow.push(this.getStructure(+this.singleSelectValueStructureSuper[0]));
   }
   addStructureImpli() {
-    this.structureImpliSelect.push({
-      id: +this.singleSelectValueStructureImpl[0],
-      type: 2
-    });
+    this.structureImpliSelect.push({id: +this.singleSelectValueStructureImpl[0],type: 2});
     this.structureImpliSelectShow.push(this.getStructure(+this.singleSelectValueStructureImpl[0]));
   }
 

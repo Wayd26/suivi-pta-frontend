@@ -329,9 +329,7 @@ export class ActiviteAddComponent implements OnInit {
     this.structureImpliSelectShow.push(this.getStructure(+this.singleSelectValueStructureImpl));
   }
   addIndicateur() {
-    this.indicateurSelect.push( {
-      denomination: this.indicateurLabel
-  });
+    this.indicateurSelect.push( {denomination: this.indicateurLabel});
     this.indicateurLabel !== '' ? this.indicateurSelectShow.push(this.indicateurLabel) : console.log();
   }
    addSource() {
