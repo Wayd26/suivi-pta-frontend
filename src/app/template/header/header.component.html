@@ -7,6 +7,44 @@
                 </a>
             </li>
         </ul>
+        <ul class="nav-right">
+        <li class="user-profile dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">
+            <img class="profile-img img-fluid" src="assets/images/user.jpg">
+            <div class="user-info">
+              <span class="name pdd-right-5">Nate Leong</span>
+              <i class="ti-angle-down font-size-10"></i>
+            </div>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="">
+                <i class="ti-settings pdd-right-10"></i>
+                <span>Setting</span>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <i class="ti-user pdd-right-10"></i>
+                <span>Profile</span>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <i class="ti-email pdd-right-10"></i>
+                <span>Inbox</span>
+              </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <a href="">
+                <i class="ti-power-off pdd-right-10" (click)="logout()"></i>
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+            </ul>
 <!--        <ul class="nav-right">-->
 <!--            <li>-->
 <!--                <a class="side-panel-toggle" href="javascript:void(0);" (click)="toggleSidePanelOpen()">-->
@@ -14,5 +52,6 @@
 <!--                </a>-->
 <!--            </li>-->
 <!--        </ul>-->
+
     </div>
 </div>

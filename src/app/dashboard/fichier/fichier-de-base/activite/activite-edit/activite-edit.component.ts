@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Structure, ListStructureResponse } from 'src/app/models/structure.model';
 import { SourceFinancement, ListSourceFinancementResponse } from 'src/app/models/sourceFi.model';
-import { SourceFinancementActivite, Activite, ActiviteResponse } from 'src/app/models/activite.model';
+import {SourceFinancementActivite, Activite, ActiviteResponse, OneActiviteResponse, DataActivite} from 'src/app/models/activite.model';
 import { ExercieService } from 'src/app/shared/services/exercie.service';
 import { StructureService } from 'src/app/shared/services/structure.service';
 import { ActionService } from 'src/app/shared/services/action.service';
@@ -17,6 +17,8 @@ import { ListActionResponse } from 'src/app/models/action.model';
 import { ListDepartementResponse } from 'src/app/models/departement.model';
 import {Indicateur, ListIndicateurResponse} from '../../../../../models/indicateur.model';
 import {IndicateurService} from '../../../../../shared/services/indicateur.service';
+import {SousActionService} from '../../../../../shared/services/sous-action.service';
+import {ListSousActionResponse, SousAction} from '../../../../../models/sous_action.model';
 
 @Component({
   selector: 'app-activite-edit',
@@ -77,34 +79,18 @@ export class ActiviteEditComponent implements OnInit {
   singleSelectValueIndicateur: string[] = ['reactjs'];
   singleSelectOptionsIndicateur: any = [];
   indicateur: Indicateur[] = [];
+  sousAction: SousAction[] = [];
   message = '';
   id;
-  activite: Activite;
-  constructor(private exerciceService: ExercieService, private structureService: StructureService, private actionService: ActionService
+  activite: DataActivite;
+  constructor(private exerciceService: ExercieService, private structureService: StructureService, private sousActionService: SousActionService
     , private departementService: DepartementService, private villeService: VilleService,
      private sourceServices: SourceFinancementService, private utilService: UtilsService,
      private activiteService: ActiviteService, private route: ActivatedRoute, private router: Router, private indicateurService: IndicateurService) { }
 
   ngOnInit() {
     this.id = +this.route.snapshot.params['id'];
-    this.activiteService.getActivite(this.id)
-    .subscribe((res: ActiviteResponse) => {
-      console.log(res.data)
-      this.activite = res.data;
-    }, (erro) => {},
-    () => {
-      this.singleSelectValueExercice = [this.utilService.getIdData(this.activite.links, 'exercice')];
-      this.code = this.activite.code;
-      this.libelle = this.activite.denomination;
-      this.montant = this.activite.budget;
-      this.dateDebut = this.activite.started_on;
-      this.dateFin = this.activite.ended_on;
-      this.poids = this.activite.weight_in_subaction;
-      this.singleSelectValueStructure = [this.utilService.getIdData(this.activite.links, 'structure')];
-      this.singleSelectValueAction = [this.utilService.getIdData(this.activite.links, 'action')];
-      this.singleSelectValueDepartement = [this.utilService.getIdData(this.activite.links, 'departement')];
-      this.singleSelectValueVille = [this.utilService.getIdData(this.activite.links, 'ville')];
-    });
+
     this.exerciceService.getExerciceList()
       .subscribe((res: ListExerciceResponse) => {
         res.data.map((exo) => {
@@ -125,7 +111,7 @@ export class ActiviteEditComponent implements OnInit {
           });
         });
       });
-      this.structureService.getStructureList()
+      this.structureService.getStructureListByUser()
       .subscribe((res: ListStructureResponse) => {
         this.structures = res.data;
         res.data.map((ville) => {
@@ -136,8 +122,9 @@ export class ActiviteEditComponent implements OnInit {
           });
         });
       });
-      this.actionService.getActionList()
-      .subscribe((res: ListActionResponse) => {
+      this.sousActionService.getSousActionList()
+      .subscribe((res: ListSousActionResponse) => {
+        this.sousAction = res.data
         res.data.map((ville) => {
           this.singleSelectOptionsAction.push({
             label: ville.denomination,
@@ -178,6 +165,27 @@ export class ActiviteEditComponent implements OnInit {
         });
         this.sources = res.data;
       });
+
+    this.activiteService.getActivite(this.id)
+      .subscribe((res: OneActiviteResponse) => {
+          console.log(res.data);
+          this.activite = res.data;
+        }, (erro) => {},
+        () => {
+          this.singleSelectValueExercice = [this.utilService.getIdData(this.activite.links, 'exercice')];
+          this.code = this.activite.code;
+          this.libelle = this.activite.denomination;
+          this.montant = this.activite.budget;
+          this.dateDebut = this.activite.started_on;
+          this.dateFin = this.activite.ended_on;
+          this.poids = this.activite.weight_in_subaction;
+          this.singleSelectValueStructure = [this.utilService.getElementByType(0, this.activite.structures).ministry_structure_id.toString()];
+          this.singleSelectValueAction = [this.sousAction.find((sub) => sub.denomination === this.activite._subaction).id.toString()];
+          // this.singleSelectValueDepartement = [this.utilService.getIdData(this.activite.links, 'departement')];
+          // this.singleSelectValueVille = [this.utilService.getIdData(this.activite.links, 'ville')];
+          this.structureSelectShow = this.activite.structures.filter((str) => str.type === 1).map((str) => str.structure);
+          this.structureImpliSelect = this.activite.structures.filter((str) => str.type === 2).map((str) => str.structure);
+        });
   }
   getColor(data: number) {
     let result = false;
@@ -339,10 +347,11 @@ export class ActiviteEditComponent implements OnInit {
   addStructureImpli() {
     this.structureImpliSelect.push({
       id: +this.singleSelectValueStructureImpl[0],
-      type: 1
+      type: 2
     });
     this.structureImpliSelectShow.push(this.getStructure(+this.singleSelectValueStructureImpl[0]));
   }
+
   addIndicateur() {
     this.indicateurSelect.push( {
       denomination: this.getIndicateur(+this.singleSelectValueIndicateur[0]).denomination

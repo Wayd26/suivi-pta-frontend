@@ -23,8 +23,7 @@ export interface Link {
     code: string;
     denomination: string;
     weight_in_result: number;
-    montant: number;
-    _resultat: string;
+    _result: string;
 }
 
   export interface Links {

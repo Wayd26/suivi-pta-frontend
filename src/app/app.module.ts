@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { TemplateModule } from './template/template.module';
 import { TemplateService } from './shared/services/template.service';
-import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CommonModule} from '@angular/common';
 
 // Layout Component
@@ -37,7 +37,7 @@ import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {AuthService} from './shared/services/auth.service';
 import {AuthGuardService} from './shared/services/auth-guard.service';
 import { CookieService } from 'ngx-cookie-service';
-import { TokenInterceptor } from './auth/token.interceptor';
+import {TokenInterceptor} from './auth/token.interceptor';
 
 @NgModule({
     imports: [

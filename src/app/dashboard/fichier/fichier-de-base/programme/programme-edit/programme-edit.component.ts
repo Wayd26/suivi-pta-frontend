@@ -33,8 +33,8 @@ export class ProgrammeEditComponent implements OnInit {
     this.programmeService.getProgramme(+this.route.snapshot.params['id']).subscribe((res: ProgrammeResponse) => {
       this.programme = res.data;
 
-      this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'exercice')];
-      console.log(this.utilService.getIdData(res.data.links, 'exercice'));
+      this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'exercise')];
+      console.log(this.utilService.getIdData(res.data.links, 'exercise'));
     });
 
 

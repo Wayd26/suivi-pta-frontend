@@ -17,6 +17,7 @@ import { SourceFinancementActivite } from 'src/app/models/activite.model';
 import {Router} from '@angular/router';
 import {Indicateur, ListIndicateurResponse} from '../../../../../models/indicateur.model';
 import {IndicateurService} from '../../../../../shared/services/indicateur.service';
+import {SousActionService} from '../../../../../shared/services/sous-action.service';
 
 @Component({
   selector: 'app-activite-add',
@@ -78,7 +79,8 @@ export class ActiviteAddComponent implements OnInit {
   singleSelectValueSource: string[] = ['reactjs'];
   singleSelectValueIndicateur: string[] = ['reactjs'];
   message = '';
-  constructor(private exerciceService: ExercieService, private structureService: StructureService, private actionService: ActionService
+  indicateurLabel: any;
+  constructor(private exerciceService: ExercieService, private structureService: StructureService, private sousActionService: SousActionService
     , private departementService: DepartementService, private villeService: VilleService,
      private sourceServices: SourceFinancementService, private utilService: UtilsService,
      private activiteService: ActiviteService, private router: Router, private indicateurService: IndicateurService) { }
@@ -104,7 +106,7 @@ export class ActiviteAddComponent implements OnInit {
           });
         });
       });
-      this.structureService.getStructureList()
+      this.structureService.getStructureListByUser()
       .subscribe((res: ListStructureResponse) => {
         this.structures = res.data;
         res.data.map((ville) => {
@@ -126,7 +128,7 @@ export class ActiviteAddComponent implements OnInit {
           });
         });
       });
-      this.actionService.getActionList()
+      this.sousActionService.getSousActionList()
       .subscribe((res: ListActionResponse) => {
         res.data.map((ville) => {
           this.singleSelectOptionsAction.push({
@@ -318,15 +320,15 @@ export class ActiviteAddComponent implements OnInit {
   addStructureImpli() {
     this.structureImpliSelect.push({
       id: +this.singleSelectValueStructureImpl[0],
-      type: 1
+      type: 2
     });
     this.structureImpliSelectShow.push(this.getStructure(+this.singleSelectValueStructureImpl[0]));
   }
   addIndicateur() {
     this.indicateurSelect.push( {
-      denomination: this.getIndicateur(+this.singleSelectValueIndicateur[0]).denomination
+      denomination: this.indicateurLabel
   });
-  this.indicateurSelectShow.push(this.getIndicateur(+this.singleSelectValueIndicateur[0]));
+    this.indicateurLabel !== '' ? this.indicateurSelectShow.push(this.indicateurLabel) : console.log();
   }
    addSource() {
     this.sourceFi.push( {
@@ -347,8 +349,9 @@ export class ActiviteAddComponent implements OnInit {
        this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect) , this.code, this.indicateurSelect)
        .subscribe((res) => {
          console.log(res);
+         this.router.navigate(['/dashboard/fichier/base/activite/load']);
        }, (error: ErrorResponse) => {
-        console.log(error.error['error']);
+        console.log(error);
         // tslint:disable-next-line:forin
         for (const key in error.error['error']) {
             console.log(key);

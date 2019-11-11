@@ -16,6 +16,14 @@ export interface SousAction {
   links: Link[];
 }
 
+export interface SousActionExport {
+  id: number;
+  code: string;
+  denomination: string;
+  weight_in_action: number;
+  _action: string;
+}
+
 
 export interface Links {
   next: string;

@@ -51,7 +51,7 @@ export class ProgrammeImportComponent implements OnInit {
     this.file = $event.target.files[0];
   }
   Upload() {
-    if (this.extensions.indexOf(this.file.name.split('.').pop()) ) {
+    if (this.extensions.indexOf(this.file.name.split('.').pop()) !== -1 ) {
       this.UploadExcel();
     } else if (this.file.name.endsWith('.csv')) {
       this.uploadListener();

@@ -1,46 +1,50 @@
 import { Component, OnInit } from '@angular/core';
-import {VilleService} from '../../../../../shared/services/ville.service';
+import {ListeResultatResponse, Resultat} from '../../../../../models/resultat.model';
+import {ResultatService} from '../../../../../shared/services/resultat.service';
 import {UtilsService} from '../../../../../shared/services/utils.service';
-import {StructureService} from '../../../../../shared/services/structure.service';
+import {ActionService} from '../../../../../shared/services/action.service';
 import {Router} from '@angular/router';
-import {ListVilleResponse, Ville} from '../../../../../models/ville.model';
-import * as XLSX from 'xlsx';
 import {EXCEL_EXTENSION} from '../../../../../constants/urlConstants';
+import * as XLSX from 'xlsx';
+import {SousActionService} from '../../../../../shared/services/sous-action.service';
+import {Action, ListActionResponse} from '../../../../../models/action.model';
+import {NgForm} from '@angular/forms';
 
 @Component({
-  selector: 'app-structure-import',
-  templateUrl: './structure-import.component.html',
-  styleUrls: ['./structure-import.component.css']
+  selector: 'app-sous-action-import',
+  templateUrl: './sous-action-import.component.html',
+  styleUrls: ['./sous-action-import.component.css']
 })
-export class StructureImportComponent implements OnInit {
-  villes: Ville[];
+export class SousActionImportComponent implements OnInit {
+
   arrayBuffer: any;
   file: File;
   message: String = '';
   dataNumber = 0;
-  constructor(private villeService: VilleService, private utilService: UtilsService, private structureService: StructureService,
-              private router: Router) { }
+  actions: Action[];
+  constructor(private resultatService: ResultatService,
+              private utilService: UtilsService, private actionService: ActionService, private router: Router,
+              private sousActionService: SousActionService) { }
 
   ngOnInit() {
-    this.villeService.getVilleList()
-      .subscribe((res: ListVilleResponse) => {
-        this.villes = res.data;
+    this.actionService.getActionList()
+      .subscribe((res: ListActionResponse) => {
+        console.log(res.data);
+        this.actions = res.data;
       });
+    this.message = '';
   }
-
-  getVilleId(libelle) {
+  getActionId(libelle) {
     console.log(libelle);
-    const vil = this.villes.find((e) => {
+    const vil = this.actions.find((e) => {
       return e.denomination === libelle;
     });
     console.log(vil);
     return vil !== undefined ? vil.id : 0;
   }
   incomingfile($event) {
-    console.log(this.villes);
     this.file = $event.target.files[0];
   }
-
   Upload() {
     console.log(this.file.name.split('.').pop());
     console.log(EXCEL_EXTENSION.indexOf(this.file.name.split('.').pop()))
@@ -66,8 +70,8 @@ export class StructureImportComponent implements OnInit {
       const info = XLSX.utils.sheet_to_json(worksheet, {raw: true});
       info.map((i) => {
           this.dataNumber += 1;
-          this.structureService.createStructure(i['code'],
-          i['denomination'], i['boite_postal'], i['site_web'], +this.getVilleId(i['_ville']), i['telephone'], i['email'] , i['sigle'])
+          // this.actionService.createAction(i['code'], i['libelle'], +i['poids'], +this.getResultatId(i['_resultat']))
+          this.sousActionService.createSousAction(i['code'], i['denomination'], +i['weight_in_action'], +this.getActionId(i['_action']))
             .subscribe((resp) => {
               console.log(resp);
 
@@ -78,7 +82,8 @@ export class StructureImportComponent implements OnInit {
             });
           console.log(this.dataNumber + '===' + info.length);
           if (this.dataNumber === info.length) {
-            this.router.navigate(['/dashboard/fichier/base/structures/load']);
+            this.dataNumber = 0;
+            this.router.navigate(['/dashboard/fichier/base/sous_action/load']);
           }
         }
       );
@@ -87,7 +92,11 @@ export class StructureImportComponent implements OnInit {
     fileReader.readAsArrayBuffer(this.file);
 
   }
-
+  onSubmit(form: NgForm) {
+    const input = document.getElementById('input');
+    console.log(form.value);
+    console.log(input.innerHTML);
+  }
   uploadListener(): void {
 
     const reader = new FileReader();
@@ -122,24 +131,21 @@ export class StructureImportComponent implements OnInit {
         csvRecord.mobile = curruntRecord[5].trim();
         csvArr.push(csvRecord);*/
         this.dataNumber += 1;
-        // this.structureService.createStructure(curruntRecord[0].trim(),
-        // curruntRecord[1].trim(),
-        // curruntRecord[2].trim(),
-        // curruntRecord[3].trim(),
-        // +this.getVilleId(curruntRecord[4].trim()),
-        // curruntRecord[5].trim(),
-        // curruntRecord[6].trim())
-        //   .subscribe((resp) => {
-        //     console.log(resp);
-        //
-        //   } , (error) => {
-        //     console.log(error);
-        //     this.message = 'Echec de l\'operation';
-        //     //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
-        //   });
+        // this.actionService.createAction(i['code'], i['libelle'], +i['poids'], +this.getResultatId(i['_resultat']))
+        this.actionService.createAction(curruntRecord[0].trim(), curruntRecord[1].trim(), +curruntRecord[2].trim(),
+          +this.getActionId(curruntRecord[3].trim()))
+          .subscribe((resp) => {
+            console.log(resp);
+
+          } , (error) => {
+            console.log(error);
+            this.message = 'Echec de l\'operation';
+            //this.router.navigate(['/dashboard/fichier/base/programmes/import']);
+          });
         console.log(this.dataNumber + '===' + csvRecordsArray.length);
         if (this.dataNumber === csvRecordsArray.length) {
-          this.router.navigate(['/dashboard/fichier/base/structures/load']);
+          this.dataNumber = 0;
+          this.router.navigate(['/dashboard/fichier/base/action/load']);
         }
         console.log(curruntRecord);
       }
