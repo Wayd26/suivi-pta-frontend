@@ -30,10 +30,13 @@ export class ExerciceEditComponent implements OnInit {
     this.exerciceService.getExercice(+this.route.snapshot.params['id']).subscribe((res: ExerciceResponse) => {
       this.exercice = res.data;
       this.date_fin = new Date(res.data.ended_on);
+      this.date_debut = new Date(res.data.started_on);
 
 
       const datfinspli = res.data.ended_on.split('-');
+      const datedebspli = res.data.started_on.split('-');
       this.date_fin = {year: +datfinspli[0], month: +datfinspli[1], day: +datfinspli[2]};
+      this.date_debut = {year: +datedebspli[0], month: +datedebspli[1], day: +datedebspli[2]};
       console.log(this.date_fin);
 
       // this.utilservice.changeDateFornat(this.utilservice

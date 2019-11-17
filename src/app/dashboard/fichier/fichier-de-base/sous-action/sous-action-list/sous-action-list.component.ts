@@ -65,6 +65,7 @@ export class SousActionListComponent implements OnInit {
 
   }
   onDelete(id) {
+    // La fonction de suppression qui échoue sans cesse
 
     const self = this;
 

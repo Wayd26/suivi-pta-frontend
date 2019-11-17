@@ -6,6 +6,8 @@ import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
 import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
+import swal from 'sweetalert2';
+import {UtilsService} from '../../../../../shared/services/utils.service';
 
 
 @Component({
@@ -31,7 +33,7 @@ export class ActionListComponent implements OnInit {
   };
 
   constructor(private actionService: ActionService, private router: Router,
-     private dataService: DataService , private exportService: ExportAsExelService) { }
+     private dataService: DataService, private utilService: UtilsService , private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -76,16 +78,43 @@ export class ActionListComponent implements OnInit {
 
   }
   onDelete(id) {
-    const response = confirm(DELETE_CONFIRMATION);
-    if (response) {
-      this.actionService.deleteAction(id).subscribe((res) => {
-          this.actions = this.actions.filter((action) => {
-            return action.id !== id;
-          });
-          this.router.navigate(['/dashboard/fichier/base/action/load']);
-        }
-      );
-    }
+
+    const self = this;
+
+    swal({
+      title: 'Attention !',
+      text: 'Etes-vous sûr de vouloir effectuer cette suppression ? ',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonClass: 'btn btn-success',
+      confirmButtonText: 'Oui, Supprimer !',
+      cancelButtonText: 'Non, Annuler !',
+    }).then(function() {
+
+      self.actionService.deleteAction(id).subscribe((res) => {
+        self.actions = self.actions.filter((action) => {return action.id !== id;});
+        swal('Deleted!', 'La suppression a été effectuée.', 'success');
+        self.router.navigate(['/dashboard/fichier/base/action/load']);
+      },(error: ErrorResponse) => {
+        self.utilService.notifAjout_Error(error.error['error']);
+        self.router.navigate(['/dashboard/fichier/base/action/load']);
+        console.log(error.error['error']);
+      });
+    });
+
+
+    // const response = confirm(DELETE_CONFIRMATION);
+    // if (response) {
+    //   this.actionService.deleteAction(id).subscribe((res) => {
+    //       this.actions = this.actions.filter((action) => {
+    //         return action.id !== id;
+    //       });
+    //       this.router.navigate(['/dashboard/fichier/base/action/load']);
+    //     }
+    //   );
+    // }
+
+
   }
 
 

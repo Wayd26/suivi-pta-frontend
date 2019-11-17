@@ -50,9 +50,14 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
     this.progTache.getSuiviTache(+this.route.snapshot.params['id']).subscribe((res: SuiviTacheResponse) => {
       this.suiviTache = res.data;
 
-      this.dateDebut = this.suiviTache.started_on;
-      this.dateFin = this.suiviTache.ended_on;
+      this.dateDebut = new Date(res.data.started_on);
+      this.dateFin = new Date(res.data.ended_on);
 
+
+      const dateDebutSplit = res.data.started_on.split('-');
+      const dateFinSplit = res.data.ended_on.split('-');
+      this.dateDebut = {year: +dateDebutSplit[0], month: +dateDebutSplit[1], day: +dateDebutSplit[2]};
+      this.dateFin = {year: +dateFinSplit[0], month: +dateFinSplit[1], day: +dateFinSplit[2]};
       console.log(res.data);
 
 
