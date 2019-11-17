@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import {NgForm} from '@angular/forms';
-import {Indicateur, IndicateurResponse} from '../../../../models/indicateur.model';
+import {Indicateur, IndicateurResponse, ListIndicateurResponse} from '../../../../models/indicateur.model';
 import {IndicateurService} from '../../../../shared/services/indicateur.service';
 import {UtilsService} from '../../../../shared/services/utils.service';
 import {ActiviteService} from '../../../../shared/services/activite.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ListActiviteResponse} from '../../../../models/activite.model';
 
 
 @Component({
@@ -14,11 +15,10 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./indicateurs-realises-edit.component.css']
 })
 export class IndicateursRealisesEditComponent implements OnInit {
-  singleSelectOptionsActivite: any = [];
-  singleSelectOptionsIndicateur: any = [];
+  singleSelectOptions: any = [];
   message: string;
-  singleSelectValueActivite: string[] = [];
-  singleSelectValueIndicateur: string[] = [];
+  singleSelectValue: string[] = [];
+
   indicateur: Indicateur;
   id: number;
 
@@ -35,28 +35,38 @@ export class IndicateursRealisesEditComponent implements OnInit {
     this.indicService.getIndicateur(+this.route.snapshot.params['id']).subscribe((res: IndicateurResponse) => {
       this.indicateur = res.data;
 
-      this.singleSelectValueActivite = this.utilService.getIdData(res.data.links, 'activity');
-      this.singleSelectValueIndicateur = this.utilService.getIdData(res.data, 'denomination');
+      this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'activity')];
           });
+    // this.activiteService.getActiviteList()
+    //   .subscribe((res: ListActiviteResponse) => {
+    //     res.data.map((acti) => {
+    //       this.singleSelectOptions.push({
+    //         label: acti.denomination,
+    //         value: acti.id.toString(),
+    //         code: acti.code
+    //       });
+    //     });
+    //   });
   }
   onSubmit(form: NgForm) {
-
-    this.indicService.updateIndicateur(this.singleSelectValueIndicateur.toString(), form.value['valeur_cible'], form.value['valeur_realisee'], +this.singleSelectValueActivite, this.id)
+    console.log(this.singleSelectValue);
+    this.indicService.updateIndicateur(form.value['denomination'], form.value['valeur_cible'], +form.value['valeur_realisee'], +this.singleSelectValue, this.id)
       .subscribe((resp) => {
-        this.message = 'Succes de l\'operation';
+        this.utilService.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises/load']);
       } , (error: ErrorResponse) => {
         console.log(error);
         console.log(error.error['error']);
+        this.utilService.notifModif_Error(error.error['error']);
         // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-          console.log(key);
-          if (key !== 'error') {
-            console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-          }
-        }
+        // for (const key in error.error['error']) {
+        //   console.log(key);
+        //   if (key !== 'error') {
+        //     console.log(error.error['error'][key]);
+        //     this.message = error.error['error'][key];
+        //     break;
+        //   }
+        // }
        this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises/edit/' + this.id ]);
       });
   }

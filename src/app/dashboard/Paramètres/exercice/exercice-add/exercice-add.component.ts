@@ -27,6 +27,8 @@ export class ExerciceAddComponent implements OnInit {
     console.log('start_at ' + this.utilservice.changeDateFornat(this.utilservice
       .getDate(this.started_on.year, this.started_on.month, this.started_on.day)));
 
+    console.log(this.started_on);
+
     this.exerciceService.createExercice(form.value['denomination_exercice'], form.value['annee_exercice'], this.utilservice.changeDateFornat(this.utilservice
       .getDate(this.started_on.year, this.started_on.month, this.started_on.day)),  this.utilservice.changeDateFornat(this.utilservice
       .getDate(this.ended_on.year, this.ended_on.month, this.ended_on.day)))

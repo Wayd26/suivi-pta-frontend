@@ -47,6 +47,9 @@ export class UtilsService {
     return  current_datetime.getFullYear() + '-' + (current_datetime.getMonth()) + '-' + current_datetime.getDate();
   }
 
+
+
+
   getElementByType(type, table: StructureActivite []) {
     return table.find((str) => str.type === type);
   }

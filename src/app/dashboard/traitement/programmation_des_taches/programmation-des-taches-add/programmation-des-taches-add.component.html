@@ -1,3 +1,4 @@
+y
 <div *ngIf = "message !== ''" class="alert alert-danger" role="alert">
   {{message}}
 </div>
@@ -53,7 +54,7 @@
                   <span class="input-group-text" (click)="d1.toggle()">
                       <i class="ti-calendar"></i>
                     </span>
-                      <input type="text" class="form-control" placeholder="Pick your date" name="dp" [(ngModel)]="dateDebut" ngbDatepicker #d1="ngbDatepicker" readonly>
+                      <input type="text" class="form-control" placeholder="Pick your date" name="dp" [(ngModel)]="started_on" ngbDatepicker #d1="ngbDatepicker" readonly>
                     </div>
                   </div>
                   </div>
@@ -66,7 +67,7 @@
                   <span class="input-group-text" (click)="d2.toggle()">
                       <i class="ti-calendar"></i>
                     </span>
-                      <input type="text" class="form-control" placeholder="Pick your date" name="dp2" [(ngModel)]="dateFin" ngbDatepicker #d2="ngbDatepicker" readonly>
+                      <input type="text" class="form-control" placeholder="Pick your date" name="dp2" [(ngModel)]="ended_on" ngbDatepicker #d2="ngbDatepicker" readonly>
                     </div>
                   </div>
                 </div>
