@@ -109,12 +109,14 @@ export class ActiviteAddComponent implements OnInit {
       this.structureService.getStructureListByUser()
       .subscribe((res: ListStructureResponse) => {
         this.structures = res.data;
+        console.log(this.structures);
         res.data.map((ville) => {
           this.singleSelectOptionsStructure.push({
             label: ville.denomination,
             value: ville.id,
             code: ville.code
           });
+          console.log(this.singleSelectOptionsStructure);
         });
       });
       this.indicateurService.getIndicateurList()
@@ -311,18 +313,20 @@ export class ActiviteAddComponent implements OnInit {
     return this.indicateur.find(function (s) { return s.id === +id; });
   }
   addStructureSuper() {
+    console.log(this.singleSelectValueStructureSuper);
+    console.log(this.getStructure(+this.singleSelectValueStructureSuper))
     this.structureSelect.push({
-      id: +this.singleSelectValueStructureSuper[0],
+      id: +this.singleSelectValueStructureSuper,
       type: 1
     });
-    this.structureSelectShow.push(this.getStructure(+this.singleSelectValueStructureSuper[0]));
+    this.structureSelectShow.push(this.getStructure(+this.singleSelectValueStructureSuper));
   }
   addStructureImpli() {
     this.structureImpliSelect.push({
-      id: +this.singleSelectValueStructureImpl[0],
+      id: +this.singleSelectValueStructureImpl,
       type: 2
     });
-    this.structureImpliSelectShow.push(this.getStructure(+this.singleSelectValueStructureImpl[0]));
+    this.structureImpliSelectShow.push(this.getStructure(+this.singleSelectValueStructureImpl));
   }
   addIndicateur() {
     this.indicateurSelect.push( {
