@@ -1,4 +1,3 @@
-import {Departement} from './departement.model';
 
 export interface Link {
   rel: string;
@@ -24,6 +23,10 @@ export interface IndicateurExport {
   valeur_cible: number;
   valeur_realisee: number;
   activite_id: string;
+}
+
+export interface Links {
+  next: string;
 }
 
 

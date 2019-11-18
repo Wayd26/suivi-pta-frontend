@@ -49,7 +49,17 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
     this.id = +this.route.snapshot.params['id'];
     this.progTache.getSuiviTache(+this.route.snapshot.params['id']).subscribe((res: SuiviTacheResponse) => {
       this.suiviTache = res.data;
+
+      this.dateDebut = new Date(res.data.started_on);
+      this.dateFin = new Date(res.data.ended_on);
+
+
+      const dateDebutSplit = res.data.started_on.split('-');
+      const dateFinSplit = res.data.ended_on.split('-');
+      this.dateDebut = {year: +dateDebutSplit[0], month: +dateDebutSplit[1], day: +dateDebutSplit[2]};
+      this.dateFin = {year: +dateFinSplit[0], month: +dateFinSplit[1], day: +dateFinSplit[2]};
       console.log(res.data);
+
 
       this.singleSelectValueActivite = [this.utilService.getIdData(res.data.links, 'activity')];
       console.log(this.utilService.getIdData(res.data.links, 'acivite'));
@@ -83,7 +93,7 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
  onSubmit(form: NgForm){
    this.progTache.updateSuiviTache(+this.singleSelectValueActivite, +this.singleSelectValueTache, this.utilService.changeDateFornat(this.utilService
      .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)),  this.utilService.changeDateFornat(this.utilService
-     .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), form.value['montant_tache'], form.value['poids_tache'], this.id)
+     .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), form.value['montant_tache'], form.value['poids_tache'], false, this.id)
      .subscribe((resp) => {
        this.message = 'Succes de l\'operation';
        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/load']);

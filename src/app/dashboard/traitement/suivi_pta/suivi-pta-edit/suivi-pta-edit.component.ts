@@ -49,6 +49,12 @@ export class SuiviPtaEditComponent implements OnInit {
      this.suiviTache = res.data;
       console.log(res);
 
+      this.dateFinReal = new Date(res.data.effective_end_date);
+
+
+      const dateFinRealSplit = res.data.effective_end_date.split('-');
+      this.dateFinReal = {year: +dateFinRealSplit[0], month: +dateFinRealSplit[1], day: +dateFinRealSplit[2]};
+
       this.singleSelectValueActivite = [this.utilService.getIdData(res.data.links, 'activity')];
       console.log(this.utilService.getIdData(res.data.links, 'acivite'));
 

@@ -70,8 +70,9 @@ export class ProgrammationDesTachesListComponent implements OnInit {
     this.totalTEP = 0 ;
     console.log(this.singleSelectValue);
     this.suiviTacheSelect = this.dataService.getSuiviTaches().filter(a => {
-      return this.utilservice.getIdData(a.links, 'activite'); } );
-     this.dataService.getSuiviTaches().map(b => {
+      return this.utilservice.getIdData(a.links, 'activity') === +this.singleSelectValue; } );
+      // a._activity === this.singleSelectValue[0]; } );
+    this.suiviTacheSelect.map(b => {
       this.totalTEP = this.totalTEP + (+b.weight_in_activity) ;
       this.totalTEP.toFixed(2);
       console.log(this.totalTEP);

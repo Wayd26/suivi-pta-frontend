@@ -34,26 +34,28 @@ export class SuiviTacheService {
     return this.httpClient.delete(BASE_URL + 'administrator/remove-task-tracking/' + id, this.options);
   }
 
-  createSuiviTache(activity_id: number, task_id: number, started_on: string, ended_on: string, budget: number, weight_in_activity: number) {
+  createSuiviTache(activity_id: number, task_id: number, started_on: string, ended_on: string, budget: number, weight_in_activity: number, is_realized: boolean) {
     const data = {
       activity_id: activity_id,
       task_id: task_id,
       started_on: started_on,
       ended_on: ended_on,
       budget: budget,
-      weight_in_activity: weight_in_activity
+      weight_in_activity: weight_in_activity,
+      is_realized: is_realized
     };
     console.log(data);
     return this.httpClient.post(BASE_URL + 'administrator/create-task-tracking', data, this.options);
   }
-  updateSuiviTache(activity_id: number, task_id: number, started_on: string, ended_on: string, budget: number, weight_in_activity: number, id: number) {
+  updateSuiviTache(activity_id: number, task_id: number, started_on: string, ended_on: string, budget: number, weight_in_activity: number, is_realized: boolean, id: number) {
     const data = {
       activity_id: activity_id,
       task_id: task_id,
       started_on: started_on,
       ended_on: ended_on,
       budget: budget,
-      weight_in_activity: weight_in_activity
+      weight_in_activity: weight_in_activity,
+      is_realized: is_realized
     };
     return this.httpClient.put(BASE_URL + 'administrator/update-task-tracking/' + id, data, this.options);
   }
