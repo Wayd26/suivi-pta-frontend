@@ -11,11 +11,13 @@ export class HeaderComponent  {
 
     isCollapse: boolean;
     isOpen: boolean;
+    name = '';
 
-    constructor(private tplSvc: TemplateService, private cookie: CookieService, private router: Router) {
+    constructor(private cookieService: CookieService,private tplSvc: TemplateService, private cookie: CookieService, private router: Router) {
     }
 
     ngOnInit(): void {
+        this.name = this.cookieService.get( 'name');
         this.tplSvc.isSideNavCollapseChanges.subscribe(isCollapse => this.isCollapse = isCollapse);
         this.tplSvc.isSidePanelOpenChanges.subscribe(isOpen => this.isOpen = isOpen);
     }

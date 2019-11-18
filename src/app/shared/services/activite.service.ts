@@ -53,12 +53,12 @@ export class ActiviteService {
       subaction_id: action_id,
       structure_id: structure_id,
       is_pip: est_pip === true ? 1 : 0,
-      fundings: source_financement,
-      structures: structures,
-      indicators: indicators,
+     // fundings: source_financement,
+     // structures: structures,
+     // indicators: indicators,
       code: code
     };
     console.log(data);
-    return this.httpClient.put(BASE_URL + 'administrator/update-subaction/' + id , data, this.options);
+    return this.httpClient.put(BASE_URL + 'administrator/update-activity/' + id , data, this.options);
   }
 }

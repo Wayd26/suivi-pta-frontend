@@ -18,10 +18,10 @@
                                             <div class="col-md-10 ml-auto mr-auto">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <div class="form-group">
+                                                        <!-- <div class="form-group">
                                                             <label>Exercice</label>
                                                             <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsExercice" [(ngModel)]="singleSelectValueExercice" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -55,7 +55,7 @@
                                                             <span class="input-group-text" (click)="d1.toggle()">
                                                             <i class="ti-calendar"></i>
                                                           </span>
-                                                            <input type="text" class="form-control" placeholder="Pick your date" name="dp" [(ngModel)]="dateDebut" ngbDatepicker #d1="ngbDatepicker" readonly>
+                                                            <input type="text" class="form-control" placeholder="{{dateDebut}}" name="dp" [(ngModel)]="dateDebut" ngbDatepicker #d1="ngbDatepicker" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -64,7 +64,7 @@
                                                             <span class="input-group-text" (click)="d2.toggle()">
                                                             <i class="ti-calendar"></i>
                                                           </span>
-                                                            <input type="text" class="form-control" placeholder="Pick your date" name="dp2" [(ngModel)]="dateFin" ngbDatepicker #d2="ngbDatepicker" readonly>
+                                                            <input type="text" class="form-control" placeholder="{{dateFin}}" name="dp2" [(ngModel)]="dateFin" ngbDatepicker #d2="ngbDatepicker" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -77,16 +77,16 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Poids de l'activite dans la Sous Action</label>
+                                                            <label>Poids de l'activite dans l'action</label>
                                                             <input type="number" class="form-control" name="poids" [(ngModel)]="poids">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <!-- <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Mode d'execution</label>
                                                             <input type="text" class="form-control" name="mode" [(ngModel)]="mode">
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
 
                                                 <div class="row">
@@ -100,16 +100,16 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Sous Action</label>
+                                                            <label>Action</label>
                                                             <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsAction" [(ngModel)]="singleSelectValueAction" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="row">
+                                                <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Departement</label>
-                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsDepartement" [(ngModel)]="singleSelectValueDepartement" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsDepartement" [(ngModel)]="singleSelectValueDepartement" ngDefaultControl [ngModelOptions]="{standalone: true}" (ngModelChange)="onSelect()"></ng-selectize>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -118,7 +118,7 @@
                                                             <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsVille" [(ngModel)]="singleSelectValueVille" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
                                                         </div>
                                                     </div>
-                                                </div> -->
+                                                </div>
                                             </div>
                                         </div>
                                     </form>
@@ -163,6 +163,9 @@
                                                                             <span class="pdd-left-20">{{structure.denomination}}</span>
                                                                         </div>
                                                                     </td>
+                                                                    <td><button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="deleteStructureImpli(structure.id)">
+                                                                            <i class="ti-trash"></i>
+                                                                        </button></td>
 
                                                                 </tr>
                                                             </tbody>
@@ -214,6 +217,9 @@
                                                                             <span class="pdd-left-20">{{structure.denomination}}</span>
                                                                         </div>
                                                                     </td>
+                                                                    <td><button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="deleteStructureSuper(structure.id)">
+                                                                            <i class="ti-trash"></i>
+                                                                        </button></td>
 
                                                                 </tr>
                                                             </tbody>
@@ -228,61 +234,67 @@
                                         <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
                                     </div>
                                 </aw-wizard-step>
-                              <aw-wizard-step stepTitle="Indicateurs" [navigationSymbol]="{ symbol: '4' }">
-                                <div class="row">
-                                  <div class="col-md-6">
-
-                                      <div class="form-group">
-                                        <label>Indicateur</label>
-                                        <input type="text" class="form-control" name="indicateur" [(ngModel)]="indicateurLabel">
-
-                                    </div>
-                                  </div>
-                                  <div class="col-md-2">
-                                    <div class="form-group">
-                                      <label></label>
-                                      <a class="btn btn-primary" (click)="addIndicateur()" style="color: white">
-                                        <i class="ti-plus pdd-right-5"></i>
-                                        <span>Ajouter</span>
-                                      </a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <div class="card">
-                                      <div class="card-block">
-                                        <div class="table-overflow">
-                                          <table class="table table-bordered table-hover table-sm">
-                                            <thead>
-                                            <tr>
-                                              <th>Indicateurs</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr *ngFor="let ind of indicateurSelectShow">
-
-                                              <td>
-                                                <div class=" relative mrg-top-15">
-                                                  <span class="pdd-left-20">{{ind}}</span>
-                                                </div>
-                                              </td>
-
-                                            </tr>
-                                            </tbody>
-                                          </table>
+                                <aw-wizard-step stepTitle="Indicateurs" [navigationSymbol]="{ symbol: '4' }">
+                                    <div class="row">
+                                      <div class="col-md-6">
+    
+                                          <div class="form-group">
+                                            <label>Indicateur</label>
+                                            <input type="text" class="form-control" name="indicateur" [(ngModel)]="indicateurLabel">
+    
+                                        </div>
+                                      </div>
+                                      <div class="col-md-2">
+                                        <div class="form-group">
+                                          <label></label>
+                                          <a class="btn btn-primary" (click)="addIndicateur()" style="color: white">
+                                            <i class="ti-plus pdd-right-5"></i>
+                                            <span>Ajouter</span>
+                                          </a>
                                         </div>
                                       </div>
                                     </div>
-                                  </div>
-                                </div>
-                                <div class="mrg-top-20">
-                                  <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
-                                  <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
-                                </div>
-                              </aw-wizard-step>
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card">
+                                          <div class="card-block">
+                                            <div class="table-overflow">
+                                              <table class="table table-bordered table-hover table-sm">
+                                                <thead>
+                                                <tr>
+                                                  <th>Indicateurs</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr *ngFor="let ind of indicateurSelectShow">
+    
+                                                  <td>
+                                                    <div class=" relative mrg-top-15">
+                                                      <span class="pdd-left-20">{{ind}}</span>
+                                                    </div>
+                                                   
+                                                  </td>
 
-                              <aw-wizard-step stepTitle="Source Financement" [navigationSymbol]="{ symbol: '5' }">
+                                                  <td>
+                                                    <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="deleteIndicateur(ind)">
+                                                        <i class="ti-trash"></i>
+                                                    </button>
+                                                  </td>
+    
+                                                </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="mrg-top-20">
+                                      <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
+                                      <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
+                                    </div>
+                                  </aw-wizard-step>
+                                <aw-wizard-step stepTitle="Source Financement" [navigationSymbol]="{ symbol: '5' }">
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
@@ -328,6 +340,9 @@
                                                                         </div>
                                                                     </td>
                                                                     <td>{{montantSelect[i]}}</td>
+                                                                    <td><button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="deleteSource(source.denomination)">
+                                                                            <i class="ti-trash"></i>
+                                                                        </button></td>
 
                                                                 </tr>
                                                             </tbody>

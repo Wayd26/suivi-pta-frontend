@@ -99,6 +99,7 @@ export interface ActiviteResponse {
     created_at: string;
     updated_at: string;
     pivot: Pivot;
+    budget_allocated: number;
   }
 
   export interface Ministy {

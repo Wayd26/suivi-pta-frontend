@@ -1,299 +1,389 @@
-<div class="container-fluid">
-    <div *ngIf="message !== ''" class="alert alert-danger" role="alert">
-        {{message}}
-    </div>
-    <div class="page-title">
-        <h4>Ajouter activite</h4>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-block">
-                    <div class="row relative">
-                        <div class="col-md-10 ml-auto mr-auto">
-                            <aw-wizard [navBarLayout]="'large-filled-symbols'">
-                                <aw-wizard-step stepTitle="Info Activite" [navigationSymbol]="{ symbol: '1' }">
-                                    <form class="mrg-top-40">
-                                        <div class="row">
-                                            <div class="col-md-10 ml-auto mr-auto">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Exercice</label>
-                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsExercice" [(ngModel)]="singleSelectValueExercice" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Code Activite</label>
-                                                            <input type="text" class="form-control" name="code" [(ngModel)]="code">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Libelle Activite</label>
-                                                            <textarea class="form-control" rows="3" name="libelle" [(ngModel)]="libelle"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Montant Activite</label>
-                                                            <input type="number" class="form-control" name="montant" [(ngModel)]="montant">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <label>Date Debut</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-text" (click)="d1.toggle()">
-                                                            <i class="ti-calendar"></i>
-                                                          </span>
-                                                            <input type="text" class="form-control" placeholder="Pick your date" name="dp" [(ngModel)]="dateDebut" ngbDatepicker #d1="ngbDatepicker" readonly>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Date Fin</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-text" (click)="d2.toggle()">
-                                                            <i class="ti-calendar"></i>
-                                                          </span>
-                                                            <input type="text" class="form-control" placeholder="Pick your date" name="dp2" [(ngModel)]="dateFin" ngbDatepicker #d2="ngbDatepicker" readonly>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label>Structure</label>
-                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructure" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Poids de l'activite dans l'action</label>
-                                                            <input type="number" class="form-control" name="poids" [(ngModel)]="poids">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Mode d'execution</label>
-                                                            <input type="text" class="form-control" name="mode" [(ngModel)]="mode">
-                                                        </div>
-                                                    </div>
-                                                </div>
+<div *ngIf = "loader === false">
 
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="form-1-6">Projet</label>
-                                                            <input type="checkbox" [(ngModel)]="projet" name="toggle1" id="form-1-6" checked>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Action</label>
-                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsAction" [(ngModel)]="singleSelectValueAction" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Departement</label>
-                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsDepartement" [(ngModel)]="singleSelectValueDepartement" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Ville</label>
-                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsVille" [(ngModel)]="singleSelectValueVille" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <div class="mrg-top-20">
-                                        <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
-                                    </div>
-                                </aw-wizard-step>
-                                <aw-wizard-step stepTitle="Structure Implique" [navigationSymbol]="{ symbol: '2' }">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Structures</label>
-                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructureImpl" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label></label>
-                                                <a class="btn btn-primary" (click)="addStructureImpli()" style="color: white">
-                                                    <i class="ti-plus pdd-right-5"></i>
-                                                    <span>Ajouter</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="card">
-                                                <div class="card-block">
-                                                    <div class="table-overflow">
-                                                        <table class="table table-bordered table-hover table-sm">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Structure Implique</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr *ngFor="let structure of structureImpliSelectShow">
+    <div class="container">
+        <div class="dot dot-1"></div>
+        <div class="dot dot-2"></div>
+        <div class="dot dot-3"></div>
+      </div>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+          </filter>
+        </defs>
+      </svg>
+</div>
 
-                                                                    <td>
-                                                                        <div class=" relative mrg-top-15">
-                                                                            <span class="pdd-left-20">{{structure.denomination}}</span>
-                                                                        </div>
-                                                                    </td>
-
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+<div *ngIf = "loader === true">
+    <div class="container-fluid">
+        <div *ngIf="message !== ''" class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+        <div class="page-title">
+            <h4>Modifier activite</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="row relative">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <aw-wizard [navBarLayout]="'large-filled-symbols'">
+                                    <aw-wizard-step stepTitle="Info Activite" [navigationSymbol]="{ symbol: '1' }">
+                                        <form class="mrg-top-40">
+                                            <div class="row">
+                                                <div class="col-md-10 ml-auto mr-auto">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <!-- <div class="form-group">
+                                                                <label>Exercice</label>
+                                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsExercice" [(ngModel)]="singleSelectValueExercice" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Code Activite</label>
+                                                                <input type="text" class="form-control" name="code" [(ngModel)]="code">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Libelle Activite</label>
+                                                                <textarea class="form-control" rows="3" name="libelle" [(ngModel)]="libelle"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Montant Activite</label>
+                                                                <input type="number" class="form-control" name="montant" [(ngModel)]="montant">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label>Date Debut</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" (click)="d1.toggle()">
+                                                                <i class="ti-calendar"></i>
+                                                              </span>
+                                                                <input type="text" class="form-control" placeholder="{{dateDebut}}" name="dp" [(ngModel)]="dateDebut" ngbDatepicker #d1="ngbDatepicker" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Date Fin</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text" (click)="d2.toggle()">
+                                                                <i class="ti-calendar"></i>
+                                                              </span>
+                                                                <input type="text" class="form-control" placeholder="{{dateFin}}" name="dp2" [(ngModel)]="dateFin" ngbDatepicker #d2="ngbDatepicker" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Structure</label>
+                                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructure" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Poids de l'activite dans l'action</label>
+                                                                <input type="number" class="form-control" name="poids" [(ngModel)]="poids">
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Mode d'execution</label>
+                                                                <input type="text" class="form-control" name="mode" [(ngModel)]="mode">
+                                                            </div>
+                                                        </div> -->
+                                                    </div>
+    
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="form-1-6">Projet</label>
+                                                                <input type="checkbox" [(ngModel)]="projet" name="toggle1" id="form-1-6" checked>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Action</label>
+                                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsAction" [(ngModel)]="singleSelectValueAction" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Departement</label>
+                                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsDepartement" [(ngModel)]="singleSelectValueDepartement" ngDefaultControl [ngModelOptions]="{standalone: true}" (ngModelChange)="onSelect()"></ng-selectize>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Ville</label>
+                                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsVille" [(ngModel)]="singleSelectValueVille" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </form>
+                                        <div class="mrg-top-20">
+                                            <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
                                         </div>
-                                    </div>
-                                    <div class="mrg-top-20">
-                                        <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
-                                        <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
-                                    </div>
-                                </aw-wizard-step>
-                                <aw-wizard-step stepTitle="Structure de Supervision" [navigationSymbol]="{ symbol: '3' }">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Structures</label>
-                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructureSuper" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                    </aw-wizard-step>
+                                    <aw-wizard-step stepTitle="Structure Implique" [navigationSymbol]="{ symbol: '2' }">
+                                        <!-- <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Structures</label>
+                                                    <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructureImpl" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <a class="btn btn-primary" (click)="addStructureSuper()" style="color: white">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
                                                     <label></label>
-                                                    <i class="ti-plus pdd-right-5"></i>
-                                                    <span>Ajouter</span>
-                                                </a>
+                                                    <a class="btn btn-primary" (click)="addStructureImpli()" style="color: white">
+                                                        <i class="ti-plus pdd-right-5"></i>
+                                                        <span>Ajouter</span>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="card">
-                                                <div class="card-block">
-                                                    <div class="table-overflow">
-                                                        <table class="table table-bordered table-hover table-sm">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Structure de Supervision</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr *ngFor="let structure of structureSelectShow">
-
-                                                                    <td>
-                                                                        <div class=" relative mrg-top-15">
-                                                                            <span class="pdd-left-20">{{structure.denomination}}</span>
-                                                                        </div>
-                                                                    </td>
-
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                        </div> -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card">
+                                                    <div class="card-block">
+                                                        <div class="table-overflow">
+                                                            <table class="table table-bordered table-hover table-sm">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Structure Implique</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let structure of structureImpliSelectShow">
+    
+                                                                        <td>
+                                                                            <div class=" relative mrg-top-15">
+                                                                                <span class="pdd-left-20">{{structure.denomination}}</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <!-- <td><button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="deleteStructureImpli(structure.id)">
+                                                                                <i class="ti-trash"></i>
+                                                                            </button></td> -->
+    
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="mrg-top-20">
-                                        <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
-                                        <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
-                                    </div>
-                                </aw-wizard-step>
-                                <aw-wizard-step stepTitle="Source Financement" [navigationSymbol]="{ symbol: '4' }">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label>Sources de Financement</label>
-                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsSource" [(ngModel)]="singleSelectValueSource" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
-                                            </div>
+                                        <div class="mrg-top-20">
+                                            <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
+                                            <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
                                         </div>
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label>Montant</label>
-                                                <input type="number" class="form-control" name="montant" [(ngModel)]="montantValue">
+                                    </aw-wizard-step>
+                                    <aw-wizard-step stepTitle="Structure de Supervision" [navigationSymbol]="{ symbol: '3' }">
+                                        <!-- <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Structures</label>
+                                                    <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructureSuper" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label></label>
-                                                <a class="btn btn-primary" (click)="addSource()" style="color: white">
-                                                    <i class="ti-plus pdd-right-5"></i>
-                                                    <span>Ajouter</span>
-                                                </a>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <a class="btn btn-primary" (click)="addStructureSuper()" style="color: white">
+                                                        <label></label>
+                                                        <i class="ti-plus pdd-right-5"></i>
+                                                        <span>Ajouter</span>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="card">
-                                                <div class="card-block">
-                                                    <div class="table-overflow">
-                                                        <table class="table table-bordered table-hover table-sm">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Source Financement</th>
-                                                                    <th>Montant</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr *ngFor="let source of sourcefiSelectShow; index as i;">
-
-                                                                    <td>
-                                                                        <div class=" relative mrg-top-15">
-
-                                                                            <span class="pdd-left-20">{{source.libelle}}</span>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>{{montantSelect[i]}}</td>
-
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                        </div> -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card">
+                                                    <div class="card-block">
+                                                        <div class="table-overflow">
+                                                            <table class="table table-bordered table-hover table-sm">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Structure de Supervision</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let structure of structureSelectShow">
+    
+                                                                        <td>
+                                                                            <div class=" relative mrg-top-15">
+                                                                                <span class="pdd-left-20">{{structure.denomination}}</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <!-- <td><button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="deleteStructureSuper(structure.id)">
+                                                                                <i class="ti-trash"></i>
+                                                                            </button></td> -->
+    
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="mrg-top-20">
-                                        <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
-                                        <button type="button" class="btn btn-default  btn-rounded" (click)="onSubmit()">Valider</button>
-                                    </div>
-                                </aw-wizard-step>
+                                        <div class="mrg-top-20">
+                                            <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
+                                            <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
+                                        </div>
+                                    </aw-wizard-step>
+                                    <aw-wizard-step stepTitle="Indicateurs" [navigationSymbol]="{ symbol: '4' }">
+                                        <!-- <div class="row">
+                                          <div class="col-md-6">
+        
+                                              <div class="form-group">
+                                                <label>Indicateur</label>
+                                                <input type="text" class="form-control" name="indicateur" [(ngModel)]="indicateurLabel">
+        
+                                            </div>
+                                          </div>
+                                          <div class="col-md-2">
+                                            <div class="form-group">
+                                              <label></label>
+                                              <a class="btn btn-primary" (click)="addIndicateur()" style="color: white">
+                                                <i class="ti-plus pdd-right-5"></i>
+                                                <span>Ajouter</span>
+                                              </a>
+                                            </div>
+                                          </div>
+                                        </div> -->
+                                        <div class="row">
+                                          <div class="col-md-12">
+                                            <div class="card">
+                                              <div class="card-block">
+                                                <div class="table-overflow">
+                                                  <table class="table table-bordered table-hover table-sm">
+                                                    <thead>
+                                                    <tr>
+                                                      <th>Indicateurs</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr *ngFor="let ind of indicateurSelectShow">
+        
+                                                      <td>
+                                                        <div class=" relative mrg-top-15">
+                                                          <span class="pdd-left-20">{{ind}}</span>
+                                                        </div>
+                                                       
+                                                      </td>
 
-                            </aw-wizard>
+                                                      <!-- <td>
+                                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="deleteIndicateur(ind)">
+                                                            <i class="ti-trash"></i>
+                                                        </button>
+                                                      </td> -->
+        
+                                                    </tr>
+                                                    </tbody>
+                                                  </table>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="mrg-top-20">
+                                          <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
+                                          <button type="button" class="btn btn-primary button-next pull-right btn-rounded" awNextStep>Next</button>
+                                        </div>
+                                      </aw-wizard-step>
+                                    <aw-wizard-step stepTitle="Source Financement" [navigationSymbol]="{ symbol: '5' }">
+                                        <!-- <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>Sources de Financement</label>
+                                                    <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsSource" [(ngModel)]="singleSelectValueSource" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>Montant</label>
+                                                    <input type="number" class="form-control" name="montant" [(ngModel)]="montantValue">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label></label>
+                                                    <a class="btn btn-primary" (click)="addSource()" style="color: white">
+                                                        <i class="ti-plus pdd-right-5"></i>
+                                                        <span>Ajouter</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card">
+                                                    <div class="card-block">
+                                                        <div class="table-overflow">
+                                                            <table class="table table-bordered table-hover table-sm">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Source Financement</th>
+                                                                        <th>Montant</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let source of sourcefiSelectShow; index as i;">
+    
+                                                                        <td>
+                                                                            <div class=" relative mrg-top-15">
+    
+                                                                                <span class="pdd-left-20">{{source.denomination}}</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>{{montantSelect[i]}}</td>
+                                                                        <!-- <td><button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="deleteSource(source.denomination)">
+                                                                                <i class="ti-trash"></i>
+                                                                            </button></td>
+     -->
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mrg-top-20">
+                                            <button type="button" class="btn btn-default button-previous btn-rounded" awPreviousStep>Previous</button>
+                                            <button type="button" class="btn btn-default  btn-rounded" (click)="onSubmit()">Valider</button>
+                                        </div>
+                                    </aw-wizard-step>
+    
+                                </aw-wizard>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
 </div>

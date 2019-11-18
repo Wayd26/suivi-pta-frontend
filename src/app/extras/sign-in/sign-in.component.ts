@@ -23,6 +23,7 @@ export class SignInComponent implements OnInit {
           this.cookieService.set( 'auth', 'true', 0.0069444 );
           this.data.setToken(res.token);
           this.cookieService.set( 'token', res.token, 0.0069444 );
+          this.cookieService.set( 'name', res.user.surname, 0.0069444 );
           console.log('auth ' + this.cookieService.check('auth'));
           this.router.navigate(['dashboard']);
 

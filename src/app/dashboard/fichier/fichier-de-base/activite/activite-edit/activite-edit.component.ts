@@ -12,7 +12,7 @@ import { UtilsService } from 'src/app/shared/services/utils.service';
 import { ActiviteService } from 'src/app/shared/services/activite.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { ListExerciceResponse } from 'src/app/models/exercice.model';
-import { ListVilleResponse } from 'src/app/models/ville.model';
+import { ListVilleResponse, Ville } from 'src/app/models/ville.model';
 import { ListActionResponse } from 'src/app/models/action.model';
 import { ListDepartementResponse } from 'src/app/models/departement.model';
 import {Indicateur, ListIndicateurResponse} from '../../../../../models/indicateur.model';
@@ -82,13 +82,21 @@ export class ActiviteEditComponent implements OnInit {
   sousAction: SousAction[] = [];
   message = '';
   id;
+  loader = false;
   activite: DataActivite;
+  indicateurLabel: string;
+  villeList: Ville [] = [];
   constructor(private exerciceService: ExercieService, private structureService: StructureService, private sousActionService: SousActionService
     , private departementService: DepartementService, private villeService: VilleService,
      private sourceServices: SourceFinancementService, private utilService: UtilsService,
      private activiteService: ActiviteService, private route: ActivatedRoute, private router: Router, private indicateurService: IndicateurService) { }
 
   ngOnInit() {
+    if (this.initComponet()) {
+      this.loader = true;
+    }
+  }
+  initComponet() {
     this.id = +this.route.snapshot.params['id'];
 
     this.exerciceService.getExerciceList()
@@ -103,6 +111,7 @@ export class ActiviteEditComponent implements OnInit {
       });
       this.villeService.getVilleList()
       .subscribe((res: ListVilleResponse) => {
+        this.villeList = res.data;
         res.data.map((ville) => {
           this.singleSelectOptionsVille.push({
             label: ville.denomination,
@@ -138,7 +147,7 @@ export class ActiviteEditComponent implements OnInit {
         res.data.map((ville) => {
           this.singleSelectOptionsDepartement.push({
             label: ville.denomination,
-            value: ville.id,
+            value: ville.denomination,
             code: ville.code
           });
         });
@@ -172,14 +181,15 @@ export class ActiviteEditComponent implements OnInit {
           this.activite = res.data;
         }, (erro) => {},
         () => {
-          this.singleSelectValueExercice = [this.utilService.getIdData(this.activite.links, 'exercice')];
+          //this.singleSelectValueExercice = [this.utilService.getIdData(this.activite.links, 'exercice')];
           this.code = this.activite.code;
           this.libelle = this.activite.denomination;
           this.montant = this.activite.budget;
+          this.projet = this.activite.is_pip
           this.dateDebut = this.activite.started_on;
           this.dateFin = this.activite.ended_on;
           this.poids = this.activite.weight_in_subaction;
-          this.singleSelectValueStructure = [this.utilService.getElementByType(0, this.activite.structures).ministry_structure_id.toString()];
+          //this.singleSelectValueStructure = [this.activite.structures.find((str) => str.type === 0).structure.id;];
           this.singleSelectValueAction = [this.sousAction.find((sub) => sub.denomination === this.activite._subaction).id.toString()];
           // this.singleSelectValueDepartement = [this.utilService.getIdData(this.activite.links, 'departement')];
           // this.singleSelectValueVille = [this.utilService.getIdData(this.activite.links, 'ville')];
@@ -188,7 +198,15 @@ export class ActiviteEditComponent implements OnInit {
           this.structureImpliSelectShow.map((str) => {this.structureImpliSelect.push({id: +this.singleSelectValueStructureImpl[0],type: 2});});
           this.structureSelectShow.map((str) => {this.structureSelect.push({id: +this.singleSelectValueStructureImpl[0],type: 1});});
           this.activite.indicators.map((str) => {this.indicateurSelectShow.push(str.denomination); this.indicateurSelect.push( {denomination: str.denomination});});
+          this.activite.fundings.map((fund) => {
+            this.sourceFi.push( {id: fund.id,budget_allocated : fund.budget_allocated});
+            this.sourcefiSelectShow.push(this.getSource(fund.id));
+            this.montantSelect.push(fund.budget_allocated);
+          });
+          console.log(this.sourceFi);
+          console.log(this.montantSelect);
         });
+        return true;
   }
   getColor(data: number) {
     let result = false;
@@ -341,40 +359,99 @@ export class ActiviteEditComponent implements OnInit {
     return this.indicateur.find(function (s) { return s.id === +id; });
   }
   addStructureSuper() {
+    console.log(this.singleSelectValueStructureSuper);
+    console.log(this.getStructure(+this.singleSelectValueStructureSuper))
     this.structureSelect.push({
-      id: +this.singleSelectValueStructureSuper[0],
+      id: +this.singleSelectValueStructureSuper,
       type: 1
     });
-    this.structureSelectShow.push(this.getStructure(+this.singleSelectValueStructureSuper[0]));
+    this.structureSelectShow.push(this.getStructure(+this.singleSelectValueStructureSuper));
   }
   addStructureImpli() {
-    this.structureImpliSelect.push({id: +this.singleSelectValueStructureImpl[0],type: 2});
-    this.structureImpliSelectShow.push(this.getStructure(+this.singleSelectValueStructureImpl[0]));
+    this.structureImpliSelect.push({
+      id: +this.singleSelectValueStructureImpl,
+      type: 2
+    });
+    this.structureImpliSelectShow.push(this.getStructure(+this.singleSelectValueStructureImpl));
   }
 
-  addIndicateur() {
-    this.indicateurSelect.push( {
-      denomination: this.getIndicateur(+this.singleSelectValueIndicateur[0]).denomination
-    });
-    this.indicateurSelectShow.push(this.getIndicateur(+this.singleSelectValueIndicateur[0]));
+  checkStructById(id, structureList) {
+    const struc = structureList.find((s) =>  s.id === id);
+    return struc === undefined ? false : true;
   }
-  addSource() {
+
+  checkIndicatorByName(name, indicatorList) {
+    const struc = indicatorList.find((s) =>  s.denomination === name);
+    return struc === undefined ? false : true;
+  }
+
+  checkSourceById(id, sourceList) {
+    const struc = sourceList.find((s) =>  s.id === id);
+     return struc === undefined ? false : true;
+  }
+
+  deleteStructureSuper(id) {
+    
+    this.structureSelect = this.structureSelect.length === 1 ? [] : this.structureSelect.filter((s) => s.id !== id) 
+    this.structureSelectShow =  this.structureSelectShow.filter((s) => s.id !== id) 
+    console.log(this.structureSelect);
+  }
+
+  deleteStructureImpli(id) {
+    this.structureImpliSelect = this.structureImpliSelect.length === 1 ? [] : this.structureImpliSelect.filter((s) => s.id !== id) 
+    this.structureImpliSelectShow =  this.structureImpliSelectShow.filter((s) => s.id !== id) 
+    console.log(this.structureImpliSelect);
+  }
+
+  deleteIndicateur(name) {
+    this.indicateurSelect = this.indicateurSelect.filter((s) => s.denomination !== name);
+    this.indicateurSelectShow = this.indicateurSelectShow.filter((s) => s !== name);
+  }
+
+  deleteSource(name) {
+    this.sourceFi = this.sourceFi.filter((s) => s !== name);
+    this.sourcefiSelectShow = this.sourcefiSelectShow.filter((s) => { delete this.montantSelect[this.sourceFi.indexOf(s)]; return s.denomination !== name;})
+  }
+
+
+
+  addIndicateur() {
+    this.indicateurSelect.push( {denomination: this.indicateurLabel});
+    this.indicateurLabel !== '' ? this.indicateurSelectShow.push(this.indicateurLabel) : console.log();
+  }
+   addSource() {
     this.sourceFi.push( {
       id: +this.singleSelectValueSource[0],
       budget_allocated : this.montantValue
+  });
+  this.sourcefiSelectShow.push(this.getSource(+this.singleSelectValueSource[0]));
+  this.montantSelect.push(this.montantValue);
+  }
+
+  onSelect(id) {
+    const city = [];
+    this.villeList.filter((c) => c._department === this.singleSelectOptionsDepartement)
+    .map((ville) => {
+       city.push({
+        label: ville.denomination,
+        value: ville.id,
+        code: ville.code
+      });
     });
-    this.sourcefiSelectShow.push(this.getSource(+this.singleSelectValueSource[0]));
-    this.montantSelect.push(this.montantValue);
+    this.singleSelectOptionsVille = city;
+    
   }
 
 
 
   onSubmit() {
+    console.log(typeof(this.dateDebut) + ' ' + this.dateDebut)
+    const struc = [{id: +this.singleSelectValueStructure,type: 0}]
     this.activiteService.updateActivite(this.utilService.changeDateFornat(this.utilService
         .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)), this.utilService.changeDateFornat(this.utilService
         .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), this.libelle,
       this.poids, this.montant, +this.singleSelectValueAction[0], +this.singleSelectValueStructure[0],
-      this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect) , this.code, this.indicateurSelect, this.id)
+      this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect).concat(struc) , this.code, this.indicateurSelect, this.id)
        .subscribe((res) => {
          console.log(res);
        }, (error: ErrorResponse) => {

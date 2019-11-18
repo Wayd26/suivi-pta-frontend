@@ -6,7 +6,7 @@ import { ActionService } from 'src/app/shared/services/action.service';
 import { DepartementService } from 'src/app/shared/services/departement.service';
 import { VilleService } from 'src/app/shared/services/ville.service';
 import { ListExerciceResponse } from 'src/app/models/exercice.model';
-import { ListVilleResponse } from 'src/app/models/ville.model';
+import { ListVilleResponse, Ville } from 'src/app/models/ville.model';
 import { ListActionResponse } from 'src/app/models/action.model';
 import { ListDepartementResponse } from 'src/app/models/departement.model';
 import { SourceFinancement, ListSourceFinancementResponse } from 'src/app/models/sourceFi.model';
@@ -61,6 +61,7 @@ export class ActiviteAddComponent implements OnInit {
   indicateurSelectShow: Indicateur[] = [];
   montantValue = 0;
   montantSelect: number[] = [];
+  villeList: Ville [] = [];
 
   singleSelectConfig: any = {
     labelField: 'label',
@@ -98,6 +99,7 @@ export class ActiviteAddComponent implements OnInit {
       });
       this.villeService.getVilleList()
       .subscribe((res: ListVilleResponse) => {
+        this.villeList = res.data;
         res.data.map((ville) => {
           this.singleSelectOptionsVille.push({
             label: ville.denomination,
@@ -341,14 +343,29 @@ export class ActiviteAddComponent implements OnInit {
   this.montantSelect.push(this.montantValue);
   }
 
+  onSelect(id) {
+    const city = [];
+    this.villeList.filter((c) => c._department === this.singleSelectOptionsDepartement)
+    .map((ville) => {
+       city.push({
+        label: ville.denomination,
+        value: ville.id,
+        code: ville.code
+      });
+    });
+    this.singleSelectOptionsVille = city;
+    
+  }
+
 
 
   onSubmit() {
+    const struc = [{id: +this.singleSelectValueStructure,type: 0}]
     this.activiteService.createActivite(this.utilService.changeDateFornat(this.utilService
       .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)), this.utilService.changeDateFornat(this.utilService
         .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), this.libelle,
        this.poids, this.montant, +this.singleSelectValueAction[0], +this.singleSelectValueStructure[0],
-       this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect) , this.code, this.indicateurSelect)
+       this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect).concat(struc) , this.code, this.indicateurSelect)
        .subscribe((res) => {
          console.log(res);
          this.router.navigate(['/dashboard/fichier/base/activite/load']);
