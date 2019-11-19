@@ -429,16 +429,16 @@ export class ActiviteEditComponent implements OnInit {
   }
 
   onSelect(id) {
-    const city = [];
+    this.singleSelectOptionsVille = [];
     this.villeList.filter((c) => c._department === this.singleSelectOptionsDepartement)
     .map((ville) => {
-       city.push({
+       this.singleSelectOptionsVille.push({
         label: ville.denomination,
         value: ville.id,
         code: ville.code
       });
     });
-    this.singleSelectOptionsVille = city;
+    
     
   }
 
