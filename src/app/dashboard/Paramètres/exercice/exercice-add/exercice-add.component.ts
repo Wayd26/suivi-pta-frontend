@@ -22,10 +22,10 @@ export class ExerciceAddComponent implements OnInit {
     this.message = '';
   }
   onSubmit(form: NgForm) {
-     console.log('year is : ' + form.value['annee_exercice']);
-    console.log('denomination is :' + form.value['denomination_exercice']);
-    console.log('start_at ' + this.utilservice.changeDateFornat(this.utilservice
-      .getDate(this.started_on.year, this.started_on.month, this.started_on.day)));
+    //  console.log('year is : ' + form.value['annee_exercice']);
+    // console.log('denomination is :' + form.value['denomination_exercice']);
+    console.log( this.utilservice.changeDateFornat(this.utilservice
+      .getDate(this.started_on.year, this.started_on.month, this.started_on.day)).toString());
 
     console.log(this.started_on);
 
