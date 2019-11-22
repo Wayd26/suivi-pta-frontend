@@ -65,22 +65,12 @@ export class StructureEditComponent implements OnInit {
 
     this.structureService.update(form.value['code'], form.value['denomination'], form.value['bpost'] , form.value['website'],
       +this.singleSelectValue2, form.value['telResp'], form.value['email'], form.value['sigle'], this.id).subscribe((res) => {
-      // this.message = 'Succes de l\'operation';
       this.utilService.notifModif_OK();
       this.router.navigate(['/dashboard/fichier/base/structures/load']);
       }, (error: ErrorResponse) => {
         console.log(error);
         console.log(error.error['error']);
-        this.utilService.notifModif_Error(error.error['error']);
-        // tslint:disable-next-line:forin
-        // for (const key in error.error['error']) {
-        //     console.log(key);
-        //     if (key !== 'error') {
-        //       console.log(error.error['error'][key]);
-        //     this.message = error.error['error'][key];
-        //     break;
-        //     }
-        // }
+        this.utilService.notifModif_Error();
         this.router.navigate(['/dashboard/fichier/base/structures/edit/' + this.id]);
     });
   }

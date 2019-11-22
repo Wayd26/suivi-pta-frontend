@@ -37,26 +37,19 @@ export class ExerciceEditComponent implements OnInit {
       const datedebspli = res.data.started_on.split('-');
       this.date_fin = {year: +datfinspli[0], month: +datfinspli[1], day: +datfinspli[2]};
       this.date_debut = {year: +datedebspli[0], month: +datedebspli[1], day: +datedebspli[2]};
-      console.log(this.date_fin);
-
-      // this.utilservice.changeDateFornat(this.utilservice
-      //   .getDate(this.date_debut.year, this.date_debut.month, this.date_debut.day))
-
       console.log(res.data);
 
-      console.log('le type est ' + typeof (res.data.started_on));
-
-      console.log('la date de début est ' + this.exercice.started_on);
-
-      console.log('la date de fin est ' + this.exercice.ended_on);
-
+      console.log(this.date_fin);
+      console.log(typeof (this.date_fin));
     });
   }
 
   onSubmit(form: NgForm) {
-      this.exerciceService.updateExercice(form.value['annee_exercice'], form.value['denomination_exercice'], this.utilservice.changeDateFornat(this.utilservice
-        .getDate(this.date_debut.year, this.date_debut.month, this.date_debut.day)),  this.utilservice.changeDateFornat(this.utilservice
-        .getDate(this.date_fin.year, this.date_fin.month, this.date_fin.day)), this.id)
+       const debDate = new Date(this.date_debut.year, this.date_debut.month - 1, this.date_debut.day);
+       const finDate = new Date(this.date_fin.year, this.date_fin.month - 1, this.date_fin.day);
+    console.log(typeof(this.utilservice.dateToString(debDate)));
+
+      this.exerciceService.updateExercice(form.value['denomination_exercice'], form.value['annee_exercice']  , this.utilservice.dateToString(debDate),  this.utilservice.dateToString(finDate), this.id)
       .subscribe((resp) => {
         this.utilservice.notifModif_OK();
         this.router.navigate(['/dashboard/parametres/exercice/load']);
@@ -64,16 +57,7 @@ export class ExerciceEditComponent implements OnInit {
 
         console.log(error);
         console.log(error.error['error']);
-        this.utilservice.notifModif_Error(error.error['error']);
-        // tslint:disable-next-line:forin
-        // for (const key in error.error['error']) {
-        //   console.log(key);
-        //   if (key !== 'error') {
-        //     console.log(error.error['error'][key]);
-        //     this.message = error.error['error'][key];
-        //     break;
-        //   }
-        // }
+        this.utilservice.notifModif_Error();
         this.router.navigate(['/dashboard/parametres/exercice/edit/' + this.id]);
       });
   }

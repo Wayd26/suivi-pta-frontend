@@ -59,21 +59,11 @@ export class ActionEditComponent implements OnInit {
     this.actionService.updateAction(form.value['code_action'],
     form.value['libelle_action'], form.value['poids_action'], +this.singleSelectValue, this.id)
       .subscribe((resp) => {
-        //this.message = 'Succes de l\'operation';
         this.utils.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/base/action/load']);
       }, (error: ErrorResponse) => {
         console.log(error.error['error']);
-        this.utils.notifModif_Error(error.error['error']);
-        // tslint:disable-next-line:forin
-        // for (const key in error.error['error']) {
-        //   console.log(key);
-        //   if (key !== 'error') {
-        //     console.log(error.error['error'][key]);
-        //     this.message = error.error['error'][key];
-        //     break;
-        //   }
-        // }
+        this.utils.notifModif_Error();
         this.router.navigate(['/dashboard/fichier/base/action/edit/' + this.id ]);
       });
   }

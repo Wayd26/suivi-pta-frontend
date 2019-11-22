@@ -44,6 +44,7 @@ export class ExercieService {
       started_on: started_on,
       ended_on: ended_on,
     };
+    console.log(data)
     return this.httpClient.put(BASE_URL + 'administrator/update-exercise/' + id, data, this.options);
   }
 

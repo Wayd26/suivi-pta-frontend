@@ -60,22 +60,12 @@ export class SousActionEditComponent implements OnInit {
     this.sousActionService.updateSousAction(form.value['code_sous_action'],
       form.value['denomination_sous_action'], form.value['poids_sous_action'], +this.singleSelectValue, this.id)
       .subscribe((resp) => {
-        // this.message = 'Succes de l\'operation';
         this.utils.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/base/sous_action/load']);
       }, (error: ErrorResponse) => {
         console.log(error);
         console.log(error.error['error']);
-        this.utils.notifModif_Error(error.error['error']);
-        // tslint:disable-next-line:forin
-        // for (const key in error.error['error']) {
-        //   console.log(key);
-        //   if (key !== 'error') {
-        //     console.log(error.error['error'][key]);
-        //     this.message = error.error['error'][key];
-        //     break;
-        //   }
-        // }
+        this.utils.notifModif_Error();
         this.router.navigate(['/dashboard/fichier/base/sous_action/edit/' + this.id ]);
       });
   }

@@ -46,22 +46,12 @@ export class ProgrammeAddComponent implements OnInit {
     console.log(this.singleSelectValue);
     this.programmeService.createProgramme(form.value['code'], form.value['libelle'], form.value['poids'], +this.singleSelectValue)
       .subscribe((resp) => {
-       // this.message = 'Succes de l\'operation';
         this.utilService.notifAjout_OK()
         this.router.navigate(['/dashboard/fichier/base/programmes/load']);
       } , (error: ErrorResponse) => {
         console.log(error);
         console.log(error.error['error']);
-        this.utilService.notifAjout_Error(error.error['error']);
-        // tslint:disable-next-line:forin
-        // for (const key in error.error['error']) {
-        //     console.log(key);
-        //     if (key !== 'error') {
-        //       console.log(error.error['error'][key]);
-        //     this.message = error.error['error'][key];
-        //     break;
-        //     }
-        // }
+        this.utilService.notifAjout_Error();
         this.router.navigate(['/dashboard/fichier/base/programmes/add']);
       });
   }

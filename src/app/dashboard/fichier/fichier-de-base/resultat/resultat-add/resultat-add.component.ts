@@ -41,21 +41,11 @@ export class ResultatAddComponent implements OnInit {
       });
   }
   onSubmit(form: NgForm) {this.resultService.createResultat(form.value['code_resultat'], form.value['libelle_resultat'], +this.singleSelectValue).subscribe((resp) => {
-    // this.message = 'Succes de l\'operation';
     this.utils.notifAjout_OK();
     this.router.navigate(['/dashboard/fichier/base/resultat/load']);
   } , (error: ErrorResponse) => {
         console.log(error.error['error']);
-        this.utils.notifAjout_Error(error.error['error']);
-        // tslint:disable-next-line:forin
-        // for (const key in error.error['error']) {
-        //     console.log(key);
-        //     if (key !== 'error') {
-        //       console.log(error.error['error'][key]);
-        //     this.message = error.error['error'][key];
-        //     break;
-        //     }
-        // }
+        this.utils.notifAjout_Error();
     this.router.navigate(['/dashboard/fichier/base/resultat/add']);
   });
   }

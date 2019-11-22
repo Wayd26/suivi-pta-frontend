@@ -84,24 +84,16 @@ export class SuiviPtaEditComponent implements OnInit {
         });
       });
   }
-  onSubmit(form: NgForm){
-    this.suiviPTAServ.updateSuiviPTA(+this.singleSelectValueActivite, +this.singleSelectValueTache, form.value['toggle1'],  this.utilService.changeDateFornat(this.utilService
-      .getDate(this.dateFinReal.year, this.dateFinReal.month, this.dateFinReal.day)), form.value['commentaire'], this.id)
+  onSubmit(form: NgForm) {
+    const finRealDate = new Date(this.dateFinReal.year, this.dateFinReal.month - 1, this.dateFinReal.day);
+    this.suiviPTAServ.updateSuiviPTA(+this.singleSelectValueActivite, +this.singleSelectValueTache, form.value['toggle1'],  this.utilService.dateToString(finRealDate), form.value['commentaire'], this.id)
       .subscribe((resp) => {
-        this.message = 'Succes de l\'operation';
+        this.utilService.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/load']);
       } , (error: ErrorResponse) => {
         console.log(error);
         console.log(error.error['error']);
-        // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-          console.log(key);
-          if (key !== 'error') {
-            console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-          }
-        }
+        this.utilService.notifModif_Error();
         this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/edit:' + this.id ]);
       });
   }

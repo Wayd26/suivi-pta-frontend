@@ -55,22 +55,12 @@ export class ObjectifEditComponent implements OnInit {
     console.log(this.singleSelectValue);
     this.objService.updateObjectif(form.value['code_objectif_specifique'], form.value['libelle_objectif_specifique'], +this.singleSelectValue, this.id )
       .subscribe((resp) => {
-        //this.message = 'Succes de l\'operation';
         this.utils.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/base/objectif/load']);
       } , (error: ErrorResponse) => {
         console.log(error);
         console.log(error.error['error']);
-        this.utils.notifModif_Error(error.error['error']);
-        // tslint:disable-next-line:forin
-        // for (const key in error.error['error']) {
-        //   console.log(key);
-        //   if (key !== 'error') {
-        //     console.log(error.error['error'][key]);
-        //     this.message = error.error['error'][key];
-        //     break;
-        //   }
-        // }
+        this.utils.notifModif_Error();
         this.router.navigate(['/dashboard/fichier/base/objectif/edit/' + this.id ]);
       });
   }

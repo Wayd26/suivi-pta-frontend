@@ -18,24 +18,13 @@ export class DepartementAddComponent implements OnInit {
   }
   onSubmit(form: NgForm) {
       this.departeemntService.createDepartement(form.value['code_département'], form.value['nom_département']).subscribe((res) => {
-        console.log(res);
-          // this.message = 'Succes de l\'operation';
         this.utils.notifAjout_OK();
           this.router.navigate(['/dashboard/fichier/localisation/departement/load']);
       }, (error: ErrorResponse) => {
         console.log(error);
         console.log(error.error['error']);
-        this.utils.notifAjout_Error(error.error['error']);
-        // tslint:disable-next-line:forin
-        // for (const key in error.error['error']) {
-        //     console.log(key);
-        //     if (key !== 'error') {
-        //       console.log(error.error['error'][key]);
-        //     this.message = error.error['error'][key];
-        //     break;
-        //     }
-        // }
-          this.router.navigate(['/dashboard/fichier/localisation/departement/add']);
+        this.utils.notifAjout_Error();
+        this.router.navigate(['/dashboard/fichier/localisation/departement/add']);
         },
         () => {
 

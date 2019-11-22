@@ -353,33 +353,36 @@ export class ActiviteAddComponent implements OnInit {
         code: ville.code
       });
     });
-    
-    
+
+
   }
 
 
 
   onSubmit() {
-    const struc = [{id: +this.singleSelectValueStructure,type: 0}]
+    const struc = [{id: +this.singleSelectValueStructure, type: 0}]
     this.activiteService.createActivite(this.utilService.changeDateFornat(this.utilService
       .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)), this.utilService.changeDateFornat(this.utilService
         .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), this.libelle,
        this.poids, this.montant, +this.singleSelectValueAction[0], +this.singleSelectValueStructure[0],
        this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect).concat(struc) , this.code, this.indicateurSelect)
        .subscribe((res) => {
+         this.utilService.notifAjout_OK();
          console.log(res);
          this.router.navigate(['/dashboard/fichier/base/activite/load']);
        }, (error: ErrorResponse) => {
         console.log(error);
+         this.utilService.notifAjout_Error();
+         console.log(error.error['error']);
         // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-            console.log(key);
-            if (key !== 'error') {
-              console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-            }
-        }
+        // for (const key in error.error['error']) {
+        //     console.log(key);
+        //     if (key !== 'error') {
+        //       console.log(error.error['error'][key]);
+        //     this.message = error.error['error'][key];
+        //     break;
+        //     }
+        // }
             this.router.navigate(['/dashboard/fichier/base/activite/add']);
 
        });

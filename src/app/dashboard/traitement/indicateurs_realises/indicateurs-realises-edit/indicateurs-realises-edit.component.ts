@@ -57,16 +57,7 @@ export class IndicateursRealisesEditComponent implements OnInit {
       } , (error: ErrorResponse) => {
         console.log(error);
         console.log(error.error['error']);
-        this.utilService.notifModif_Error(error.error['error']);
-        // tslint:disable-next-line:forin
-        // for (const key in error.error['error']) {
-        //   console.log(key);
-        //   if (key !== 'error') {
-        //     console.log(error.error['error'][key]);
-        //     this.message = error.error['error'][key];
-        //     break;
-        //   }
-        // }
+        this.utilService.notifModif_Error();
        this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises/edit/' + this.id ]);
       });
   }

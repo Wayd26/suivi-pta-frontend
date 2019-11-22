@@ -5,6 +5,8 @@ import {Indicateur, ListIndicateurResponse} from '../../../../models/indicateur.
 import {IndicateurService} from '../../../../shared/services/indicateur.service';
 import {DataService} from '../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../constants/urlConstants';
+import swal from 'sweetalert2';
+import {UtilsService} from '../../../../shared/services/utils.service';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class IndicateursRealisesListComponent implements OnInit {
   indicateurs: Indicateur[];
 
 
-  constructor(private indicateurService: IndicateurService, private router: Router, private dataService: DataService) { }
+  constructor(private indicateurService: IndicateurService, private utilService: UtilsService, private router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -35,5 +37,48 @@ export class IndicateursRealisesListComponent implements OnInit {
       this.indicateurs = [];
     }, () => {
     });
+  }
+
+  onDelete(id){
+
+
+
+
+    swal({
+      title: 'Attention !',
+      text: 'Etes-vous sûr de vouloir effectuer cette suppression ? ',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, Supprimer !',
+      cancelButtonText: 'Non, Annuler !',
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false
+    }).then((result) => {
+      if (result.value) {
+
+        this.indicateurService.deleteIndicateur(id).subscribe((res) => {
+          this.indicateurs = this.indicateurs.filter((action) => {
+            return action.id !== id;
+          });
+          swal('Suppression !', 'Opération effectuée', 'success');
+
+        }, ( error: ErrorResponse) => {
+          this.utilService.notifSupprImpo();
+
+          console.log(error.error['error']);
+        });
+
+        this.router.navigate(['/dashboard/traitement/indicateurs_realises/load']);
+
+
+      } else if (result.dismiss === swal.DismissReason.cancel) {
+        swal('Annulé !', '', 'warning');
+      }
+    });
+
+
   }
   }

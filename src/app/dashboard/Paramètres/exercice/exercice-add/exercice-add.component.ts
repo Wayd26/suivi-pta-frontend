@@ -22,33 +22,17 @@ export class ExerciceAddComponent implements OnInit {
     this.message = '';
   }
   onSubmit(form: NgForm) {
-    //  console.log('year is : ' + form.value['annee_exercice']);
-    // console.log('denomination is :' + form.value['denomination_exercice']);
-    console.log( this.utilservice.changeDateFornat(this.utilservice
-      .getDate(this.started_on.year, this.started_on.month, this.started_on.day)).toString());
+    const debDate = new Date(this.started_on.year, this.started_on.month - 1, this.started_on.day);
+    const finDate = new Date(this.ended_on.year, this.ended_on.month - 1, this.ended_on.day);
 
-    console.log(this.started_on);
-
-    this.exerciceService.createExercice(form.value['denomination_exercice'], form.value['annee_exercice'], this.utilservice.changeDateFornat(this.utilservice
-      .getDate(this.started_on.year, this.started_on.month, this.started_on.day)),  this.utilservice.changeDateFornat(this.utilservice
-      .getDate(this.ended_on.year, this.ended_on.month, this.ended_on.day)))
+    this.exerciceService.createExercice(form.value['denomination_exercice'], form.value['annee_exercice'], this.utilservice.dateToString(debDate), this.utilservice.dateToString(finDate))
       .subscribe((resp) => {
-        // this.message = 'Succes de l\'operation';
         this.utilservice.notifAjout_OK();
         this.router.navigate(['/dashboard/parametres/exercice/load']);
       } , (error: ErrorResponse) => {
         console.log(error);
         console.log(error.error['error']);
-        this.utilservice.notifAjout_Error(error.error['error']);
-        // tslint:disable-next-line:forin
-        // for (const key in error.error['error']) {
-        //   console.log(key);
-        //   if (key !== 'error') {
-        //     console.log(error.error['error'][key]);
-        //     this.message = error.error['error'][key];
-        //     break;
-        //   }
-        // }
+        this.utilservice.notifAjout_Error();
         this.router.navigate(['/dashboard/parametres/exercice/add']);
       });
   }

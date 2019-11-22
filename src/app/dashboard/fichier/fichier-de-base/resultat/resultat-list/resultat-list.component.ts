@@ -8,6 +8,9 @@ import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 import {ListeResultatResponse, Resultat} from '../../../../../models/resultat.model';
 import {ResultatService} from '../../../../../shared/services/resultat.service';
+import swal from 'sweetalert2';
+import {UtilsService} from '../../../../../shared/services/utils.service';
+
 
 @Component({
   selector: 'app-resultat-list',
@@ -19,7 +22,7 @@ export class ResultatListComponent implements OnInit {
   Resultats: Resultat[];
   dtOptions: DataTables.Settings = {};
 
-  constructor(private resultatService: ResultatService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
+  constructor(private resultatService: ResultatService, private utilService: UtilsService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -46,16 +49,44 @@ export class ResultatListComponent implements OnInit {
   }
 
   onDelete(id) {
-    const response = confirm(DELETE_CONFIRMATION);
-    if (response) {
-      this.resultatService.deleteResultat(id).subscribe((res) => {
+
+    swal({
+      title: 'Attention !',
+      text: 'Etes-vous sûr de vouloir effectuer cette suppression ? ',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, Supprimer !',
+      cancelButtonText: 'Non, Annuler !',
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false
+    }).then((result) => {
+      if (result.value) {
+
+
+
+        this.resultatService.deleteResultat(id).subscribe((res) => {
           this.Resultats = this.Resultats.filter((action) => {
             return action.id !== id;
           });
-          this.router.navigate(['/dashboard/fichier/base/resultat/load']);
-        }
-      );
-    }
+          swal('Suppression !', 'Opération effectuée', 'success');
+
+        }, ( error: ErrorResponse) => {
+          this.utilService.notifSupprImpo();
+
+          console.log(error.error['error']);
+        });
+
+        this.router.navigate(['/dashboard/fichier/base/resultat/load']);
+
+
+      } else if (result.dismiss === swal.DismissReason.cancel) {
+        swal('Annulé !', '', 'warning');
+      }
+    });
+
   }
 
 }

@@ -91,24 +91,18 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
       });
   }
  onSubmit(form: NgForm){
-   this.progTache.updateSuiviTache(+this.singleSelectValueActivite, +this.singleSelectValueTache, this.utilService.changeDateFornat(this.utilService
-     .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)),  this.utilService.changeDateFornat(this.utilService
-     .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), form.value['montant_tache'], form.value['poids_tache'], false, this.id)
+
+   const debDate = new Date(this.dateDebut.year, this.dateDebut.month - 1, this.dateDebut.day);
+   const finDate = new Date(this.dateFin.year, this.dateFin.month - 1, this.dateFin.day);
+
+   this.progTache.updateSuiviTache(+this.singleSelectValueActivite, +this.singleSelectValueTache, this.utilService.dateToString(debDate),  this.utilService.dateToString(finDate), form.value['montant_tache'], form.value['poids_tache'], false, this.id)
      .subscribe((resp) => {
-       this.message = 'Succes de l\'operation';
+       this.utilService.notifModif_OK();
        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/load']);
      } , (error: ErrorResponse) => {
        console.log(error);
        console.log(error.error['error']);
-       // tslint:disable-next-line:forin
-       for (const key in error.error['error']) {
-         console.log(key);
-         if (key !== 'error') {
-           console.log(error.error['error'][key]);
-           this.message = error.error['error'][key];
-           break;
-         }
-       }
+       this.utilService.notifModif_Error();
        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/edit/' + this.id]);
      });
   }
