@@ -211,7 +211,7 @@ export class ActiviteAddComponent implements OnInit {
   OnSelectOrUnselectEmploye(id: number) {
     console.log(id);
     let indice = 0;
-    if (this.structureSelect.length === 0) {
+    if (this.structureSeleShadows97ct.length === 0) {
       this.structureSelect.push(id);
     } else if (this.structureSelect.length === 1) {
       if (this.structureSelect[0] === id) {

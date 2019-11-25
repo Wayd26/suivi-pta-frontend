@@ -9,6 +9,8 @@ import {ExportAsExelService} from '../../../../../shared/services/export-as-exel
 import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
 import swal from 'sweetalert2';
 import {UtilsService} from '../../../../../shared/services/utils.service';
+import { VilleService } from 'src/app/shared/services/ville.service';
+import { ListVilleResponse, Ville } from 'src/app/models/ville.model';
 
 @Component({
   selector: 'app-activite-list',
@@ -31,14 +33,20 @@ export class ActiviteListComponent implements OnInit {
     headers: ['identifiant', 'code', 'libelle', 'poids', 'montant', '_resultat'],
     nullToEmptyString: true,
   };
+  villeList: Ville[];
 
-  constructor(private activiteService: ActiviteService, private utilService: UtilsService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
+  constructor(private villeService: VilleService,private activiteService: ActiviteService, private utilService: UtilsService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
           scrollY: '380',
           pagingType: 'full_numbers'
       };
+      this.villeService.getVilleList()
+      .subscribe((res: ListVilleResponse) => {
+        this.villeList = res.data;
+       
+      });
       if (!this.dataService.getActivites()) {
         this.router.navigate(['/dashboard/fichier/base/activite/load']);
     }
@@ -68,6 +76,9 @@ export class ActiviteListComponent implements OnInit {
       //
       // });
       // });
+  }
+  getVille(id) {
+    return this.villeList.find((v) =>  v.id == id)
   }
   execelExport() {
     this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.activiteExport)), 'action');
