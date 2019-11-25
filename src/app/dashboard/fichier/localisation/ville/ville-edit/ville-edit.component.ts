@@ -25,7 +25,9 @@ export class VilleEditComponent implements OnInit {
   id: number;
 
   singleSelectValue: string[] = [];
-  constructor(private villeService: VilleService , private router: Router, private departementService: DepartementService, private utilService: UtilsService, private route: ActivatedRoute) { }
+  constructor(private villeService: VilleService , private router: Router,
+    private departementService: DepartementService, private utilService: UtilsService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.message = '';
@@ -55,13 +57,11 @@ export class VilleEditComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.villeService.update(form.value['code_ville'], form.value['nom_ville'], +this.singleSelectValue, this.id)
       .subscribe((resp) => {
-        // this.message = 'Succes de l\'operation';
         this.utilService.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/localisation/ville/load']);
       } , (error) => {
         console.log(error);
-        this.utilService.notifModif_Error(error.error['error']);
-        // this.message = 'Echec de l\'operation';
+        this.utilService.notifModif_Error();
         this.router.navigate(['/dashboard/fichier/localisation/ville/edit/' + this.id]);
       });
   }

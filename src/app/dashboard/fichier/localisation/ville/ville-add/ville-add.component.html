@@ -17,23 +17,23 @@
 
 
                 <div class="form-group row">
-                  <label for="form-1-1" class="col-md-3 control-label">Code Ville</label>
-                  <div class="col-md-9">
-                    <input type="text" class="form-control" id="form-1-1" placeholder="Code Ville" ngModel="" name="code_ville">
+                  <label for="form-1-1" class="col-md-6 control-label">Code Ville</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="form-1-1" placeholder="Code Ville" ngModel="" name="code_ville" required>
                   </div>
                 </div>
 
 
                 <div class="form-group row">
-                  <label for="form-1-2" class="col-md-3 control-label">Dénomination</label>
-                  <div class="col-md-9">
-                    <input type="text" class="form-control" id="form-1-2" placeholder="Nom Ville" ngModel="" name="nom_ville">
+                  <label for="form-1-2" class="col-md-6 control-label">Dénomination</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="form-1-2" placeholder="Nom Ville" ngModel="" name="nom_ville" required>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="form-1-6" class="col-md-3 control-label">Département</label>
-                  <div class="col-md-9">
-                    <ng-selectize id="form-1-6"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                  <label for="form-1-6" class="col-md-6 control-label">Département</label>
+                  <div class="col-md-6">
+                    <ng-selectize id="form-1-6"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}" required></ng-selectize>
                   </div>
                 </div>
                 <a [routerLink]="['/dashboard/fichier/localisation/ville/load']" class="btn btn-primary">

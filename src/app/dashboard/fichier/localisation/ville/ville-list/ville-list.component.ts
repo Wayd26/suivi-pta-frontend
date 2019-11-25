@@ -6,6 +6,8 @@ import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
 import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
+import swal from 'sweetalert2';
+import {UtilsService} from '../../../../../shared/services/utils.service';
 
 @Component({
   selector: 'app-ville-list',
@@ -30,7 +32,7 @@ export class VilleListComponent implements OnInit {
     nullToEmptyString: true,
   };
 
-  constructor(private villeService: VilleService, private router: Router,
+  constructor(private villeService: VilleService, private router: Router, private utilService: UtilsService,
     private dataService: DataService, private exportService: ExportAsExelService) {
   }
 
@@ -74,17 +76,41 @@ export class VilleListComponent implements OnInit {
 
   onDelete(id) {
 
+    swal({
+      title: 'Attention !',
+      text: 'Etes-vous sûr de vouloir effectuer cette suppression ? ',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, Supprimer !',
+      cancelButtonText: 'Non, Annuler !',
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false
+    }).then((result) => {
+      if (result.value) {
 
-    const response = confirm(DELETE_CONFIRMATION);
-    if (response) {
-      this.villeService.deleteVille(id).subscribe((res) => {
+
+
+        this.villeService.deleteVille(id).subscribe((res) => {
           this.villes = this.villes.filter((action) => {
             return action.id !== id;
           });
-          this.router.navigate(['/dashboard/fichier/localisation/ville/load']);
-        }
-      );
-    }
+          swal('Suppression !', 'Opération effectuée', 'success');
 
+        }, ( error: ErrorResponse) => {
+          this.utilService.notifSupprImpo();
+
+          console.log(error.error['error']);
+        });
+
+        this.router.navigate(['/dashboard/fichier/localisation/ville/load']);
+
+
+      } else if (result.dismiss === swal.DismissReason.cancel) {
+        swal('Annulé !', '', 'warning');
+      }
+    });
   }
 }

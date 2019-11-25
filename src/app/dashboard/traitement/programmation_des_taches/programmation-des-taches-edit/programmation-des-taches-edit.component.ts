@@ -25,10 +25,10 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
   singleSelectOptionsTache: any = [];
   singleSelectOptionsExercice: any = [];
   message: string;
-  singleSelectValueStructure: string[] = ['reactJS'];
-  singleSelectValueActivite: string[] = ['reactJS'];
+  singleSelectValueStructure: string[] = [];
+  singleSelectValueActivite: string[] = [];
   singleSelectValueExercice: string[] = [];
-  singleSelectValueTache: string[] = ['reactJS'];
+  singleSelectValueTache: string[] = [];
   suiviTache: SuiviTache;
   id: number;
   dateDebut;
@@ -50,6 +50,15 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
     this.progTache.getSuiviTache(+this.route.snapshot.params['id']).subscribe((res: SuiviTacheResponse) => {
       this.suiviTache = res.data;
 
+      this.singleSelectValueActivite = [this.utilService.getIdData(res.data.links, 'activity')];
+      console.log('Ici nous avons l activité : ' + this.utilService.getIdData(res.data.links, 'activity'));
+
+      // this.singleSelectValue = [this.utils.getIdData(res.data.links, 'action')];
+
+
+      this.singleSelectValueTache = [this.utilService.getIdData(res.data.links, 'task')];
+      console.log('Ici nous avons la tache : ' + this.utilService.getIdData(res.data.links, 'task'));
+
       this.dateDebut = new Date(res.data.started_on);
       this.dateFin = new Date(res.data.ended_on);
 
@@ -60,12 +69,6 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
       this.dateFin = {year: +dateFinSplit[0], month: +dateFinSplit[1], day: +dateFinSplit[2]};
       console.log(res.data);
 
-
-      this.singleSelectValueActivite = [this.utilService.getIdData(res.data.links, 'activity')];
-      console.log(this.utilService.getIdData(res.data.links, 'acivite'));
-
-      this.singleSelectValueTache = [this.utilService.getIdData(res.data.links, 'task')];
-      console.log(this.utilService.getIdData(res.data.links, 'tache'));
     });
 
     this.activiteService.getActiviteList()
@@ -73,7 +76,7 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
         res.data.map((activite) => {
           this.singleSelectOptionsActivite.push({
             label: activite.denomination,
-            value: activite.id,
+            value: activite.id.toString(),
             code: activite.code
           });
         });
@@ -84,31 +87,25 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
         res.data.map((tache) => {
           this.singleSelectOptionsTache.push({
             label: tache.denomination,
-            value: tache.id,
+            value: tache.id.toString(),
             code: tache.code
           });
         });
       });
   }
  onSubmit(form: NgForm){
-   this.progTache.updateSuiviTache(+this.singleSelectValueActivite, +this.singleSelectValueTache, this.utilService.changeDateFornat(this.utilService
-     .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)),  this.utilService.changeDateFornat(this.utilService
-     .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), form.value['montant_tache'], form.value['poids_tache'], false, this.id)
+
+   const debDate = new Date(this.dateDebut.year, this.dateDebut.month - 1, this.dateDebut.day);
+   const finDate = new Date(this.dateFin.year, this.dateFin.month - 1, this.dateFin.day);
+
+   this.progTache.updateSuiviTache(+this.singleSelectValueActivite, +this.singleSelectValueTache, this.utilService.dateToString(debDate),  this.utilService.dateToString(finDate), form.value['montant_tache'], form.value['poids_tache'], false, this.id)
      .subscribe((resp) => {
-       this.message = 'Succes de l\'operation';
+       this.utilService.notifModif_OK();
        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/load']);
      } , (error: ErrorResponse) => {
        console.log(error);
        console.log(error.error['error']);
-       // tslint:disable-next-line:forin
-       for (const key in error.error['error']) {
-         console.log(key);
-         if (key !== 'error') {
-           console.log(error.error['error'][key]);
-           this.message = error.error['error'][key];
-           break;
-         }
-       }
+       this.utilService.notifModif_Error();
        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/edit/' + this.id]);
      });
   }

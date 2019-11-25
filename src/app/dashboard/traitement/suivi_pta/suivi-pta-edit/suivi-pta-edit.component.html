@@ -1,6 +1,6 @@
-<div *ngIf = "message !== ''" class="alert alert-danger" role="alert">
-  {{message}}
-</div>
+<!--<div *ngIf = "message !== ''" class="alert alert-danger" role="alert">-->
+<!--  {{message}}-->
+<!--</div>-->
 
 <div class="container-fluid">
   <div class="page-title">
@@ -16,17 +16,24 @@
               <form  class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)"  #f = "ngForm">
 
 
-                <div class="form-group row">
+              <!--  <div class="form-group row">
                   <label for="form-1-1" class="col-md-2 control-label">Activité</label>
                   <div class="col-md-10">
-                    <ng-selectize id="form-1-1"  [config]="singleSelectConfig" [options]="singleSelectOptionsActivite" [(ngModel)]="singleSelectValueActivite" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                    <ng-selectize id="form-1-1"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                  </div>
+                </div>-->
+
+                <div class="form-group row">
+                  <label for="form-1-0" class="col-md-6 control-label">Activité</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="form-1-0" placeholder="" ngModel="{{suiviTache._activity}}" name="activite" readonly="true">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label for="form-1-2" class="col-md-2 control-label">Tâche</label>
-                  <div class="col-md-10">
-                    <ng-selectize id="form-1-2"  [config]="singleSelectConfig" [options]="singleSelectOptionsTache" [(ngModel)]="singleSelectValueTache" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                  <label for="form-1-2" class="col-md-6 control-label">Tâche</label>
+                  <div class="col-md-6">
+                    <ng-selectize id="form-1-2"  [config]="singleSelectConfig" [options]="singleSelectOptions2" [(ngModel)]="singleSelectValue2" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
                   </div>
                 </div>
 
@@ -34,16 +41,14 @@
                   <label for="form-1-3" class="col-md-2 control-label">Réalisée</label>
                   <div class="col-md-10">
 
-                    <input id="form-1-3" type="checkbox" name="toggle1" id="form-1-3" ngModel="{{suiviTache.is_realized}}">
+                    <input id="form-1-3" type="checkbox" name="toggle1" id="form-1-3" [(ngModel)]="isRealized" checked>
 
-                  </div>
+                      </div>
                 </div>
 
-
-
                 <div class="form-group row">
-                  <label class="col-md-3 control-label">Date fin de réalisation</label>
-                  <div class="col-md-9">
+                  <label class="col-md-6 control-label">Date fin de réalisation</label>
+                  <div class="col-md-6">
                     <div class="input-group">
                   <span class="input-group-text" (click)="d3.toggle()">
                       <i class="ti-calendar"></i>
@@ -66,8 +71,8 @@
                 <!--</div>-->
 
                 <div class="form-group row">
-                  <label for="form-1-5" class="col-md-2 control-label">Observations</label>
-                  <div class="col-md-10">
+                  <label for="form-1-5" class="col-md-6 control-label">Observations</label>
+                  <div class="col-md-6">
                     <textarea class="form-control" rows="3" id="form-1-5" name="commentaire" ngModel="{{suiviTache.comment}}"></textarea>
                   </div>
                 </div>

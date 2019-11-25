@@ -36,7 +36,7 @@ export class ActionAddComponent implements OnInit {
         res.data.map((action) => {
           this.singleSelectOptions2.push({
             label: action.denomination,
-            value: action.id,
+            value: action.id.toString(),
             code: action.code
           });
         });
@@ -47,22 +47,11 @@ export class ActionAddComponent implements OnInit {
     this.actionService.createAction(form.value['code_action'], form.value['libelle_action'],
      form.value['poids_action'], +this.singleSelectValue2)
       .subscribe((resp) => {
-        // this.message = 'Succes de l\'operation';
         this.utilService.notifAjout_OK();
         this.router.navigate(['/dashboard/fichier/base/action/load']);
       } , (error: ErrorResponse) => {
-
-        this.utilService.notifAjout_Error(error.error['error']);
+        this.utilService.notifAjout_Error();
         console.log(error.error['error']);
-        // tslint:disable-next-line:forin
-        // for (const key in error.error['error']) {
-        //   console.log(key);
-        //   if (key !== 'error') {
-        //     console.log(error.error['error'][key]);
-        //     this.message = error.error['error'][key];
-        //     break;
-        //   }
-        // }
         this.router.navigate(['/dashboard/fichier/base/action/add']);
       });
   }

@@ -15,26 +15,26 @@
                             <form class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)" #f="ngForm">
 
                               <div class="form-group row">
-                                <label for="form-1-2" class="col-md-3 control-label">Code Objectif Spécifique</label>
-                                <div class="col-md-9">
-                                  <input type="text" class="form-control" id="form-1-2" placeholder="Code" name="code_objectif_specifique" ngModel="{{objectif.code}}">
+                                <label for="form-1-2" class="col-md-6 control-label">Code Objectif Spécifique</label>
+                                <div class="col-md-6">
+                                  <input type="text" class="form-control" id="form-1-2" placeholder="Code" name="code_objectif_specifique" ngModel="{{objectif.code}}" required>
                                 </div>
                               </div>
 
 
 
                                 <div class="form-group row">
-                                    <label for="form-1-3" class="col-md-3 control-label">Libellé Objectif Spécifique</label>
-                                    <div class="col-md-9">
-                                        <textarea ngModel="{{objectif.denomination}}" class="form-control" rows="3" id="form-1-3" placeholder="Libellé Objectif Spécifique" name="libelle_objectif_specifique"></textarea>
+                                    <label for="form-1-3" class="col-md-6 control-label">Libellé Objectif Spécifique</label>
+                                    <div class="col-md-6">
+                                        <textarea ngModel="{{objectif.denomination}}" class="form-control" rows="3" id="form-1-3" placeholder="Libellé Objectif Spécifique" name="libelle_objectif_specifique" required></textarea>
                                     </div>
                                 </div>
 
 
                                 <div class="form-group row">
-                                    <label for="form-1-4" class="col-md-3 control-label">Programme</label>
-                                    <div class="col-md-9">
-                                        <ng-selectize id="form-1-4" [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}">></ng-selectize>
+                                    <label for="form-1-4" class="col-md-6 control-label">Programme</label>
+                                    <div class="col-md-6">
+                                        <ng-selectize id="form-1-4" [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}" required></ng-selectize>
                                     </div>
                                 </div>
 
@@ -45,8 +45,8 @@
                                     <span>Retour</span>
                                 </a> <button type="submit" class="btn btn-info" [disabled]="f.invalid">
 
-                <span>Valider</span>
-              </button>
+                                <span>Valider</span>
+                             </button>
                             </form>
                         </div>
 

@@ -181,11 +181,11 @@ export class ActiviteEditComponent implements OnInit {
           this.activite = res.data;
         }, (erro) => {},
         () => {
-          //this.singleSelectValueExercice = [this.utilService.getIdData(this.activite.links, 'exercice')];
+          // this.singleSelectValueExercice = [this.utilService.getIdData(this.activite.links, 'exercice')];
           this.code = this.activite.code;
           this.libelle = this.activite.denomination;
           this.montant = this.activite.budget;
-          this.projet = this.activite.is_pip
+          this.projet = this.activite.is_pip;
           this.dateDebut = this.activite.started_on;
           this.dateFin = this.activite.ended_on;
           this.poids = this.activite.weight_in_subaction;
@@ -200,7 +200,7 @@ export class ActiviteEditComponent implements OnInit {
           this.structureSelectShow.map((str) => {this.structureSelect.push({id: +this.singleSelectValueStructureImpl[0],type: 1});});
           this.activite.indicators.map((str) => {this.indicateurSelectShow.push(str.denomination); this.indicateurSelect.push( {denomination: str.denomination});});
           this.activite.fundings.map((fund) => {
-            this.sourceFi.push( {id: fund.id,budget_allocated : fund.budget_allocated});
+            this.sourceFi.push( {id: fund.id, budget_allocated : fund.budget_allocated});
             this.sourcefiSelectShow.push(this.getSource(fund.id));
             this.montantSelect.push(fund.budget_allocated);
           });
@@ -392,15 +392,15 @@ export class ActiviteEditComponent implements OnInit {
   }
 
   deleteStructureSuper(id) {
-    
-    this.structureSelect = this.structureSelect.length === 1 ? [] : this.structureSelect.filter((s) => s.id !== id) 
-    this.structureSelectShow =  this.structureSelectShow.filter((s) => s.id !== id) 
+
+    this.structureSelect = this.structureSelect.length === 1 ? [] : this.structureSelect.filter((s) => s.id !== id)
+    this.structureSelectShow =  this.structureSelectShow.filter((s) => s.id !== id)
     console.log(this.structureSelect);
   }
 
   deleteStructureImpli(id) {
-    this.structureImpliSelect = this.structureImpliSelect.length === 1 ? [] : this.structureImpliSelect.filter((s) => s.id !== id) 
-    this.structureImpliSelectShow =  this.structureImpliSelectShow.filter((s) => s.id !== id) 
+    this.structureImpliSelect = this.structureImpliSelect.length === 1 ? [] : this.structureImpliSelect.filter((s) => s.id !== id)
+    this.structureImpliSelectShow =  this.structureImpliSelectShow.filter((s) => s.id !== id)
     console.log(this.structureImpliSelect);
   }
 
@@ -439,34 +439,36 @@ export class ActiviteEditComponent implements OnInit {
         code: ville.code
       });
     });
-    
-    
+
+
   }
 
 
 
   onSubmit() {
     console.log(typeof(this.dateDebut) + ' ' + this.dateDebut)
-    const struc = [{id: +this.singleSelectValueStructure,type: 0}]
+    const struc = [{id: +this.singleSelectValueStructure, type: 0}]
     this.activiteService.updateActivite(this.utilService.changeDateFornat(this.utilService
         .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)), this.utilService.changeDateFornat(this.utilService
         .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), this.libelle,
       this.poids, this.montant, +this.singleSelectValueAction[0], +this.singleSelectValueStructure[0],
       this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect).concat(struc) , this.code, this.indicateurSelect, this.id, [+this.singleSelectOptionsVille])
        .subscribe((res) => {
+         this.utilService.notifModif_OK();
          console.log(res);
        }, (error: ErrorResponse) => {
          console.log(error);
         console.log(error.error['error']);
+        this.utilService.notifModif_Error();
         // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-            console.log(key);
-            if (key !== 'error') {
-              console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-            }
-        }
+        // for (const key in error.error['error']) {
+        //     console.log(key);
+        //     if (key !== 'error') {
+        //       console.log(error.error['error'][key]);
+        //     this.message = error.error['error'][key];
+        //     break;
+        //     }
+        // }
             this.router.navigate(['/dashboard/fichier/base/activite/edit/' + this.id ]);
        });
   }

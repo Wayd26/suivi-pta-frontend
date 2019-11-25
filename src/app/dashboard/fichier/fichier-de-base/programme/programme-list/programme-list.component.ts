@@ -8,7 +8,8 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
-
+import swal from 'sweetalert2';
+import {UtilsService} from '../../../../../shared/services/utils.service';
 
 
 @Component({
@@ -36,7 +37,7 @@ export class ProgrammeListComponent implements OnInit {
     headers: ['identifiant', 'code', 'libelle', 'poids', '_exercice', '_ministere'],
     nullToEmptyString: true,
   };
-  constructor(private programmeService: ProgrammeService, private router: Router,
+  constructor(private programmeService: ProgrammeService, private router: Router, private utilService: UtilsService,
      private dataService: DataService, private exportService: ExportAsExelService, private exportAsService: ExportAsService) { }
 
   ngOnInit(): void {
@@ -86,16 +87,39 @@ export class ProgrammeListComponent implements OnInit {
   }
 
   onDelete(id) {
-    const response = confirm(DELETE_CONFIRMATION);
-   if (response) {
-     this.programmeService.deleteProgramme(id).subscribe((res) => {
-         this.programmes = this.programmes.filter((action) => {
-           return action.id !== id;
-         });
-         this.router.navigate(['/dashboard/fichier/base/programme/load']);
-       }
-     );
-   }
+    swal({
+      title: 'Attention !',
+      text: 'Etes-vous sûr de vouloir effectuer cette suppression ? ',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, Supprimer !',
+      cancelButtonText: 'Non, Annuler !',
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false
+    }).then((result) => {
+      if (result.value) {
+        this.programmeService.deleteProgramme(id).subscribe((res) => {
+          this.programmes = this.programmes.filter((action) => {
+            return action.id !== id;
+          });
+          swal('Suppression !', 'Opération effectuée', 'success');
+
+        }, ( error: ErrorResponse) => {
+          this.utilService.notifSupprImpo();
+
+          console.log(error.error['error']);
+        });
+
+        this.router.navigate(['/dashboard/fichier/base/programme/load']);
+
+
+      } else if (result.dismiss === swal.DismissReason.cancel) {
+        swal('Annulé !', '', 'warning');
+      }
+    });
   }
 
 }

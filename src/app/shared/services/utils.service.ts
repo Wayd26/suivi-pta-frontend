@@ -44,71 +44,45 @@ export class UtilsService {
   }
   changeDateFornat(date: Date) {
     const current_datetime = date;
-    return  current_datetime.getFullYear() + '-' + (current_datetime.getMonth()) + '-' + current_datetime.getDate();
+    console.log(current_datetime);
+    console.log(current_datetime.getFullYear());
+    console.log(current_datetime.getMonth());
+    console.log(current_datetime.getDate());
+    return  current_datetime.getFullYear() + '-' + current_datetime.getMonth() + '-' + current_datetime.getDate();
   }
 
-
-
+  dateToString(date: Date) {
+    let dd = date.getDate().toString();
+    let mm = (date.getMonth() + 1).toString() ;
+    const yyyy = date.getFullYear().toString();
+    if (+dd < 10) {
+      dd = '0' + dd ;
+    }
+    if (+mm < 10) {
+      mm = '0' + mm ;
+    }
+    return yyyy + '-' + mm + '-' + dd ;
+}
 
   getElementByType(type, table: StructureActivite []) {
     return table.find((str) => str.type === type);
   }
 
   getIdData(data, keys ) {
-    console.log(data);
+    // console.log(data);
    const tab = data.find(function (e) { return e['rel'] === keys ; })['href'].split('/');
-   console.log(tab);
+   // console.log(tab);
     return tab[tab.length - 1].toString();
   }
 
-  notifAjout_OK(){return swal('Succes !', 'Ajout effectué !', 'success');}
+  notifAjout_OK() {return swal('Succes !', 'Ajout effectué !', 'success'); }
 
-  notifModif_OK(){return swal('Succes !', 'Modification effectuée !', 'success');}
+  notifModif_OK() {return swal('Succes !', 'Modification effectuée !', 'success'); }
 
-  notifAjout_Error(msg: string){return swal('Echec !', msg, 'error');}
+  notifAjout_Error() {return swal('Echec !', 'Ajout Echoué', 'error'); }
 
-  notifModif_Error(msg: string){return swal('Echec !', msg, 'error');}
+  notifModif_Error() {return swal('Echec !', 'Modification Echouée', 'error'); }
 
-  confirm_Delete(id: number){
-  //   swal({
-  //     title: 'Attention !',
-  //     text: 'Etes-vous sûr de vouloir effectuer cette suppression ? ',
-  //     type: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#DD6B55',
-  //     confirmButtonText: 'Oui, Supprimer !',
-  //     cancelButtonText: 'Non, Annuler !',
-  //   }).then(function() {
-  //     swal(
-  //       "Booyah!"
-  //     );
-  //   })
-  // }
-
-    swal({
-      title: 'Attention !',
-      text: 'Etes-vous sûr de vouloir effectuer cette suppression ? ',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Oui, Supprimer !',
-      cancelButtonText: 'Non, Annuler !',
-      confirmButtonClass: 'btn btn-success',
-      cancelButtonClass: 'btn btn-danger',
-      buttonsStyling: false
-    }).then(function () {
-      swal('Deleted!', 'Your file has been deleted.', 'success'
-      );
-    }, function (dismiss) {
-
-      if (dismiss === 'cancel') {
-        swal(
-          'Cancelled',
-          'Your imaginary file is safe :)',
-          'error'
-        );
-      }
-    });
-  }
+  notifSupprImpo() {return swal('Echec !', 'Suppression Impossible', 'error');
+}
 }

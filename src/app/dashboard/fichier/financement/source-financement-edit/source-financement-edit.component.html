@@ -16,26 +16,26 @@
 
 
                               <div class="form-group row">
-                                <label for="form-1-2" class="col-md-4 control-label">Code Source Financement</label>
-                                <div class="col-md-8">
-                                  <input type="text" class="form-control" id="form-1-2" ngModel="{{sourceFi.code}}" placeholder="" name="code_source_financement">
+                                <label for="form-1-2" class="col-md-6 control-label">Code Source Financement</label>
+                                <div class="col-md-6">
+                                  <input type="text" class="form-control" id="form-1-2" ngModel="{{sourceFi.code}}" placeholder="" name="code_source_financement" required>
                                 </div>
                               </div>
 
 
 
                                 <div class="form-group row">
-                                    <label for="form-1-3" class="col-md-4 control-label">Libellé Source Financement</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="form-1-3" placeholder="Libellé Source Financement" ngModel="{{sourceFi.denomination}}" name="libellé_source_financement">
+                                    <label for="form-1-3" class="col-md-6 control-label">Libellé Source Financement</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="form-1-3" placeholder="Libellé Source Financement" ngModel="{{sourceFi.denomination}}" name="libellé_source_financement" required>
                                     </div>
                                 </div>
 
 
                                 <div class="form-group row">
-                                    <label for="form-1-5" class="col-md-4 control-label">Type Source Financement</label>
-                                    <div class="col-md-8">
-                                        <ng-selectize id="form-1-5" [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                    <label for="form-1-5" class="col-md-6 control-label">Type Source Financement</label>
+                                    <div class="col-md-6">
+                                        <ng-selectize id="form-1-5" [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}" required></ng-selectize>
                                     </div>
                                 </div>
 
@@ -43,7 +43,7 @@
                                     <label for="form-1-6" class="col-md-6 control-label">Projet </label>
                                     <div class="col-md-1">
                                         <div class="toggle-checkbox checkbox-inline toggle-sm mrg-top-10">
-                                            <input type="checkbox" ngModel="{{sourceFi.is_project}}" name="toggle1" id="form-1-6" checked>
+                                            <input type="checkbox" [(ngModel)]="isProjet" name="toggle1" id="form-1-6" checked>
                                             <label for="form-1-6"></label>
                                         </div>
                                     </div>

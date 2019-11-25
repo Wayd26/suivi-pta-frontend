@@ -27,7 +27,8 @@ export class IndicateursRealisesEditComponent implements OnInit {
     valueField: 'value',
     searchField: ['value']
   };
-  constructor(private  indicService: IndicateurService, private utilService: UtilsService, private activiteService: ActiviteService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private  indicService: IndicateurService,
+    private utilService: UtilsService, private activiteService: ActiviteService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.message = '';
@@ -36,37 +37,32 @@ export class IndicateursRealisesEditComponent implements OnInit {
       this.indicateur = res.data;
 
       this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'activity')];
+      console.log('Ceci est l activite : ' + this.singleSelectValue);
           });
-    // this.activiteService.getActiviteList()
-    //   .subscribe((res: ListActiviteResponse) => {
-    //     res.data.map((acti) => {
-    //       this.singleSelectOptions.push({
-    //         label: acti.denomination,
-    //         value: acti.id.toString(),
-    //         code: acti.code
-    //       });
-    //     });
-    //   });
+
+     this.activiteService.getActiviteList()
+       .subscribe((res: ListActiviteResponse) => {
+         res.data.map((acti) => {
+           this.singleSelectOptions.push({
+             label: acti.denomination,
+             value: acti.id.toString(),
+             code: acti.code
+           });
+         });
+       });
+
   }
   onSubmit(form: NgForm) {
     console.log(this.singleSelectValue);
-    this.indicService.updateIndicateur(form.value['denomination'], form.value['valeur_cible'], +form.value['valeur_realisee'], +this.singleSelectValue, this.id)
+    this.indicService.updateIndicateur(form.value['denomination'], form.value['valeur_cible'],
+    +form.value['valeur_realisee'], +this.singleSelectValue, this.id)
       .subscribe((resp) => {
         this.utilService.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises/load']);
       } , (error: ErrorResponse) => {
         console.log(error);
         console.log(error.error['error']);
-        this.utilService.notifModif_Error(error.error['error']);
-        // tslint:disable-next-line:forin
-        // for (const key in error.error['error']) {
-        //   console.log(key);
-        //   if (key !== 'error') {
-        //     console.log(error.error['error'][key]);
-        //     this.message = error.error['error'][key];
-        //     break;
-        //   }
-        // }
+        this.utilService.notifModif_Error();
        this.router.navigate(['/dashboard/fichier/traitement/indicateurs_realises/edit/' + this.id ]);
       });
   }

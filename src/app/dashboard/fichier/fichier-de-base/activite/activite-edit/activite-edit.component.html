@@ -5,7 +5,7 @@
         <div class="dot dot-2"></div>
         <div class="dot dot-3"></div>
       </div>
-      
+
       <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
         <defs>
           <filter id="goo">
@@ -22,7 +22,7 @@
             {{message}}
         </div>
         <div class="page-title">
-            <h4>Modifier activite</h4>
+            <h4>Modifier Activité</h4>
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -54,7 +54,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>Libelle Activite</label>
+                                                                <label>Libelle Activité</label>
                                                                 <textarea class="form-control" rows="3" name="libelle" [(ngModel)]="libelle"></textarea>
                                                             </div>
                                                         </div>
@@ -62,7 +62,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>Montant Activite</label>
+                                                                <label>Montant Activité</label>
                                                                 <input type="number" class="form-control" name="montant" [(ngModel)]="montant">
                                                             </div>
                                                         </div>
@@ -107,7 +107,7 @@
                                                             </div>
                                                         </div> -->
                                                     </div>
-    
+
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
@@ -176,7 +176,7 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr *ngFor="let structure of structureImpliSelectShow">
-    
+
                                                                         <td>
                                                                             <div class=" relative mrg-top-15">
                                                                                 <span class="pdd-left-20">{{structure.denomination}}</span>
@@ -185,7 +185,7 @@
                                                                         <!-- <td><button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="deleteStructureImpli(structure.id)">
                                                                                 <i class="ti-trash"></i>
                                                                             </button></td> -->
-    
+
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -230,7 +230,7 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr *ngFor="let structure of structureSelectShow">
-    
+
                                                                         <td>
                                                                             <div class=" relative mrg-top-15">
                                                                                 <span class="pdd-left-20">{{structure.denomination}}</span>
@@ -239,7 +239,7 @@
                                                                         <!-- <td><button class="btn btn-icon btn-flat btn-rounded dropdown-toggle" (click)="deleteStructureSuper(structure.id)">
                                                                                 <i class="ti-trash"></i>
                                                                             </button></td> -->
-    
+
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -256,11 +256,11 @@
                                     <aw-wizard-step stepTitle="Indicateurs" [navigationSymbol]="{ symbol: '4' }">
                                         <!-- <div class="row">
                                           <div class="col-md-6">
-        
+
                                               <div class="form-group">
                                                 <label>Indicateur</label>
                                                 <input type="text" class="form-control" name="indicateur" [(ngModel)]="indicateurLabel">
-        
+
                                             </div>
                                           </div>
                                           <div class="col-md-2">
@@ -286,12 +286,12 @@
                                                     </thead>
                                                     <tbody>
                                                     <tr *ngFor="let ind of indicateurSelectShow">
-        
+
                                                       <td>
                                                         <div class=" relative mrg-top-15">
                                                           <span class="pdd-left-20">{{ind}}</span>
                                                         </div>
-                                                       
+
                                                       </td>
 
                                                       <!-- <td>
@@ -299,7 +299,7 @@
                                                             <i class="ti-trash"></i>
                                                         </button>
                                                       </td> -->
-        
+
                                                     </tr>
                                                     </tbody>
                                                   </table>
@@ -351,10 +351,10 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr *ngFor="let source of sourcefiSelectShow; index as i;">
-    
+
                                                                         <td>
                                                                             <div class=" relative mrg-top-15">
-    
+
                                                                                 <span class="pdd-left-20">{{source.denomination}}</span>
                                                                             </div>
                                                                         </td>
@@ -376,7 +376,7 @@
                                             <button type="button" class="btn btn-default  btn-rounded" (click)="onSubmit()">Valider</button>
                                         </div>
                                     </aw-wizard-step>
-    
+
                                 </aw-wizard>
                             </div>
                         </div>
@@ -385,5 +385,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>

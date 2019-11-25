@@ -6,6 +6,8 @@ import {DataService} from '../../../../../shared/services/data.service';
 import {DELETE_CONFIRMATION} from '../../../../../constants/urlConstants';
 import {ExportAsExelService} from '../../../../../shared/services/export-as-exel.service';
 import {Angular5Csv} from 'angular5-csv/dist/Angular5-csv';
+import swal from 'sweetalert2';
+import {UtilsService} from '../../../../../shared/services/utils.service';
 
 @Component({
   selector: 'app-taches-list',
@@ -28,7 +30,7 @@ export class TachesListComponent implements OnInit {
     nullToEmptyString: true,
   };
 
-  constructor(private tacheService: TacheService, private router: Router,
+  constructor(private tacheService: TacheService, private router: Router, private utilService: UtilsService,
      private dataService: DataService, private exportService: ExportAsExelService) { }
 
   ngOnInit(): void {
@@ -76,16 +78,42 @@ export class TachesListComponent implements OnInit {
   }
 
   onDelete(id) {
-    const response = confirm(DELETE_CONFIRMATION);
-    if (response) {
-      this.tacheService.deleteTache(id).subscribe((res) => {
+    swal({
+      title: 'Attention !',
+      text: 'Etes-vous sûr de vouloir effectuer cette suppression ? ',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, Supprimer !',
+      cancelButtonText: 'Non, Annuler !',
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false
+    }).then((result) => {
+      if (result.value) {
+
+
+
+        this.tacheService.deleteTache(id).subscribe((res) => {
           this.taches = this.taches.filter((action) => {
             return action.id !== id;
           });
-          this.router.navigate(['/dashboard/fichier/base/tache/load']);
-        }
-      );
-    }
+          swal('Suppression !', 'Opération effectuée', 'success');
+
+        }, ( error: ErrorResponse) => {
+          this.utilService.notifSupprImpo();
+
+          console.log(error.error['error']);
+        });
+
+        this.router.navigate(['/dashboard/fichier/base/tache/load']);
+
+
+      } else if (result.dismiss === swal.DismissReason.cancel) {
+        swal('Annulé !', '', 'warning');
+      }
+    });
   }
 
 }

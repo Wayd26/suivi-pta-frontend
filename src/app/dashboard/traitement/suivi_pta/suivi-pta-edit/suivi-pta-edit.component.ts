@@ -19,17 +19,18 @@ import {TacheService} from '../../../../shared/services/tache.service';
 export class SuiviPtaEditComponent implements OnInit {
 
   singleSelectOptionsStructure: any = [];
-  singleSelectOptionsActivite: any = [];
-  singleSelectOptionsTache: any = [];
+  singleSelectOptions: any = [];
+  singleSelectOptions2: any = [];
   singleSelectOptionsExercice: any = [];
   message: string;
   singleSelectValueStructure: string[] = [];
-  singleSelectValueActivite: string[] = [];
+  singleSelectValue: string[] = [];
   singleSelectValueExercice: string[] = [];
-  singleSelectValueTache: string[] = [];
+  singleSelectValue2: string[] = [];
   suiviTache: SuiviTache;
   id: number;
   dateFinReal;
+  isRealized;
 
   singleSelectConfig: any = {
     labelField: 'label',
@@ -37,7 +38,10 @@ export class SuiviPtaEditComponent implements OnInit {
     searchField: ['value']
   };
 
-  constructor( private utilService: UtilsService, private router: Router, private route: ActivatedRoute, private suiviPTAServ: SuiviTacheService, private exerciceService: ExercieService, private structureService: StructureService, private activiteService: ActiviteService, private tacheService: TacheService) { }
+  constructor(private utilService: UtilsService, private router: Router, private route: ActivatedRoute,
+    private suiviPTAServ: SuiviTacheService, private exerciceService: ExercieService,
+    private structureService: StructureService, private activiteService: ActiviteService,
+    private tacheService: TacheService) { }
 
   ngOnInit() {
 
@@ -49,25 +53,23 @@ export class SuiviPtaEditComponent implements OnInit {
      this.suiviTache = res.data;
       console.log(res);
 
+      this.isRealized = this.suiviTache.is_realized ;
       this.dateFinReal = new Date(res.data.effective_end_date);
-
-
       const dateFinRealSplit = res.data.effective_end_date.split('-');
       this.dateFinReal = {year: +dateFinRealSplit[0], month: +dateFinRealSplit[1], day: +dateFinRealSplit[2]};
+      this.singleSelectValue = [this.utilService.getIdData(res.data.links, 'activity')];
+      console.log(this.utilService.getIdData(res.data.links, 'acivity'));
 
-      this.singleSelectValueActivite = [this.utilService.getIdData(res.data.links, 'activity')];
-      console.log(this.utilService.getIdData(res.data.links, 'acivite'));
-
-      this.singleSelectValueTache = [this.utilService.getIdData(res.data.links, 'task')];
-      console.log(this.utilService.getIdData(res.data.links, 'tache'));
+      this.singleSelectValue2 = [this.utilService.getIdData(res.data.links, 'task')];
+      console.log(this.utilService.getIdData(res.data.links, 'task'));
     });
 
     this.activiteService.getActiviteList()
       .subscribe((res: ListActiviteResponse) => {
         res.data.map((activite) => {
-          this.singleSelectOptionsActivite.push({
+          this.singleSelectOptions.push({
             label: activite.denomination,
-            value: activite.id,
+            value: activite.id.toString(),
             code: activite.code
           });
         });
@@ -76,33 +78,26 @@ export class SuiviPtaEditComponent implements OnInit {
     this.tacheService.getTacheList()
       .subscribe((res: ListTacheResponse) => {
         res.data.map((tache) => {
-          this.singleSelectOptionsTache.push({
+          this.singleSelectOptions2.push({
             label: tache.denomination,
-            value: tache.id,
+            value: tache.id.toString(),
             code: tache.code
           });
         });
       });
   }
-  onSubmit(form: NgForm){
-    this.suiviPTAServ.updateSuiviPTA(+this.singleSelectValueActivite, +this.singleSelectValueTache, form.value['toggle1'],  this.utilService.changeDateFornat(this.utilService
-      .getDate(this.dateFinReal.year, this.dateFinReal.month, this.dateFinReal.day)), form.value['commentaire'], this.id)
+  onSubmit(form: NgForm) {
+    const finRealDate = new Date(this.dateFinReal.year, this.dateFinReal.month - 1, this.dateFinReal.day);
+    this.suiviPTAServ.updateSuiviPTA(+this.singleSelectValue, +this.singleSelectValue2,
+      form.value['toggle1'],  this.utilService.dateToString(finRealDate), form.value['commentaire'], this.id)
       .subscribe((resp) => {
-        this.message = 'Succes de l\'operation';
+        this.utilService.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/load']);
       } , (error: ErrorResponse) => {
         console.log(error);
         console.log(error.error['error']);
-        // tslint:disable-next-line:forin
-        for (const key in error.error['error']) {
-          console.log(key);
-          if (key !== 'error') {
-            console.log(error.error['error'][key]);
-            this.message = error.error['error'][key];
-            break;
-          }
-        }
-        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/edit:' + this.id ]);
+        this.utilService.notifModif_Error();
+        this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/edit/' + this.id ]);
       });
   }
 

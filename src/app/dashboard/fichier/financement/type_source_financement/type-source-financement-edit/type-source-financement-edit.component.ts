@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ProgrammeService} from '../../../../../shared/services/programme.service';
 import {UtilsService} from '../../../../../shared/services/utils.service';
-import {ExercieService} from '../../../../../shared/services/exercie.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ProgrammeResponse} from '../../../../../models/programme.model';
-import {ListExerciceResponse} from '../../../../../models/exercice.model';
 import {NgForm} from '@angular/forms';
 import {SourceFinancement, SourceFiResponse} from '../../../../../models/sourceFi.model';
 import {ListTypeSourceFinancementResponse, TypeSourceFinancement} from '../../../../../models/typeSourceFi.model';
-import {SourceFinancementService} from '../../../../../shared/services/source-financement.service';
 import {TypeSourceFinancementService} from '../../../../../shared/services/type-source-financement.service';
 
 @Component({
@@ -46,16 +41,7 @@ export class TypeSourceFinancementEditComponent implements OnInit {
 
         console.log(error);
         console.log(error.error['error']);
-        this.utilService.notifModif_Error(error.error['error']);
-        // tslint:disable-next-line:forin
-        // for (const key in error.error['error']) {
-        //   console.log(key);
-        //   if (key !== 'error') {
-        //     console.log(error.error['error'][key]);
-        //     this.message = error.error['error'][key];
-        //     break;
-        //   }
-        // }
+        this.utilService.notifModif_Error();
         this.router.navigate(['//dashboard/fichier/financement/type_source_financement/edit/' + this.id]);
       });
   }
