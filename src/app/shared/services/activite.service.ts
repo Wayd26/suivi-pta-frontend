@@ -22,7 +22,7 @@ export class ActiviteService {
   }
   createActivite(started_at: string, ended_on: string, libelle: string, poids: number, montant: number, action_id: number,
     structure_id: number, est_pip: boolean, source_financement: SourceFinancementActivite[],
-    structures: any [], code: string, indicators: any []) {
+    structures: any [], code: string, indicators: any [], towns: number[]) {
     const data = {
       started_on: started_at,
       ended_on: ended_on,
@@ -35,7 +35,8 @@ export class ActiviteService {
       fundings: source_financement,
       structures: structures,
       indicators: indicators,
-      code: code
+      code: code,
+      towns: towns
     };
     console.log(data);
     return this.httpClient.post(BASE_URL + 'administrator/create-activity', data, this.options);
@@ -43,7 +44,7 @@ export class ActiviteService {
 
   updateActivite(started_at: string, ended_on: string, libelle: string, poids: number, montant: number, action_id: number,
                  structure_id: number, est_pip: boolean, source_financement: SourceFinancementActivite[],
-                 structures: any [], code: string, indicators: any [],  id: number) {
+                 structures: any [], code: string, indicators: any [],  id: number, towns: number[]) {
     const data = {
       started_on: started_at,
       ended_on: ended_on,
@@ -56,7 +57,8 @@ export class ActiviteService {
      // fundings: source_financement,
      // structures: structures,
      // indicators: indicators,
-      code: code
+      code: code,
+      towns: towns
     };
     console.log(data);
     return this.httpClient.put(BASE_URL + 'administrator/update-activity/' + id , data, this.options);

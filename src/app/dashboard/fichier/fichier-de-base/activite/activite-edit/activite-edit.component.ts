@@ -189,6 +189,7 @@ export class ActiviteEditComponent implements OnInit {
           this.dateDebut = this.activite.started_on;
           this.dateFin = this.activite.ended_on;
           this.poids = this.activite.weight_in_subaction;
+          this.singleSelectOptionsVille = this.activite.towns;
           //this.singleSelectValueStructure = [this.activite.structures.find((str) => str.type === 0).structure.id;];
           this.singleSelectValueAction = [this.sousAction.find((sub) => sub.denomination === this.activite._subaction).id.toString()];
           // this.singleSelectValueDepartement = [this.utilService.getIdData(this.activite.links, 'departement')];
@@ -451,7 +452,7 @@ export class ActiviteEditComponent implements OnInit {
         .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)), this.utilService.changeDateFornat(this.utilService
         .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), this.libelle,
       this.poids, this.montant, +this.singleSelectValueAction[0], +this.singleSelectValueStructure[0],
-      this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect).concat(struc) , this.code, this.indicateurSelect, this.id)
+      this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect).concat(struc) , this.code, this.indicateurSelect, this.id, [+this.singleSelectOptionsVille])
        .subscribe((res) => {
          console.log(res);
        }, (error: ErrorResponse) => {

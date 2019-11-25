@@ -1,0 +1,108 @@
+<div class="container-fluid">
+    <div class="page-title">
+      <h4>Liste des tâches programmées</h4>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-block">
+            <a [routerLink]="['/dashboard/traitement/programmation_des_taches/add']" class="btn btn-info">
+              <!-- <i class="ti-plus pdd-right-5"></i> -->
+              <span>Programmer une tâche</span>                                                                                                                                                                                                                                                                                                                                                                                                                          &
+            </a>
+            <a [routerLink]="['/dashboard/traitement/suivi_pta/load']" class="btn btn-info">
+              <!-- <i class="ti-import pdd-right-5"></i> -->
+              <span>Suivi PTA</span>
+            </a>
+            <a [routerLink]="['/dashboard/traitement/indicateurs_realises/load']" class="btn btn-info">
+              <!-- <i class="ti-export pdd-right-5"></i> -->
+              <span>Indicateur Realisé</span>
+            </a>
+            <div class="table-overflow">
+  
+              <form  class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)"  #f = "ngForm">
+  
+  
+                <div class="form-group row">
+                  <label for="form-1-6" class="col-md-2 control-label">Activité</label>
+                  <div class="col-md-10">
+                    <ng-selectize id="form-1-6"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}" (ngModelChange)="onSelect()"></ng-selectize>
+                  </div>
+                </div>
+  
+  
+                <div class="form-group row">
+                  <label for="form-1-2" class="col-md-2 control-label">Total Poids </label>
+                  <div class="col-md-10">
+                    <input type="text"  class="form-control" id="form-1-2" placeholder="" ngModel="{{totalTEP}}" name="tep_prog_tache" readonly>
+                  </div>
+                </div>
+  
+  
+              </form>
+  
+              <table class="table table-lg table-hover" datatable [dtOptions]="dtOptions">
+                <thead>
+                <tr>
+                  <th>Activité</th>
+                  <th>Tâche</th>
+                  <th>Montant Tâche</th>
+                  <th>Poids Tâche</th>
+                  <th>Date de début</th>
+                  <th>Date de fin</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let suiviTache of suiviTacheSelect">
+                  <td>
+                    <div class="mrg-top-15">
+                      <span>{{suiviTache._activity}}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="mrg-top-15">
+                      <span>{{suiviTache._task}}</span>
+                    </div>
+                  </td>
+  
+                  <td>
+                    <div class="mrg-top-15">
+                      <span>{{suiviTache.budget}}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="mrg-top-15">
+                      <span>{{suiviTache.weight_in_activity}}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="mrg-top-15">
+                      <span>{{suiviTache.started_on}}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="mrg-top-15">
+                      <span>{{suiviTache.ended_on}}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="mrg-top-10 text-center">
+                      <a [routerLink]="['edit/' + suiviTache.id]" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                        <i class="ti-pencil"></i>
+                      </a>
+                      <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle " (click)="onDelete(suiviTache.id)">
+                        <i class="ti-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
