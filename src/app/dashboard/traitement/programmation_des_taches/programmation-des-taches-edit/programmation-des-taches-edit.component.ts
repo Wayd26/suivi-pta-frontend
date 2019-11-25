@@ -25,10 +25,10 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
   singleSelectOptionsTache: any = [];
   singleSelectOptionsExercice: any = [];
   message: string;
-  singleSelectValueStructure: string[] = ['reactJS'];
-  singleSelectValueActivite: string[] = ['reactJS'];
+  singleSelectValueStructure: string[] = [];
+  singleSelectValueActivite: string[] = [];
   singleSelectValueExercice: string[] = [];
-  singleSelectValueTache: string[] = ['reactJS'];
+  singleSelectValueTache: string[] = [];
   suiviTache: SuiviTache;
   id: number;
   dateDebut;
@@ -50,6 +50,15 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
     this.progTache.getSuiviTache(+this.route.snapshot.params['id']).subscribe((res: SuiviTacheResponse) => {
       this.suiviTache = res.data;
 
+      this.singleSelectValueActivite = [this.utilService.getIdData(res.data.links, 'activity')];
+      console.log('Ici nous avons l activité : ' + this.utilService.getIdData(res.data.links, 'activity'));
+
+      // this.singleSelectValue = [this.utils.getIdData(res.data.links, 'action')];
+
+
+      this.singleSelectValueTache = [this.utilService.getIdData(res.data.links, 'task')];
+      console.log('Ici nous avons la tache : ' + this.utilService.getIdData(res.data.links, 'task'));
+
       this.dateDebut = new Date(res.data.started_on);
       this.dateFin = new Date(res.data.ended_on);
 
@@ -60,12 +69,6 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
       this.dateFin = {year: +dateFinSplit[0], month: +dateFinSplit[1], day: +dateFinSplit[2]};
       console.log(res.data);
 
-
-      this.singleSelectValueActivite = [this.utilService.getIdData(res.data.links, 'activity')];
-      console.log(this.utilService.getIdData(res.data.links, 'acivite'));
-
-      this.singleSelectValueTache = [this.utilService.getIdData(res.data.links, 'task')];
-      console.log(this.utilService.getIdData(res.data.links, 'tache'));
     });
 
     this.activiteService.getActiviteList()
@@ -73,7 +76,7 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
         res.data.map((activite) => {
           this.singleSelectOptionsActivite.push({
             label: activite.denomination,
-            value: activite.id,
+            value: activite.id.toString(),
             code: activite.code
           });
         });
@@ -84,7 +87,7 @@ export class ProgrammationDesTachesEditComponent implements OnInit {
         res.data.map((tache) => {
           this.singleSelectOptionsTache.push({
             label: tache.denomination,
-            value: tache.id,
+            value: tache.id.toString(),
             code: tache.code
           });
         });

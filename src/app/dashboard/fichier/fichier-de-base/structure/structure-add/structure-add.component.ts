@@ -41,7 +41,7 @@ singleSelectValue2: number;
         res.data.map((ville) => {
           this.singleSelectOptions2.push({
             label: ville.denomination,
-            value: ville.id,
+            value: ville.id.toString(),
             code: ville.code
           });
         });
@@ -53,8 +53,8 @@ singleSelectValue2: number;
     console.log(this.singleSelectValue2);
     this.structureService.createStructure(form.value['code'], form.value['denomination'], form.value['bpost'] , form.value['website'],
       +this.singleSelectValue2, form.value['telResp'], form.value['email'], form.value['sigle']).subscribe((res) => {
-      this.router.navigate(['/dashboard/fichier/base/structures/load']);
       this.utilService.notifAjout_OK();
+      this.router.navigate(['/dashboard/fichier/base/structures/load']);
     }, (error: ErrorResponse) => {
         console.log(error);
         console.log(error.error['error']);

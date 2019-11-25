@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="page-title">
-    <h4>Programmer les tâches</h4>
+    <h4>Liste Programmation des tâches</h4>
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -10,30 +10,30 @@
             <i class="ti-plus pdd-right-5"></i>
             <span>Ajouter</span>                                                                                                                                                                                                                                                                                                                                                                                                                          &
           </a>
-          <a [routerLink]="['import']" class="btn btn-info">
-            <i class="ti-import pdd-right-5"></i>
-            <span>Importer</span>
-          </a>
-          <a (click)="execelExport()" class="btn btn-info">
-            <i class="ti-export pdd-right-5"></i>
-            <span>EXCEL</span>
-          </a>
+<!--          <a [routerLink]="['import']" class="btn btn-info">-->
+<!--            <i class="ti-import pdd-right-5"></i>-->
+<!--            <span>Importer</span>-->
+<!--          </a>-->
+<!--          <a (click)="execelExport()" class="btn btn-info">-->
+<!--            <i class="ti-export pdd-right-5"></i>-->
+<!--            <span>EXCEL</span>-->
+<!--          </a>-->
           <div class="table-overflow">
 
             <form  class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)"  #f = "ngForm">
 
 
               <div class="form-group row">
-                <label for="form-1-6" class="col-md-2 control-label">Activité</label>
-                <div class="col-md-10">
+                <label for="form-1-6" class="col-md-4 control-label">Activité</label>
+                <div class="col-md-8">
                   <ng-selectize id="form-1-6"  [config]="singleSelectConfig" [options]="singleSelectOptions" [(ngModel)]="singleSelectValue" ngDefaultControl [ngModelOptions]="{standalone: true}" (ngModelChange)="onSelect()"></ng-selectize>
                 </div>
               </div>
 
 
               <div class="form-group row">
-                <label for="form-1-2" class="col-md-2 control-label">Total Poids </label>
-                <div class="col-md-10">
+                <label for="form-1-2" class="col-md-4 control-label">Total Poids Tâches </label>
+                <div class="col-md-8">
                   <input type="text"  class="form-control" id="form-1-2" placeholder="" ngModel="{{totalTEP}}" name="tep_prog_tache" readonly>
                 </div>
               </div>

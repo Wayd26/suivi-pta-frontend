@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ProgrammeService} from '../../../../../shared/services/programme.service';
 import {UtilsService} from '../../../../../shared/services/utils.service';
-import {ExercieService} from '../../../../../shared/services/exercie.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ProgrammeResponse} from '../../../../../models/programme.model';
-import {ListExerciceResponse} from '../../../../../models/exercice.model';
 import {NgForm} from '@angular/forms';
 import {SourceFinancement, SourceFiResponse} from '../../../../../models/sourceFi.model';
 import {ListTypeSourceFinancementResponse, TypeSourceFinancement} from '../../../../../models/typeSourceFi.model';
-import {SourceFinancementService} from '../../../../../shared/services/source-financement.service';
 import {TypeSourceFinancementService} from '../../../../../shared/services/type-source-financement.service';
 
 @Component({

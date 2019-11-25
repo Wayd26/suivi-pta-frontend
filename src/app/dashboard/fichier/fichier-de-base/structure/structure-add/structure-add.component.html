@@ -12,46 +12,46 @@
                             <form class="form-horizontal mrg-top-40 pdd-right-30" (ngSubmit)="onSubmit(f)" #f="ngForm">
 
                               <div class="form-group row">
-                                <label for="form-1-1" class="col-md-3 control-label">Code</label>
-                                <div class="col-md-9">
+                                <label for="form-1-1" class="col-md-6 control-label">Code</label>
+                                <div class="col-md-6">
                                   <input type="text" class="form-control" id="form-1-1" ngModel="" placeholder="Code" name="code" required>
                                 </div>
                               </div>
 
                                 <div class="form-group row">
-                                    <label for="form-1-2" class="col-md-3 control-label">Denomination</label>
-                                    <div class="col-md-9">
+                                    <label for="form-1-2" class="col-md-6 control-label">Denomination</label>
+                                    <div class="col-md-6">
                                         <input type="text" class="form-control" id="form-1-2" ngModel="" placeholder="Denomination" name="denomination" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="form-1-4" class="col-md-3 control-label">Telephone du responsable</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" id="form-1-4" ngModel="" placeholder="Téléphone du responsable" name="telResp">
+                                    <label for="form-1-4" class="col-md-6 control-label">Telephone du responsable</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="form-1-4" ngModel="" placeholder="Téléphone du responsable" name="telResp" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="form-1-5" class="col-md-3 control-label">Email</label>
-                                    <div class="col-md-9">
-                                        <input type="email" class="form-control" id="form-1-5" ngModel="" placeholder="Email" name="email">
+                                    <label for="form-1-5" class="col-md-6 control-label">Email</label>
+                                    <div class="col-md-6">
+                                        <input type="email" class="form-control" id="form-1-5" ngModel="" placeholder="Email" name="email" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="form-1-8" class="col-md-3 control-label">Boîte Postale</label>
-                                    <div class="col-md-9">
+                                    <label for="form-1-8" class="col-md-6 control-label">Boîte Postale</label>
+                                    <div class="col-md-6">
                                         <input type="email" class="form-control" id="form-1-8" ngModel="" placeholder="Boîte Postale" name="bpost">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="form-1-9" class="col-md-3 control-label">Sigle</label>
-                                    <div class="col-md-9">
-                                        <input type="email" class="form-control" id="form-1-9" ngModel="" placeholder="Sigle" name="sigle">
+                                    <label for="form-1-9" class="col-md-6 control-label">Sigle</label>
+                                    <div class="col-md-6">
+                                        <input type="email" class="form-control" id="form-1-9" ngModel="" placeholder="Sigle" name="sigle" required>
                                     </div>
                                 </div>
 
                               <div class="form-group row">
-                                <label for="form-1-10" class="col-md-3 control-label">Site Web</label>
-                                <div class="col-md-9">
+                                <label for="form-1-10" class="col-md-6 control-label">Site Web</label>
+                                <div class="col-md-6">
                                   <input type="text" class="form-control" id="form-1-10" ngModel="" placeholder="site web" name="website">
                                 </div>
                               </div>
@@ -62,9 +62,9 @@
                                     </div>
                                 </div>-->
                                 <div class="form-group row">
-                                    <label for="form-1-7" class="col-md-3 control-label">Ville</label>
-                                    <div class="col-md-9">
-                                        <ng-selectize id="form-1-7" [config]="singleSelectConfig" [options]="singleSelectOptions2" [(ngModel)]="singleSelectValue2" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                    <label for="form-1-7" class="col-md-6 control-label">Ville</label>
+                                    <div class="col-md-6">
+                                        <ng-selectize id="form-1-7" [config]="singleSelectConfig" [options]="singleSelectOptions2" [(ngModel)]="singleSelectValue2" ngDefaultControl [ngModelOptions]="{standalone: true}" required></ng-selectize>
                                     </div>
                                 </div>
                                 <a [routerLink]="['/dashboard/fichier/base/structures/load']" class="btn btn-primary">

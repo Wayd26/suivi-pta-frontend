@@ -35,18 +35,13 @@ export class ObjectifAddComponent implements OnInit {
         res.data.map((programme) => {
           this.singleSelectOptions.push({
             label: programme.denomination,
-            value: programme.id,
+            value: programme.id.toString(),
             code: programme.code
           });
         });
       });
   }
   onSubmit(form: NgForm) {
-
-    console.log('Le code objectif est : ' + form.value['code_objectif_specifique']);
-    console.log('La dénomination objectif est : ' + form.value['libelle_objectif_specifique']);
-    console.log('l\'Id du programme est : ' + this.singleSelectValue);
-
     this.objService.createObjectif(form.value['code_objectif_specifique'],
    form.value['libelle_objectif_specifique'], +this.singleSelectValue).subscribe((resp) => {
       this.utils.notifAjout_OK();

@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Ministere, MinistereResponse} from '../../../../models/ministere.model';
-import {MinistereService} from '../../../../shared/services/ministere.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {VilleService} from '../../../../shared/services/ville.service';
 import {UtilsService} from '../../../../shared/services/utils.service';
-import {ListVilleResponse} from '../../../../models/ville.model';
 import {NgForm} from '@angular/forms';
 import {ExercieService} from '../../../../shared/services/exercie.service';
 import {Exercice, ExerciceResponse} from '../../../../models/exercice.model';
-import {ProgrammeResponse} from '../../../../models/programme.model';
 
 @Component({
   selector: 'app-exercice-edit',

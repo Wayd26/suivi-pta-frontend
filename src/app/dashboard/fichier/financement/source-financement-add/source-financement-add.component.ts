@@ -32,7 +32,7 @@ export class SourceFinancementAddComponent implements OnInit {
         res.data.map((type) => {
           this.singleSelectOptions.push({
             label: type.denomination,
-            value: type.id,
+            value: type.id.toString(),
             code: type.code
           });
         });

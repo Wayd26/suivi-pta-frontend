@@ -46,7 +46,7 @@ export class ProgrammationDesTachesAddComponent implements OnInit {
       res.data.map((activite) => {
         this.singleSelectOptionsActivite.push({
           label: activite.denomination,
-          value: activite.id,
+          value: activite.id.toString(),
           code: activite.code
         });
       });
@@ -57,7 +57,7 @@ export class ProgrammationDesTachesAddComponent implements OnInit {
         res.data.map((tache) => {
           this.singleSelectOptionsTache.push({
             label: tache.denomination,
-            value: tache.id,
+            value: tache.id.toString(),
             code: tache.code
           });
         });
@@ -68,8 +68,10 @@ export class ProgrammationDesTachesAddComponent implements OnInit {
   onSubmit(form: NgForm) {
     const debDate = new Date(this.started_on.year, this.started_on.month - 1, this.started_on.day);
     const finDate = new Date(this.ended_on.year, this.ended_on.month - 1, this.ended_on.day);
-    this.progTache.createSuiviTache(+this.singleSelectValueActivite, +this.singleSelectValueTache, this.utilservice.dateToString(debDate), this.utilservice.dateToString(finDate), form.value['montant_tache'], form.value['poids_tache'], false)
-      .subscribe((resp) => {
+    this.progTache.createSuiviTache(+this.singleSelectValueActivite, +this.singleSelectValueTache,
+    this.utilservice.dateToString(debDate), this.utilservice.dateToString(finDate),
+     form.value['montant_tache'], form.value['poids_tache'], false)
+    .subscribe((resp) => {
         this.utilservice.notifAjout_OK();
         this.router.navigate(['/dashboard/fichier/traitement/programmation_des_taches/load']);
       } , (error: ErrorResponse) => {

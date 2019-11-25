@@ -185,7 +185,7 @@ export class ActiviteEditComponent implements OnInit {
           this.code = this.activite.code;
           this.libelle = this.activite.denomination;
           this.montant = this.activite.budget;
-          this.projet = this.activite.is_pip
+          this.projet = this.activite.is_pip;
           this.dateDebut = this.activite.started_on;
           this.dateFin = this.activite.ended_on;
           this.poids = this.activite.weight_in_subaction;

@@ -21,10 +21,10 @@
                 <p class="mrg-btm-15 font-size-13">Veuillez entrer votre mail et votre mot de passe</p>
                 <form (ngSubmit)="onSubmit(f)" #f="ngForm">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="User name" name="login" ngModel required>
+                    <input type="text" class="form-control" placeholder="mail" name="login" ngModel required>
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" name="password" ngModel required>
+                    <input type="password" class="form-control" placeholder="mot de passe" name="password" ngModel required>
                   </div>
 
                   <button  class="btn btn-info" type="submit" [disabled]="f.invalid" >Login</button>

@@ -22,6 +22,7 @@ export class SourceFinancementEditComponent implements OnInit {
   singleSelectValue: string[] = [];
   sourceFi: SourceFinancement;
   id: number;
+  isProjet;
 
   singleSelectConfig: any = {
     labelField: 'label',
@@ -34,6 +35,7 @@ export class SourceFinancementEditComponent implements OnInit {
     this.id = +this.route.snapshot.params['id'];
     this.sourceFiService.getSourceFinancement(+this.route.snapshot.params['id']).subscribe((res: SourceFiResponse) => {
       this.sourceFi = res.data;
+      this.isProjet = this.sourceFi.is_project;
 
       console.log('Affichage des donnees ' + res.data);
 
@@ -47,7 +49,7 @@ export class SourceFinancementEditComponent implements OnInit {
         res.data.map((typeS) => {
           this.singleSelectOptions.push({
             label: typeS.denomination,
-            value: typeS.id,
+            value: typeS.id.toString(),
             code: typeS.code
           });
         });
@@ -55,7 +57,8 @@ export class SourceFinancementEditComponent implements OnInit {
   }
   onSubmit(form: NgForm) {
     console.log(this.singleSelectValue);
-    this.sourceFiService.update(form.value['code_source_financement'], form.value['libellé_source_financement'], form.value['poids_projet_pip'], form.value['chapitre_imputation'], form.value['toggle1'], +this.singleSelectValue, this.id)
+    this.sourceFiService.update(form.value['code_source_financement'], form.value['libellé_source_financement'],
+        form.value['poids_projet_pip'], form.value['chapitre_imputation'], form.value['toggle1'], +this.singleSelectValue, this.id)
       .subscribe((resp) => {
         this.utilService.notifModif_OK();
         this.router.navigate(['/dashboard/fichier/financement/source/load']);

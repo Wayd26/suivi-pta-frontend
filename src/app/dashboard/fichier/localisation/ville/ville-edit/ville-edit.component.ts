@@ -25,7 +25,9 @@ export class VilleEditComponent implements OnInit {
   id: number;
 
   singleSelectValue: string[] = [];
-  constructor(private villeService: VilleService , private router: Router, private departementService: DepartementService, private utilService: UtilsService, private route: ActivatedRoute) { }
+  constructor(private villeService: VilleService , private router: Router,
+    private departementService: DepartementService, private utilService: UtilsService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.message = '';

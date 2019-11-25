@@ -1,10 +1,10 @@
 
 export interface Link {
   rel: string;
-  _tache: string;
   href: string;
   _user: string;
-  _activite: string;
+  // _activite: string;
+  // _tache: string;
 }
 
 export interface SuiviTache {
@@ -24,6 +24,9 @@ export interface SuiviTache {
   links: Link[];
 }
 
+export interface Links {
+  next: string;
+}
 
 
 export interface ListeSuiviTachePesponse {

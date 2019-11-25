@@ -38,7 +38,7 @@ export class SousActionAddComponent implements OnInit {
         res.data.map((action) => {
           this.singleSelectOptions2.push({
             label: action.denomination,
-            value: action.id,
+            value: action.id.toString(),
             code: action.code
           });
         });

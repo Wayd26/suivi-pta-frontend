@@ -34,7 +34,7 @@ export class ResultatAddComponent implements OnInit {
         res.data.map((resultat) => {
           this.singleSelectOptions.push({
             label: resultat.denomination,
-            value: resultat.id,
+            value: resultat.id.toString(),
             code: resultat.code
           });
         });

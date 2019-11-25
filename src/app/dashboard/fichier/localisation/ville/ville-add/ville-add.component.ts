@@ -39,10 +39,6 @@ export class VilleAddComponent implements OnInit {
       });
   }
   onSubmit(form: NgForm) {
-    console.log(form);
-    console.log(form.value['code_ville']);
-    console.log(form.value['nom_ville']);
-    console.log(+this.singleSelectValue);
       this.villeService.createVille(form.value['code_ville'], form.value['nom_ville'], +this.singleSelectValue)
         .subscribe((resp) => {
           this.utilservice.notifAjout_OK();
