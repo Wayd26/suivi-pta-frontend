@@ -33,7 +33,7 @@ export class ActiviteListComponent implements OnInit {
     headers: ['identifiant', 'code', 'libelle', 'poids', 'montant', '_resultat'],
     nullToEmptyString: true,
   };
-  villeList: Ville[];
+  villeList: Ville[] = [] ;
 
   constructor(private villeService: VilleService,private activiteService: ActiviteService, private utilService: UtilsService, private router: Router, private dataService: DataService, private exportService: ExportAsExelService) { }
 
@@ -45,14 +45,14 @@ export class ActiviteListComponent implements OnInit {
       this.villeService.getVilleList()
       .subscribe((res: ListVilleResponse) => {
         this.villeList = res.data;
-       
       });
-      if (!this.dataService.getActivites()) {
+   /*   if (!this.dataService.getActivites()) {
         this.router.navigate(['/dashboard/fichier/base/activite/load']);
-    }
+    }*/
       this.activites = this.dataService.getActivites();
 
       this.activiteService.getActiviteList().subscribe((res: ListActiviteResponse) => {
+        console.log(res.data)
           this.dataService.setActivites(res.data);
       } , (error) => {
         this.activites = [];
@@ -78,7 +78,7 @@ export class ActiviteListComponent implements OnInit {
       // });
   }
   getVille(id) {
-    return this.villeList.find((v) =>  v.id == id)
+    return this.villeList.find((v) =>  v.id === id);
   }
   execelExport() {
     this.exportService.exportAsExcelFile(JSON.parse(JSON.stringify(this.activiteExport)), 'action');

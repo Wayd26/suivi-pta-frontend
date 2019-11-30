@@ -24,18 +24,18 @@ export class ActiviteService {
     structure_id: number, est_pip: boolean, source_financement: SourceFinancementActivite[],
     structures: any [], code: string, indicators: any [], towns: number[]) {
     const data = {
+      code: code,
       started_on: started_at,
       ended_on: ended_on,
       denomination: libelle,
-      weight_in_subaction: poids,
-      budget: montant,
-      subaction_id: action_id,
-      structure_id: structure_id,
+      // structure_id: structure_id,
       is_pip: est_pip === true ? 1 : 0,
+      budget: montant,
+      weight_in_subaction: poids,
+      subaction_id: action_id,
       fundings: source_financement,
       structures: structures,
       indicators: indicators,
-      code: code,
       towns: towns
     };
     console.log(data);

@@ -1,11 +1,29 @@
 import {Structure} from './structure.model';
+import {Ville} from './ville.model';
 
 export interface Link {
       rel: string;
       href: string;
   }
+export interface Pivot {
+  activity_id: number;
+  town_id: number;
+}
 
-  export interface Activite {
+export interface ActivityTown {
+  id: number;
+  backend_code: string;
+  code: string;
+  denomination: string;
+  department_id: number;
+  deleted_at?: any;
+  created_at: string;
+  updated_at: string;
+  pivot: Pivot;
+}
+
+
+export interface Activite {
     id: number;
     code: string;
     denomination: string;
@@ -20,7 +38,8 @@ export interface Link {
     created_at: string;
     updated_at: string;
     deleted_at?: any;
-      links: Link[];
+    links: Link[];
+    towns: ActivityTown[];
   }
   export interface ActiviteExport {
       identifiant: number;

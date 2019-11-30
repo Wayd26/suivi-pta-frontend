@@ -40,6 +40,7 @@ export class UtilsService {
     return id;
   }
   getDate(year, month, day) {
+    console.log(month);
     return new Date(year, month, day);
   }
   changeDateFornat(date: Date) {
@@ -48,7 +49,8 @@ export class UtilsService {
     console.log(current_datetime.getFullYear());
     console.log(current_datetime.getMonth());
     console.log(current_datetime.getDate());
-    return  current_datetime.getFullYear() + '-' + current_datetime.getMonth() + '-' + current_datetime.getDate();
+    const  moth = current_datetime.getMonth() < 10 ? '0' + current_datetime.getMonth() : current_datetime.getMonth()
+    return  current_datetime.getFullYear() + '-' + moth + '-' + current_datetime.getDate();
   }
 
   dateToString(date: Date) {
@@ -73,6 +75,10 @@ export class UtilsService {
    const tab = data.find(function (e) { return e['rel'] === keys ; })['href'].split('/');
    // console.log(tab);
     return tab[tab.length - 1].toString();
+  }
+  getPickerFormat(date: String) {
+    const dateFinRealSplit = date.split('-');
+    return {year: +dateFinRealSplit[0], month: +dateFinRealSplit[1], day: +dateFinRealSplit[2]};
   }
 
   notifAjout_OK() {return swal('Succes !', 'Ajout effectué !', 'success'); }

@@ -19,7 +19,7 @@ export class AuthGuardService implements CanActivate {
     console.log(this.router.url);
     if (!this.cookie.check('auth')) {
 
-      this.router.navigate(['authentication/sign-in']);
+      this.router.navigate(['/authentication/sign-in']);
       return false;
     }
     return true;

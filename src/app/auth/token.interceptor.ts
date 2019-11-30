@@ -7,17 +7,31 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {CookieService} from 'ngx-cookie-service';
+import {Router} from '@angular/router';
 
 @Injectable()
-export class TokenInterceptor implements HttpInterceptor {  constructor(public cookie: CookieService) {}
+export class TokenInterceptor implements HttpInterceptor {  constructor(public cookie: CookieService, private router: Router) {}
 intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-  request = request.clone({
-    setHeaders: {
-      'Authorization': `Bearer ${this.cookie.get('token')}`
+  if (request.url.indexOf('/authentication/sign-in') !== -1) {
+    if (!this.cookie.check('auth')) {
+      this.router.navigate(['/authentication/sign-in']);
+    } else {
+      request = request.clone({
+        setHeaders: {
+          'Authorization': `Bearer ${this.cookie.get('token')}`
+        }
+      });
+      console.log(request);
+      return next.handle(request);
     }
-  });
-  console.log(request);
-  return next.handle(request);
+  } else {
+      request = request.clone({
+        setHeaders: {
+          'Authorization': `Bearer ${this.cookie.get('token')}`
+        }
+      });
+      console.log(request);
+      return next.handle(request);
+    }
 }
 }

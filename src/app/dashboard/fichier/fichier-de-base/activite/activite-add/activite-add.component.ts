@@ -51,6 +51,7 @@ export class ActiviteAddComponent implements OnInit {
   singleSelectOptionsVille: any = [];
   singleSelectOptionsSource: any = [];
   singleSelectOptionsIndicateur: any = [];
+  singleSelectOptionsStructureFilter: any = [];
   structureSelect: any = [];
   sourcefiSelect: number[] = [];
   indicateurSelect: any = [];
@@ -164,147 +165,6 @@ export class ActiviteAddComponent implements OnInit {
         this.sources = res.data;
       });
   }
-  getColor(data: number) {
-    let result = false;
-    for (let i = 0; i < this.structureSelect.length; i++) {
-      if (data === this.structureSelect[i] ) {
-        result = true;
-        break;
-      }
-    }
-    return result;
-  }
-  getColorStructureImpli(data: number) {
-    let result = false;
-    for (let i = 0; i < this.structureImpliSelect.length; i++) {
-      if (data === this.structureImpliSelect[i] ) {
-        result = true;
-        break;
-      }
-    }
-    return result;
-  }
-  getColorSource(data: number) {
-    let result = false;
-    for (let i = 0; i < this.sourcefiSelect.length; i++) {
-      if (data === this.sourcefiSelect[i] ) {
-        result = true;
-        break;
-      }
-    }
-    return result;
-  }
-  OnSelectOrUnselectAllEmploye() {
-    if (this.structureSelect.length === 0) {
-      for (let i = 0 ; i < this.structures.length ; i++) {
-        this.structureSelect.push(this.structures[i].id);
-      }
-    } else if (this.structureSelect.length === this.structures.length) {
-      this.structureSelect = [];
-    } else if (this.structureSelect.length > 0) {
-      this.structureSelect = [];
-      for (let i = 0 ; i < this.structures.length ; i++) {
-        this.structureSelect.push(this.structures[i].id);
-      }
-    }
-  }
-  OnSelectOrUnselectEmploye(id: number) {
-    console.log(id);
-    let indice = 0;
-    if (this.structureSeleShadows97ct.length === 0) {
-      this.structureSelect.push(id);
-    } else if (this.structureSelect.length === 1) {
-      if (this.structureSelect[0] === id) {
-        this.structureSelect = this.structureSelect.filter((value) => {
-          return value !== id;
-        });
-      } else {
-        this.structureSelect.push(id);
-      }
-      console.log(this.structureSelect.length + ' ' + this.structureSelect);
-    } else {
-      for (let i = 0; i < this.structureSelect.length; i++) {
-        if (id === this.structureSelect[i] ) {
-          console.log('oui');
-          this.structureSelect = this.structureSelect.filter((value) => {
-            return value !== id;
-          });
-          break;
-        } else {
-          indice++;
-        }
-      }
-      if (indice === this.structureSelect.length) {
-        this.structureSelect.push(id);
-      }
-      console.log(this.structureSelect.length + ' ' + this.structureSelect);
-    }
-  }
-
-  OnSelectOrUnselectStructureImpli(id: number) {
-    console.log(id);
-    let indice = 0;
-    if (this.structureImpliSelect.length === 0) {
-      this.structureImpliSelect.push(id);
-    } else if (this.structureImpliSelect.length === 1) {
-      if (this.structureImpliSelect[0] === id) {
-        this.structureImpliSelect = this.structureImpliSelect.filter((value) => {
-          return value !== id;
-        });
-      } else {
-        this.structureImpliSelect.push(id);
-      }
-      console.log(this.structureImpliSelect.length + ' ' + this.structureImpliSelect);
-    } else {
-      for (let i = 0; i < this.structureImpliSelect.length; i++) {
-        if (id === this.structureImpliSelect[i] ) {
-          console.log('oui');
-          this.structureImpliSelect = this.structureImpliSelect.filter((value) => {
-            return value !== id;
-          });
-          break;
-        } else {
-          indice++;
-        }
-      }
-      if (indice === this.structureImpliSelect.length) {
-        this.structureImpliSelect.push(id);
-      }
-      console.log(this.structureImpliSelect.length + ' ' + this.structureImpliSelect);
-    }
-  }
-  OnSelectOrUnselectSource(id: number) {
-    console.log(id);
-    let indice = 0;
-    if (this.sourcefiSelect.length === 0) {
-      this.sourcefiSelect.push(id);
-    } else if (this.sourcefiSelect.length === 1) {
-      if (this.sourcefiSelect[0] === id) {
-        this.sourcefiSelect = this.sourcefiSelect.filter((value) => {
-          return value !== id;
-        });
-      } else {
-        this.sourcefiSelect.push(id);
-      }
-      console.log(this.sourcefiSelect.length + ' ' + this.sourcefiSelect);
-    } else {
-      for (let i = 0; i < this.sourcefiSelect.length; i++) {
-        if (id === this.sourcefiSelect[i] ) {
-          console.log('oui');
-          this.sourcefiSelect = this.sourcefiSelect.filter((value) => {
-            return value !== id;
-          });
-          break;
-        } else {
-          indice++;
-        }
-      }
-      if (indice === this.sourcefiSelect.length) {
-        this.sourcefiSelect.push(id);
-      }
-      console.log(this.sourcefiSelect.length + ' ' + this.sourcefiSelect);
-    }
-  }
   getStructure(id) {
     return this.structures.find(function (s) { return s.id === +id; });
   }
@@ -313,6 +173,12 @@ export class ActiviteAddComponent implements OnInit {
   }
   getIndicateur(id) {
     return this.indicateur.find(function (s) { return s.id === +id; });
+  }
+
+  getStructureFilter() {
+    this.singleSelectOptionsStructureFilter = this.singleSelectOptionsStructure.filter((s) => +s.value !== +this.singleSelectValueStructure);
+    console.log(this.singleSelectValueStructure);
+    console.log(this.singleSelectOptionsStructureFilter);
   }
   addStructureSuper() {
     console.log(this.singleSelectValueStructureSuper);
@@ -343,6 +209,44 @@ export class ActiviteAddComponent implements OnInit {
   this.montantSelect.push(this.montantValue);
   }
 
+  checkStructById(id, structureList) {
+    const struc = structureList.find((s) =>  s.id === id);
+    return struc === undefined ? false : true;
+  }
+
+  checkIndicatorByName(name, indicatorList) {
+    const struc = indicatorList.find((s) =>  s.denomination === name);
+    return struc === undefined ? false : true;
+  }
+
+  checkSourceById(id, sourceList) {
+    const struc = sourceList.find((s) =>  s.id === id);
+    return struc === undefined ? false : true;
+  }
+
+  deleteStructureSuper(id) {
+
+    this.structureSelect = this.structureSelect.length === 1 ? [] : this.structureSelect.filter((s) => s.id !== id)
+    this.structureSelectShow =  this.structureSelectShow.filter((s) => s.id !== id)
+    console.log(this.structureSelect);
+  }
+
+  deleteStructureImpli(id) {
+    this.structureImpliSelect = this.structureImpliSelect.length === 1 ? [] : this.structureImpliSelect.filter((s) => s.id !== id)
+    this.structureImpliSelectShow =  this.structureImpliSelectShow.filter((s) => s.id !== id)
+    console.log(this.structureImpliSelect);
+  }
+
+  deleteIndicateur(name) {
+    this.indicateurSelect = this.indicateurSelect.filter((s) => s.denomination !== name);
+    this.indicateurSelectShow = this.indicateurSelectShow.filter((s) => s !== name);
+  }
+
+  deleteSource(name) {
+    this.sourceFi = this.sourceFi.filter((s) => s !== name);
+    this.sourcefiSelectShow = this.sourcefiSelectShow.filter((s) => { delete this.montantSelect[this.sourceFi.indexOf(s)]; return s.denomination !== name;})
+  }
+
   onSelect(id) {
     this.singleSelectOptionsVille = [];
     this.villeList.filter((c) => c._department === this.singleSelectOptionsDepartement)
@@ -365,7 +269,7 @@ export class ActiviteAddComponent implements OnInit {
       .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)), this.utilService.changeDateFornat(this.utilService
         .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), this.libelle,
        this.poids, this.montant, +this.singleSelectValueAction[0], +this.singleSelectValueStructure[0],
-       this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect).concat(struc) , this.code, this.indicateurSelect, [+this.singleSelectOptionsVille])
+       this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect).concat(struc) , this.code, this.indicateurSelect, [+this.singleSelectValueVille])
        .subscribe((res) => {
          this.utilService.notifAjout_OK();
          console.log(res);

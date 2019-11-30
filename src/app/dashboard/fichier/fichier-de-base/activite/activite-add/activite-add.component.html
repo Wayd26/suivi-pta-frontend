@@ -70,7 +70,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Structure</label>
-                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructure" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                            <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructure" ngDefaultControl [ngModelOptions]="{standalone: true}" (ngModelChange)="getStructureFilter()"></ng-selectize>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -131,7 +131,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Structures</label>
-                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructureImpl" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructureFilter" [(ngModel)]="singleSelectValueStructureImpl" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
@@ -185,7 +185,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Structures</label>
-                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructure" [(ngModel)]="singleSelectValueStructureSuper" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
+                                                <ng-selectize [config]="singleSelectConfig" [options]="singleSelectOptionsStructureFilter" [(ngModel)]="singleSelectValueStructureSuper" ngDefaultControl [ngModelOptions]="{standalone: true}"></ng-selectize>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
@@ -237,11 +237,11 @@
                                 <aw-wizard-step stepTitle="Indicateurs" [navigationSymbol]="{ symbol: '4' }">
                                     <div class="row">
                                       <div class="col-md-6">
-    
+
                                           <div class="form-group">
                                             <label>Indicateur</label>
                                             <input type="text" class="form-control" name="indicateur" [(ngModel)]="indicateurLabel">
-    
+
                                         </div>
                                       </div>
                                       <div class="col-md-2">
@@ -267,12 +267,12 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr *ngFor="let ind of indicateurSelectShow">
-    
+
                                                   <td>
                                                     <div class=" relative mrg-top-15">
                                                       <span class="pdd-left-20">{{ind}}</span>
                                                     </div>
-                                                   
+
                                                   </td>
 
                                                   <td>
@@ -280,7 +280,7 @@
                                                         <i class="ti-trash"></i>
                                                     </button>
                                                   </td>
-    
+
                                                 </tr>
                                                 </tbody>
                                               </table>

@@ -186,11 +186,11 @@ export class ActiviteEditComponent implements OnInit {
           this.libelle = this.activite.denomination;
           this.montant = this.activite.budget;
           this.projet = this.activite.is_pip;
-          this.dateDebut = this.activite.started_on;
-          this.dateFin = this.activite.ended_on;
+          this.dateDebut = this.utilService.getPickerFormat(this.activite.started_on);
+          this.dateFin = this.utilService.getPickerFormat(this.activite.ended_on);
           this.poids = this.activite.weight_in_subaction;
-          this.singleSelectOptionsVille = this.activite.towns;
-          //this.singleSelectValueStructure = [this.activite.structures.find((str) => str.type === 0).structure.id;];
+          this.singleSelectOptionsVille = [this.activite.towns[0].id];
+          // this.singleSelectValueStructure = [this.activite.structures.find((str) => str.type === 0).structure.id;];
           this.singleSelectValueAction = [this.sousAction.find((sub) => sub.denomination === this.activite._subaction).id.toString()];
           // this.singleSelectValueDepartement = [this.utilService.getIdData(this.activite.links, 'departement')];
           // this.singleSelectValueVille = [this.utilService.getIdData(this.activite.links, 'ville')];
@@ -452,7 +452,7 @@ export class ActiviteEditComponent implements OnInit {
         .getDate(this.dateDebut.year, this.dateDebut.month, this.dateDebut.day)), this.utilService.changeDateFornat(this.utilService
         .getDate(this.dateFin.year, this.dateFin.month, this.dateFin.day)), this.libelle,
       this.poids, this.montant, +this.singleSelectValueAction[0], +this.singleSelectValueStructure[0],
-      this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect).concat(struc) , this.code, this.indicateurSelect, this.id, [+this.singleSelectOptionsVille])
+      this.projet, this.sourceFi, this.structureImpliSelect.concat(this.structureSelect).concat(struc) , this.code, this.indicateurSelect, this.id, [+this.singleSelectValueVille])
        .subscribe((res) => {
          this.utilService.notifModif_OK();
          console.log(res);
